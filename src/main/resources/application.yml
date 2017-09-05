@@ -1,0 +1,29 @@
+spring:
+  thymeleaf:
+    mode: LEGACYHTML5
+    encoding: utf-8
+    content-type: text/html
+    cache: false
+
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/weixin_edu?useUnicode=true&characterEncoding=UTF-8&useSSL=true
+    username: admin
+    password: admin
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+
+
+logging:
+  path: /log
+  level:
+    com:
+      outstudio:
+        weixin: debug
+
+
+
+
+
+
