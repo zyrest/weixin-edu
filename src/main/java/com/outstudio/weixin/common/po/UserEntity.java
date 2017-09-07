@@ -7,7 +7,7 @@ public class UserEntity {
 
     private String nickname;
 
-    private Byte sex;
+    private Integer sex;
 
     private String province;
 
@@ -17,7 +17,7 @@ public class UserEntity {
 
     private Date vip_end_date;
 
-    private Long points;
+    private Integer points;
 
     public String getOpenid() {
         return openid;
@@ -35,11 +35,11 @@ public class UserEntity {
         this.nickname = nickname == null ? null : nickname.trim();
     }
 
-    public Byte getSex() {
+    public Integer getSex() {
         return sex;
     }
 
-    public void setSex(Byte sex) {
+    public void setSex(Integer sex) {
         this.sex = sex;
     }
 
@@ -75,11 +75,11 @@ public class UserEntity {
         this.vip_end_date = vip_end_date;
     }
 
-    public Long getPoints() {
+    public Integer getPoints() {
         return points;
     }
 
-    public void setPoints(Long points) {
+    public void setPoints(Integer points) {
         this.points = points;
     }
 }

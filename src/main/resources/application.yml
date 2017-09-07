@@ -7,7 +7,7 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/weixin_edu?useUnicode=true&characterEncoding=UTF-8&useSSL=true
+    url: jdbc:mysql://127.0.0.1:3306/wechat_edu?useUnicode=true&characterEncoding=UTF-8&useSSL=true
     username: admin
     password: admin
 

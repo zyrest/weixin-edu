@@ -13,7 +13,7 @@
         </commentGenerator>
         <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/weixin_edu" userId="admin"
+                        connectionURL="jdbc:mysql://localhost:3306/wechat_edu" userId="admin"
                         password="admin">
         </jdbcConnection>
         <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和
@@ -52,7 +52,70 @@
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
 
         <table schema="general"
-               tableName="user" domainObjectName="UserEntity"
+               tableName="t_charge" domainObjectName="ChargeEntity"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false" >
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+        <table schema="general"
+               tableName="t_en_review" domainObjectName="EnReviewEntity"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false" >
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+        <table schema="general"
+               tableName="t_en_video" domainObjectName="EnVideoEntity"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false" >
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+        <table schema="general"
+               tableName="t_interview_video" domainObjectName="InterviewVideoEntity"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false" >
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+        <table schema="general"
+               tableName="t_manager" domainObjectName="ManagerEntity"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false" >
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+        <table schema="general"
+               tableName="t_message" domainObjectName="MessageEntity"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false" >
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+        <table schema="general"
+               tableName="t_points" domainObjectName="PointsEntity"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false" >
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+        <table schema="general"
+               tableName="t_story" domainObjectName="StoryEntity"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"
