@@ -1,7 +1,8 @@
 package com.outstudio.weixin.wechat.servlet;
 
-import com.outstudio.weixin.common.utils.NetWorkUtil;
+import com.outstudio.weixin.common.utils.LoggerUtil;
 import com.outstudio.weixin.wechat.cache.AccessTokenCache;
+import com.outstudio.weixin.wechat.utils.WechatUtil;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -23,39 +24,38 @@ public class AccessTokenServlet extends HttpServlet {
         logger.info("服务已经启动，正在加载AccessTokenServlet");
         super.init();
 
-        new Thread(new Runnable() {
+        new Thread(() -> {
+            //进入无限循环， 持续获得Token
+            while (true) {
+                try {
+                    //获取AccessToken
+                    AccessTokenCache.setAccessToken(WechatUtil.getAccessTokenByRequest());
 
-            @Override
-            public void run() {
-                //进入无限循环， 持续获得Token
-                while (true) {
-                    try {
-                        //获取AccessToken
-                        AccessTokenCache.setAccessToken(NetWorkUtil.getAccessTokenByRequest());
-
-                        if (AccessTokenCache.getAccessToken() == null) {
-                            Thread.sleep(1000 * 2);
-                        } else { //正确获取token 按照过期时间判定休眠时间
-                            logger.info("now token is : " + AccessTokenCache.getAccessToken().getAccess_token());
-                            Integer sleepTime =
-                                    Integer.parseInt(AccessTokenCache.getAccessToken().getExpires_in())
-                                            - 200;
-                            Thread.sleep(1000 * sleepTime);
-                        }
-                    } catch (Exception e) {
-                        //处理异常 休眠1秒
-                        logger.info("there is an exception : " + e.getMessage());
-                        e.printStackTrace();
-                        try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException e1) {
-                            e1.printStackTrace();
-                        }
-                        //处理异常结束
+                    if (AccessTokenCache.getAccessToken() == null) {
+                        Thread.sleep(1000 * 2);
+                    } else { //正确获取token 按照过期时间判定休眠时间
+                        LoggerUtil.fmtDebug(getClass(),
+                                "已经正确获取AccessToken, 现在的token为->{%s}",
+                                AccessTokenCache.getAccessToken().getAccess_token());
+                        Integer sleepTime =
+                                Integer.parseInt(AccessTokenCache.getAccessToken().getExpires_in())
+                                        - 200;
+                        Thread.sleep(1000 * sleepTime);
                     }
+                } catch (Exception e) {
+                    //处理异常 休眠1秒
+                    LoggerUtil.fmtError(getClass(), e,
+                            "获取AccessToken出现错误, 错误信息为->{%s}", e.getMessage());
+
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e1) {
+                        e1.printStackTrace();
+                    }
+                    //处理异常结束
                 }
-                //无限循环结束（不会结束
             }
+            //无限循环结束（不会结束
         }).start();
     }
 }

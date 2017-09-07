@@ -47,4 +47,8 @@ public class DateUtil {
     public static boolean between(Date now, Date start, Date end) {
         return now != null && now.after(start) && now.before(end);
     }
+
+    public static boolean isNotExpire(Date date) {
+        return date != null && date.after(new Date());
+    }
 }

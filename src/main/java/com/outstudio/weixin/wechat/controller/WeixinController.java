@@ -1,5 +1,6 @@
 package com.outstudio.weixin.wechat.controller;
 
+import com.outstudio.weixin.common.utils.LoggerUtil;
 import com.outstudio.weixin.wechat.core.MyWechat;
 import com.outstudio.weixin.wechat.core.MyWechatFactory;
 import com.outstudio.weixin.wechat.dto.SignaturePo;
@@ -30,16 +31,20 @@ public class WeixinController {
             @RequestParam String signature, @RequestParam String timestamp,
             @RequestParam String nonce, @RequestParam String echostr) {
 
-        logger.info("start check");
+        LoggerUtil.fmtDebug(getClass(),
+                "开始验证, 输入的值为 : \nsignature->{%s},\n timestamp->{%s},\n nonce->{%s},\n echostr->{%s}",
+                signature, timestamp, nonce, echostr);
+
         SignaturePo po = new SignaturePo();
         po.setSignature(signature);
         po.setTimestamp(timestamp);
         po.setNonce(nonce);
         po.setEchostr(echostr);
         boolean flag = MessageUtil.checkSignature(po);
-        logger.info("end check, valid?" + flag);
 
-        return flag?echostr:"";
+        LoggerUtil.fmtDebug(getClass(), "验证完毕, 状态->{%s}", flag);
+
+        return flag ? echostr : "";
     }
 
     @RequestMapping(value = "/weixin.do", method = RequestMethod.POST)
@@ -55,6 +60,5 @@ public class WeixinController {
         pw.write(result);
         pw.flush();
         pw.close();
-
     }
 }

@@ -13,12 +13,13 @@ public class ContentUtil {
         return s.toString();
     }
 
-    public static String onSubscribe() {
+    public static String onSubscribe(String nickname) {
         StringBuilder s = new StringBuilder();
+        s.append(nickname);
+        s.append("~");
         s.append("你好啊!\n\n");
         s.append("这是我的测试账号\n\n");
         s.append("欢迎您的关注\n\n");
-        s.append("可以输入：1、2、3");
 
         return s.toString();
     }

@@ -1,12 +1,12 @@
 package com.outstudio.weixin.wechat.core;
 
-import com.outstudio.weixin.wechat.core.handler.Handler;
-import com.outstudio.weixin.wechat.core.handler.NormalHandler;
+import com.outstudio.weixin.common.utils.LoggerUtil;
+import com.outstudio.weixin.wechat.core.router.Router;
 import com.outstudio.weixin.wechat.utils.MessageUtil;
-import org.apache.log4j.Logger;
 import org.dom4j.DocumentException;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Map;
@@ -16,26 +16,19 @@ import java.util.Map;
  */
 @Service
 public class MyWechat {
-    private Logger logger = Logger.getLogger(MyWechat.class);
     private HttpServletRequest request;
     private Map<String, String> messageMap;
 
-    private Handler handler = new NormalHandler();
-
-//    public MyWechat(HttpServletRequest request) {
-//        logger.info("start handle wenxin request");
-//        this.request = request;
-//        init();
-//    }
+    @Resource(name = "normalRouter")
+    private Router normalRouter;
 
     public MyWechat() {}
 
     void setRequest(HttpServletRequest request) {
-        logger.info("start handle wenxin request");
+        LoggerUtil.fmtDebug(getClass(), "开始处理消息请求");
         this.request = request;
         init();
     }
-
     private void init() {
         try {
             messageMap = MessageUtil.xml2Map(request);
@@ -45,13 +38,14 @@ public class MyWechat {
     }
 
     public String execute() {
-        logger.info("getting response message");
-//        logger.info(handler == null);
-        String result = handler.dispatchMessage(messageMap);
+        LoggerUtil.fmtDebug(getClass(), "正在获取消息回复");
+
+        String result = normalRouter.dispatchMessage(messageMap);
         if (result == null) {
             result = "success";
         }
-        logger.info("got response message : \n" + result);
+
+        LoggerUtil.fmtDebug(getClass(), "回复为 -> \n", result);
         return result;
     }
 

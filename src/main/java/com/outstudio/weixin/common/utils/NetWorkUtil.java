@@ -2,8 +2,6 @@ package com.outstudio.weixin.common.utils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.outstudio.weixin.wechat.config.WeixinProperties;
-import com.outstudio.weixin.wechat.dto.AccessToken;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -23,10 +21,7 @@ public class NetWorkUtil {
 
     private static Logger logger = Logger.getLogger(NetWorkUtil.class);
 
-    public static AccessToken getAccessTokenByRequest() {
-        JSONObject object = doGetUri(WeixinProperties.ACCESS_TOKEN_URI);
-        return JSON.parseObject(object.toJSONString(), AccessToken.class);
-    }
+
 
     public static JSONObject doGetUri(String uri) {
         logger.info("do get the " + uri);
