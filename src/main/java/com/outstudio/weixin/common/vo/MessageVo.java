@@ -10,7 +10,17 @@ public class MessageVo {
     private Integer status;
     private String message;
     private Object data;
-    private Date time;
+    private String redirectUrl;
+    private Date time = new Date();
+
+    public String getRedirectUrl() {
+        return redirectUrl;
+    }
+
+    public MessageVo setRedirectUrl(String redirectUrl) {
+        this.redirectUrl = redirectUrl;
+        return this;
+    }
 
     public Integer getStatus() {
         return status;

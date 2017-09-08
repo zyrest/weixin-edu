@@ -1,6 +1,10 @@
 package com.outstudio.weixin.common.po;
 
-public class ManagerEntity {
+import java.io.Serializable;
+
+public class ManagerEntity implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private Integer id;
 
     private String m_account;

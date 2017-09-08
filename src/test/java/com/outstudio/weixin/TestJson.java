@@ -3,6 +3,7 @@ package com.outstudio.weixin;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.outstudio.weixin.common.po.UserEntity;
+import com.outstudio.weixin.common.utils.PasswordUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,5 +24,11 @@ public class TestJson {
         UserEntity user = JSON.parseObject(json.toJSONString(), UserEntity.class);
 
         System.out.println(JSON.toJSONString(user));
+    }
+    @Test
+    public void testPass() {
+        String pass = "123456";
+        String encoded = PasswordUtil.createHash(pass);
+        System.out.println(encoded);
     }
 }

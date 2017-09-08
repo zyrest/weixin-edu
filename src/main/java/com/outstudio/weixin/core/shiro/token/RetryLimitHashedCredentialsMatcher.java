@@ -27,7 +27,7 @@ public class RetryLimitHashedCredentialsMatcher implements CredentialsMatcher {
         } else {
 
             String encodePassword = authenticationInfo.getCredentials().toString();
-            String password = token.getPassword();
+            String password = token.getPass();
 
             return PasswordUtil.validatePassword(password, encodePassword);
         }

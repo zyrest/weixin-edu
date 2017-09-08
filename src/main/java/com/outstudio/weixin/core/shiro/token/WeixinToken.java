@@ -1,15 +1,15 @@
 package com.outstudio.weixin.core.shiro.token;
 
-import org.apache.shiro.authc.RememberMeAuthenticationToken;
+import org.apache.shiro.authc.UsernamePasswordToken;
 
 /**
  * Created by 96428 on 2017/9/6.
  * This in weixin-edu, com.outstudio.weixin.core.shiro.token
  */
-public class WeixinToken implements RememberMeAuthenticationToken {
+public class WeixinToken extends UsernamePasswordToken {
     private String weixinOpenid;
     private String account;
-    private String password;
+    private String pass;
     private boolean rememberMe;
     private boolean isWechat;
 
@@ -21,12 +21,12 @@ public class WeixinToken implements RememberMeAuthenticationToken {
         this.account = account;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPass() {
+        return pass;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPass(String pass) {
+        this.pass = pass;
     }
 
     public boolean isWechat() {
@@ -49,6 +49,7 @@ public class WeixinToken implements RememberMeAuthenticationToken {
     public boolean isRememberMe() {
         return rememberMe;
     }
+
     public void setRememberMe(boolean rememberMe) {
         this.rememberMe = rememberMe;
     }
@@ -60,6 +61,6 @@ public class WeixinToken implements RememberMeAuthenticationToken {
 
     @Override
     public Object getCredentials() {
-        return password;
+        return pass;
     }
 }

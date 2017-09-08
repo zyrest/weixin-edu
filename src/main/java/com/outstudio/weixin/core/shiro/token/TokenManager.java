@@ -31,7 +31,7 @@ public class TokenManager {
     public static void loginBack(ManagerEntity manager, boolean rememberMe) {
         WeixinToken token = new WeixinToken();
         token.setAccount(manager.getM_account());
-        token.setPassword(manager.getM_password());
+        token.setPass(manager.getM_password());
         token.setWechat(false);
         token.setRememberMe(rememberMe);
 
