@@ -15,7 +15,7 @@ import javax.servlet.ServletResponse;
 public class VipFilter extends AccessControlFilter {
     @Override
     protected boolean isAccessAllowed(ServletRequest servletRequest, ServletResponse servletResponse, Object o) throws Exception {
-        UserEntity token = TokenManager.getToken();
+        UserEntity token = TokenManager.getWeixinToken();
         if (token != null && DateUtil.isNotExpire(token.getVip_end_date())) {
             return true;
         }

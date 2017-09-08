@@ -2,7 +2,7 @@ package com.outstudio.weixin.core.shiro.filters;
 
 
 import com.outstudio.weixin.common.consts.ResponseStatus;
-import com.outstudio.weixin.common.po.UserEntity;
+import com.outstudio.weixin.common.po.ManagerEntity;
 import com.outstudio.weixin.common.utils.LoggerUtil;
 import com.outstudio.weixin.core.shiro.token.TokenManager;
 import org.apache.shiro.web.filter.AccessControlFilter;
@@ -23,15 +23,13 @@ public class LoginFilter extends AccessControlFilter {
     protected boolean isAccessAllowed(ServletRequest servletRequest, ServletResponse servletResponse,
                                       Object o) throws Exception {
 
-        UserEntity token = TokenManager.getToken();
+        ManagerEntity token = TokenManager.getManagerToken();
         if (token != null || ShiroFilterUtil.isOpen(servletRequest)) {
-            return Boolean.TRUE;
+            return true;
         }
 
         LoggerUtil.fmtDebug(getClass(), "未登陆用户！");
-
-
-        return Boolean.TRUE;
+        return false;
     }
 
     @Override
@@ -43,7 +41,7 @@ public class LoginFilter extends AccessControlFilter {
             map.put("status", ResponseStatus.NO_PERMISSION);
             map.put("message", "用户未登录");
             ShiroFilterUtil.writeJsonToResponse(servletResponse, map);
-            return Boolean.FALSE;
+            return false;
         }
 
         //保存Request和Response 到登录后的链接
@@ -53,6 +51,6 @@ public class LoginFilter extends AccessControlFilter {
 
         LoggerUtil.fmtDebug(getClass(),
                 "目前访问[%s],正在前往登录界面", ShiroFilterUtil.getUrl(servletRequest));
-        return Boolean.FALSE;
+        return false;
     }
 }

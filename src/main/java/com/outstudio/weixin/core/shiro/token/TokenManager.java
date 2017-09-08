@@ -1,5 +1,6 @@
 package com.outstudio.weixin.core.shiro.token;
 
+import com.outstudio.weixin.common.po.ManagerEntity;
 import com.outstudio.weixin.common.po.UserEntity;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
@@ -19,12 +20,29 @@ public class TokenManager {
         return getSubject().getSession();
     }
 
-    public static UserEntity getToken() {
+    public static UserEntity getWeixinToken() {
         return (UserEntity) getSubject().getPrincipal();
     }
 
-    public static void login(UserEntity user) {
-        WeixinToken token = new WeixinToken(user.getOpenid());
+    public static ManagerEntity getManagerToken() {
+        return (ManagerEntity) getSubject().getPrincipal();
+    }
+
+    public static void loginBack(ManagerEntity manager, boolean rememberMe) {
+        WeixinToken token = new WeixinToken();
+        token.setAccount(manager.getM_account());
+        token.setPassword(manager.getM_password());
+        token.setWechat(false);
+        token.setRememberMe(rememberMe);
+
+        getSubject().login(token);
+    }
+    public static void loginWeixin(UserEntity user) {
+        WeixinToken token = new WeixinToken();
+        token.setWeixinOpenid(user.getOpenid());
+        token.setWechat(true);
+        token.setRememberMe(true);
+
         getSubject().login(token);
     }
 

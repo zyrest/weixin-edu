@@ -1,5 +1,6 @@
 package com.outstudio.weixin.core.config;
 
+import com.outstudio.weixin.core.shiro.filters.ForbidFilter;
 import com.outstudio.weixin.core.shiro.filters.LoginFilter;
 import com.outstudio.weixin.core.shiro.token.MyRealm;
 import com.outstudio.weixin.core.shiro.token.RetryLimitHashedCredentialsMatcher;
@@ -79,16 +80,17 @@ public class ShiroConfig {
 
         Map<String, Filter> filterMap = new LinkedHashMap<>();
         filterMap.put("login", loginFilter());
+        filterMap.put("forbid", forbidFilter());
         shiroFilterFactoryBean.setFilters(filterMap);
 
         loadFiltersChain(shiroFilterFactoryBean);
 
         // 如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
-        shiroFilterFactoryBean.setLoginUrl("/open/login");
+        shiroFilterFactoryBean.setLoginUrl("/open/back/login");
         // 登录成功后要跳转的链接
         shiroFilterFactoryBean.setSuccessUrl("/index");
         //未授权界面;
-        shiroFilterFactoryBean.setUnauthorizedUrl("/u/403");
+        shiroFilterFactoryBean.setUnauthorizedUrl("/open/back/error");
 
         return shiroFilterFactoryBean;
     }
@@ -102,9 +104,10 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/open/**", "anon");
         //配置退出 过滤器,其中的具体的退出代码Shiro已经替我们实现了
 //        filterChainDefinitionMap.put("/logout", "logout");
-        //<!-- 过滤链定义，从上向下顺序执行，一般将/**放在最为下边 -->:这是一个坑呢，一不小心代码就不好使了;
-        //<!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问-->
-        filterChainDefinitionMap.put("/**", "login");
+        //过滤链定义，从上向下顺序执行，一般将/**放在最为下边 -->:这是一个坑呢，一不小心代码就不好使了;
+        //authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问
+        filterChainDefinitionMap.put("/back/**", "login");
+        filterChainDefinitionMap.put("/hide/**", "forbid");
 
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
     }
@@ -119,8 +122,8 @@ public class ShiroConfig {
     public MyRealm myRealm() {
         MyRealm myRealm = new MyRealm();
 
-//        myRealm.setCacheManager( ehCacheManager() );
-//        myRealm.setCredentialsMatcher( retryLimitHashedCredentialsMatcher() );
+        myRealm.setCacheManager( ehCacheManager() );
+        myRealm.setCredentialsMatcher( retryLimitHashedCredentialsMatcher() );
 
         return myRealm;
     }
@@ -131,8 +134,20 @@ public class ShiroConfig {
     }
 
     @Bean
-    public FilterRegistrationBean registration() {
+    public FilterRegistrationBean loginFilterRegistration() {
         FilterRegistrationBean registration = new FilterRegistrationBean(loginFilter());
+        registration.setEnabled(false);
+        return registration;
+    }
+
+    @Bean
+    public ForbidFilter forbidFilter() {
+        return new ForbidFilter();
+    }
+
+    @Bean
+    public FilterRegistrationBean forbidFilterRegistration() {
+        FilterRegistrationBean registration = new FilterRegistrationBean(forbidFilter());
         registration.setEnabled(false);
         return registration;
     }
@@ -224,7 +239,7 @@ public class ShiroConfig {
     public SecurityManager securityManager() {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
 
-//        securityManager.setRealm( myRealm() );
+        securityManager.setRealm( myRealm() );
         //用户授权/认证信息Cache, 采用EhCache缓存
         securityManager.setCacheManager( ehCacheManager() );
         securityManager.setSessionManager( sessionManager() );
