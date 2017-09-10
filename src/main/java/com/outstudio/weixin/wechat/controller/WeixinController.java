@@ -7,10 +7,7 @@ import com.outstudio.weixin.wechat.dto.SignaturePo;
 import com.outstudio.weixin.wechat.utils.MessageUtil;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,7 +22,7 @@ public class WeixinController {
 
     private Logger logger = Logger.getLogger(WeixinController.class);
 
-    @RequestMapping(value = "/weixin.do", method = RequestMethod.GET)
+    @GetMapping(value = "/weixin")
     @ResponseBody
     public String weixin(
             @RequestParam String signature, @RequestParam String timestamp,
@@ -42,12 +39,12 @@ public class WeixinController {
         po.setEchostr(echostr);
         boolean flag = MessageUtil.checkSignature(po);
 
-        LoggerUtil.fmtDebug(getClass(), "验证完毕, 状态->{%s}", flag);
+        LoggerUtil.fmtDebug(getClass(), "验证完毕, 状态 -> {%s}", flag);
 
         return flag ? echostr : "";
     }
 
-    @RequestMapping(value = "/weixin.do", method = RequestMethod.POST)
+    @PostMapping(value = "/weixin")
     public void weixin(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");

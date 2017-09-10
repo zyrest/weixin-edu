@@ -24,7 +24,8 @@ public class FileUtil {
      * @return 文件绝对路径
      * @throws IOException 抛出异常
      */
-    public static String saveUploadFile(HttpServletRequest request, MultipartFile file) throws IOException {
+    public static String saveUploadFile(HttpServletRequest request, MultipartFile file) throws Exception {
+        //todo 修改路径
         String baseDir = request.getSession().getServletContext().getRealPath("") + "/files/";
         String fileName = file.getOriginalFilename();
         String type = null;
