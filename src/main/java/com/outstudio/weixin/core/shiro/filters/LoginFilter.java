@@ -39,7 +39,7 @@ public class LoginFilter extends AccessControlFilter {
         if (ShiroFilterUtil.isAjax(servletRequest)) {
             Map<Object, Object> map = new HashMap<>();
             map.put("status", ResponseStatus.NO_PERMISSION);
-            map.put("message", "用户未登录");
+            map.put("message", "用户未登陆");
             ShiroFilterUtil.writeJsonToResponse(servletResponse, map);
             return false;
         }

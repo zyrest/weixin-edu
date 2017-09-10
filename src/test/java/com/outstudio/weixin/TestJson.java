@@ -3,6 +3,7 @@ package com.outstudio.weixin;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.outstudio.weixin.common.po.UserEntity;
+import com.outstudio.weixin.common.utils.FileUtil;
 import com.outstudio.weixin.common.utils.PasswordUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,5 +31,11 @@ public class TestJson {
         String pass = "123456";
         String encoded = PasswordUtil.createHash(pass);
         System.out.println(encoded);
+    }
+
+    @Test
+    public void test() {
+        String base = FileUtil.class.getClassLoader().getResource("").getPath();
+        System.out.println(base);
     }
 }
