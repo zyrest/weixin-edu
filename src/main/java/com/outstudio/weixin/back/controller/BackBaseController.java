@@ -24,5 +24,4 @@ public class BackBaseController {
         model.setViewName("hide/back/error");
         return model;
     }
-
 }

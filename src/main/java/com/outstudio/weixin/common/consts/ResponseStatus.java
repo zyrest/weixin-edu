@@ -6,10 +6,12 @@ package com.outstudio.weixin.common.consts;
  */
 public class ResponseStatus {
 
-    public static final Integer SUCCESS = 200;
-    public static final Integer IN_PROCESS_LINE = 201;
-    public static final Integer RECIEVE = 202;
+    public static final Integer SUCCESS = 200;//查
+    public static final Integer CREATED = 201;//增改
+    public static final Integer RECIEVED = 202;
     public static final Integer NULL_RESPONSE = 203;
+    public static final Integer NO_CONTENT = 204;//删除
+    public static final Integer INVALID_REQUEST=400;// 增改
 
     public static final Integer RESOURCE_NOT_FOUND = 40001;
     public static final Integer WRONG_TOKEN = 40002;
@@ -24,6 +26,7 @@ public class ResponseStatus {
     public static final Integer KICK_OUT = 40011;
     public static final Integer EXCESSIVE_ATTEMPT = 40012;
     public static final Integer USER_EXIST = 40013;
+    public static final Integer DATABASE_ERROR = 40014;
 
     public static final Integer SYSTEM_ERROE = 500;
 }

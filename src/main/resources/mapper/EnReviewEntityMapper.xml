@@ -26,6 +26,19 @@
     from t_en_review
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectByStage" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_en_review
+    where stage = #{stage,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    from t_en_review
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from t_en_review
     where id = #{id,jdbcType=INTEGER}

@@ -2,6 +2,8 @@ package com.outstudio.weixin.common.dao;
 
 import com.outstudio.weixin.common.po.MessageEntity;
 
+import java.util.List;
+
 public interface MessageEntityMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -10,6 +12,8 @@ public interface MessageEntityMapper {
     int insertSelective(MessageEntity record);
 
     MessageEntity selectByPrimaryKey(Integer id);
+
+    List<MessageEntity> selectAll();
 
     int updateByPrimaryKeySelective(MessageEntity record);
 
