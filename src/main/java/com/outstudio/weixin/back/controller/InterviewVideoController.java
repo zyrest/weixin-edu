@@ -87,39 +87,39 @@ public class InterviewVideoController {
         return messageVo;
     }
 
-    @GetMapping("/interviewVideo/{id}")
-    public MessageVo getenVideoById(@PathVariable Integer id) {
-        MessageVo messageVo = new MessageVo();
-        InterviewVideoEntity interviewEntity = interviewVideoService.getInterviewVideoById(id);
-        messageVo.setStatus(com.outstudio.weixin.common.consts.ResponseStatus.SUCCESS)
-                .setMessage("success")
-                .setRedirectUrl(REDIRECT_URL)
-                .setData(interviewEntity);
-        return messageVo;
-    }
-
-    @GetMapping("/interviewVideos/page/{pageNum}")
-    public MessageVo getAllInterviews(@PathVariable Integer pageNum) {
-        MessageVo messageVo = new MessageVo();
-        PageHelper.startPage(pageNum, 15);
-        List<InterviewVideoEntity> interviewVideoEntities = interviewVideoService.getAllInterviewVideos();
-        messageVo.setStatus(com.outstudio.weixin.common.consts.ResponseStatus.SUCCESS)
-                .setMessage("success")
-                .setRedirectUrl(REDIRECT_URL)
-                .setData(interviewVideoEntities);
-        return messageVo;
-    }
-
-    @GetMapping("/interviewVideos/stage/{stage}/page/{pageNum}")
-    public MessageVo getInterviewsByStage(@PathVariable Integer stage,
-                                          @PathVariable Integer pageNum) {
-        MessageVo messageVo = new MessageVo();
-        PageHelper.startPage(pageNum, 15);
-        List<InterviewVideoEntity> interviewVideoEntities = interviewVideoService.getInterviewVideosByStage(stage);
-        messageVo.setStatus(com.outstudio.weixin.common.consts.ResponseStatus.SUCCESS)
-                .setMessage("success")
-                .setRedirectUrl(REDIRECT_URL)
-                .setData(interviewVideoEntities);
-        return messageVo;
-    }
+//    @GetMapping("/interviewVideo/{id}")
+//    public MessageVo getenVideoById(@PathVariable Integer id) {
+//        MessageVo messageVo = new MessageVo();
+//        InterviewVideoEntity interviewEntity = interviewVideoService.getInterviewVideoById(id);
+//        messageVo.setStatus(com.outstudio.weixin.common.consts.ResponseStatus.SUCCESS)
+//                .setMessage("success")
+//                .setRedirectUrl(REDIRECT_URL)
+//                .setData(interviewEntity);
+//        return messageVo;
+//    }
+//
+//    @GetMapping("/interviewVideos/page/{pageNum}")
+//    public MessageVo getAllInterviews(@PathVariable Integer pageNum) {
+//        MessageVo messageVo = new MessageVo();
+//        PageHelper.startPage(pageNum, 15);
+//        List<InterviewVideoEntity> interviewVideoEntities = interviewVideoService.getAllInterviewVideos();
+//        messageVo.setStatus(com.outstudio.weixin.common.consts.ResponseStatus.SUCCESS)
+//                .setMessage("success")
+//                .setRedirectUrl(REDIRECT_URL)
+//                .setData(interviewVideoEntities);
+//        return messageVo;
+//    }
+//
+//    @GetMapping("/interviewVideos/stage/{stage}/page/{pageNum}")
+//    public MessageVo getInterviewsByStage(@PathVariable Integer stage,
+//                                          @PathVariable Integer pageNum) {
+//        MessageVo messageVo = new MessageVo();
+//        PageHelper.startPage(pageNum, 15);
+//        List<InterviewVideoEntity> interviewVideoEntities = interviewVideoService.getInterviewVideosByStage(stage);
+//        messageVo.setStatus(com.outstudio.weixin.common.consts.ResponseStatus.SUCCESS)
+//                .setMessage("success")
+//                .setRedirectUrl(REDIRECT_URL)
+//                .setData(interviewVideoEntities);
+//        return messageVo;
+//    }
 }

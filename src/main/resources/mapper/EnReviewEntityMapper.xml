@@ -29,10 +29,15 @@
   <select id="selectByStage" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from t_en_review
     where stage = #{stage,jdbcType=INTEGER}
+  </select>
+  <select id="selectBySearchParam" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from t_en_review
+    where title LIKE concat(concat('%',#{searchParam,jdbcType=VARCHAR}),'%')
+    OR description LIKE concat(concat('%',#{searchParam,jdbcType=VARCHAR}),'%')
   </select>
   <select id="selectAll" resultMap="ResultMapWithBLOBs">
     select

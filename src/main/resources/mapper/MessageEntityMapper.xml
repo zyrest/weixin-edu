@@ -30,6 +30,13 @@
     <include refid="Base_Column_List" />
     from t_message
   </select>
+  <select id="selectBySearchParam" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List" />
+    from t_message
+    where title LIKE concat(concat('%',#{searchParam,jdbcType=VARCHAR}),'%')
+    OR description LIKE concat(concat('%',#{searchParam,jdbcType=VARCHAR}),'%')
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from t_message
     where id = #{id,jdbcType=INTEGER}

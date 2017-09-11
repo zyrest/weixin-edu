@@ -15,6 +15,8 @@ public interface InterviewVideoEntityMapper {
 
     List<InterviewVideoEntity> selectAll();
 
+    List<InterviewVideoEntity> selectBySearchParam(String searchParam);
+
     List<InterviewVideoEntity> selectByStage(Integer stage);
 
     int updateByPrimaryKeySelective(InterviewVideoEntity record);

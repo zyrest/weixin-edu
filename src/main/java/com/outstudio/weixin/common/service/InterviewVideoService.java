@@ -41,4 +41,8 @@ public class InterviewVideoService {
     public List<InterviewVideoEntity> getInterviewVideosByStage(Integer stage) {
         return interviewVideoEntityMapper.selectByStage(stage);
     }
+
+    public List<InterviewVideoEntity> getBySearchParam(String searchParam) {
+        return interviewVideoEntityMapper.selectBySearchParam(searchParam);
+    }
 }

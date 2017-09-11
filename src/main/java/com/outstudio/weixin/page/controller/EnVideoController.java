@@ -2,8 +2,8 @@ package com.outstudio.weixin.page.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.outstudio.weixin.common.consts.ResponseStatus;
-import com.outstudio.weixin.common.po.StoryEntity;
-import com.outstudio.weixin.common.service.StoryService;
+import com.outstudio.weixin.common.po.EnVideoEntity;
+import com.outstudio.weixin.common.service.EnVideoService;
 import com.outstudio.weixin.common.vo.MessageVo;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,55 +15,57 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/open/page")
-public class StoryController {
+public class EnVideoController {
 
     private static final String REDIRECT_URL = "";
+
     @Resource
-    private StoryService storyService;
+    private EnVideoService enVideoService;
 
-    @GetMapping("/stories/type/{type}/page/{pageNum}")
-    public MessageVo getStotiesByType(@PathVariable Integer type,
-                                      @PathVariable Integer pageNum) {
+    @GetMapping("/enVideos/{id}")
+    public MessageVo getenVideoById(@PathVariable Integer id) {
+        MessageVo messageVo = new MessageVo();
+        EnVideoEntity enVideoEntity = enVideoService.getEnVideoById(id);
+        messageVo.setStatus(ResponseStatus.SUCCESS)
+                .setMessage("success")
+                .setRedirectUrl(REDIRECT_URL)
+                .setData(enVideoEntity);
+        return messageVo;
+    }
+
+    @GetMapping("/enVideos/page/{pageNum}")
+    public MessageVo getAllEnVideos(@PathVariable Integer pageNum) {
         MessageVo messageVo = new MessageVo();
         PageHelper.startPage(pageNum, 15);
-        List<StoryEntity> storyEntities = storyService.getStoryByType(type);
+        List<EnVideoEntity> enVideoEntities = enVideoService.getAllEnVideos();
         messageVo.setStatus(ResponseStatus.SUCCESS)
                 .setMessage("success")
                 .setRedirectUrl(REDIRECT_URL)
-                .setData(storyEntities);
+                .setData(enVideoEntities);
         return messageVo;
     }
 
-    @GetMapping("/stories/page/{pageNum}")
-    public MessageVo getAllStories(@PathVariable Integer pageNum) {
+    @GetMapping("/enVideos/stage/{stage}/page/{pageNum}")
+    public MessageVo getEnVideosByStage(@PathVariable Integer stage,
+                                        @PathVariable Integer pageNum) {
         MessageVo messageVo = new MessageVo();
         PageHelper.startPage(pageNum, 15);
-        List<StoryEntity> storyEntities = storyService.getAllStories();
+        List<EnVideoEntity> enVideoEntities = enVideoService.getEnVideosByStage(stage);
         messageVo.setStatus(ResponseStatus.SUCCESS)
                 .setMessage("success")
                 .setRedirectUrl(REDIRECT_URL)
-                .setData(storyEntities);
+                .setData(enVideoEntities);
         return messageVo;
     }
 
-    @GetMapping("/stories/{id}")
-    public MessageVo getStory(@PathVariable Integer id) {
+    @GetMapping("/enVideos")
+    public MessageVo searchEnVideos(@RequestParam("searchParam") String searchParam) {
         MessageVo messageVo = new MessageVo();
-        StoryEntity storyEntity = storyService.getStoryById(id);
+        List<EnVideoEntity> enVideoEntities = enVideoService.getEnVideosBySearchParam(searchParam);
         messageVo.setStatus(ResponseStatus.SUCCESS)
                 .setMessage("success")
                 .setRedirectUrl(REDIRECT_URL)
-                .setData(storyEntity);
-        return messageVo;
-    }
-
-    @GetMapping("/stories")
-    public MessageVo searchStories(@RequestParam("searchParam")String searchParam) {
-        MessageVo messageVo = new MessageVo();
-        List<StoryEntity> storyEntities = storyService.getStoriesBySearchParam(searchParam);
-        messageVo.setStatus(ResponseStatus.SUCCESS)
-                .setMessage("success")
-                .setData(storyEntities);
+                .setData(enVideoEntities);
         return messageVo;
     }
 }

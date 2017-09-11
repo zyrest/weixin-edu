@@ -17,6 +17,8 @@ public interface EnVideoEntityMapper {
 
     List<EnVideoEntity> selectByStage(Integer stage);
 
+    List<EnVideoEntity> selectBySearchParam(String searchParam);
+
     int updateByPrimaryKeySelective(EnVideoEntity record);
 
     int updateByPrimaryKey(EnVideoEntity record);

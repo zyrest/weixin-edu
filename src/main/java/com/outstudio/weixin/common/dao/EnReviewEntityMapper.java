@@ -17,6 +17,8 @@ public interface EnReviewEntityMapper {
 
     List<EnReviewEntity> selectAll();
 
+    List<EnReviewEntity> selectBySearchParam(String searchParam);
+
     int updateByPrimaryKeySelective(EnReviewEntity record);
 
     int updateByPrimaryKeyWithBLOBs(EnReviewEntity record);

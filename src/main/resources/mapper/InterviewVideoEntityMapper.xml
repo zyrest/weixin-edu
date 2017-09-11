@@ -25,6 +25,13 @@
     from t_interview_video
     where stage = #{stage,jdbcType=INTEGER}
   </select>
+  <select id="selectBySearchParam" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from t_interview_video
+    where title LIKE concat(concat('%',#{searchParam,jdbcType=VARCHAR}),'%')
+    OR description LIKE concat(concat('%',#{searchParam,jdbcType=VARCHAR}),'%')
+  </select>
   <select id="selectAll" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />

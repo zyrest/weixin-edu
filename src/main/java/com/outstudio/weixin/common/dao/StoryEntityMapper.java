@@ -17,6 +17,8 @@ public interface StoryEntityMapper {
 
     List<StoryEntity> selectAll();
 
+    List<StoryEntity> selectBySearchParam(String searchParam);
+
     int updateByPrimaryKeySelective(StoryEntity record);
 
     int updateByPrimaryKey(StoryEntity record);

@@ -90,39 +90,39 @@ public class EnReviewController {
         return messageVo;
     }
 
-    @GetMapping("/enReviews/{id}")
-    public MessageVo getEnReview(@PathVariable Integer id) {
-        MessageVo messageVo = new MessageVo();
-        EnReviewEntity enReviewEntity = enReviewService.getEnReviewById(id);
-        messageVo.setStatus(ResponseStatus.SUCCESS)
-                .setMessage("success")
-                .setRedirectUrl(REDIRECT_URL)
-                .setData(enReviewEntity);
-        return messageVo;
-    }
-
-    @GetMapping("/enReviews/page/{pageNum}")
-    public MessageVo getAllEnReviews(@PathVariable Integer pageNum) {
-        MessageVo messageVo = new MessageVo();
-        PageHelper.startPage(pageNum, 15);
-        List<EnReviewEntity> enReviewEntities = enReviewService.getAll();
-        messageVo.setStatus(ResponseStatus.SUCCESS)
-                .setMessage("success")
-                .setRedirectUrl(REDIRECT_URL)
-                .setData(enReviewEntities);
-        return messageVo;
-    }
-
-    @GetMapping("/enReviews/stage/{stage}/page/{pageNum}")
-    public MessageVo getEnReviewsByStage(@PathVariable Integer stage,
-                                         @PathVariable Integer pageNum) {
-        MessageVo messageVo = new MessageVo();
-        PageHelper.startPage(pageNum, 15);
-        List<EnReviewEntity> enReviewEntities = enReviewService.getByStage(stage);
-        messageVo.setStatus(ResponseStatus.SUCCESS)
-                .setMessage("success")
-                .setRedirectUrl(REDIRECT_URL)
-                .setData(enReviewEntities);
-        return messageVo;
-    }
+//    @GetMapping("/enReviews/{id}")
+//    public MessageVo getEnReview(@PathVariable Integer id) {
+//        MessageVo messageVo = new MessageVo();
+//        EnReviewEntity enReviewEntity = enReviewService.getEnReviewById(id);
+//        messageVo.setStatus(ResponseStatus.SUCCESS)
+//                .setMessage("success")
+//                .setRedirectUrl(REDIRECT_URL)
+//                .setData(enReviewEntity);
+//        return messageVo;
+//    }
+//
+//    @GetMapping("/enReviews/page/{pageNum}")
+//    public MessageVo getAllEnReviews(@PathVariable Integer pageNum) {
+//        MessageVo messageVo = new MessageVo();
+//        PageHelper.startPage(pageNum, 15);
+//        List<EnReviewEntity> enReviewEntities = enReviewService.getAll();
+//        messageVo.setStatus(ResponseStatus.SUCCESS)
+//                .setMessage("success")
+//                .setRedirectUrl(REDIRECT_URL)
+//                .setData(enReviewEntities);
+//        return messageVo;
+//    }
+//
+//    @GetMapping("/enReviews/stage/{stage}/page/{pageNum}")
+//    public MessageVo getEnReviewsByStage(@PathVariable Integer stage,
+//                                         @PathVariable Integer pageNum) {
+//        MessageVo messageVo = new MessageVo();
+//        PageHelper.startPage(pageNum, 15);
+//        List<EnReviewEntity> enReviewEntities = enReviewService.getByStage(stage);
+//        messageVo.setStatus(ResponseStatus.SUCCESS)
+//                .setMessage("success")
+//                .setRedirectUrl(REDIRECT_URL)
+//                .setData(enReviewEntities);
+//        return messageVo;
+//    }
 }

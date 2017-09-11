@@ -90,39 +90,39 @@ public class StoryController {
         return messageVo;
     }
 
-    @GetMapping("/stories/{id}")
-    public MessageVo getStory(@PathVariable Integer id) {
-        MessageVo messageVo = new MessageVo();
-        StoryEntity storyEntity = storyService.getStoryById(id);
-        messageVo.setStatus(ResponseStatus.SUCCESS)
-                .setMessage("success")
-                .setRedirectUrl(REDIRECT_URL)
-                .setData(storyEntity);
-        return messageVo;
-    }
+//    @GetMapping("/stories/{id}")
+//    public MessageVo getStory(@PathVariable Integer id) {
+//        MessageVo messageVo = new MessageVo();
+//        StoryEntity storyEntity = storyService.getStoryById(id);
+//        messageVo.setStatus(ResponseStatus.SUCCESS)
+//                .setMessage("success")
+//                .setRedirectUrl(REDIRECT_URL)
+//                .setData(storyEntity);
+//        return messageVo;
+//    }
 
-    @GetMapping("/stories/type/{type}/page/{pageNum}")
-    public MessageVo getStoriesByType(@PathVariable("type") Integer type,
-                                      @PathVariable("pageNum") Integer pageNum) {
-        MessageVo messageVo = new MessageVo();
-        PageHelper.startPage(pageNum, 15);
-        List<StoryEntity> storyEntities = storyService.getStoryByType(type);
-        messageVo.setStatus(ResponseStatus.SUCCESS)
-                .setMessage("success")
-                .setRedirectUrl(REDIRECT_URL)
-                .setData(storyEntities);
-        return messageVo;
-    }
-
-    @GetMapping("/stories/page/{pageNum}")
-    public MessageVo getAllStories(@PathVariable Integer pageNum) {
-        MessageVo messageVo = new MessageVo();
-        PageHelper.startPage(pageNum, 15);
-        List<StoryEntity> storyEntities = storyService.getAllStories();
-        messageVo.setStatus(ResponseStatus.SUCCESS)
-                .setMessage("success")
-                .setRedirectUrl(REDIRECT_URL)
-                .setData(storyEntities);
-        return messageVo;
-    }
+//    @GetMapping("/stories/type/{type}/page/{pageNum}")
+//    public MessageVo getStoriesByType(@PathVariable("type") Integer type,
+//                                      @PathVariable("pageNum") Integer pageNum) {
+//        MessageVo messageVo = new MessageVo();
+//        PageHelper.startPage(pageNum, 15);
+//        List<StoryEntity> storyEntities = storyService.getStoryByType(type);
+//        messageVo.setStatus(ResponseStatus.SUCCESS)
+//                .setMessage("success")
+//                .setRedirectUrl(REDIRECT_URL)
+//                .setData(storyEntities);
+//        return messageVo;
+//    }
+//
+//    @GetMapping("/stories/page/{pageNum}")
+//    public MessageVo getAllStories(@PathVariable Integer pageNum) {
+//        MessageVo messageVo = new MessageVo();
+//        PageHelper.startPage(pageNum, 15);
+//        List<StoryEntity> storyEntities = storyService.getAllStories();
+//        messageVo.setStatus(ResponseStatus.SUCCESS)
+//                .setMessage("success")
+//                .setRedirectUrl(REDIRECT_URL)
+//                .setData(storyEntities);
+//        return messageVo;
+//    }
 }

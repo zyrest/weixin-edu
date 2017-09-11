@@ -39,4 +39,8 @@ public class MessageService {
     public List<MessageEntity> getAllMessages() {
         return messageEntityMapper.selectAll();
     }
+
+    public List<MessageEntity> getMessagesBySearchParam(String searchParam) {
+        return messageEntityMapper.selectBysearchParam(searchParam);
+    }
 }

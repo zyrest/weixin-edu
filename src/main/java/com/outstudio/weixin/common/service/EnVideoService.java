@@ -41,4 +41,8 @@ public class EnVideoService {
     public List<EnVideoEntity> getEnVideosByStage(Integer stage) {
         return enVideoEntityMapper.selectByStage(stage);
     }
+
+    public List<EnVideoEntity> getEnVideosBySearchParam(String searchParam) {
+        return enVideoEntityMapper.selectBySearchParam(searchParam);
+    }
 }

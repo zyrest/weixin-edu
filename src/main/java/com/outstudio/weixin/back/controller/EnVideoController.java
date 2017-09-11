@@ -90,39 +90,39 @@ public class EnVideoController {
         return messageVo;
     }
 
-    @GetMapping("/enVideos/{id}")
-    public MessageVo getenVideoById(@PathVariable Integer id) {
-        MessageVo messageVo = new MessageVo();
-        EnVideoEntity enVideoEntity = enVideoService.getEnVideoById(id);
-        messageVo.setStatus(ResponseStatus.SUCCESS)
-                .setMessage("success")
-                .setRedirectUrl(REDIRECT_URL)
-                .setData(enVideoEntity);
-        return messageVo;
-    }
-
-    @GetMapping("/enVideos/page/{pageNum}")
-    public MessageVo getAllEnVideos(@PathVariable Integer pageNum) {
-        MessageVo messageVo = new MessageVo();
-        PageHelper.startPage(pageNum, 15);
-        List<EnVideoEntity> enVideoEntities = enVideoService.getAllEnVideos();
-        messageVo.setStatus(ResponseStatus.SUCCESS)
-                .setMessage("success")
-                .setRedirectUrl(REDIRECT_URL)
-                .setData(enVideoEntities);
-        return messageVo;
-    }
-
-    @GetMapping("/enVideos/stage/{stage}/page/{pageNum}")
-    public MessageVo getEnVideosByStage(@PathVariable Integer stage,
-                                        @PathVariable Integer pageNum) {
-        MessageVo messageVo = new MessageVo();
-        PageHelper.startPage(pageNum, 15);
-        List<EnVideoEntity> enVideoEntities = enVideoService.getEnVideosByStage(stage);
-        messageVo.setStatus(ResponseStatus.SUCCESS)
-                .setMessage("success")
-                .setRedirectUrl(REDIRECT_URL)
-                .setData(enVideoEntities);
-        return messageVo;
-    }
+//    @GetMapping("/enVideos/{id}")
+//    public MessageVo getenVideoById(@PathVariable Integer id) {
+//        MessageVo messageVo = new MessageVo();
+//        EnVideoEntity enVideoEntity = enVideoService.getEnVideoById(id);
+//        messageVo.setStatus(ResponseStatus.SUCCESS)
+//                .setMessage("success")
+//                .setRedirectUrl(REDIRECT_URL)
+//                .setData(enVideoEntity);
+//        return messageVo;
+//    }
+//
+//    @GetMapping("/enVideos/page/{pageNum}")
+//    public MessageVo getAllEnVideos(@PathVariable Integer pageNum) {
+//        MessageVo messageVo = new MessageVo();
+//        PageHelper.startPage(pageNum, 15);
+//        List<EnVideoEntity> enVideoEntities = enVideoService.getAllEnVideos();
+//        messageVo.setStatus(ResponseStatus.SUCCESS)
+//                .setMessage("success")
+//                .setRedirectUrl(REDIRECT_URL)
+//                .setData(enVideoEntities);
+//        return messageVo;
+//    }
+//
+//    @GetMapping("/enVideos/stage/{stage}/page/{pageNum}")
+//    public MessageVo getEnVideosByStage(@PathVariable Integer stage,
+//                                        @PathVariable Integer pageNum) {
+//        MessageVo messageVo = new MessageVo();
+//        PageHelper.startPage(pageNum, 15);
+//        List<EnVideoEntity> enVideoEntities = enVideoService.getEnVideosByStage(stage);
+//        messageVo.setStatus(ResponseStatus.SUCCESS)
+//                .setMessage("success")
+//                .setRedirectUrl(REDIRECT_URL)
+//                .setData(enVideoEntities);
+//        return messageVo;
+//    }
 }

@@ -47,4 +47,8 @@ public class EnReviewService {
         return enReviewEntityMapper.updateByPrimaryKey(enReviewEntity);
     }
 
+    public List<EnReviewEntity> getBySearchParam(String searchParam) {
+        return enReviewEntityMapper.selectBySearchParam(searchParam);
+    }
+
 }

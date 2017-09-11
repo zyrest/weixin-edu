@@ -41,4 +41,8 @@ public class StoryService {
     public List<StoryEntity> getAllStories() {
         return storyEntityMapper.selectAll();
     }
+
+    public List<StoryEntity> getStoriesBySearchParam(String searchParam) {
+        return storyEntityMapper.selectBySearchParam(searchParam);
+    }
 }

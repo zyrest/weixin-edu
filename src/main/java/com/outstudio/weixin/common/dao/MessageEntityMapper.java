@@ -15,6 +15,8 @@ public interface MessageEntityMapper {
 
     List<MessageEntity> selectAll();
 
+    List<MessageEntity> selectBysearchParam(String searchParam);
+
     int updateByPrimaryKeySelective(MessageEntity record);
 
     int updateByPrimaryKeyWithBLOBs(MessageEntity record);

@@ -71,26 +71,26 @@ public class MessageController {
         return messageVo;
     }
 
-    @GetMapping("/messages/{id}")
-    public MessageVo getMessageById(@PathVariable Integer id) {
-        MessageVo messageVo = new MessageVo();
-        MessageEntity messageEntity = messageService.getMessageById(id);
-        messageVo.setStatus(ResponseStatus.SUCCESS)
-                .setMessage("success")
-                .setRedirectUrl(REDIRECT_URL)
-                .setData(messageEntity);
-        return messageVo;
-    }
-
-    @GetMapping("/messages/page/{pageNum}")
-    public MessageVo getAllMessages(@PathVariable Integer pageNum) {
-        MessageVo messageVo = new MessageVo();
-        PageHelper.startPage(pageNum, 15);
-        List<MessageEntity> messageEntities = messageService.getAllMessages();
-        messageVo.setStatus(ResponseStatus.SUCCESS)
-                .setMessage("success")
-                .setRedirectUrl(REDIRECT_URL)
-                .setData(messageEntities);
-        return messageVo;
-    }
+//    @GetMapping("/messages/{id}")
+//    public MessageVo getMessageById(@PathVariable Integer id) {
+//        MessageVo messageVo = new MessageVo();
+//        MessageEntity messageEntity = messageService.getMessageById(id);
+//        messageVo.setStatus(ResponseStatus.SUCCESS)
+//                .setMessage("success")
+//                .setRedirectUrl(REDIRECT_URL)
+//                .setData(messageEntity);
+//        return messageVo;
+//    }
+//
+//    @GetMapping("/messages/page/{pageNum}")
+//    public MessageVo getAllMessages(@PathVariable Integer pageNum) {
+//        MessageVo messageVo = new MessageVo();
+//        PageHelper.startPage(pageNum, 15);
+//        List<MessageEntity> messageEntities = messageService.getAllMessages();
+//        messageVo.setStatus(ResponseStatus.SUCCESS)
+//                .setMessage("success")
+//                .setRedirectUrl(REDIRECT_URL)
+//                .setData(messageEntities);
+//        return messageVo;
+//    }
 }
