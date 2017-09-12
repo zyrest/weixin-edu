@@ -2,6 +2,7 @@ package com.outstudio.weixin.common.service;
 
 import com.outstudio.weixin.common.dao.UserEntityMapper;
 import com.outstudio.weixin.common.po.UserEntity;
+import com.outstudio.weixin.common.utils.DateUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -24,5 +25,12 @@ public class UserService {
         userEntityMapper.insert(user);
     }
 
+    public boolean checkExpired(String openid) {
+        UserEntity userEntity = userEntityMapper.selectByPrimaryKey(openid);
+        return DateUtil.isNotExpire(userEntity.getVip_end_date());
+    }
 
+    public void updateUser(UserEntity userEntity) {
+        userEntityMapper.updateByPrimaryKeySelective(userEntity);
+    }
 }

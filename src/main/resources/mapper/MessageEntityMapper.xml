@@ -43,11 +43,11 @@
   </delete>
   <insert id="insert" parameterType="com.outstudio.weixin.common.po.MessageEntity" >
     insert into t_message (id, title, state, 
-      post_date, description, content
+      post_date, description, content,last_modify_date
       )
     values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, 
       #{post_date,jdbcType=TIMESTAMP}, #{description,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR}
-      )
+      ,#{last_modify_date,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.outstudio.weixin.common.po.MessageEntity" >
     insert into t_message
@@ -60,6 +60,9 @@
       </if>
       <if test="state != null" >
         state,
+      </if>
+      <if test="last_modify_date != null" >
+        last_modify_date = #{last_modify_date,jdbcType=TIMESTAMP},
       </if>
       <if test="post_date != null" >
         post_date,
@@ -80,6 +83,9 @@
       </if>
       <if test="state != null" >
         #{state,jdbcType=INTEGER},
+      </if>
+      <if test="last_modify_date != null" >
+        last_modify_date = #{last_modify_date,jdbcType=TIMESTAMP},
       </if>
       <if test="post_date != null" >
         #{post_date,jdbcType=TIMESTAMP},
@@ -104,6 +110,9 @@
       <if test="post_date != null" >
         post_date = #{post_date,jdbcType=TIMESTAMP},
       </if>
+      <if test="last_modify_date != null" >
+        last_modify_date = #{last_modify_date,jdbcType=TIMESTAMP},
+      </if>
       <if test="description != null" >
         description = #{description,jdbcType=VARCHAR},
       </if>
@@ -117,6 +126,7 @@
     update t_message
     set title = #{title,jdbcType=VARCHAR},
       state = #{state,jdbcType=INTEGER},
+      last_modify_date = #{last_modify_date,jdbcType=TIMESTAMP},
       post_date = #{post_date,jdbcType=TIMESTAMP},
       description = #{description,jdbcType=VARCHAR},
       content = #{content,jdbcType=LONGVARCHAR}
@@ -126,6 +136,7 @@
     update t_message
     set title = #{title,jdbcType=VARCHAR},
       state = #{state,jdbcType=INTEGER},
+      last_modify_date = #{last_modify_date,jdbcType=TIMESTAMP},
       post_date = #{post_date,jdbcType=TIMESTAMP},
       description = #{description,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
