@@ -1,10 +1,12 @@
 package com.outstudio.weixin.back.controller;
 
 import com.outstudio.weixin.back.exception.NoSuchUserException;
+import com.outstudio.weixin.back.exception.SystemErrorException;
 import com.outstudio.weixin.back.exception.WrongPasswordException;
 import com.outstudio.weixin.common.consts.ResponseStatus;
 import com.outstudio.weixin.common.po.ManagerEntity;
 import com.outstudio.weixin.common.utils.LoggerUtil;
+import com.outstudio.weixin.common.utils.MessageVoUtil;
 import com.outstudio.weixin.common.utils.StringUtil;
 import com.outstudio.weixin.common.vo.MessageVo;
 import com.outstudio.weixin.core.shiro.token.TokenManager;
@@ -12,7 +14,10 @@ import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.web.util.SavedRequest;
 import org.apache.shiro.web.util.WebUtils;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -21,10 +26,9 @@ import javax.servlet.http.HttpServletRequest;
  * This in weixin-edu, com.outstudio.weixin.back.controller
  */
 @RestController
-@RequestMapping("/open/back")
 public class LoginController {
 
-    @PostMapping("/sublogin")
+    @PostMapping("/open/back/sublogin")
     public MessageVo sublogin(HttpServletRequest request, @RequestBody ManagerEntity managerEntity) {
 
         try {
@@ -39,7 +43,7 @@ public class LoginController {
 
         MessageVo messageVo = new MessageVo();
         //判断是否由其他页面跳转过来
-        String url = "/open/back/index";
+        String url = "/back/index";
         SavedRequest savedRequest = WebUtils.getSavedRequest(request);
         if (null != savedRequest && !StringUtil.isBlank(savedRequest.getRequestUrl())) {
             url = savedRequest.getRequestUrl();
@@ -54,5 +58,15 @@ public class LoginController {
         return messageVo;
     }
 
+    @RequestMapping("/back/logout")
+    public MessageVo logout() {
 
+        try {
+            TokenManager.logout();
+        } catch (Exception e) {
+            throw new SystemErrorException();
+        }
+
+        return MessageVoUtil.success();
+    }
 }

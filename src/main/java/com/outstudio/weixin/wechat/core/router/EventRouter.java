@@ -3,9 +3,9 @@ package com.outstudio.weixin.wechat.core.router;
 
 import com.outstudio.weixin.wechat.config.EventType;
 import com.outstudio.weixin.wechat.core.handler.Handler;
+import com.outstudio.weixin.wechat.core.handler.SubscribeHandler;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.Map;
 
 /**
@@ -14,8 +14,9 @@ import java.util.Map;
 @Service("eventRouter")
 public class EventRouter implements Router {
 
-    @Resource(name = "subscribeHandler")
-    private Handler subscribeHandler;
+//    @Autowired
+//    @Qualifier("subscribeHandler")
+    private Handler subscribeHandler = new SubscribeHandler();
 
     @Override
     public String dispatchMessage(Map<String, String> messageMap) {

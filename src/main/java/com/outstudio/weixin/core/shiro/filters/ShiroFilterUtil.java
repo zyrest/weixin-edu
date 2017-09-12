@@ -25,7 +25,7 @@ public class ShiroFilterUtil {
     //没有权限提醒
     public static final String UNAUTHORIZED = "";//TODO
 
-    private static final String[] opens = {"/login.html", "/open"};
+    private static final String[] opens = {"/open"};
 
     public static String getUrl(ServletRequest request) {
         return ((HttpServletRequest) request).getRequestURL().toString();

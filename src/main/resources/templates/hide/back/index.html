@@ -41,7 +41,7 @@
     <div class="container">
         <div class="row noti-div">
             <div class="col-lg-3 col-md-3 col-sm-3  text-center">
-                <a th:href="@{/back/audio}">
+                <a th:href="@{/back/import/audio}">
                     <div class="alert alert-warning">
                         <i class="fa fa-user-md fa-4x"></i>
                         <span class="label label-info">Audios</span>
@@ -54,21 +54,21 @@
             </div>
 
             <div class="col-lg-3 col-md-3 col-sm-3 text-center">
-                <a th:href="@{/back/en-video}">
+                <a th:href="@{/back/import/english}">
                     <div class="alert alert-warning">
                         <i class="fa fa-user fa-4x"></i>
 
-                        <span class="label label-info">English Video</span>
+                        <span class="label label-info">English</span>
                         <!--<span class="label label-danger" on>145</span>-->
                         <p>
-                            录入英语视频
+                            录入英语教学资料
                         </p>
                     </div>
                 </a>
             </div>
 
             <div class="col-lg-3 col-md-3 col-sm-3 text-center">
-                <a th:href="@{/back/video}">
+                <a th:href="@{/back/import/video}">
                     <div class="alert alert-warning">
                         <i class="fa fa-cutlery fa-4x"></i>
 
@@ -93,6 +93,45 @@
                 </a>
             </div>
 
+            <div class="col-lg-3 col-md-3 col-sm-3  text-center">
+                <a th:href="@{/back/audio}">
+                    <div class="alert alert-warning">
+                        <i class="fa fa-user-md fa-4x"></i>
+                        <span class="label label-info">View Audios</span>
+                        <!--<span class="label label-danger">5</span>-->
+                        <p>
+                            查看所有启蒙音频
+                        </p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-3  text-center">
+                <a th:href="@{/back/english}">
+                    <div class="alert alert-warning">
+                        <i class="fa fa-user-md fa-4x"></i>
+                        <span class="label label-info">View English</span>
+                        <!--<span class="label label-danger">5</span>-->
+                        <p>
+                            查看所有英语教学资料
+                        </p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-3  text-center">
+                <a th:href="@{/back/video}">
+                    <div class="alert alert-warning">
+                        <i class="fa fa-user-md fa-4x"></i>
+                        <span class="label label-info">View Parent Video</span>
+                        <!--<span class="label label-danger">5</span>-->
+                        <p>
+                            查看所有家长视频
+                        </p>
+                    </div>
+                </a>
+            </div>
+
             <div class="col-lg-3 col-md-3 col-sm-3 text-center">
                 <a th:href="@{/back/logout}">
                     <div class="alert alert-warning">
@@ -111,53 +150,7 @@
     </div>
 
 </section>
-<section id="main">
-    <div class="container">
-        <div class="row">
-            <!--<div class="col-lg-9 col-md-9 col-sm-9 alert alert-info">-->
 
-            <!--<h3 class=" text-center">发布新通知</h3>-->
-            <!--<div class="hr-div">-->
-            <!--<hr/>-->
-            <!--</div>-->
-            <!--<form>-->
-
-
-            <!--<div class="form-group col-lg-12 col-md-12 col-sm-12">-->
-            <!--<label>请输入标题：</label>-->
-            <!--<input type="text" class="form-control" required="required" placeholder="标题 "/>-->
-            <!--</div>-->
-            <!--<div class="form-group col-lg-12 col-md-12 col-sm-12">-->
-            <!--<label>请输入通知内容：</label>-->
-            <!--<textarea class="form-control" rows="14" placeholder="内容 "></textarea>-->
-            <!--</div>-->
-
-            <!--<div class="form-group col-lg-12 col-md-12 col-sm-12">-->
-            <!--<button type="submit" class="btn btn-primary">发布通知</button>-->
-            <!--</div>-->
-            <!--</form>-->
-
-        </div>
-        <!--<div class="col-lg-3 col-md-3 col-sm-3">-->
-        <!--<a href="/admin/logout" class=" label label-danger"><strong>登出</strong> </a>-->
-        <!--<div class="list-group">-->
-        <!--<a href="#" class="list-group-item active">快速链接</a>-->
-        <!--<a href="/admin/loginSuccess" class="list-group-item">主页</a>-->
-        <!--<a href="/admin/listUsers" class="list-group-item">所有用户</a>-->
-        <!--<a href="/admin/listServicemen" class="list-group-item">所有维修人员</a>-->
-        <!--<a href="/admin/changePassword" class="list-group-item">更改密码</a>-->
-
-
-        <!--</div>-->
-        <!--<div class="alert alert-danger text-center">-->
-        <!--<h3>最新通知</h3>-->
-        <!--这里显示最新通知-->
-        <!--</div>-->
-
-    </div>
-    </div>
-    </div>
-</section>
 <div id="footer">
     <div class="container">
 

@@ -1,11 +1,12 @@
 package com.outstudio.weixin.wechat.core.router;
 
 
+import com.alibaba.fastjson.JSON;
 import com.outstudio.weixin.wechat.config.MessageType;
 import com.outstudio.weixin.wechat.core.handler.Handler;
+import com.outstudio.weixin.wechat.core.handler.TextMessageHandler;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.Map;
 
 /**
@@ -14,16 +15,19 @@ import java.util.Map;
 @Service("normalRouter")
 public class NormalRouter implements Router {
 
-    @Resource(name = "eventRouter")
-    private Router eventRouter;
+//    @Autowired
+//    @Qualifier("eventRouter")
+    private Router eventRouter = new EventRouter();
 
-    @Resource(name = "textMessageHandler")
-    private Handler textMessageHandler;
+//    @Autowired
+//    @Qualifier("textMessageHandler")
+    private Handler textMessageHandler = new TextMessageHandler();
 
     @Override
     public String dispatchMessage(Map<String, String> messageMap) {
         String result = "success";
         String messageType = messageMap.get("MsgType");
+        System.out.println(JSON.toJSONString(messageMap));
 
         switch (messageType) {
             case (MessageType.MESSAGE_TEXT) :
