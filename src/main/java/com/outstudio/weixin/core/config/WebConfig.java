@@ -13,13 +13,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 public class WebConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        //将访问/static/** 的路由映射到classpath:/static/ 目录下
-        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
+        // 可以直接使用addResourceLocations 指定磁盘绝对路径，同样可以配置多个位置，注意路径写法需要加上file:
+        registry.addResourceHandler("/piu/**").addResourceLocations("file:D:/piu/");
     }
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/open/back/login").setViewName("hide/back/login");
         registry.addViewController("/back/index").setViewName("hide/back/index");
-        registry.addViewController("/open/back/error").setViewName("hide/back/index");
+        registry.addViewController("/open/back/error").setViewName("hide/back/error");
     }
 }
