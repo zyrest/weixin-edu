@@ -5,6 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.io.IOException;
 import java.util.UUID;
 
 /**
@@ -21,9 +22,9 @@ public class FileUtil {
      * @param request http请求
      * @param file 待保存文件
      * @return 文件绝对路径
-     * @throws Exception 抛出异常
+     * @throws IOException 抛出异常
      */
-    public static String saveUploadFile(HttpServletRequest request, MultipartFile file) throws Exception {
+    public static String saveUploadFile(HttpServletRequest request, MultipartFile file) throws IOException {
         //todo 修改路径
         String baseDir = request.getSession().getServletContext().getRealPath("") + "/files/";
         String fileName = file.getOriginalFilename();
@@ -46,6 +47,18 @@ public class FileUtil {
         file.transferTo(savedFile);
         logger.info("savedFile is : " + savedFile.getPath());
         return savedFile.getPath();
+    }
+    /**
+     *  获取给定文件的类型
+     * @return
+     */
+    public static String getType(MultipartFile file) {
+        String fileName = file.getOriginalFilename();
+        String type = null;
+        if (! StringUtil.isBlank(fileName)) {
+            type = fileName.substring(fileName.lastIndexOf(".") + 1);
+        }
+        return type;
     }
 
     public static boolean isXmlFile(String filePath) {

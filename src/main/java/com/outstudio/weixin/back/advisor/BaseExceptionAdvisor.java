@@ -82,4 +82,13 @@ public class BaseExceptionAdvisor {
 
         return messageVo;
     }
+
+    @ExceptionHandler(InvalidFileTypeException.class)
+    public MessageVo handleInvalidFileType(InvalidFileTypeException e) {
+        MessageVo messageVo = new MessageVo();
+
+        messageVo.setStatus(ResponseStatus.WRONG_FILE_TYPE).setMessage(e.getMessage());
+
+        return messageVo;
+    }
 }

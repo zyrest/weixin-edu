@@ -19,6 +19,24 @@
     from t_interview_video
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectByStage" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from t_interview_video
+    where stage = #{stage,jdbcType=INTEGER}
+  </select>
+  <select id="selectBySearchParam" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from t_interview_video
+    where title LIKE concat(concat('%',#{searchParam,jdbcType=VARCHAR}),'%')
+    OR description LIKE concat(concat('%',#{searchParam,jdbcType=VARCHAR}),'%')
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_interview_video
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from t_interview_video
     where id = #{id,jdbcType=INTEGER}

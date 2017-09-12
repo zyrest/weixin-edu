@@ -53,4 +53,6 @@ public class LoginController {
                 .setRedirectUrl(url).setData(managerEntity);
         return messageVo;
     }
+
+
 }

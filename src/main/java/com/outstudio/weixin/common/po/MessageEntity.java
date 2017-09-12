@@ -14,6 +14,8 @@ public class MessageEntity implements Serializable{
 
     private Date post_date;
 
+    private Date last_modify_date;
+
     private String description;
 
     private String content;
@@ -65,4 +67,13 @@ public class MessageEntity implements Serializable{
     public void setContent(String content) {
         this.content = content == null ? null : content.trim();
     }
+
+    public Date getLast_modify_date() {
+        return last_modify_date;
+    }
+
+    public void setLast_modify_date(Date last_modify_date) {
+        this.last_modify_date = last_modify_date;
+    }
+
 }
