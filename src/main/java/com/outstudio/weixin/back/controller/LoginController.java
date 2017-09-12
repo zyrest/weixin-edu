@@ -12,11 +12,7 @@ import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.web.util.SavedRequest;
 import org.apache.shiro.web.util.WebUtils;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -24,16 +20,15 @@ import javax.servlet.http.HttpServletRequest;
  * Created by 96428 on 2017/9/8.
  * This in weixin-edu, com.outstudio.weixin.back.controller
  */
-@Controller
+@RestController
 @RequestMapping("/open/back")
 public class LoginController {
 
     @PostMapping("/sublogin")
-    @ResponseBody
-    public MessageVo sublogin(HttpServletRequest request, @RequestBody ManagerEntity managerEntity, boolean rememberMe) {
+    public MessageVo sublogin(HttpServletRequest request, @RequestBody ManagerEntity managerEntity) {
 
         try {
-            TokenManager.loginBack(managerEntity, rememberMe);
+            TokenManager.loginBack(managerEntity, false);
         } catch (UnknownAccountException e) {
             LoggerUtil.fmtDebug(getClass(), "用户名不存在 -> {%s}", managerEntity.getM_account());
             throw new NoSuchUserException(e.getMessage());
@@ -44,7 +39,7 @@ public class LoginController {
 
         MessageVo messageVo = new MessageVo();
         //判断是否由其他页面跳转过来
-        String url = "/index";
+        String url = "/open/back/index";
         SavedRequest savedRequest = WebUtils.getSavedRequest(request);
         if (null != savedRequest && !StringUtil.isBlank(savedRequest.getRequestUrl())) {
             url = savedRequest.getRequestUrl();
