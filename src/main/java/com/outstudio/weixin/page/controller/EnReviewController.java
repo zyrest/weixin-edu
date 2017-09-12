@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by lmy on 2017/9/11.
  */
-@RestController
+@RestController("enReviewPageController")
 @RequestMapping("/open/page")
 public class EnReviewController {
     private static final String REDIRECT_URL = "";

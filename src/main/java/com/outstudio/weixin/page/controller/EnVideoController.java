@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by lmy on 2017/9/11.
  */
-@RestController
+@RestController("enVideoPageController")
 @RequestMapping("/open/page")
 public class EnVideoController {
 

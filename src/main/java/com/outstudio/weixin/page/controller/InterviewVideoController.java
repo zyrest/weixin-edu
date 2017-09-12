@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by lmy on 2017/9/11.
  */
-@RestController
+@RestController("interviewVideoPageController")
 @RequestMapping("/open/page")
 public class InterviewVideoController {
     private static final String REDIRECT_URL = "";
