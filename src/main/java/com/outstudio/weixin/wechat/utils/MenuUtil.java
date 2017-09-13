@@ -2,8 +2,11 @@ package com.outstudio.weixin.wechat.utils;
 
 
 import com.outstudio.weixin.wechat.config.EventType;
+import com.outstudio.weixin.wechat.config.WeixinProperties;
 import com.outstudio.weixin.wechat.dto.menu.*;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,6 +17,7 @@ import java.util.List;
 public class MenuUtil {
     /**
      * 创建一个默认的菜单栏
+     *
      * @return 默认菜单栏
      */
     public static Menu initMenus() {
@@ -24,26 +28,31 @@ public class MenuUtil {
     }
 
     private static Button firstButton() {
-//        List<Button> sub_buttons = new ArrayList<>();
-//        sub_buttons.add(createViewButton());
-
-        return createViewButton("问一下", "http://www.baidu.com/");
+        return createViewButton("培训故事", String.format(WeixinProperties.USER_INFO_CODE, WeixinProperties.appID, WeixinProperties.OAUTH_REDIRECT_URL, WeixinProperties.USERINFO_SCOPE, 1));
     }
 
     private static Button secondButton() {
         Button button = new Button();
-        button.setName("上拉菜单");
+        button.setName("启蒙英语");
 
         List<Button> sub_buttons = new ArrayList<>();
-        sub_buttons.add(createClickButton("发送1", "1"));
-        sub_buttons.add(createViewButton("去哪儿网", "https://www.qunar.com/"));
+        sub_buttons.add(createViewButton("英语课堂", "http://www.baidu.com/"));
+        sub_buttons.add(createViewButton("复习内容", "https://www.qunar.com/"));
         button.setSub_button(sub_buttons);
 
         return button;
     }
 
     private static Button thirdButton() {
-        return createViewButton("约约约", "http://www.qq.com/");
+        Button button = new Button();
+        List<Button> sub_button = new ArrayList<>();
+        sub_button.add(createViewButton("VIP注册", "http://www.baidu.com/"));
+        sub_button.add(createViewButton("访谈讲堂", "http://www.baidu.com/"));
+        sub_button.add(createViewButton("积分兑换", "http://www.baidu.com/"));
+        sub_button.add(createViewButton("通知", "http://www.baidu.com/"));
+        button.setName("家长关注");
+        button.setSub_button(sub_button);
+        return button;
     }
 
     private static ViewButton createViewButton(String name, String url) {

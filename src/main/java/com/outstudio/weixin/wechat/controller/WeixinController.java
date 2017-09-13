@@ -1,7 +1,11 @@
 package com.outstudio.weixin.wechat.controller;
 
+import com.alibaba.fastjson.JSONObject;
+import com.outstudio.weixin.common.po.UserEntity;
 import com.outstudio.weixin.common.utils.LoggerUtil;
+import com.outstudio.weixin.common.utils.OAuthUtil;
 import com.outstudio.weixin.wechat.core.MyWechat;
+import com.outstudio.weixin.wechat.dto.OAuthAccessToken;
 import com.outstudio.weixin.wechat.dto.SignaturePo;
 import com.outstudio.weixin.wechat.utils.MessageUtil;
 import org.springframework.stereotype.Controller;
@@ -13,8 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
+import java.net.URLDecoder;
 
 /**
  * Created by 96428 on 2017/7/13.
@@ -61,4 +65,16 @@ public class WeixinController {
         pw.flush();
         pw.close();
     }
+
+    @GetMapping("/oauth")
+    @ResponseBody
+    public UserEntity oauth(@RequestParam("code") String code, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
+        OAuthAccessToken authAccessToken = OAuthUtil.getOAuthAccessToken(code);
+        UserEntity userEntity = OAuthUtil.getUserInfo(authAccessToken);
+        return userEntity;
+    }
+
 }

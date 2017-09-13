@@ -6,6 +6,7 @@ import com.outstudio.weixin.common.utils.DateUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 /**
  * Created by 96428 on 2017/9/6.
@@ -22,7 +23,8 @@ public class UserService {
     }
 
     public void saveUser(UserEntity user) {
-        userEntityMapper.insert(user);
+        user.setVip_end_date(new Date());
+        userEntityMapper.insertSelective(user);
     }
 
     public boolean checkExpired(String openid) {

@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.outstudio.weixin.common.po.UserEntity;
 import com.outstudio.weixin.common.utils.FileUtil;
 import com.outstudio.weixin.common.utils.PasswordUtil;
+import com.outstudio.weixin.wechat.utils.MenuUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -35,7 +36,7 @@ public class TestJson {
 
     @Test
     public void test() {
-        String base = FileUtil.class.getClassLoader().getResource("").getPath();
-        System.out.println(base);
+
+        System.out.println(JSON.toJSONString(MenuUtil.initMenus()));
     }
 }

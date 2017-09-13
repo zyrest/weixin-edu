@@ -21,8 +21,6 @@ public class NetWorkUtil {
 
     private static Logger logger = Logger.getLogger(NetWorkUtil.class);
 
-
-
     public static JSONObject doGetUri(String uri) {
         logger.info("do get the " + uri);
 
@@ -43,7 +41,7 @@ public class NetWorkUtil {
             CloseableHttpResponse response = httpClient.execute(get);
 
             if (response.getStatusLine().getStatusCode() == 200) {
-                result = EntityUtils.toString(response.getEntity());
+                result = EntityUtils.toString(response.getEntity(),"UTF-8");/** 设置utf-8字符集，否则请求微信数据可能会出现中文乱码 */
                 logger.info("got response : " + result);
             } else {
                 logger.info("something wrong happened");
@@ -65,7 +63,7 @@ public class NetWorkUtil {
     }
 
     public static JSONObject doPostUri(String uri, String params) {
-        logger.info("do get the " + uri);
+        logger.info("do post the " + uri);
 
         CloseableHttpClient httpClient = HttpClients.createDefault();
         HttpPost post = new HttpPost(uri);
@@ -81,11 +79,11 @@ public class NetWorkUtil {
         String result = "";
 
         try {
-            post.setEntity(new StringEntity(params, "UTF-8"));
+            post.setEntity(new StringEntity(params, "UTF-8"));/** 设置utf-8字符集，否则请求微信数据可能会出现中文乱码 */
             CloseableHttpResponse response = httpClient.execute(post);
 
             if (response.getStatusLine().getStatusCode() == 200) {
-                result = EntityUtils.toString(response.getEntity());
+                result = EntityUtils.toString(response.getEntity(),"UTF-8");
                 logger.info("got response : " + result);
             } else {
                 logger.info("something wrong happened");

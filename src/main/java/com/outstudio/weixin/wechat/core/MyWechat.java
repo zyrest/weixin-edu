@@ -2,6 +2,7 @@ package com.outstudio.weixin.wechat.core;
 
 import com.alibaba.fastjson.JSON;
 import com.outstudio.weixin.common.utils.LoggerUtil;
+import com.outstudio.weixin.wechat.core.router.NormalRouter;
 import com.outstudio.weixin.wechat.core.router.Router;
 import com.outstudio.weixin.wechat.utils.MessageUtil;
 import org.dom4j.DocumentException;
@@ -47,7 +48,7 @@ public class MyWechat {
             result = "success";
         }
 
-        LoggerUtil.fmtDebug(getClass(), "回复为 -> \n%s", result);
+        LoggerUtil.fmtDebug(getClass(), "回复为 -> {%s}", result);
         return result;
     }
 }
