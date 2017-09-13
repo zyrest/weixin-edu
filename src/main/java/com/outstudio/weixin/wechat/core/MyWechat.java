@@ -2,12 +2,12 @@ package com.outstudio.weixin.wechat.core;
 
 import com.alibaba.fastjson.JSON;
 import com.outstudio.weixin.common.utils.LoggerUtil;
-import com.outstudio.weixin.wechat.core.router.NormalRouter;
 import com.outstudio.weixin.wechat.core.router.Router;
 import com.outstudio.weixin.wechat.utils.MessageUtil;
 import org.dom4j.DocumentException;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Map;
@@ -20,13 +20,12 @@ public class MyWechat {
     private HttpServletRequest request;
     private Map<String, String> messageMap;
 
-//    @Autowired
-//    @Qualifier("normalRouter")
-    private Router normalRouter = new NormalRouter();
+    @Resource(name = "normalRouter")
+    private Router normalRouter;
 
     public MyWechat() {}
 
-    void setRequest(HttpServletRequest request) {
+    public void setRequest(HttpServletRequest request) {
         LoggerUtil.fmtDebug(getClass(), "开始处理消息请求");
         this.request = request;
         init();
@@ -48,14 +47,7 @@ public class MyWechat {
             result = "success";
         }
 
-        LoggerUtil.fmtDebug(getClass(), "回复为 -> \n", result);
+        LoggerUtil.fmtDebug(getClass(), "回复为 -> \n%s", result);
         return result;
     }
-
-
-
-
-
-
-
 }

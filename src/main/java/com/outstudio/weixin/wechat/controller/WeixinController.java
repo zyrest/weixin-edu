@@ -2,13 +2,15 @@ package com.outstudio.weixin.wechat.controller;
 
 import com.outstudio.weixin.common.utils.LoggerUtil;
 import com.outstudio.weixin.wechat.core.MyWechat;
-import com.outstudio.weixin.wechat.core.MyWechatFactory;
 import com.outstudio.weixin.wechat.dto.SignaturePo;
 import com.outstudio.weixin.wechat.utils.MessageUtil;
-import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -20,7 +22,8 @@ import java.io.PrintWriter;
 @Controller
 public class WeixinController {
 
-    private Logger logger = Logger.getLogger(WeixinController.class);
+    @Resource
+    private MyWechat myWechat;
 
     @GetMapping(value = "/weixin")
     @ResponseBody
@@ -51,8 +54,8 @@ public class WeixinController {
 
         PrintWriter pw = response.getWriter();
 
-        MyWechat wechat = MyWechatFactory.getMyWechat(request);
-        String result = wechat.execute();
+        myWechat.setRequest(request);
+        String result = myWechat.execute();
 
         pw.write(result);
         pw.flush();
