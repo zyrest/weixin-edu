@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -67,14 +68,19 @@ public class WeixinController {
     }
 
     @GetMapping("/oauth")
-    @ResponseBody
-    public UserEntity oauth(@RequestParam("code") String code, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public ModelAndView oauth(@RequestParam("code") String code,
+                              @RequestParam("state") String state,//state包含授权成功后跳转到的页面
+                              HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
         OAuthAccessToken authAccessToken = OAuthUtil.getOAuthAccessToken(code);
         UserEntity userEntity = OAuthUtil.getUserInfo(authAccessToken);
-        return userEntity;
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("userInfo", userEntity);
+        modelAndView.setViewName(state);
+        return modelAndView;
     }
 
 }
