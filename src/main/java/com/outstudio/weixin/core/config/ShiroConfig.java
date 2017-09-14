@@ -2,6 +2,7 @@ package com.outstudio.weixin.core.config;
 
 import com.outstudio.weixin.core.shiro.filters.ForbidFilter;
 import com.outstudio.weixin.core.shiro.filters.LoginFilter;
+import com.outstudio.weixin.core.shiro.filters.WeixinAuthFilter;
 import com.outstudio.weixin.core.shiro.token.MyRealm;
 import com.outstudio.weixin.core.shiro.token.RetryLimitHashedCredentialsMatcher;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
@@ -81,6 +82,7 @@ public class ShiroConfig {
         Map<String, Filter> filterMap = new LinkedHashMap<>();
         filterMap.put("login", loginFilter());
         filterMap.put("forbid", forbidFilter());
+        filterMap.put("weixinAuth", weixinAuthFilter());
         shiroFilterFactoryBean.setFilters(filterMap);
 
         loadFiltersChain(shiroFilterFactoryBean);
@@ -109,6 +111,7 @@ public class ShiroConfig {
         //authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问
         filterChainDefinitionMap.put("/back/**", "login");
         filterChainDefinitionMap.put("/hide/**", "forbid");
+        filterChainDefinitionMap.put("/page/view/**", "weixinAuth");
 
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
     }
@@ -153,6 +156,17 @@ public class ShiroConfig {
         return registration;
     }
 
+    @Bean
+    public WeixinAuthFilter weixinAuthFilter() {
+        return new WeixinAuthFilter();
+    }
+
+    @Bean
+    public FilterRegistrationBean weixinAuthFilterRegistration() {
+        FilterRegistrationBean registration = new FilterRegistrationBean(weixinAuthFilter());
+        registration.setEnabled(false);
+        return registration;
+    }
     @Bean
     public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
         return new LifecycleBeanPostProcessor();

@@ -1,6 +1,5 @@
 package com.outstudio.weixin.back.controller;
 
-import com.github.pagehelper.PageHelper;
 import com.outstudio.weixin.back.exception.InvalidFileTypeException;
 import com.outstudio.weixin.back.exception.SystemErrorException;
 import com.outstudio.weixin.common.consts.ResponseStatus;
@@ -14,13 +13,13 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.util.List;
+import java.util.Date;
 
 /**
  * Created by lmy on 2017/9/9.
  */
 @RestController
-@RequestMapping("/open/back")
+@RequestMapping("/back")
 public class StoryController {
 
     private static final String REDIRECT_URL = "";
@@ -46,6 +45,7 @@ public class StoryController {
         }
 
         storyEntity.setSrc(audioSrc);
+        storyEntity.setPost_date(new Date());
         storyService.addStory(storyEntity);
 
         messageVo.setStatus(ResponseStatus.CREATED)

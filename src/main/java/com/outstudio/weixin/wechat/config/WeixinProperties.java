@@ -44,5 +44,7 @@ public class WeixinProperties {
     /**
      * 网页授权的时候跳转的url
      */
-    public static final String OAUTH_REDIRECT_URL = "http://9ed78c9d.ngrok.io/oauth";
+    public static final String OAUTH_REDIRECT_URL = "http://xxxx/open/page/oauth";
+
+
 }

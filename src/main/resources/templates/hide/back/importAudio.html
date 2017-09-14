@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+
+    <title>校园报修系统后台管理</title>
+    <!-- BOOTSTRAP CORE STYLE CSS -->
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
+    <!-- FONT AWESOME CSS -->
+    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet"/>
+    <!-- CUSTOM STYLE CSS -->
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <link th:href="@{/css/file.css}" rel="stylesheet"/>
+</head>
+<body>
+<div id="head">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <a th:href="@{/back/index}">
+                    <img th:src="@{/img/logo.png}"/>
+                </a>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 text-center">
+                <img th:src="@{/img/top-mouse.png}" class="header-mid"/>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <h4><span>Call:</span> +86-13188888888</h4>
+                <h4><span>E-mail:</span> info@domain.com</h4>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<section id="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-9 col-sm-9 ">
+
+                <h3>更改维修人员信息</h3>
+                <div class="hr-div">
+                    <hr/>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+
+                    <form>
+                        <div class="form-group">
+                            标题：<input id="title" type="text" name="title" class="form-control" required="required" placeholder="标题"/>
+                        </div>
+
+                        <div class="form-group">
+                            描述：<textarea id="description" name="description" class="form-control" required="required" placeholder="描述一下吧"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            是否收费：<input type="radio" checked="checked" name="is_free" value="1"/>收费
+                            <input type="radio" name="is_free" value="0" />免费
+                        </div>
+
+                        <div class="form-group">
+                            类型：
+                            <select id="type" name="type" class="form-control" required="required">
+                                <option value="1">第一类</option>
+                                <option value="2">第二类</option>
+                                <option value="3">第三类</option>
+                                <option value="4">第四类</option>
+                                <option value="5">第五类</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            音频文件：<input id="audio" type="file" name="audio" class="upload" required="required" />
+                        </div>
+
+                        <div class="form-group">
+                            <button id="submitAudio" class="btn btn-primary" type="button">新增</button>
+                        </div>
+                    </form>
+
+                </div>
+
+
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3">
+                <a href="index.html" class=" label label-danger"><strong>登出</strong> </a>
+                <div class="list-group">
+                    <a href="#" class="list-group-item active">快速链接</a>
+                    <a href="/admin/loginSuccess" class="list-group-item">主页</a>
+                    <a href="/admin/listUsers" class="list-group-item">所有用户</a>
+                    <a href="/admin/listServicemen" class="list-group-item">所有维修人员</a>
+                    <a href="/admin/manageUsers" class="list-group-item">管理用户信息</a>
+                    <a href="/admin/manageServicemen" class="list-group-item">管理维修人员信息</a>
+                    <a href="/admin/listPosts" class="list-group-item">查看报修信息</a>
+                    <a href="/admin/changePassword" class="list-group-item">更改密码</a>
+                </div>
+                <!--<div class="alert alert-danger text-center">-->
+                <!--<h3>Import Information</h3>-->
+                <!--这里显示最新通知-->
+                <!--</div>-->
+
+            </div>
+        </div>
+    </div>
+</section>
+<div id="footer">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <h3>我们在哪</h3>
+                <p>
+                    <i>地址 :</i> 济南市舜华路1500号山东大学软件园校区
+                    <br/>
+                    &copy; 2017 OUT studio All right reserved
+                </p>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <h3>客服</h3>
+                <h4><span>Call: </span>+86-1318888888</h4>
+                <h4><span>E-mail: </span>info@domain.com</h4>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+<!--  Jquery Core Script -->
+<script th:src="@{/js/jquery-1.10.2.js}"></script>
+<!--  Core Bootstrap Script -->
+<script th:src="@{/js/bootstrap.js}"></script>
+
+</body>
+</html>

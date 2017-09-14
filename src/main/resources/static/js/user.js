@@ -3,14 +3,35 @@ jQuery(document).ready(function() {
     var location = (window.location+'').split('/');
     var basePath = location[0]+'//'+location[2];
 
-    //登录操作
-    $('#submitLogin').click(function() {
 
+
+    var submit = $('#submitLogin');
+
+    //回车事件绑定
+    document.onkeydown = function(event) {
+        var e = event || window.event || arguments.callee.caller.arguments[0];
+        if(e && e.keyCode === 13) {
+            submit.click();
+        }
+    };
+
+    //
+    document.onkeyup = function () {
+        var username = $('input[name = m_account]').val();
+        var password = $('input[name = m_password]').val();
+
+        if (username.length === 0 || password.length === 0) {
+            submit.attr('disabled',"true");
+        } else {
+            submit.removeAttr("disabled");
+        }
+    };
+
+    //登录操作
+    submit.click(function() {
         var username = $('input[name = m_account]').val();
         var password = $('input[name = m_password]').val();
         var tip = $('#tip');
-
-        //todo 校检数据格式是否正确
 
         var data = JSON.stringify({m_account:username, m_password:password});
         $.ajax({

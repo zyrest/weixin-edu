@@ -1,6 +1,5 @@
 package com.outstudio.weixin.back.controller;
 
-import com.github.pagehelper.PageHelper;
 import com.outstudio.weixin.common.consts.ResponseStatus;
 import com.outstudio.weixin.common.po.MessageEntity;
 import com.outstudio.weixin.common.service.MessageService;
@@ -8,13 +7,12 @@ import com.outstudio.weixin.common.vo.MessageVo;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * Created by lmy on 2017/9/9.
  */
 @RestController
-@RequestMapping("/open/back")
+@RequestMapping("/back")
 public class MessageController {
 
     private static final String REDIRECT_URL = "";
