@@ -42,7 +42,17 @@ public class WeixinProperties {
     public static final String OAUTH_USER_INFO_URI = "https://api.weixin.qq.com/sns/userinfo?access_token=%s&openid=%s&lang=zh_CN";
 
     /**
-     * 网页授权的时候跳转的url
+     * 网页授权的之后跳转的url
      */
-    public static final String OAUTH_REDIRECT_URL = "http://9ed78c9d.ngrok.io/oauth";
+    public static final String OAUTH_REDIRECT_URL = "";
+
+    /**
+     * 网页授权的时候USER_INFO_CODE中的state标识
+     */
+    public static final String OAUTH_STATE = "state";
+
+    /**
+     * 格式化的网页授权url
+     */
+    public static final String FORMATED_USER_INFO_CODE = String.format(USER_INFO_CODE, appID, OAUTH_REDIRECT_URL, USERINFO_SCOPE, OAUTH_STATE);
 }
