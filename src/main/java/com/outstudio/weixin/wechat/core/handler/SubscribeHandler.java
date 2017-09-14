@@ -20,6 +20,9 @@ public class SubscribeHandler implements Handler {
     @Resource
     private UserService userService;
 
+    @Resource
+    private ContentUtil contentUtil;
+
     /**
      * 当用户关注公众号时, 自动拉取用户信息, 保存在用户数据库中
      * @param messageMap 获得到的信息
@@ -37,6 +40,6 @@ public class SubscribeHandler implements Handler {
             found = user;
         }
 
-        return MessageUtil.createTextMessageXml(fromUser, userOpenid, ContentUtil.onSubscribe(found.getNickname()));
+        return MessageUtil.createTextMessageXml(fromUser, userOpenid, contentUtil.onSubscribe(found.getNickname()));
     }
 }

@@ -3,6 +3,7 @@ package com.outstudio.weixin.page.controller;
 import com.outstudio.weixin.common.consts.ResponseStatus;
 import com.outstudio.weixin.common.po.UserEntity;
 import com.outstudio.weixin.common.service.UserService;
+import com.outstudio.weixin.common.utils.MessageVoUtil;
 import com.outstudio.weixin.common.vo.MessageVo;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,12 +25,7 @@ public class UserController {
 
     @GetMapping("/userInfo/{openid}")
     public MessageVo getUserInfo(@PathVariable("openid") String openid) {
-        MessageVo messageVo = new MessageVo();
         UserEntity userEntity = userService.getUserByOpenId(openid);
-        messageVo.setStatus(ResponseStatus.SUCCESS)
-                .setMessage("success")
-                .setRedirectUrl(REDIRECT_URL)
-                .setData(userEntity);
-        return messageVo;
+        return MessageVoUtil.success(REDIRECT_URL, userEntity);
     }
 }

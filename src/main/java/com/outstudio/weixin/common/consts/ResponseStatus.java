@@ -27,6 +27,7 @@ public class ResponseStatus {
     public static final Integer EXCESSIVE_ATTEMPT = 40012;
     public static final Integer USER_EXIST = 40013;
     public static final Integer DATABASE_ERROR = 40014;
-
+    public static final Integer LOGICAL_ERROR = 40015;
     public static final Integer SYSTEM_ERROE = 500;
+
 }

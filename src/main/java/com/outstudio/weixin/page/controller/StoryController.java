@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.outstudio.weixin.common.consts.ResponseStatus;
 import com.outstudio.weixin.common.po.StoryEntity;
 import com.outstudio.weixin.common.service.StoryService;
+import com.outstudio.weixin.common.utils.MessageVoUtil;
 import com.outstudio.weixin.common.vo.MessageVo;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,46 +25,27 @@ public class StoryController {
     @GetMapping("/stories/type/{type}/page/{pageNum}")
     public MessageVo getStotiesByType(@PathVariable Integer type,
                                       @PathVariable Integer pageNum) {
-        MessageVo messageVo = new MessageVo();
         PageHelper.startPage(pageNum, 15);
         List<StoryEntity> storyEntities = storyService.getStoryByType(type);
-        messageVo.setStatus(ResponseStatus.SUCCESS)
-                .setMessage("success")
-                .setRedirectUrl(REDIRECT_URL)
-                .setData(storyEntities);
-        return messageVo;
+        return MessageVoUtil.success(REDIRECT_URL, storyEntities);
     }
 
     @GetMapping("/stories/page/{pageNum}")
     public MessageVo getAllStories(@PathVariable Integer pageNum) {
-        MessageVo messageVo = new MessageVo();
         PageHelper.startPage(pageNum, 15);
         List<StoryEntity> storyEntities = storyService.getAllStories();
-        messageVo.setStatus(ResponseStatus.SUCCESS)
-                .setMessage("success")
-                .setRedirectUrl(REDIRECT_URL)
-                .setData(storyEntities);
-        return messageVo;
+        return MessageVoUtil.success(REDIRECT_URL, storyEntities);
     }
 
     @GetMapping("/stories/{id}")
     public MessageVo getStory(@PathVariable Integer id) {
-        MessageVo messageVo = new MessageVo();
         StoryEntity storyEntity = storyService.getStoryById(id);
-        messageVo.setStatus(ResponseStatus.SUCCESS)
-                .setMessage("success")
-                .setRedirectUrl(REDIRECT_URL)
-                .setData(storyEntity);
-        return messageVo;
+        return MessageVoUtil.success(REDIRECT_URL, storyEntity);
     }
 
     @GetMapping("/stories")
     public MessageVo searchStories(@RequestParam("searchParam")String searchParam) {
-        MessageVo messageVo = new MessageVo();
         List<StoryEntity> storyEntities = storyService.getStoriesBySearchParam(searchParam);
-        messageVo.setStatus(ResponseStatus.SUCCESS)
-                .setMessage("success")
-                .setData(storyEntities);
-        return messageVo;
+        return MessageVoUtil.success(REDIRECT_URL, storyEntities);
     }
 }
