@@ -5778,4 +5778,8 @@ button.close {
     display: none !important;
   }
 }
+.form-control-xxx {
+  width:90%;
+  display:inline;
+}
 /*# sourceMappingURL=bootstrap.css.map */

@@ -2,9 +2,6 @@
 jQuery(document).ready(function() {
     var location = (window.location+'').split('/');
     var basePath = location[0]+'//'+location[2];
-
-
-
     var submit = $('#submitLogin');
 
     //回车事件绑定
@@ -44,9 +41,9 @@ jQuery(document).ready(function() {
                 console.log("开始登陆")
             },
             success:function(result) {
-                alert(result);
-                var dat = JSON.stringify(result);
-                alert(dat);
+                // alert(result);
+                // var dat = JSON.stringify(result);
+                // alert(dat);
                 if(result && result.status !== 200) {
                     tip.innerHTML = result.message;
                     $('input[name = m_password]').val('');
