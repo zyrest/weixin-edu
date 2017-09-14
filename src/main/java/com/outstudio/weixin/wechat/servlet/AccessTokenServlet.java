@@ -6,17 +6,16 @@ import com.outstudio.weixin.wechat.utils.WechatUtil;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 
 /**
  * Created by 96428 on 2017/7/16.
  */
-@WebServlet(
-        name = "AccessTokenServlet",
-        urlPatterns = "/self/AccessTokenServlet",
-        loadOnStartup = 1
-)
+//@WebServlet(
+//        name = "AccessTokenServlet",
+//        urlPatterns = "/self/AccessTokenServlet",
+//        loadOnStartup = 1
+//)
 public class AccessTokenServlet extends HttpServlet {
     private Logger logger = Logger.getLogger(AccessTokenServlet.class);
 

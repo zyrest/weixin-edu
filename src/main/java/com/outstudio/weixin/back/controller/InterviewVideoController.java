@@ -18,7 +18,7 @@ import java.io.IOException;
  * Created by lmy on 2017/9/9.
  */
 @RestController
-@RequestMapping("/open/back")
+@RequestMapping("/back")
 public class InterviewVideoController {
 
     private static final String REDIRECT_URL = "";

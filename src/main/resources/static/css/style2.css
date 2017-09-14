@@ -29,6 +29,9 @@ body{
     font-family: 'Roboto', sans-serif;
     font-size: 100%;
 }
+#warning_ {
+    border:1px solid red
+}
 .login {
     width: 32%;
     margin: 0 auto;

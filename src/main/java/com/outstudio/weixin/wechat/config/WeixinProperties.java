@@ -42,9 +42,9 @@ public class WeixinProperties {
     public static final String OAUTH_USER_INFO_URI = "https://api.weixin.qq.com/sns/userinfo?access_token=%s&openid=%s&lang=zh_CN";
 
     /**
-     * 网页授权的之后跳转的url
+     * 网页授权的时候跳转的url
      */
-    public static final String OAUTH_REDIRECT_URL = "";
+    public static final String OAUTH_REDIRECT_URL = "http://xxxx/open/page/oauth";
 
     /**
      * 网页授权的时候USER_INFO_CODE中的state标识
