@@ -28,7 +28,7 @@ public class MenuUtil {
     }
 
     private static Button firstButton() {
-        return createViewButton("培训故事", String.format(WeixinProperties.USER_INFO_CODE, WeixinProperties.appID, WeixinProperties.OAUTH_REDIRECT_URL, WeixinProperties.USERINFO_SCOPE, 1));
+        return createViewButton("培训故事", WeixinProperties.FORMATED_USER_INFO_CODE);
     }
 
     private static Button secondButton() {

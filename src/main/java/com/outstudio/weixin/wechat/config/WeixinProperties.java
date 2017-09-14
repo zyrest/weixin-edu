@@ -46,5 +46,13 @@ public class WeixinProperties {
      */
     public static final String OAUTH_REDIRECT_URL = "http://xxxx/open/page/oauth";
 
+    /**
+     * 网页授权的时候USER_INFO_CODE中的state标识
+     */
+    public static final String OAUTH_STATE = "state";
 
+    /**
+     * 格式化的网页授权url
+     */
+    public static final String FORMATED_USER_INFO_CODE = String.format(USER_INFO_CODE, appID, OAUTH_REDIRECT_URL, USERINFO_SCOPE, OAUTH_STATE);
 }
