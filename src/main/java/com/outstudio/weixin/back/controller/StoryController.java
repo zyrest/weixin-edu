@@ -18,7 +18,7 @@ import java.io.IOException;
  * Created by lmy on 2017/9/9.
  */
 @RestController
-@RequestMapping("/open/back")
+@RequestMapping("/back")
 public class StoryController {
 
     private static final String REDIRECT_URL = "";
@@ -43,6 +43,7 @@ public class StoryController {
         }
 
         storyEntity.setSrc(audioSrc);
+
         storyService.addStory(storyEntity);
         return MessageVoUtil.created(REDIRECT_URL);
     }
