@@ -6,7 +6,7 @@
     <meta name="description" content=""/>
     <meta name="author" content=""/>
 
-    <title>导入教育音频</title>
+    <title>导入英语资料</title>
     <!-- BOOTSTRAP CORE STYLE CSS -->
     <link th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
     <!-- FONT AWESOME CSS -->
@@ -14,8 +14,6 @@
     <!-- CUSTOM STYLE CSS -->
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
     <link th:href="@{/css/file.css}" rel="stylesheet"/>
-
-
 </head>
 <body>
 <div id="head">
@@ -44,7 +42,7 @@
         <div class="row">
             <div class="col-lg-9 col-md-9 col-sm-9 ">
 
-                <h3>导入教育音频</h3>
+                <h3>导入英语资料</h3>
                 <div class="hr-div">
                     <hr/>
                 </div>
@@ -52,13 +50,16 @@
 
                     <form>
                         <div class="form-group">
-                            标题：
-                            <input id="title" type="text" name="title" class="form-control" required="required" placeholder="标题"/>
+                            <label for="stage" class="sr-only">第几期</label>
+                            <input type="number" id="stage" class="form-control" placeholder="管理的校区代号" required="" autofocus="">
                         </div>
 
                         <div class="form-group">
-                            描述：
-                            <textarea id="description" name="description" class="form-control" required="required" placeholder="描述一下吧"></textarea>
+                            标题：<input id="title" type="text" name="title" class="form-control" required="required" placeholder="标题"/>
+                        </div>
+
+                        <div class="form-group">
+                            描述：<textarea id="description" name="description" class="form-control" required="required" placeholder="描述一下吧"></textarea>
                         </div>
 
                         <div class="form-group" >
@@ -84,17 +85,12 @@
 
                         <div class="form-group">
                             音频文件：
-                            <input id="audio" type="file" name="audio" style="display:none" required="required" onchange="fileSelected()">
+                            <input id="audio" type="file" name="audio" style="display:none" required="required">
                             <div class="input-append">
                                 <input id="photoCover" class="form-control form-control-xxx" type="text" disabled style="width:85%">
                                 <button class="btn btn-success" onclick="$('input[id=audio]').click();">浏览</button>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div id="fileSize"></div>
-                            <div id="fileType"></div>
-                            <div id="progressNumber"></div>
                         </div>
 
                         <div class="form-group">
@@ -150,7 +146,6 @@
     </div>
 
 </div>
-
 <!--  Jquery Core Script -->
 <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
 <!--  Core Bootstrap Script -->
@@ -165,5 +160,6 @@
         $('#photoCover').val(th.substring(lastIn + 1));
     });
 </script>
+
 </body>
 </html>

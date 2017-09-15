@@ -32,7 +32,7 @@ public class StoryController {
                                  @ModelAttribute StoryEntity storyEntity) {
 
         String fileType = FileUtil.getType(audio);
-        if (!fileType.equals("mp3") || !fileType.equals("MP3"))
+        if (!"mp3".equalsIgnoreCase(fileType))
             throw new InvalidFileTypeException("上传的音频格式应为MP3");
 
         String audioSrc;

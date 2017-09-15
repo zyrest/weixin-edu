@@ -31,7 +31,7 @@ public class InterviewVideoController {
                                         HttpServletRequest request) {
 
         String fileType = FileUtil.getType(video);
-        if (!fileType.equals("mp4") || !fileType.equals("MP4")) {
+        if (!"mp4".equalsIgnoreCase(fileType)) {
             throw new InvalidFileTypeException("上传的视频格式应为MP4");
         }
 
