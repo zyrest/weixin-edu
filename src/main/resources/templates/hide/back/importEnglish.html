@@ -42,59 +42,92 @@
         <div class="row">
             <div class="col-lg-9 col-md-9 col-sm-9 ">
 
-                <h3>导入英语资料</h3>
-                <div class="hr-div">
-                    <hr/>
+                <div class="hr-div col-md-offset-3">
+                    <button id="clickV" type="button" class="btn btn-primary btn-lg" onclick="_videoClick()">导入视频资料</button>
+                    <button id="clickR" type="button" class="btn btn-default btn-lg" onclick="_reviewClick()">导入复习资料</button>
                 </div>
-                <div class="col-lg-7 col-md-7 col-sm-7 col-md-offset-1">
+                <br>
+                <div id="_video" class="col-lg-7 col-md-7 col-sm-7 col-md-offset-1">
 
                     <form>
                         <div class="form-group">
-                            <label for="stage" class="sr-only">第几期</label>
-                            <input type="number" id="stage" class="form-control" placeholder="管理的校区代号" required="" autofocus="">
+                            第几期：
+                            <input type="number" id="v_stage" class="form-control" placeholder="当前发布的视频期数" required="" autofocus="">
                         </div>
 
                         <div class="form-group">
-                            标题：<input id="title" type="text" name="title" class="form-control" required="required" placeholder="标题"/>
+                            标题：<input id="v_title" type="text" name="title" class="form-control" required="required" placeholder="标题"/>
                         </div>
 
                         <div class="form-group">
-                            描述：<textarea id="description" name="description" class="form-control" required="required" placeholder="描述一下吧"></textarea>
+                            描述：<textarea id="v_description" name="description" class="form-control" required="required" placeholder="描述一下吧"></textarea>
                         </div>
 
                         <div class="form-group" >
                             是否收费：
                             <label class="radio-inline">
-                                <input type="radio" checked="checked" name="is_free" value="1"/>收费
+                                <input type="radio" checked="checked" name="v_is_free" value="1"/>收费
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" name="is_free" value="0"/>免费
+                                <input type="radio" name="v_is_free" value="0"/>免费
                             </label>
                         </div>
 
                         <div class="form-group">
-                            类型：
-                            <select id="type" name="type" class="form-control" required="required">
-                                <option value="1">第一类</option>
-                                <option value="2">第二类</option>
-                                <option value="3">第三类</option>
-                                <option value="4">第四类</option>
-                                <option value="5">第五类</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            音频文件：
-                            <input id="audio" type="file" name="audio" style="display:none" required="required">
+                            视频文件：
+                            <input id="video" type="file" name="audio" style="display:none" required="required" onchange="fileSelected()">
                             <div class="input-append">
                                 <input id="photoCover" class="form-control form-control-xxx" type="text" disabled style="width:85%">
-                                <button class="btn btn-success" onclick="$('input[id=audio]').click();">浏览</button>
+                                <button class="btn btn-success" onclick="$('#video').click();">浏览</button>
                             </div>
-
                         </div>
 
                         <div class="form-group">
-                            <button id="submitAudio" class="btn btn-primary" type="button">新增</button>
+                            <div id="fileSize"></div>
+                            <div id="fileType"></div>
+                            <div id="progressNumber"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <button id="submitVideo" class="btn btn-primary" type="button">新增</button>
+                        </div>
+                    </form>
+
+                </div>
+
+                <div id="_review" class="col-lg-7 col-md-7 col-sm-7 col-md-offset-1" style="display: none">
+
+                    <form>
+                        <div class="form-group">
+                            第几期：
+                            <input type="number" id="r_stage" class="form-control" placeholder="当前发布的视频期数" required="" autofocus="">
+                        </div>
+
+                        <div class="form-group">
+                            标题：<input id="r_title" type="text" name="title" class="form-control" required="required" placeholder="标题"/>
+                        </div>
+
+                        <div class="form-group">
+                            描述：<textarea id="r_description" name="description" class="form-control" required="required" placeholder="描述一下吧"></textarea>
+                        </div>
+
+                        <div class="form-group" >
+                            是否收费：
+                            <label class="radio-inline">
+                                <input type="radio" checked="checked" name="r_is_free" value="1"/>收费
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="r_is_free" value="0"/>免费
+                            </label>
+                        </div>
+
+                        <div class="form-group">
+                            内容：
+                            <textarea id="r_content" name="description" class="form-control" required="required" placeholder="描述一下吧"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <button id="submitReview" class="btn btn-primary" type="button">新增</button>
                         </div>
                     </form>
 
@@ -151,15 +184,7 @@
 <!--  Core Bootstrap Script -->
 <script th:src="@{/js/bootstrap.js}"></script>
 
-<script th:src="@{/js/audio.js}"></script>
-
-<script type="text/javascript">
-    $('input[id=audio]').change(function() {
-        var th = $(this).val();
-        var lastIn = th.lastIndexOf('\\');
-        $('#photoCover').val(th.substring(lastIn + 1));
-    });
-</script>
+<script th:src="@{/js/english.js}"></script>
 
 </body>
 </html>

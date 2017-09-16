@@ -26,7 +26,7 @@ public class FileUtil {
      */
     public static String saveUploadFile(HttpServletRequest request, MultipartFile file) throws IOException {
         //todo 修改路径
-        String baseDir = request.getSession().getServletContext().getRealPath("") + "/files/";
+        String baseDir = "D:/test/";//request.getSession().getServletContext().getRealPath("") + "/files/";
         String fileName = file.getOriginalFilename();
         String type = null;
         if (! StringUtil.isBlank(fileName)) {

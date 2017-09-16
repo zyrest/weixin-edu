@@ -42,7 +42,6 @@
         <div class="row">
             <div class="col-lg-9 col-md-9 col-sm-9 ">
 
-                <h3>导入访谈视频</h3>
                 <div class="hr-div">
                     <hr/>
                 </div>
@@ -67,10 +66,10 @@
                         <div class="form-group" >
                             是否收费：
                             <label class="radio-inline">
-                                <input type="radio" checked="checked" name="is_free" value="1"/>收费
+                                <input type="radio" checked="checked" name="is_free" value="0"/>收费
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" name="is_free" value="0"/>免费
+                                <input type="radio" name="is_free" value="1"/>免费
                             </label>
                         </div>
 
@@ -87,16 +86,21 @@
 
                         <div class="form-group">
                             视频文件：
-                            <input id="video" type="file" name="audio" style="display:none">
+                            <input id="video" type="file" name="audio" style="display:none" onchange="fileSelected()">
                             <div class="input-append">
                                 <input id="photoCover" class="form-control form-control-xxx" type="text" disabled style="width:85%">
                                 <button class="btn btn-success" onclick="$('input[id=video]').click();">浏览</button>
                             </div>
-
                         </div>
 
                         <div class="form-group">
-                            <button id="submitAudio" class="btn btn-primary" type="button">新增</button>
+                            <div id="fileSize"></div>
+                            <div id="fileType"></div>
+                            <div id="progressNumber"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <button id="submitVideo" class="btn btn-primary" type="button">新增</button>
                         </div>
                     </form>
 
@@ -106,7 +110,7 @@
             <div class="col-lg-3 col-md-3 col-sm-3">
                 <a th:href="@{/back/logout}" class="label label-danger"><strong>登出</strong> </a>
                 <div class="list-group">
-                    <a href="#" class="list-group-item active">快速链接</a>
+                    <a href="#" class="list-group-item active" disabled>快速链接</a>
                     <a th:href="@{/back/index}" class="list-group-item">主页</a>
                     <a th:href="@{/back/index}" class="list-group-item">导入英语</a>
                     <a th:href="@{/back/index}" class="list-group-item">导入家长访谈</a>
@@ -153,15 +157,8 @@
 <!--  Core Bootstrap Script -->
 <script th:src="@{/js/bootstrap.js}"></script>
 
-<script th:src="@{/js/audio.js}"></script>
+<script th:src="@{/js/video.js}"></script>
 
-<script type="text/javascript">
-    $('input[id=video]').change(function() {
-        var th = $(this).val();
-        var lastIn = th.lastIndexOf('\\');
-        $('#photoCover').val(th.substring(lastIn + 1));
-    });
-</script>
 
 </body>
 </html>
