@@ -8,7 +8,7 @@
     <result column="dates" property="dates" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, openid, now_date, dates
+    id, openid, now_date, dates,transaction_id,out_trade_no
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -22,9 +22,9 @@
   </delete>
   <insert id="insert" parameterType="com.outstudio.weixin.common.po.ChargeEntity" >
     insert into t_charge (id, openid, now_date, 
-      dates)
+      dates,transaction_id,out_trade_no)
     values (#{id,jdbcType=INTEGER}, #{openid,jdbcType=VARCHAR}, #{now_date,jdbcType=TIMESTAMP}, 
-      #{dates,jdbcType=INTEGER})
+      #{dates,jdbcType=INTEGER},#{transaction_id,jdbcType=VARCHAR},#{out_trade_no,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.outstudio.weixin.common.po.ChargeEntity" >
     insert into t_charge
@@ -41,6 +41,12 @@
       <if test="dates != null" >
         dates,
       </if>
+      <if test="transaction_id != null" >
+        transaction_id,
+      </if>
+      <if test="out_trade_no != null" >
+        out_trade_no,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -54,6 +60,12 @@
       </if>
       <if test="dates != null" >
         #{dates,jdbcType=INTEGER},
+      </if>
+      <if test="transaction_id != null" >
+        #{transaction_id,jdbcType=VARCHAR},
+      </if>
+      <if test="out_trade_no != null" >
+        #{out_trade_no,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -69,6 +81,12 @@
       <if test="dates != null" >
         dates = #{dates,jdbcType=INTEGER},
       </if>
+      <if test="transaction_id != null" >
+        dates = #{transaction_id,jdbcType=VARCHAR},
+      </if>
+      <if test="out_trade_no != null" >
+        out_trade_no = #{dates,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -76,7 +94,9 @@
     update t_charge
     set openid = #{openid,jdbcType=VARCHAR},
       now_date = #{now_date,jdbcType=TIMESTAMP},
-      dates = #{dates,jdbcType=INTEGER}
+      dates = #{dates,jdbcType=INTEGER},
+      transaction_id = #{transaction_id,jdbcType=VARCHAR},
+      out_trade_no = #{out_trade_no,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -7,7 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.sql.Time;
-import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -18,9 +17,16 @@ import java.util.Date;
 public class DateTest {
     @Test
     public void test() {
-        Date oldDate = DateUtil.dateAdd(new Date(), 365);
-        System.out.println(new Timestamp(DateUtil.dateAdd(new Date(),-365).getTime()));
-        System.out.println(DateUtil.isNotExpire(oldDate));
+//        Date oldDate = DateUtil.dateAdd(new Date(), 365);
+//        System.out.println(new Timestamp(DateUtil.dateAdd(new Date(),-365).getTime()));
+//        System.out.println(DateUtil.isNotExpire(oldDate));
+
+        System.out.println(String.valueOf(new Time(new Date().getTime())));
+        System.out.println(new Date().getYear()+1900);
+        System.out.println(new Date().getMonth()+1);
+        System.out.println(new Date().getDate());
+
+        System.out.println(DateUtil.getFormatDate());// new Date()为获取当前系统时间
 
     }
 }

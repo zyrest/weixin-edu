@@ -112,6 +112,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/back/**", "login");
         filterChainDefinitionMap.put("/hide/**", "forbid");
         filterChainDefinitionMap.put("/page/view/**", "weixinAuth");
+        filterChainDefinitionMap.put("/open/page/wxpay", "weixinAuth");
 
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
     }

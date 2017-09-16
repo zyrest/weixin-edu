@@ -60,6 +60,16 @@ public class DateUtil {
         return ans;
     }
 
+    public static String getFormatDate() {
+        SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");//设置日期格式
+        return (df.format(new Date()));// new Date()为获取当前系统时间
+    }
+
+    public static Date StringToOriginalDate(String date) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyMMddHHmmss");
+        return sdf.parse(date);
+    }
+
     public static boolean between(Date now, Date start, Date end) {
         return now != null && now.after(start) && now.before(end);
     }

@@ -3,13 +3,14 @@ package com.outstudio.weixin;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.outstudio.weixin.common.po.UserEntity;
-import com.outstudio.weixin.common.utils.FileUtil;
+import com.outstudio.weixin.common.utils.DateUtil;
 import com.outstudio.weixin.common.utils.PasswordUtil;
-import com.outstudio.weixin.wechat.utils.MenuUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.HashMap;
 
 /**
  * Created by 96428 on 2017/9/7.
@@ -36,7 +37,14 @@ public class TestJson {
 
     @Test
     public void test() {
-
-        System.out.println(JSON.toJSONString(MenuUtil.initMenus()));
+        HashMap<String, String> data = new HashMap<String, String>();
+        data.put("body", "vip充值");
+        data.put("out_trade_no", DateUtil.getFormatDate());
+        data.put("device_info", "WEB");
+        data.put("total_fee", "1");
+        data.put("spbill_create_ip", "192.168.0.1");
+        data.put("notify_url", "http://localhost:8080/test");
+        data.put("trade_type", "JSAPI");
+        System.out.println(JSON.toJSON(data));
     }
 }
