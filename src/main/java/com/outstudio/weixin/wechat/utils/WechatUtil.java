@@ -15,7 +15,7 @@ import com.outstudio.weixin.wechat.dto.AccessToken;
 public class WechatUtil {
 
     public static AccessToken getAccessTokenByRequest() {
-        String uri = String.format(WeixinProperties.ACCESS_TOKEN_URI, WeixinProperties.appID, WeixinProperties.appsecret);
+        String uri = String.format(WeixinProperties.ACCESS_TOKEN_URI, WeixinProperties.appID, WeixinProperties.appSecret);
         JSONObject object = NetWorkUtil.doGetUri(uri);
         return JSON.parseObject(object.toJSONString(), AccessToken.class);
     }

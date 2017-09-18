@@ -7,15 +7,18 @@ public class WeixinProperties {
 
     public static final String TOKEN = "samson";
 //    public static final String appID = "wxd53def0a24d17b53";
-//    public static final String appsecret = "14d2831e0d8153867040d95674808d40";
+//    public static final String appSecret = "14d2831e0d8153867040d95674808d40";
 
     //刘明宇的测试号
     public static final String appID = "wxc6d57f9289e2394b";
-    public static final String appsecret = "1c2bb4315e2ad986392b7c93d79cda1f";
+    public static final String appSecret = "1c2bb4315e2ad986392b7c93d79cda1f";
+
+    public static final String mchID = "";
+    public static final String appKey = "2ab9071b06b9f739b950ddb41db2690d";
 
     public static final String BASE_SCOPE = "snsapi_base";
     public static final String USERINFO_SCOPE = "snsapi_userinfo";
-    /** 需要参数 appID 和 appsecret */
+    /** 需要参数 appID 和 appSecret */
     public static final String ACCESS_TOKEN_URI = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s";
     /** 需要参数 通用access_token */
     public static final String CREATE_MENU_URI = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=%s";

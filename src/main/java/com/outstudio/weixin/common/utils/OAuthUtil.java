@@ -12,7 +12,7 @@ import com.outstudio.weixin.wechat.dto.OAuthAccessToken;
 public class OAuthUtil {
 
     public static OAuthAccessToken getOAuthAccessToken(String code) {
-        String uri = String.format(WeixinProperties.OAUTH_ACCESS_TOKEN_URI, WeixinProperties.appID, WeixinProperties.appsecret, code);
+        String uri = String.format(WeixinProperties.OAUTH_ACCESS_TOKEN_URI, WeixinProperties.appID, WeixinProperties.appSecret, code);
         JSONObject object = NetWorkUtil.doGetUri(uri);
         return JSON.parseObject(object.toJSONString(), OAuthAccessToken.class);
     }

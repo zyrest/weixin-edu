@@ -1,5 +1,6 @@
 package com.outstudio.weixin.core.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -11,10 +12,22 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  */
 @Configuration
 public class WebConfig extends WebMvcConfigurerAdapter {
+
+    private String fileSavedPath;
+
+    @Value("${fileSavedPath}")
+    public void setFileSavePath(String fileSavedPath) {
+        this.fileSavedPath = fileSavedPath;
+    }
+
+    public String  getFilePath() {
+        return fileSavedPath;
+    }
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         // 可以直接使用addResourceLocations 指定磁盘绝对路径，同样可以配置多个位置，注意路径写法需要加上file:
-        registry.addResourceHandler("/piu/**").addResourceLocations("file:D:/piu/");
+        registry.addResourceHandler("/piu/**").addResourceLocations(getFilePath());
     }
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
@@ -24,4 +37,5 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registry.addViewController("/back/import/audio").setViewName("hide/back/importAudio");
         registry.addViewController("/back/import/video").setViewName("hide/back/importVideo");
     }
+
 }

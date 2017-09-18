@@ -2,6 +2,7 @@ package com.outstudio.weixin.common.service;
 
 import com.outstudio.weixin.common.dao.InterviewVideoEntityMapper;
 import com.outstudio.weixin.common.po.InterviewVideoEntity;
+import com.outstudio.weixin.common.utils.FileUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -23,7 +24,13 @@ public class InterviewVideoService {
     }
 
     public int deleteInterviewVideo(Integer id) {
-        return interviewVideoEntityMapper.deleteByPrimaryKey(id);
+        InterviewVideoEntity interviewVideoEntity = getInterviewVideoById(id);
+
+        int changedNum = interviewVideoEntityMapper.deleteByPrimaryKey(id);
+        if (changedNum != 0) {
+            FileUtil.deleteFileByUrlPath(interviewVideoEntity.getSrc());
+        }
+        return changedNum;
     }
 
     public int modifyInterviewVideo(InterviewVideoEntity interviewVideoEntity) {

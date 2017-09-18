@@ -2,9 +2,11 @@ package com.outstudio.weixin.common.service;
 
 import com.outstudio.weixin.common.dao.StoryEntityMapper;
 import com.outstudio.weixin.common.po.StoryEntity;
+import com.outstudio.weixin.common.utils.FileUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
 
@@ -23,7 +25,13 @@ public class StoryService {
     }
 
     public int deleteStoryById(Integer id) {
-        return storyEntityMapper.deleteByPrimaryKey(id);
+        StoryEntity storyEntity = getStoryById(id);
+
+        int changedNum = storyEntityMapper.deleteByPrimaryKey(id);
+        if (changedNum != 0) {
+            FileUtil.deleteFileByUrlPath(storyEntity.getSrc());
+        }
+        return changedNum;
     }
 
     public StoryEntity getStoryById(Integer id) {

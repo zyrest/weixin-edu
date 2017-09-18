@@ -2,6 +2,7 @@ package com.outstudio.weixin.common.service;
 
 import com.outstudio.weixin.common.dao.EnVideoEntityMapper;
 import com.outstudio.weixin.common.po.EnVideoEntity;
+import com.outstudio.weixin.common.utils.FileUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -23,7 +24,13 @@ public class EnVideoService {
     }
 
     public int deleteEnVideo(Integer id) {
-        return enVideoEntityMapper.deleteByPrimaryKey(id);
+        EnVideoEntity enVideoEntity = getEnVideoById(id);
+
+        int changedNum = enVideoEntityMapper.deleteByPrimaryKey(id);
+        if (changedNum != 0) {
+            FileUtil.deleteFileByUrlPath(enVideoEntity.getSrc());
+        }
+        return changedNum;
     }
 
     public int modifyEnVideo(EnVideoEntity enVideoEntity) {

@@ -37,7 +37,7 @@ public class StoryController {
 
         String audioSrc;
         try {
-            audioSrc = FileUtil.saveUploadFile(request, audio);
+            audioSrc = FileUtil.saveUploadFileAsUrlPath(request, audio);
         } catch (IOException e) {
             throw new SystemErrorException();
         }

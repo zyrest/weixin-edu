@@ -44,6 +44,11 @@ public class EnReviewController {
         return MessageVoUtil.success(REDIRECT_URL, enReviewEntities);
     }
 
+    /**
+     * 搜索接口
+     * @param searchParam 搜索的参数
+     * @return
+     */
     @GetMapping("/enReviews")
     public MessageVo searchEnReviews(@RequestParam("searchParam") String searchParam) {
         List<EnReviewEntity> enReviewEntities = enReviewService.getBySearchParam(searchParam);

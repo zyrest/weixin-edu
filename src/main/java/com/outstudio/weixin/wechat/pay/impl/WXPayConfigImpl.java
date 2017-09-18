@@ -1,5 +1,6 @@
 package com.outstudio.weixin.wechat.pay.impl;
 
+import com.outstudio.weixin.wechat.config.WeixinProperties;
 import com.outstudio.weixin.wechat.pay.sdk.IWXPayDomain;
 import com.outstudio.weixin.wechat.pay.sdk.WXPayConfig;
 
@@ -40,15 +41,15 @@ public class WXPayConfigImpl extends WXPayConfig{
     }
 
     public String getAppID() {
-        return "wxab8acb865bb1637e";
+        return WeixinProperties.appID;
     }
 
     public String getMchID() {
-        return "11473623";
+        return WeixinProperties.mchID;
     }
 
     public String getKey() {
-        return "2ab9071b06b9f739b950ddb41db2690d";
+        return WeixinProperties.appKey;
     }
 
     public InputStream getCertStream() {

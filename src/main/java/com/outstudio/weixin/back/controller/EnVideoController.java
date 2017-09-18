@@ -38,7 +38,7 @@ public class EnVideoController {
 
         String videoSrc;
         try {
-            videoSrc = FileUtil.saveUploadFile(request, video);
+            videoSrc = FileUtil.saveUploadFileAsUrlPath(request, video);
         } catch (IOException e) {
             throw new SystemErrorException();
         }
