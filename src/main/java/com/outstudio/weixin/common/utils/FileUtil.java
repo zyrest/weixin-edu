@@ -64,7 +64,6 @@ public class FileUtil {
      */
     public static String saveUploadFileAsUrlPath(HttpServletRequest request, MultipartFile file) throws IOException {
         String baseURL = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/";
-
         String fileName = file.getOriginalFilename();
         String type = "";
         if (!StringUtil.isBlank(fileName)) {
