@@ -1,6 +1,7 @@
 package com.outstudio.weixin.common.dao;
 
 import com.outstudio.weixin.common.po.InterviewVideoEntity;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -22,4 +23,7 @@ public interface InterviewVideoEntityMapper {
     int updateByPrimaryKeySelective(InterviewVideoEntity record);
 
     int updateByPrimaryKey(InterviewVideoEntity record);
+
+    @Select(value = "SELECT COUNT(id) from t_interview_video")
+    Long selectCount();
 }

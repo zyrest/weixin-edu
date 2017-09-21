@@ -3,6 +3,7 @@ package com.outstudio.weixin.common.service;
 import com.outstudio.weixin.common.dao.StoryEntityMapper;
 import com.outstudio.weixin.common.po.StoryEntity;
 import com.outstudio.weixin.common.utils.FileUtil;
+import com.outstudio.weixin.common.utils.LoggerUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -52,5 +53,11 @@ public class StoryService {
 
     public List<StoryEntity> getStoriesBySearchParam(String searchParam) {
         return storyEntityMapper.selectBySearchParam(searchParam);
+    }
+
+    public Long getCount() {
+        Long ans = storyEntityMapper.selectCount();
+        LoggerUtil.fmtDebug(getClass(), "number is %s : ", ans);
+        return ans;
     }
 }

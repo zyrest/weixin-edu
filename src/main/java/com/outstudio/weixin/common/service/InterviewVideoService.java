@@ -52,4 +52,8 @@ public class InterviewVideoService {
     public List<InterviewVideoEntity> getBySearchParam(String searchParam) {
         return interviewVideoEntityMapper.selectBySearchParam(searchParam);
     }
+
+    public Long getCount() {
+        return interviewVideoEntityMapper.selectCount();
+    }
 }

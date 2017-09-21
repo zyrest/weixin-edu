@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<div id="container">
+    <div class="topic_normal_load" id="refresh_tip" style="display: none"> 刷新中...<span class="loading"></span> </div>
+
+    <div id="banner_container" style="position: relative;">
+
+        <div class="slide" id="slide3">
+            <!-- 轮播图片 -->
+            <ul id="slide_ul">
+                <!--
+                <li article_id="1">
+                  <a href="#">
+                    <img src="http://assets.baicizhan.com/editer_uploads/image/201703/7d947bc95958.png">
+                  </a>
+                </li>
+                -->
+            </ul>
+            <!-- 轮播导航 -->
+            <div class="dot" id="slide_dot">
+                <!--
+                <span></span>
+                -->
+            </div>
+        </div>
+        <img src="https://7n.bczcdn.com/little_class/icon/more.png" style="width: 13%;height: 24px;position: absolute;right: 0;bottom: 0" onclick="jump_2_hot()">
+    </div>
+
+    <div id="collection_container" class="component">
+        <!--
+        <div class="component_title">
+            <span>精品系列</span>
+        </div>
+        -->
+
+        <div id="c_category_container" style="padding: 20px 0">
+            <div id="c_category_row" style="white-space: nowrap;text-align: center">
+                <div style="display: inline-block;width:46%;" id="category_logo">
+                    <img src="http://ws.bczcdn.com/little_class/img_seriesarticle.png" style="width: 100%;border-radius: 4px;" />
+                </div>
+                <div style="display: inline-block;width:46%;margin-left:2.6%;" id="course_center_logo">
+                    <img src="http://ws.bczcdn.com/little_class/img_classcenter.png" style="width: 100%;border-radius: 4px;" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--    <div id="hot_article_container" class="component" style="display: none">
+          <div class="component_title">
+            <div style="display: inline-block">
+              <span>热门文章</span>
+            </div>
+            <div style="display: inline-block;float: right;margin-right: 15px" onclick="jump_2_hot()">
+            <span style="margin-right:3px ">查看更多</span>
+            <img src="http://ws.bczcdn.com/little_class/icon/enter@3x.png" style="width:10px;height:18px;vertical-align: text-top"/>
+            </div>
+          </div>
+          <div id="hot_article_list">
+          </div>
+        </div>-->
+    <div id="article_container" class="component">
+        <div  class="component_title">
+            <span>最新更新</span>
+        </div>
+        <div id="article_list">
+        </div>
+    </div>
+    <div class="topic_normal_load" id="load_more"></div>
+</div>
+</body>
+</html>
