@@ -34,10 +34,12 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/open/back/login").setViewName("hide/back/login");
         registry.addViewController("/back/index").setViewName("hide/back/index");
-        registry.addViewController("/open/back/error").setViewName("hide/back/error");
         registry.addViewController("/back/import/audio").setViewName("hide/back/importAudio");
         registry.addViewController("/back/import/video").setViewName("hide/back/importVideo");
         registry.addViewController("/back/import/english").setViewName("hide/back/importEnglish");
+        registry.addViewController("/back/view/audio").setViewName("hide/back/viewAudio");
+        registry.addViewController("/back/view/video").setViewName("hide/back/viewVideo");
+        registry.addViewController("/back/view/english").setViewName("hide/back/viewEnglish");
     }
 
 }

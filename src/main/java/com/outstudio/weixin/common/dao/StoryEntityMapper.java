@@ -1,6 +1,7 @@
 package com.outstudio.weixin.common.dao;
 
 import com.outstudio.weixin.common.po.StoryEntity;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -22,4 +23,7 @@ public interface StoryEntityMapper {
     int updateByPrimaryKeySelective(StoryEntity record);
 
     int updateByPrimaryKey(StoryEntity record);
+
+    @Select(value = "SELECT COUNT(id) FROM t_story")
+    Long selectCount();
 }

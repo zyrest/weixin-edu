@@ -46,10 +46,10 @@ $('#submitAudio').click(function() {
     //     url:basePath + "/back/stories",
     //     data:formData,
     //     type:"post",
-    //     // 告诉jQuery不要去处理发送的数据
-    //     processData : false,
-    //     // 告诉jQuery不要去设置Content-Type请求头
-    //     contentType : false,
+    //     // // 告诉jQuery不要去处理发送的数据
+    //     // processData : false,
+    //     // // 告诉jQuery不要去设置Content-Type请求头
+    //     // contentType : false,
     //     beforeSend:function() {
     //         console.log("开始上传")
     //     },
