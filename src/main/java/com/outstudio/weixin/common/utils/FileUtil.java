@@ -1,7 +1,7 @@
 package com.outstudio.weixin.common.utils;
 
+import com.outstudio.weixin.core.config.WebConfig;
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +16,7 @@ import java.util.UUID;
 public class FileUtil {
 
     private static Logger logger = Logger.getLogger(FileUtil.class);
-    private static String fileSavedPath;
+    private static String fileSavedPath = WebConfig.getFilePath();
 
     private static String getFilePath() {
         return fileSavedPath;
@@ -71,7 +71,7 @@ public class FileUtil {
         }
 
         String filePath = getFilePath();
-        filePath = filePath.substring(filePath.indexOf(":"));
+        filePath = filePath.substring(filePath.indexOf(":") + 1);
         filePath += type;
         String newName = UUID.randomUUID() + fileName;
 
@@ -115,11 +115,6 @@ public class FileUtil {
         return filePath.trim().toLowerCase().endsWith("xls") || filePath.trim().toLowerCase().endsWith("xlsx");
     }
 
-    @Value("${fileSavedPath}")
-    public void setFileSavePath(String fileSavedPath) {
-        FileUtil.fileSavedPath = fileSavedPath;
-    }
-
     /**
      * 根据给定的文件所在的url删除
      *
@@ -129,9 +124,9 @@ public class FileUtil {
         if (StringUtil.isBlank(url)) {
             return false;
         }
-        String fileName = url.substring(url.lastIndexOf("/"));
+        String fileName = url.substring(url.lastIndexOf("/") + 1);
         url = url.substring(0, url.lastIndexOf("/"));
-        String type = url.substring(url.lastIndexOf("/"));
+        String type = url.substring(url.lastIndexOf("/") + 1);
 
         String filePath = getFilePath();
         filePath += type + "/";

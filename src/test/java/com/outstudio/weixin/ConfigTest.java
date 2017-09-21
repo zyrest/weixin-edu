@@ -1,5 +1,7 @@
 package com.outstudio.weixin;
 
+import org.apache.shiro.authc.credential.DefaultPasswordService;
+import org.apache.shiro.authc.credential.PasswordService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,6 +17,8 @@ public class ConfigTest {
 
     private String fileSavedPath;
 
+    private PasswordService passwordService = new DefaultPasswordService();
+
     public String getFileSavedPath() {
         return fileSavedPath;
     }
@@ -26,7 +30,9 @@ public class ConfigTest {
 
     @Test
     public void test() {
-        System.out.println(getFileSavedPath());
+        String password = passwordService.encryptPassword("asd");
+        System.out.println(password);
 
+        System.out.println(passwordService.passwordsMatch("asd", password));
     }
 }
