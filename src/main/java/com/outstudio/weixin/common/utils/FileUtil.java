@@ -62,7 +62,7 @@ public class FileUtil {
      * @return 文件保存的url地址
      * @throws IOException
      */
-    public static String saveUploadFileAsUrlPath(HttpServletRequest request, MultipartFile file) throws IOException {
+    public static String saveUploadFileAsUrlPath(HttpServletRequest request, MultipartFile file, String subDir) throws IOException {
         String baseURL = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/";
         String fileName = file.getOriginalFilename();
         String type = "";
@@ -72,7 +72,7 @@ public class FileUtil {
 
         String filePath = getFilePath();
         filePath = filePath.substring(filePath.indexOf(":") + 1);
-        filePath += type;
+        filePath += type + "/" + subDir;
         String newName = UUID.randomUUID() + fileName;
 
         File dir = new File(filePath);
@@ -86,7 +86,7 @@ public class FileUtil {
         file.transferTo(savedFile);
         logger.info("savedFile is : " + savedFile.getPath());
 
-        String url = baseURL + type + "/" + newName;
+        String url = baseURL + type + "/" + subDir + "/" + newName;
         logger.info("savedFileURL is: " + url);
         return url;
     }
@@ -126,10 +126,13 @@ public class FileUtil {
         }
         String fileName = url.substring(url.lastIndexOf("/") + 1);
         url = url.substring(0, url.lastIndexOf("/"));
+        String subDir = url.substring(url.lastIndexOf("/") + 1);
+        url = url.substring(0, url.lastIndexOf("/"));
         String type = url.substring(url.lastIndexOf("/") + 1);
 
         String filePath = getFilePath();
-        filePath += type + "/";
+        filePath = filePath.substring(filePath.indexOf(":") + 1);
+        filePath += type + "/" + subDir + "/";
         filePath += fileName;
 
         logger.info("获取文件所在本地路径：" + filePath);

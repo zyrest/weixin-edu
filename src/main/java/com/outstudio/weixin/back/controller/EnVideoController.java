@@ -38,7 +38,10 @@ public class EnVideoController {
 
         String videoSrc;
         try {
-            videoSrc = FileUtil.saveUploadFileAsUrlPath(request, video);
+            if (enVideoEntity.getIs_free().equals(1))
+                videoSrc = FileUtil.saveUploadFileAsUrlPath(request, video, "free");
+            else
+                videoSrc = FileUtil.saveUploadFileAsUrlPath(request, video, "charge");
         } catch (IOException e) {
             throw new SystemErrorException();
         }

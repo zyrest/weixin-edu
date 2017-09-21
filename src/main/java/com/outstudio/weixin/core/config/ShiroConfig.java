@@ -2,6 +2,7 @@ package com.outstudio.weixin.core.config;
 
 import com.outstudio.weixin.core.shiro.filters.ForbidFilter;
 import com.outstudio.weixin.core.shiro.filters.LoginFilter;
+import com.outstudio.weixin.core.shiro.filters.VipFilter;
 import com.outstudio.weixin.core.shiro.filters.WeixinAuthFilter;
 import com.outstudio.weixin.core.shiro.token.MyRealm;
 import com.outstudio.weixin.core.shiro.token.RetryLimitHashedCredentialsMatcher;
@@ -83,6 +84,7 @@ public class ShiroConfig {
         filterMap.put("login", loginFilter());
         filterMap.put("forbid", forbidFilter());
         filterMap.put("weixinAuth", weixinAuthFilter());
+        filterMap.put("vip", vipFilter());
         shiroFilterFactoryBean.setFilters(filterMap);
 
         loadFiltersChain(shiroFilterFactoryBean);
@@ -113,6 +115,10 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/hide/**", "forbid");
         filterChainDefinitionMap.put("/page/view/**", "weixinAuth");
         filterChainDefinitionMap.put("/open/page/wxpay", "weixinAuth");
+        filterChainDefinitionMap.put("/mp3/charge/**", "vip");
+        filterChainDefinitionMap.put("/mp4/charge/**", "vip");
+        filterChainDefinitionMap.put("/mp3/free/**", "anon");
+        filterChainDefinitionMap.put("/mp3/free/**", "anon");
 
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
     }
@@ -160,6 +166,11 @@ public class ShiroConfig {
     @Bean
     public WeixinAuthFilter weixinAuthFilter() {
         return new WeixinAuthFilter();
+    }
+
+    @Bean
+    public VipFilter vipFilter() {
+        return new VipFilter();
     }
 
     @Bean

@@ -37,7 +37,10 @@ public class StoryController {
 
         String audioSrc;
         try {
-            audioSrc = FileUtil.saveUploadFileAsUrlPath(request, audio);
+            if (storyEntity.getIs_free().equals(1))
+                audioSrc = FileUtil.saveUploadFileAsUrlPath(request, audio, "free");
+            else
+                audioSrc = FileUtil.saveUploadFileAsUrlPath(request, audio, "charge");
         } catch (IOException e) {
             throw new SystemErrorException();
         }

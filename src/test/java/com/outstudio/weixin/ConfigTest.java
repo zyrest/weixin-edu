@@ -31,8 +31,15 @@ public class ConfigTest {
     @Test
     public void test() {
         String password = passwordService.encryptPassword("asd");
-        System.out.println(password);
+//        System.out.println(password);
+//
+//        System.out.println(passwordService.passwordsMatch("asd", password));
+        String url = "http://localhost:8080/mp3/742463b4-523c-40ac-ad30-4286e09763d7林宥嘉 - 你是我的眼.mp3";
+        String fileName = url.substring(url.lastIndexOf("/") + 1);
+        String newUrl = url.substring(0, url.lastIndexOf("/")) + "/free/" + fileName;
+        System.out.println(url);
 
-        System.out.println(passwordService.passwordsMatch("asd", password));
+        System.out.println(newUrl);
+
     }
 }

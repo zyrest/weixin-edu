@@ -37,12 +37,16 @@ public class InterviewVideoController {
 
         String videoSrc;
         try {
-            videoSrc = FileUtil.saveUploadFileAsUrlPath(request, video);
+            if (interviewVideoEntity.getIs_free().equals(1))
+                videoSrc = FileUtil.saveUploadFileAsUrlPath(request, video, "free");
+            else
+                videoSrc = FileUtil.saveUploadFileAsUrlPath(request, video, "charge");
         } catch (IOException e) {
             throw new SystemErrorException();
         }
 
         interviewVideoEntity.setSrc(videoSrc);
+
         interviewVideoService.addInterviewVideo(interviewVideoEntity);
         return MessageVoUtil.created(REDIRECT_URL);
     }
