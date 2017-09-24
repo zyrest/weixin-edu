@@ -5,7 +5,6 @@ import com.outstudio.weixin.back.exception.SystemErrorException;
 import com.outstudio.weixin.common.po.StoryEntity;
 import com.outstudio.weixin.common.service.StoryService;
 import com.outstudio.weixin.common.utils.FileUtil;
-import com.outstudio.weixin.common.utils.LoggerUtil;
 import com.outstudio.weixin.common.utils.MessageVoUtil;
 import com.outstudio.weixin.common.vo.MessageVo;
 import org.springframework.web.bind.annotation.*;
@@ -44,7 +43,6 @@ public class StoryController {
                 audioSrc = FileUtil.saveUploadFileAsUrlPath(request, audio, "charge");
         } catch (IOException e) {
             e.printStackTrace();
-            LoggerUtil.fmtError(getClass(), e, "");
             throw new SystemErrorException();
         }
 

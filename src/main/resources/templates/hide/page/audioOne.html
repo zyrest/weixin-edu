@@ -1,0 +1,331 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <title>
+        某一id详细信息
+    </title>
+    <style>
+        body{
+            -webkit-user-select:initial;
+            background-color: #fff;
+        }
+        body>a{display: none;}
+        .ui-header-positive, .ui-footer-positive {
+            background-color: #62cfb3;
+        }
+        .ui-btn, .ui-btn-lg, .ui-btn-s {color: #62cfb3;}
+        .ui-list-link > li:after {color: #62cfb3;}
+        .ui-footer {
+            background-color:rgba(255, 255, 255, 0.9);
+        }
+        .ui-footer-wechat {
+            background-color:rgba(0, 0, 0, 0.8);
+        }
+        .ui-footer-wechat a {
+            color: #FFFFFF;
+        }
+        .ui-footer-btn {background-image: none;}
+
+        .upgrade {
+            color: #62cfb3;
+            vertical-align: middle;
+        }
+
+        .try-lesson {
+            background-color: #494e54;
+        }
+
+        .try-lesson img {
+            margin: 0 auto;
+            text-align: center;
+            display: block;
+            max-width: 100%;
+        }
+
+        .ui-txt-white {
+            padding-left: 10px;
+        }
+    </style>
+
+    <style>
+        .cl::after, .cl::before {
+            clear: both;
+            content: "";
+            display: block;
+            height: 0;
+        }
+        .fl {
+            float: left;
+        }
+        .fr {
+            float: right;
+        }
+        .abs {
+            position: absolute;
+        }
+        .rel {
+            position: relative;
+        }
+
+        .img, img {
+            border: medium none;
+            display: inline-block;
+            vertical-align: middle;
+            background-size: cover;
+        }
+
+        .btn, .icon_p {
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .icon_p {
+            background: rgba(0, 0, 0, 0) url("/img/music_sprite.png") no-repeat scroll 0 0 / 64px auto;
+        }
+
+        .icon-player-big {
+            height: 64px;
+            width: 64px;
+        }
+        .is-ready .icon-player-big {
+            background-position: 0 -2px;
+        }
+        .is-paused .icon-player-big {
+            background-position: 0 -70px;
+        }
+
+        .pic {
+            background-color: #ccc;
+        }
+
+        .wrapper {
+            padding: 0 10px;
+        }
+
+        .playing {
+            overflow: hidden;
+        }
+
+        .playing .bg-img {
+            background-position: center center;
+            background-size: cover;
+            filter: blur(10px);
+            height: 100%;
+            top: 0;
+            width: 100%;
+            z-index: -2;
+        }
+
+        .playing section.wrapper {
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .playing .wrapper .pic {
+            background-size: 100% auto;
+            display: block;
+            height: 0;
+            margin: 25px auto 14px;
+            padding-bottom: 50%;
+            width: 50%;
+        }
+
+        .playing .wrapper .img {
+            height: 0;
+            padding-bottom: 100%;
+            width: 100%;
+        }
+
+        .playing .btn-player {
+            left: 50%;
+            margin: -32px 0 0 -32px;
+            top: 50%;
+        }
+
+        .process-panel {
+            color: #b2bac8;
+            display: inline-block;
+            font-size: 10px;
+            line-height: 10px;
+            padding: 1px 0;
+            width: 50%;
+        }
+        .process-panel .fl {
+            margin-left: -40px;
+        }
+        .process-panel .fr {
+            margin-right: -40px;
+        }
+        .progressbar {
+            background-color: #d9dfe5;
+            height: 1px;
+            margin: 5px auto 0;
+        }
+        .playbar {
+            background-color: #0894ec;
+            height: 100%;
+            width: 50%;
+        }
+
+        h4 {
+            color: #1a1a1a;
+            padding-bottom: 4px;
+        }
+
+        .ui-dialog-bd h4 {
+            text-align: center;
+        }
+
+        .ui-btn-group > button {
+            color: #62cfb3;
+        }
+
+        div.ui-dialog-bd {
+            color: #5f5f5f;
+            font-size: 13px;
+            text-align: center;
+        }
+    </style>
+    <link rel="stylesheet" href="http://7xnvpc.com2.z0.glb.qiniucdn.com/misc/frozenui/css/frozen.css">
+
+    <script src="http://7xnvpc.com2.z0.glb.qiniucdn.com/misc/frozenui/lib/zepto.min.js?v=4"></script>
+    <script src="http://7xnvpc.com2.z0.glb.qiniucdn.com/misc/frozenui/js/frozen.js?v=4"></script>
+    <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.jplayer.min.js}"></script>
+</head>
+
+<body ontouchstart>
+
+<section class="ui-container">
+
+    <div class="playing">
+        <div id="jquery_jplayer_1" class="jp-jplayer"></div>
+        <section class="wrapper">
+            <div class="pic default-img rel">
+            <span style="background-image:url('/img/audio-bg.jpg');" class="img">
+                <a href="javascript:" class="btn btn-player is-ready abs">
+                    <i class="icon_p icon-player-big icon-player"></i>
+                </a>
+            </span>
+            </div>
+
+            <div class="process-panel cl">
+                <span class="time fl current-time">00:00</span>
+                <span class="time fr duration">00:00</span>
+                <div class="progressbar">
+                    <div style="width:0;" class="playbar"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="ui-whitespace ui-center" style="color: #5f5f5f;height:auto;font-size:13px;margin-bottom: 10px;">
+        <h4 th:utext="${data.title}">Title</h4>
+        <p th:utext="${data.description}">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>
+
+    <div class="ui-whitespace">
+        <ul class="ui-list ui-list-text ui-list-link ui-border-tb">
+            <!--<li class="ui-border-t purchase-tip">-->
+                <!--<a><h4>对话</h4></a>-->
+            <!--</li>-->
+        </ul>
+    </div>
+
+    <div class="try-lesson" th:if="${isVip == false}">
+        <a href="/open/page/free">
+            <img src="/img/try_lesson.png" alt="try free lesson">
+        </a>
+    </div>
+
+    <footer class="ui-footer ui-footer-btn" th:if="${isVip == false}">
+        <ul class="ui-tiled ui-border-t">
+            <li>
+                <a href="#todo_charge">
+                    <span class="upgrade">升级账户｜解锁完整课程库</span>
+                </a>
+            </li>
+        </ul>
+    </footer>
+
+</section>
+</body>
+<script type="text/javascript" th:inline="javascript">
+    var jq = jQuery.noConflict();
+    jq(function() {
+        jq("#jquery_jplayer_1").jPlayer({
+            ready: function (event) {
+                jq(this).jPlayer("setMedia", {
+                    mp3: /*[[${data.src}]]*/ ""
+                });
+            },
+//            timeupdate: function(event) {
+//                if(event.jPlayer.status.currentTime > 90) {
+//                    $(".purchase-tip").eq(0).trigger('tap');
+//                    jq(this).jPlayer("stop");
+//                }
+//            },
+            swfPath: "/js/jquery.jplayer.swf",
+            supplied: "mp3",
+            wmode: "window",
+            cssSelectorAncestor: ".playing",
+            cssSelector: {
+                currentTime: '.current-time',
+                seekBar: '.progressbar',
+                playBar: '.playbar',
+                duration: '.duration'
+            },
+            smoothPlayBar: true,
+            keyEnabled: true,
+            remainingDuration: true,
+            toggleDuration: true,
+            volume: 1
+        });
+
+        jq('.icon-player').on('click', function() {
+            if(jq('.playing span > a').hasClass('is-ready')) {
+                jq("#jquery_jplayer_1").jPlayer("play");
+                jq('.playing span > a').removeClass('is-ready');
+                jq('.playing span > a').addClass('is-paused');
+            } else {
+                jq("#jquery_jplayer_1").jPlayer("pause");
+                jq('.playing span > a').removeClass('is-paused');
+                jq('.playing span > a').addClass('is-ready');
+            }
+        });
+    });
+
+    $(function() {
+        $(".purchase-tip").on('tap', function(){
+            var dia=$.dialog({
+                title:'提示',
+                content:'您只能预览部分课程音频和内容，请升级账户体验完整课程。',
+                button:["升级账户","取消"]
+            });
+
+            dia.on("dialog:action",function(e){
+                if (e.index == 0) {
+                    location.href = 'https://wap.koudaitong.com/v2/showcase/feature?alias=w23dr78f';
+                }
+            });
+
+            dia.on("dialog:hide",function(e){
+                console.log("dialog hide")
+            });
+
+        })
+    })
+</script><!-- /.ui-container-->
+<script>
+    $('.ui-list li,.ui-tiled li').on('click', function(){
+        if($(this).data('href')){
+            location.href= $(this).data('href');
+        }
+    });
+</script>
+</html>

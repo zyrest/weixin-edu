@@ -1,35 +1,200 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <!--[if IE]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <![endif]-->
+    <title>查看英语音频</title>
+    <!-- BOOTSTRAP CORE STYLE CSS -->
+    <link href="/css/weui.min.css" rel="stylesheet"/>
+    <script src="/js/weui.min.js"></script>
+
+    <style type="text/css">
+        body{
+            background-color: #efeeea;
+        }
+        #container{
+            background-color: #efeeea;
+        }
+        .component{
+            background-color: #F8F6F1;
+        }
+        .component_title{
+            border-bottom: 1px solid rgba(209,197,182,0.5);
+            color: #504b46;
+        }
+        div.article{
+            border-bottom: 1px solid rgba(209,197,182,0.5);
+        }
+        div.article_title{
+            color:#4f4a46;
+        }
+        span.article_category{
+            border: 1px solid rgba(79,74,70,0.4);
+            color: #4f4a46;
+        }
+        div.article_click{
+            background-color: #d1c5b6;
+        }
+        body {
+            /*font-family: "Arial", "Helvetica", "sans-serif";*/
+            font-family: "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        #container {
+            width: 100%;
+            overflow:auto;
+            -webkit-overflow-scrolling: touch;
+            -webkit-transform: translate3d(0,0,0);
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+
+        }
+
+        .component {
+            margin-top: 10px;
+
+        }
+
+        .component_title {
+            padding: 9.5px 0 9.5px 15px;
+            font-size: 17px;
+        }
+
+        div.article {
+            padding-top: 15px;
+            padding-bottom: 15px;
+            margin-left: 15px;
+        }
+
+        div.article:last-child{
+            border: 0;
+        }
+
+        div.article_thumbnail {
+            width: 60px;
+            height: 60px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        div.article_desc {
+            padding-left: 15px;
+            display: inline-block;
+            vertical-align: middle;
+            width: 70%;
+
+        }
+
+        div.article_title {
+            font-size: 16px;
+            /*确保文字在一行，超出部分显示省略号*/
+            overflow: hidden;
+            word-break: keep-all;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        div.article_category {
+            margin-top: 2px;
+
+        }
+
+        span.article_category {
+            padding: 2px 4px;
+            border-radius: 2px;
+            font-size: 10px;
+        }
+
+        div.article_create_time {
+            margin-top: 5px;
+            font-size: 12px;
+            color:#8A8987;
+        }
+
+        .topic_normal_load {
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            font-weight:bold;
+            font-size:14px;
+            color:#888;
+            position: relative;
+        }
+
+        .no_more_tip {
+            text-align: center;
+            color: #888;
+            position: relative;
+        }
+        /* 加载圈CSS开始 */
+        .topic_normal_load .loading {
+            position: absolute;
+            left: 50%;
+            margin-left: -50px;
+            top: 13px;
+            height: 11px;
+            width: 11px;
+            -webkit-border-radius: 100%;
+            -moz-border-radius: 100%;
+            border-radius: 100%;
+            border: 2px solid #666;
+            border-bottom-color: transparent;
+            vertical-align: middle;
+            -webkit-animation: rotate 0.75s linear infinite;
+            -moz-animation: rotate 0.75s linear infinite;
+            -o-animation: rotate 0.75s linear infinite;
+            animation: rotate 0.75s linear infinite;
+        }
+        @keyframes rotate
+        {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        @-webkit-keyframes rotate /* Safari 和 Chrome */
+        {
+            from {
+                transform: rotate(0deg);
+                -webkit-transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+                -webkit-transform: rotate(360deg);
+            }
+        }
+        /* 加载圈CSS结束 */
+    </style>
 </head>
 
 <body>
 <div id="container">
+
     <div class="topic_normal_load" id="refresh_tip" style="display: none"> 刷新中...<span class="loading"></span> </div>
 
-    <div id="banner_container" style="position: relative;">
-
-        <div class="slide" id="slide3">
-            <!-- 轮播图片 -->
-            <ul id="slide_ul">
-                <!--
-                <li article_id="1">
-                  <a href="#">
-                    <img src="http://assets.baicizhan.com/editer_uploads/image/201703/7d947bc95958.png">
-                  </a>
-                </li>
-                -->
-            </ul>
-            <!-- 轮播导航 -->
-            <div class="dot" id="slide_dot">
-                <!--
-                <span></span>
-                -->
+    <div class="weui-search-bar" id="search_bar">
+        <form class="weui-search-bar__form" onsubmit="subAndChange();return false;">
+            <div class="weui-search-bar__box">
+                <i class="weui-icon-search"></i>
+                <input type="search" class="weui-search-bar__input" id="search_input" placeholder="搜索" />
+                <a href="javascript:" class="weui-icon-clear" id="search_clear"></a>
             </div>
-        </div>
-        <img src="https://7n.bczcdn.com/little_class/icon/more.png" style="width: 13%;height: 24px;position: absolute;right: 0;bottom: 0" onclick="jump_2_hot()">
+            <label for="search_input" class="weui-search-bar__label" id="search_text">
+                <i class="weui-icon-search"></i>
+                <span>搜索</span>
+            </label>
+        </form>
+        <a href="javascript:" class="weui-search-bar__cancel-btn" id="search_cancel">取消</a>
     </div>
 
     <div id="collection_container" class="component">
@@ -40,37 +205,240 @@
         -->
 
         <div id="c_category_container" style="padding: 20px 0">
-            <div id="c_category_row" style="white-space: nowrap;text-align: center">
-                <div style="display: inline-block;width:46%;" id="category_logo">
-                    <img src="http://ws.bczcdn.com/little_class/img_seriesarticle.png" style="width: 100%;border-radius: 4px;" />
-                </div>
-                <div style="display: inline-block;width:46%;margin-left:2.6%;" id="course_center_logo">
-                    <img src="http://ws.bczcdn.com/little_class/img_classcenter.png" style="width: 100%;border-radius: 4px;" />
-                </div>
-            </div>
+            <!--<div id="c_category_row" style="white-space: nowrap;text-align: center">-->
+                <!--<div style="display: inline-block;width:46%;" id="category_logo">-->
+                    <!--<img src="http://ws.bczcdn.com/little_class/img_seriesarticle.png" style="width: 100%;border-radius: 4px;" />-->
+                <!--</div>-->
+                <!--<div style="display: inline-block;width:46%;margin-left:2.6%;" id="course_center_logo">-->
+                    <!--<img src="http://ws.bczcdn.com/little_class/img_classcenter.png" style="width: 100%;border-radius: 4px;" />-->
+                <!--</div>-->
+            <!--</div>-->
         </div>
     </div>
-    <!--    <div id="hot_article_container" class="component" style="display: none">
-          <div class="component_title">
-            <div style="display: inline-block">
-              <span>热门文章</span>
-            </div>
-            <div style="display: inline-block;float: right;margin-right: 15px" onclick="jump_2_hot()">
-            <span style="margin-right:3px ">查看更多</span>
-            <img src="http://ws.bczcdn.com/little_class/icon/enter@3x.png" style="width:10px;height:18px;vertical-align: text-top"/>
-            </div>
-          </div>
-          <div id="hot_article_list">
-          </div>
-        </div>-->
+
     <div id="article_container" class="component">
         <div  class="component_title">
             <span>最新更新</span>
         </div>
         <div id="article_list">
+
+            <!--<div class="article" article_id="10">-->
+                <!--<div class="article_desc">-->
+                    <!--<div class="article_title">test0</div>-->
+                    <!--<div class="article_category">-->
+                        <!--<span class="article_category">3</span>-->
+                    <!--</div>-->
+                    <!--<div class="article_create_time">1506000057000</div>-->
+                <!--</div>-->
+            <!--</div>-->
+
         </div>
     </div>
     <div class="topic_normal_load" id="load_more"></div>
+
 </div>
+
+<script type="text/javascript">
+//    weui.confirm("真的？");
+    weui.searchBar('#search_bar');
+</script>
+
+<script type="text/javascript">
+    //<![CDATA[
+    //全局变量
+    var start_y;//滑动开始时纵坐标
+    var refreshing = false;
+    var loading = false;
+    var no_more = false;
+    var pageNum = 1;
+    //]]>
+</script>
+
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+<script type="text/javascript">
+
+    function subAndChange() {
+        var value = $('#search_input').val();
+        if(value) {
+            $.ajax({
+                url : "/page/stories",
+                type : "GET",
+                data : {"searchParam" : value},
+                success : function (result) {
+                    if (200 === result.status) {
+                        $('#article_list').html("");
+                        var data = result.data;
+                        if (data === null || data.length === 0) {
+                            var htm = '<p class="no_more_tip"> 没有找到相关内容...</p>';
+                            $('#article_list').append($(htm));
+                        }
+                        $.each(data, function (i, n) {
+                            render_article(n);
+                        });
+                    }
+                }
+            });
+        }
+    }
+
+//    jQuery(document).ready(function () {
+//        $.ajax({
+//            type : "get",
+//            url : "/page/stories/page/1",
+//            success:function (result) {
+//                var data = result.data;
+//                $.each(data, function (i, n) {
+//                    render_article(n);
+//                });
+//            }
+//        })
+//    });
+
+    function load_articles(is_refresh, flag){
+        if(!is_refresh) {
+            $('#load_more').empty().html("加载中...<span class='loading'></span>");
+        }else{
+            $('#refresh_tip').css('display','block');
+        }
+        $.ajax({
+            type : "get",
+            url : "/page/stories/page/" + pageNum,
+            success : function (result) {
+                if (result.status === 200) {
+                    console.log("pageNum is : " + pageNum);
+                    pageNum++;
+                }
+                var data = result.data;
+                $.each(data, function (i, n) {
+                    render_article(n);
+                });
+                //没有更多资源了
+                if(40001 !== result.status) {
+                    if(!is_refresh) {
+                        $('#load_more').empty().text('上滑加载更多...');
+                        loading = false;
+                    } else {
+                        $('#refresh_tip').css('display','none');
+                        refreshing = false;
+                    }
+                } else {
+                    if(!is_refresh) {
+                        $('#load_more').empty().text('没有更多了...');
+                        loading = false;
+                        no_more = true;
+                    } else {
+                        $('#refresh_tip').css('display','none');
+                        refreshing = false;
+                    }
+                }
+                if(flag) {
+                    $('#container').scrollTop($("#article_list").offset().top)
+                }
+
+            },
+            error:function () {
+//                    alert("出错了!");
+                if(!is_refresh) {
+                    $('#load_more').empty().text('上拉加载更多...');
+                    loading = false;
+                }else {
+                    $('#refresh_tip').css('display','none');
+                    refreshing = false;
+                }
+            }
+        })
+    }
+
+    function touchmove_listener(e) {
+        var end_y = e.changedTouches[0].pageY;
+
+        //获取滑动距离
+        var distance_y = end_y - start_y;
+        var container_ele = document.getElementById('container');
+        //滚动到顶部且手指是往下滑动则刷新
+        if(container_ele.scrollTop === 0 && distance_y > 60){
+            if(refreshing) {
+                return;
+            }
+            refreshing = true;
+            $("#article_list").empty();
+            pageNum = 1;
+            no_more = false;
+            load_articles(true, false);
+        }
+    }
+
+
+    function scroll_listener() {
+        var container_ele = document.getElementById("container");
+        //滚动到底部
+        if(document.documentElement.clientHeight + container_ele.scrollTop >= container_ele.scrollHeight) {
+            if(loading) {
+                return;
+            }
+            if(no_more) {
+                return;
+            }
+            loading = true;
+            load_articles(false,false);
+        }
+    }
+
+    function build_article_dom(data) {
+        var html = '<div class="article" article_id="' + data.id + '">';
+        /**/
+        html += '<div class="article_thumbnail">';
+        html += '<img src="/img/' + (data.is_free === 1 ? 'free':'charge') + '.png' + '" style="width:100%;border-radius: 4px;">';
+        html += '</div>';
+        /**/
+        html += '<div class="article_desc">';
+        /**/
+        html += '<div class="article_title">';
+        html += data.title;
+        html += '</div>';
+        /**/
+        html += '<div class="article_category">';
+        if(data.type !== '') {
+            html += '<span class="article_category">';
+            html += data.type;
+            html += '</span>'
+        }
+        html += '</div>';
+        /**/
+        html += '<div class="article_create_time">';
+        var postDate = new Date(data.post_date);
+        html += postDate.toLocaleDateString();
+        html += '</div>';
+        /**/
+        html += '</div>';
+        /**/
+        html += '</div>';
+        var dom = $(html);
+        $(dom).click(jump_2_article);
+        return dom;
+    }
+
+    function render_article(data) {
+        $("#article_list").append(build_article_dom(data))
+    }
+
+    function jump_2_article() {
+        var url = '/page/stories/';
+        var article_id = $(this).attr('article_id');
+        window.location.href = url + article_id;
+    }
+
+    $(function() {
+        load_articles(false, true);
+        document.getElementById("container").addEventListener("touchstart", function (e) {
+            start_y = e.changedTouches[0].pageY;
+        });
+        document.getElementById("container").addEventListener("touchend", touchmove_listener);
+
+        document.getElementById("container").addEventListener("scroll", scroll_listener);
+    })
+</script>
+
 </body>
 </html>

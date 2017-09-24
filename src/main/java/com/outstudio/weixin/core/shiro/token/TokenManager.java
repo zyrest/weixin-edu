@@ -2,6 +2,7 @@ package com.outstudio.weixin.core.shiro.token;
 
 import com.outstudio.weixin.common.po.ManagerEntity;
 import com.outstudio.weixin.common.po.UserEntity;
+import com.outstudio.weixin.common.utils.DateUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
@@ -62,5 +63,15 @@ public class TokenManager {
         Object ans = getSession().getAttribute(key);
         getSession().removeAttribute(key);
         return ans;
+    }
+
+    public static boolean isVip() {
+        if (getSubject().getPrincipal() == null) return false;
+        if (getSubject().getPrincipal() instanceof ManagerEntity) {
+            return true;
+        } else {
+            UserEntity user = getWeixinToken();
+            return DateUtil.isNotExpire(user.getVip_end_date());
+        }
     }
 }
