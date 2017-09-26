@@ -1,8 +1,10 @@
 package com.outstudio.weixin.common.dao;
 
 import com.outstudio.weixin.common.po.EnReviewEntity;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
+import java.util.Set;
 
 public interface EnReviewEntityMapper {
     int deleteByPrimaryKey(Integer id);
@@ -24,4 +26,7 @@ public interface EnReviewEntityMapper {
     int updateByPrimaryKeyWithBLOBs(EnReviewEntity record);
 
     int updateByPrimaryKey(EnReviewEntity record);
+
+    @Select(value = "SELECT stage from t_en_review")
+    Set<Integer> selectStage();
 }

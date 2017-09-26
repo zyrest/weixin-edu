@@ -5,7 +5,10 @@ import com.outstudio.weixin.common.po.InterviewVideoEntity;
 import com.outstudio.weixin.common.service.InterviewVideoService;
 import com.outstudio.weixin.common.utils.MessageVoUtil;
 import com.outstudio.weixin.common.vo.MessageVo;
+import com.outstudio.weixin.core.shiro.token.TokenManager;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -13,7 +16,7 @@ import java.util.List;
 /**
  * Created by lmy on 2017/9/11.
  */
-@RestController("interviewVideoPageController")
+@Controller("interviewVideoPageController")
 @RequestMapping("/page")
 public class InterviewVideoController {
     private static final String REDIRECT_URL = "";
@@ -23,18 +26,24 @@ public class InterviewVideoController {
     private InterviewVideoService interviewVideoService;
 
     @GetMapping("/interviewVideos")
+    @ResponseBody
     public MessageVo searchInterviewVideos(@RequestParam("searchParam") String searchParam) {
         List<InterviewVideoEntity> interviewVideoEntities = interviewVideoService.getBySearchParam(searchParam);
         return MessageVoUtil.success(REDIRECT_URL, interviewVideoEntities);
     }
 
-    @GetMapping("/interviewVideo/{id}")
-    public MessageVo getenVideoById(@PathVariable Integer id) {
+    @GetMapping("/interviewVideos/{id}")
+    public ModelAndView getenVideoById(@PathVariable Integer id) {
+        ModelAndView view = new ModelAndView();
         InterviewVideoEntity interviewEntity = interviewVideoService.getInterviewVideoById(id);
-        return MessageVoUtil.success(REDIRECT_URL, interviewEntity);
+        view.addObject("data", interviewEntity);
+        view.addObject("isVip", TokenManager.isVip());
+        view.setViewName("hide/page/videoOne");
+        return view;
     }
 
     @GetMapping("/interviewVideos/page/{pageNum}")
+    @ResponseBody
     public MessageVo getAllInterviews(@PathVariable Integer pageNum) {
         PageHelper.startPage(pageNum, pageSize);
         List<InterviewVideoEntity> interviewVideoEntities = interviewVideoService.getAllInterviewVideos();
@@ -42,6 +51,7 @@ public class InterviewVideoController {
     }
 
     @GetMapping("/interviewVideos/stage/{stage}/page/{pageNum}")
+    @ResponseBody
     public MessageVo getInterviewsByStage(@PathVariable Integer stage,
                                           @PathVariable Integer pageNum) {
         PageHelper.startPage(pageNum, pageSize);
@@ -50,6 +60,7 @@ public class InterviewVideoController {
     }
 
     @GetMapping("/interviewVideos/pageNum")
+    @ResponseBody
     public MessageVo getPageNum() {
         Long got = interviewVideoService.getCount();
         Long ans = got / pageSize;
@@ -57,5 +68,11 @@ public class InterviewVideoController {
             ans += 1;
         }
         return MessageVoUtil.success(ans);
+    }
+
+    @GetMapping("/interviewVideos/stages")
+    @ResponseBody
+    public MessageVo getStages() {
+        return MessageVoUtil.success(REDIRECT_URL, interviewVideoService.getStage());
     }
 }

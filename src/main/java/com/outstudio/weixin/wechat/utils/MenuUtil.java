@@ -2,11 +2,8 @@ package com.outstudio.weixin.wechat.utils;
 
 
 import com.outstudio.weixin.wechat.config.EventType;
-import com.outstudio.weixin.wechat.config.WeixinProperties;
 import com.outstudio.weixin.wechat.dto.menu.*;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -28,7 +25,7 @@ public class MenuUtil {
     }
 
     private static Button firstButton() {
-        return createViewButton("培训故事", WeixinProperties.FORMATED_USER_INFO_CODE);
+        return createViewButton("培训故事", "http://gb62ha.natappfree.cc/page/test/audio");
     }
 
     private static Button secondButton() {
@@ -36,8 +33,8 @@ public class MenuUtil {
         button.setName("启蒙英语");
 
         List<Button> sub_buttons = new ArrayList<>();
-        sub_buttons.add(createViewButton("英语课堂", "http://www.baidu.com/"));
-        sub_buttons.add(createViewButton("复习内容", "https://www.qunar.com/"));
+        sub_buttons.add(createViewButton("英语课堂", "http://gb62ha.natappfree.cc/page/test/english"));
+        sub_buttons.add(createViewButton("复习内容", "http://gb62ha.natappfree.cc/page/test/english"));
         button.setSub_button(sub_buttons);
 
         return button;
@@ -47,7 +44,7 @@ public class MenuUtil {
         Button button = new Button();
         List<Button> sub_button = new ArrayList<>();
         sub_button.add(createViewButton("VIP注册", "http://www.baidu.com/"));
-        sub_button.add(createViewButton("访谈讲堂", "http://www.baidu.com/"));
+        sub_button.add(createViewButton("访谈讲堂", "http://gb62ha.natappfree.cc/page/test/video"));
         sub_button.add(createViewButton("积分兑换", "http://www.baidu.com/"));
         sub_button.add(createViewButton("通知", "http://www.baidu.com/"));
         button.setName("家长关注");

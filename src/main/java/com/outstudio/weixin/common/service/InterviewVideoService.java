@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by lmy on 2017/9/10.
@@ -55,5 +56,9 @@ public class InterviewVideoService {
 
     public Long getCount() {
         return interviewVideoEntityMapper.selectCount();
+    }
+
+    public Set<Integer> getStage() {
+        return interviewVideoEntityMapper.selectStage();
     }
 }

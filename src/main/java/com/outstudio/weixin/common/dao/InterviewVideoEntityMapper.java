@@ -4,6 +4,7 @@ import com.outstudio.weixin.common.po.InterviewVideoEntity;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
+import java.util.Set;
 
 public interface InterviewVideoEntityMapper {
     int deleteByPrimaryKey(Integer id);
@@ -26,4 +27,7 @@ public interface InterviewVideoEntityMapper {
 
     @Select(value = "SELECT COUNT(id) from t_interview_video")
     Long selectCount();
+
+    @Select(value = "SELECT stage from t_interview_video")
+    Set<Integer> selectStage();
 }

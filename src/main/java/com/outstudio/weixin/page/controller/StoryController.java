@@ -38,9 +38,9 @@ public class StoryController {
     @GetMapping("/stories/page/{pageNum}")
     @ResponseBody
     public MessageVo getAllStories(@PathVariable Integer pageNum) {
-        if (pageNum > getTotalPageNum()) {
-            return MessageVoUtil.resourceNotFound("");
-        }
+//        if (pageNum > getTotalPageNum()) {
+//            return MessageVoUtil.resourceNotFound("");
+//        }
         PageHelper.startPage(pageNum, pageSize);
         List<StoryEntity> storyEntities = storyService.getAllStories();
         return MessageVoUtil.success(REDIRECT_URL, storyEntities);

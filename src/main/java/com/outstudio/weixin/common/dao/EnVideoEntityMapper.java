@@ -1,8 +1,10 @@
 package com.outstudio.weixin.common.dao;
 
 import com.outstudio.weixin.common.po.EnVideoEntity;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
+import java.util.Set;
 
 public interface EnVideoEntityMapper {
     int deleteByPrimaryKey(Integer id);
@@ -22,4 +24,7 @@ public interface EnVideoEntityMapper {
     int updateByPrimaryKeySelective(EnVideoEntity record);
 
     int updateByPrimaryKey(EnVideoEntity record);
+
+    @Select(value = "SELECT stage from t_en_video")
+    Set<Integer> selectStage();
 }

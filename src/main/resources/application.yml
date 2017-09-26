@@ -29,7 +29,7 @@ logging:
         weixin: debug
 
 
-fileSavedPath: file:D:/piu/
+fileSavedPath: file:/home/ubuntu/weixin/
 
 
 
