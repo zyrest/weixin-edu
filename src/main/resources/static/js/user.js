@@ -1,5 +1,5 @@
 
-jQuery(document).ready(function() {
+$(function() {
     var location = (window.location+'').split('/');
     var basePath = location[0]+'//'+location[2];
     var submit = $('#submitLogin');
@@ -28,7 +28,6 @@ jQuery(document).ready(function() {
     submit.click(function() {
         var username = $('input[name = m_account]').val();
         var password = $('input[name = m_password]').val();
-        var tip = $('#tip');
 
         var data = JSON.stringify({m_account:username, m_password:password});
         $.ajax({
@@ -45,7 +44,9 @@ jQuery(document).ready(function() {
                 // var dat = JSON.stringify(result);
                 // alert(dat);
                 if(result && result.status !== 200) {
-                    tip.innerHTML = result.message;
+                    BootstrapDialog.show({
+                        message: result.message
+                    });
                     $('input[name = m_password]').val('');
                 } else {
                     console.log("登陆成功");
@@ -53,7 +54,7 @@ jQuery(document).ready(function() {
                 }
             },
             error:function(e, XMLResponse) {
-                alert(XMLResponse.responseType);
+                BootstrapDialog.alert('登陆失败，请重试');
                 console.log(e, e.message);
                 console.log("请看后台Java控制台，是否报错");
             }

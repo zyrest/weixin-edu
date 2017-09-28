@@ -6,6 +6,10 @@ spring:
     cache: false
 
   http:
+      encoding:
+        force: true
+        charset: UTF-8
+        enabled: true
       multipart:
         enabled: true
         max-file-size: 512MB
@@ -30,6 +34,11 @@ logging:
 
 
 fileSavedPath: file:/home/ubuntu/weixin/
+
+server:
+  tomcat:
+    uri-encoding: UTF-8
+  port: 80
 
 
 

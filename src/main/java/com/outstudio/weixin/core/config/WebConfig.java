@@ -1,10 +1,17 @@
 package com.outstudio.weixin.core.config;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+import java.nio.charset.Charset;
+import java.util.List;
 
 /**
  * Created by 96428 on 2017/9/12.
@@ -46,4 +53,20 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registry.addViewController("/page/test/english").setViewName("hide/page/english");
     }
 
+    @Bean
+    public HttpMessageConverter<String> responseBodyConverter() {
+        return new StringHttpMessageConverter(Charset.forName("UTF-8"));
+    }
+
+    @Override
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+        super.configureMessageConverters(converters);
+        converters.add(responseBodyConverter());
+    }
+
+    @Override
+    public void configureContentNegotiation(
+            ContentNegotiationConfigurer configurer) {
+        configurer.favorPathExtension(false);
+    }
 }

@@ -27,47 +27,41 @@ function setContent(pageNum) {
                 var description = n.description;
 
                 //tr标签
-                var trNode = document.createElement("tr");
+                var html = '<tr>';
 
-                var idTd = document.createElement("td");
-                $(idTd).html(id);
-                idTd.style.display = "none";
-                trNode.appendChild(idTd);
+                html += '<td style="display: none">';
+                html += id ;
+                html += '</td>';
 
-                var titleTd = document.createElement("td");
-                $(titleTd).html(title);
-                trNode.appendChild(titleTd);
+                html += '<td>';
+                html += title ;
+                html += '</td>';
 
-                var stageTd = document.createElement("td");
-                $(stageTd).html(stage);
-                trNode.appendChild(stageTd);
+                html += '<td>';
+                html += stage ;
+                html += '</td>';
 
-                var freeTd = document.createElement("td");
-                $(freeTd).html(is_free === 1 ? "免费" : "收费");
-                trNode.appendChild(freeTd);
+                html += '<td>';
+                html += is_free === 1 ? "免费" : "收费" ;
+                html += '</td>';
 
-                var dateTd = document.createElement("td");
-                var date = new Date(post_date);
-                $(dateTd).html(date.toLocaleString());
-                trNode.appendChild(dateTd);
+                html += '<td>';
+                html += new Date(post_date).toLocaleString();
+                html += '</td>';
 
-                var descTd = document.createElement("td");
-                $(descTd).html(description);
-                trNode.appendChild(descTd);
+                html += '<td>';
+                html += description ;
+                html += '</td>';
 
-                var srcTd = document.createElement("td");
-                var videoTar = document.createElement("video");
-                videoTar.setAttribute("src", src);
-                videoTar.setAttribute("controls", "controls");
-                srcTd.appendChild(videoTar);
-                $(srcTd).val("浏览器不支持");
-                trNode.appendChild(srcTd);
+                html += '<td>';
+                html += '<input type="button" class="btn btn-primary" value="查看" onclick="viewVideo(\'' + src + '\');" />';
+                html += '</td>';
 
-                var deleteTd = document.createElement("td");
-                deleteTd.innerHTML = '<input type="button" class="btn btn-warning" value="删除" onclick="deleteOne(' + id + ');" />';
-                trNode.appendChild(deleteTd);
+                html += '<td>';
+                html += '<input type="button" class="btn btn-warning" value="删除" onclick="deleteOne(' + id + ');" />';
+                html += '</td>';
 
-                document.getElementById("tbody_").appendChild(trNode);
+                $("#tbody_").append($(html));
             })
         }
     })
@@ -99,4 +93,25 @@ function getPageNum() {
         }
     });
     return pageNum;
+}
+
+function viewVideo(src) {
+
+    var content__ = '<div style="margin:auto;">';
+    content__ += '<p align="center">';
+    content__ += '<video src="' + src +'" controls="controls" style="object-fit: fill">浏览器不支持</video>';
+    content__ += '</p>';
+    content__ += '</div>';
+
+    BootstrapDialog.show( {
+        title: '查看视频',
+        message: $(content__),
+        cssClass : 'videoClass',
+        buttons: [{
+            label: '关闭',
+            action: function(dialogRef) {
+                dialogRef.close();
+            }
+        }]
+    });
 }

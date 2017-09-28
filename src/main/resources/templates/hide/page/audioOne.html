@@ -1,14 +1,14 @@
 
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
-    <title>
+    <title th:utext="${data.title}">
         某一id详细信息
     </title>
+    <link rel="stylesheet" href="http://7xnvpc.com2.z0.glb.qiniucdn.com/misc/frozenui/css/frozen.css">
     <style>
         body{
             -webkit-user-select:initial;
@@ -51,7 +51,6 @@
             padding-left: 10px;
         }
     </style>
-
     <style>
         .cl::after, .cl::before {
             clear: both;
@@ -192,44 +191,32 @@
             text-align: center;
         }
     </style>
-    <link rel="stylesheet" href="http://7xnvpc.com2.z0.glb.qiniucdn.com/misc/frozenui/css/frozen.css">
 
-    <script src="http://7xnvpc.com2.z0.glb.qiniucdn.com/misc/frozenui/lib/zepto.min.js?v=4"></script>
-    <script src="http://7xnvpc.com2.z0.glb.qiniucdn.com/misc/frozenui/js/frozen.js?v=4"></script>
     <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
-    <script type="text/javascript" th:src="@{/js/jquery.jplayer.min.js}"></script>
-
-    <link href="/css/weui.min.css" rel="stylesheet"/>
-    <script src="/js/weui.min.js"></script>
+    <link th:href="@{/css/weui.min.css}" rel="stylesheet"/>
+    <script th:src="@{/js/weui.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/wx_audio.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/wx_audio.css}">
 </head>
 
 <body>
-
 <section class="ui-container">
 
     <div class="playing">
         <div id="jquery_jplayer_1" class="jp-jplayer"></div>
         <section class="wrapper">
             <div class="pic default-img rel">
-            <span style="background-image:url('/img/audio-bg.jpg');" class="img">
-                <a href="javascript:" class="btn btn-player is-ready abs">
-                    <i class="icon_p icon-player-big icon-player"></i>
-                </a>
-            </span>
+                <span style="background-image:url('/img/audio-bg.jpg');" class="img"></span>
             </div>
 
-            <div class="process-panel cl">
-                <span class="time fl current-time">00:00</span>
-                <span class="time fr duration">00:00</span>
-                <div class="progressbar">
-                    <div style="width:0%;" class="playbar"></div>
-                </div>
-            </div>
+            <hr>
+            <div id="weixin-audio" style="margin-top: 20px; margin-bottom: 20px"></div>
+
         </section>
     </div>
 
+    <hr>
     <div class="ui-whitespace ui-center" style="color: #5f5f5f;height:auto;font-size:13px;margin-bottom: 10px;">
-        <h4 th:utext="${data.title}">Title</h4>
         <p th:utext="${data.description}">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>
 
     <div class="ui-whitespace">
@@ -245,87 +232,51 @@
             <img src="/img/try_lesson.png" alt="try free lesson">
         </a>
     </div>
-
-    <footer class="ui-footer ui-footer-btn" th:if="${isVip == false}">
-        <ul class="ui-tiled ui-border-t">
-            <li>
-                <a href="#todo_charge">
-                    <span class="upgrade">升级账户｜解锁完整课程库</span>
-                </a>
-            </li>
-        </ul>
-    </footer>
-
 </section>
+
+<footer class="ui-footer ui-footer-btn" th:if="${isVip == false}">
+    <ul class="ui-tiled ui-border-t">
+        <li>
+            <a href="#todo_charge">
+                <span class="upgrade">升级账户｜解锁完整课程库</span>
+            </a>
+        </li>
+    </ul>
+</footer>
 </body>
-<script type="text/javascript" th:inline="javascript">
-    $(function() {
-        $("#jquery_jplayer_1").jPlayer({
-            ready: function (event) {
-                $(this).jPlayer("setMedia", {
-                    mp3: /*[[${isVip == true ? data.src : ''}]]*/ ""
-                });
-            },
-            timeupdate: function(event) {
-                if(event.jPlayer.status.currentTime > 90) {
 
-                }
-            },
-            swfPath: "/js/jquery.jplayer.swf",
-            supplied: "mp3",
-            wmode: "window",
-            cssSelectorAncestor: ".playing",
-            cssSelector: {
-                currentTime: '.current-time',
-                seekBar: '.progressbar',
-                playBar: '.playbar',
-                duration: '.duration'
-            },
-            smoothPlayBar: true,
-            keyEnabled: true,
-            remainingDuration: true,
-            toggleDuration: true,
-            volume: 1
-        });
-        $('.icon-player').on('click', function() {
-            var isVip = /*[[${isVip}]]*/ false;
-            var $PlaySpan = $('.playing span > a');
-            if (!isVip) {
-                weui.dialog({
-                    title: '提示',
-                    content: '您无法预览课程音频，请升级账户享受所有课程。',
-                    className: 'classname',
-                    buttons: [{
-                        label: '取消',
-                        type: 'default'
-                    }, {
-                        label: '升级账户',
-                        type: 'primary',
-                        onClick: function () {
-                            window.location.href('#todo_charge')
-                        }
-                    }]
-                });
+<script th:inline="javascript" type="text/javascript">
+    var wxAudio = new Wxaudio({
+        ele: '#weixin-audio',
+        title: /*[[${data.title}]]*/ '',
+        disc: '',
+        src: /*[[${isVip == true ? data.src : ''}]]*/ "",
+        width: '85%'
+    });
 
-                return;
-            }
-            if($PlaySpan.hasClass('is-ready')) {
-                $("#jquery_jplayer_1").jPlayer("play");
-                $PlaySpan.removeClass('is-ready');
-                $PlaySpan.addClass('is-paused');
-            } else {
-                $("#jquery_jplayer_1").jPlayer("pause");
-                $PlaySpan.removeClass('is-paused');
-                $PlaySpan.addClass('is-ready');
-            }
-        });
+    $(function () {
+        var isVip = /*[[${isVip}]]*/ false;
+        if (!isVip) {
+            weui.dialog({
+                title: '提示',
+                content: '您无法预览该音频，请升级账户享受所有课程。',
+                className: 'classname',
+                buttons: [{
+                    label: '取消',
+                    type: 'default',
+                    onClick: function () {
+                        window.history.back(-1);
+                    }
+                }, {
+                    label: '升级账户',
+                    type: 'primary',
+                    onClick: function () {
+                        window.location.href = '#todo_charge'
+                    }
+                }]
+            });
+        }
     });
 </script>
-<script>
-//    $('.ui-list li,.ui-tiled li').on('click', function(){
-//        if($(this).data('href')){
-//            location.href= $(this).data('href');
-//        }
-//    });
-</script>
+
 </html>

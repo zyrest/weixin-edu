@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
-    <title>
+    <title th:utext="${data.title}">
         某一id详细信息
     </title>
     <style>
@@ -194,14 +194,11 @@
     </style>
     <link rel="stylesheet" href="http://7xnvpc.com2.z0.glb.qiniucdn.com/misc/frozenui/css/frozen.css">
 
-    <script src="http://7xnvpc.com2.z0.glb.qiniucdn.com/misc/frozenui/lib/zepto.min.js?v=4"></script>
-    <script src="http://7xnvpc.com2.z0.glb.qiniucdn.com/misc/frozenui/js/frozen.js?v=4"></script>
     <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/jquery.jplayer.min.js}"></script>
 
-    <link href="/css/weui.min.css" rel="stylesheet"/>
-    <script src="/js/weui.min.js"></script>
-    <link href="/css/player.css" rel="stylesheet"/>
+    <link th:href="@{/css/weui.min.css}" rel="stylesheet"/>
+    <script th:src="@{/js/weui.min.js}"></script>
 </head>
 
 <body>
@@ -210,30 +207,21 @@
 
 
     <div class="playing">
-        <video id="media" th:src="${isVip == true ? data.src : ''}" controls="controls" style="width: 100%; height: 100%">
+        <video id="media"
+               preload="auto"
+               th:src="${isVip == true ? data.src : ''}"
+               controls="controls"
+               style="width: 100%; height: 100%; object-fit: fill;"
+               webkit-playsinline="true"
+               x-webkit-airplay="true"
+               playsinline="true"
+               x5-video-player-type="h5"
+               x5-video-orientation="landscape"
+               poster="/img/peking.jpg">
+
             不支持哦~
         </video>
     </div>
-    <!--<div class="playing">-->
-
-    <!--<section class="wrapper">-->
-    <!--<div id="jquery_jplayer_1" class="jp-jplayer"></div>-->
-
-    <!--&lt;!&ndash;<div class="pic default-img rel">&ndash;&gt;-->
-    <!--&lt;!&ndash;&ndash;&gt;-->
-    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-    <!--<div class="process-panel cl">-->
-    <!--<a href="javascript:" class="btn btn-player is-ready abs">-->
-    <!--<i class="icon_p icon-player-big icon-player"></i>-->
-    <!--</a>-->
-    <!--<span class="time fl current-time">00:00</span>-->
-    <!--<span class="time fr duration">00:00</span>-->
-    <!--<div class="progressbar">-->
-    <!--<div style="width:0%;" class="playbar"></div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</section>-->
-    <!--</div>-->
 
     <div class="ui-whitespace ui-center" style="color: #5f5f5f;height:auto;font-size:13px;margin-bottom: 10px;">
         <h4 th:utext="${data.title}">Title</h4>
@@ -278,7 +266,7 @@
                     label: '取消',
                     type: 'default',
                     onClick: function () {
-                        window.location.href = '#todo_charge'
+                        window.history.back(-1);
                     }
                 }, {
                     label: '升级账户',

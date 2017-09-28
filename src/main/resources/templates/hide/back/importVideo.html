@@ -8,12 +8,16 @@
 
     <title>导入访谈视频</title>
     <!-- BOOTSTRAP CORE STYLE CSS -->
-    <link th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
     <!-- FONT AWESOME CSS -->
     <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet"/>
     <!-- CUSTOM STYLE CSS -->
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
     <link th:href="@{/css/file.css}" rel="stylesheet"/>
+    <!--  Jquery Core Script -->
+    <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+    <!--  Core Bootstrap Script -->
+    <script th:src="@{/js/bootstrap.min.js}"></script>
 </head>
 <body>
 <div id="head">
@@ -145,20 +149,11 @@
             <div class="col-lg-4 col-md-4 col-sm-4">
 
             </div>
-
-
         </div>
-
     </div>
 
 </div>
-<!--  Jquery Core Script -->
-<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
-<!--  Core Bootstrap Script -->
-<script th:src="@{/js/bootstrap.js}"></script>
 
 <script th:src="@{/js/video.js}"></script>
-
-
 </body>
 </html>

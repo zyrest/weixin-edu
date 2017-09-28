@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
-    <title>
+    <title th:utext="${data.title}" >
         某一id详细信息
     </title>
     <style>
@@ -269,13 +269,13 @@
         if (!isVip) {
             weui.dialog({
                 title: '提示',
-                content: '您无法预览该视频，请升级账户享受所有课程。',
+                content: '您无法预览该资料，请升级账户享受所有课程。',
                 className: 'classname',
                 buttons: [{
                     label: '取消',
                     type: 'default',
                     onClick: function () {
-                        window.location.href = '#todo_charge'
+                        window.history.back(-1);
                     }
                 }, {
                     label: '升级账户',
