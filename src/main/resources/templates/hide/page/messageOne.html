@@ -220,6 +220,7 @@
         <div class="page">
             <div class="hd">
                 <h1 class="page_title" th:utext="${data.title}">Article</h1>
+                <h3 th:utext="${#dates.format(data.post_date, 'yyyy-MM-dd')}">post-date</h3>
             </div>
             <hr>
             <div class="bd">
@@ -264,31 +265,4 @@
 </footer>
 
 </body>
-
-<script type="text/javascript" th:inline="javascript">
-    $(function () {
-        var isVip = /*[[${isVip}]]*/ false;
-        if (!isVip) {
-            weui.dialog({
-                title: '提示',
-                content: '您无法预览该资料，请升级账户享受所有课程。',
-                className: 'classname',
-                buttons: [{
-                    label: '取消',
-                    type: 'default',
-                    onClick: function () {
-                        window.history.back(-1);
-                    }
-                }, {
-                    label: '升级账户',
-                    type: 'primary',
-                    onClick: function () {
-                        window.location.href = '#todo_charge'
-                    }
-                }]
-            });
-        }
-    });
-</script>
-
 </html>
