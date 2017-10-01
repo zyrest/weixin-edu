@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.util.Base64;
 import java.util.UUID;
 
 /**
@@ -74,6 +75,11 @@ public class FileUtil {
         filePath = filePath.substring(filePath.indexOf(":") + 1);
         filePath += type + "/" + subDir;
         String newName = UUID.randomUUID() + fileName;
+
+        /*
+        将获取的文件名进行base64编码，去除中文
+         */
+        newName = new String(Base64.getEncoder().encode(newName.getBytes("UTF-8"))).replaceAll("/", "");
 
         File dir = new File(filePath);
         File savedFile = new File(dir, newName);
