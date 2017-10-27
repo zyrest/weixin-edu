@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Title</title>
+    <link href="/css/weui.min.css" rel="stylesheet"/>
+    <script src="/js/weui.min.js"></script>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font: inherit;
+            font-size: 100%;
+            vertical-align: baseline;
+        }
+        html{
+            font-family: Arial,Helvetica,"STHeiti STXihei","Microsoft YaHei",Tohoma,serif;
+            -webkit-text-size-adjust: 100%;
+            -moz-text-size-adjust: 100%;
+            padding-bottom: 50px;
+            color: #333;
+        }
+
+        .header{
+            max-height: 38px;
+            min-height: 36px;
+            background-color: #000;
+            color: #b2bac8;
+        }
+        .header-info{
+            padding: 5px 0 5px 10px;
+        }
+        .header-content,.header-image{
+            height: 24px;
+            vertical-align: middle;
+            line-height: 32px;
+        }
+        .content{
+
+        }
+        .content-image{
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .show-img{
+            height: auto;
+            width: 100%;
+            max-width: 500px;
+        }
+        .content-goods,.content-date{
+            padding: 0 10px;
+        }
+        .goods-title{
+            line-height: 22px;
+        }
+        .goods-price{
+            color: #f44;
+            text-align: left;
+            margin: 10px 0;
+            font-size: 18px;
+        }
+        .date-name{
+            display: inline;
+            color: #333;
+        }
+        .date-enter{
+            float: right;
+            height: 14px;
+            line-height: 14px;
+            margin: 4px 0;
+            font-size: 14px;
+            color: #999;
+            padding-right: 15px;
+        }
+        .footer{
+            height: 50px;
+            width: 100%;
+        }
+        .bottom-fix{
+            background-color: #F44;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            border-top: 2px solid #e5e5e5;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        .buy-btn{
+            text-decoration: none;
+        }
+        .buy-vip{
+            font-size: 18px;
+            line-height: 50px;
+            text-align: center;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+
+    <div class="header">
+        <div class="js-mp-info share-mp-info ">
+            <div class="header-info">
+                <img class="header-image" width="24" height="24" src="star.png">
+                <i class="header-content">WeChatEdu                            </i>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+
+        <div class="content-image">
+            <img class="show-img" src="pop.png">
+        </div>
+
+        <div class="content-goods">
+            <h2 class="goods-title">购买会员享受全部课程</h2>
+
+            <div class="goods-price">
+                <span>¥</span><i class="js-goods-price price">365.00</i>
+            </div>
+        </div>
+
+        <div class="content-date">
+            <div class="goods-date">
+                <a class="buy-btn" href="javascript:showPicker()">
+                    <div class="date-img"></div>
+                    <div class="date-name">选择购买时长</div>
+                    <span class="date-enter">点击选择</span>
+                </a>
+            </div>
+        </div>
+
+        <!--<div class="renzheng block-item">-->
+            <!--<span class="js-rz-item-alert rz-item" data-type="team_certificate_company">-->
+                <!--<span class="rz-name font-size-12 c-gray-darker">企业认证</span>-->
+            <!--</span>-->
+            <!--<span class="js-rz-item-alert rz-item" data-type="is_secured_transactions">-->
+                <!--<span class="rz-name font-size-12 c-gray-darker">担保交易</span>-->
+            <!--</span>-->
+        <!--</div>-->
+
+        <br>
+        <hr>
+        blablablabla<br>
+        blablablabla<br>
+        blablablabla<br>
+        blablablabla<br>
+        blablablabla<br>
+        blablablabla<br>
+        blablablabla<br>
+        blablablabla<br>
+        blablablabla<br>
+        blablablabla<br>
+        blablablabla<br>
+        blablablabla<br>
+        blablablabla<br>
+        blablablabla<br>
+        blablablabla<br>
+        blablablabla<br>
+        blablablabla<br>
+        blablablabla<br>
+        blablablabla<br>
+        blablablabla<br>
+        blablablabla<br>
+        blablablabla<br>
+        blablablabla<br>
+        blablablabla<br>
+        blablablabla<br>
+        blablablabla<br>
+        blablablabla<br>
+        blablablabla<br>
+        blablablabla<br>
+        blablablabla<br>
+        blablablabla<br>
+        blablablabla<br>
+        blablablabla<br>
+        blablablabla<br>
+        blablablabla<br>
+        blablablabla<br>
+        blablablabla<br>
+        blablablabla<br>
+        blablablabla<br>
+        blablablabla<br>
+        我是结束！！<br>
+    </div>
+
+    <div class="push"></div>
+    <div class="bottom-fix footer">
+        <div class="responsive-wrapper">
+            <a href="javascript:ha()" class="buy-btn">
+                <div class="buy-vip">
+                    立即购买
+                </div>
+            </a>
+        </div>
+    </div>
+
+</div>
+
+</body>
+
+<script type="text/javascript">
+    //<![CDATA[
+    //全局变量
+    var money = '0';
+    //]]>
+</script>
+
+<script>
+    function showPicker() {
+        var param = [
+            {"label" : "三天", "value" : '7'},
+            {"label" : "七天", "value" : '14'},
+            {"label" : "一个月", "value" : '20'}
+            ];
+        weui.picker(param, {
+            onChange: function (result) {
+                console.log(result);
+            },
+            onConfirm: function (result) {
+                money = result;
+            }
+        });
+    }
+    function ha() {
+        alert("ha")
+    }
+</script>
+</html>

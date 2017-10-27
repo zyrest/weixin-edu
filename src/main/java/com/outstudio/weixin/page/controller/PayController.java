@@ -1,7 +1,5 @@
 package com.outstudio.weixin.page.controller;
 
-import com.alibaba.fastjson.JSONArray;
-import com.outstudio.weixin.common.po.UserEntity;
 import com.outstudio.weixin.common.service.ChargeService;
 import com.outstudio.weixin.common.utils.DateUtil;
 import com.outstudio.weixin.common.utils.IpUtil;
@@ -45,7 +43,7 @@ public class PayController {
     }
 
     @RequestMapping("/wxpay")
-    public Object pay(HttpServletRequest request) {
+    public Map<String, String> pay(HttpServletRequest request) {
 
         init();
 
@@ -57,18 +55,16 @@ public class PayController {
         data.put("spbill_create_ip", IpUtil.getRemoteIp(request));
         data.put("notify_url", "/open/page/wxpayDone");
         data.put("trade_type", "JSAPI");
-        data.put("openid", ((UserEntity) TokenManager.getWeixinToken()).getOpenid());
+        data.put("openid", TokenManager.getWeixinToken().getOpenid());
 
         Map<String, String> result = null;
         try {
             result = wxPay.unifiedOrder(data);
-
         } catch (Exception e) {
-
             LoggerUtil.error(getClass(), e.getMessage());
             e.printStackTrace();
         }
-        return JSONArray.toJSON(result);
+        return result;
     }
 
     @RequestMapping("/wxpayDone")
