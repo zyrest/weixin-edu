@@ -1,0 +1,55 @@
+
+
+ .main {
+     text-align: center;
+     padding-left: 10px;
+     height: 50%;
+     padding-top: 8px;
+     padding-bottom: 8px;
+     clear: both;
+     margin-bottom: 90px;
+ }
+
+ .total {
+     padding-top: 20%;
+     height: 50px;
+     margin-bottom: 60px;
+ }
+
+ .money {
+     font-size: xx-large;
+ }
+
+
+ .headImg {
+     height: 48px;
+     width: 48px;
+     background-color: yellow;
+     float: left;
+     margin-right: 12px;
+
+ }
+
+ .nickName {
+     line-height: 20px;
+     font-size: medium;
+     font-family: bold;
+     margin-bottom: 10px;
+
+ }
+ 
+ .userInfo {
+     /*position: relative;*/
+     /*left: 20%;*/
+     margin-top: 8px;
+     margin-left: 8px;
+
+ }
+
+ .bottom {
+     position: fixed;
+     bottom: 0;
+     width: 100%;
+    z-index: 10;
+     background-color: white;
+ }

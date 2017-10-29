@@ -1,0 +1,36 @@
+
+
+.member {
+    clear: both;
+    font-size: 20px;
+    padding-left: 13px;
+    padding-bottom: 7px;
+    border-bottom: 1px solid rgba(209, 197, 182, 0.5);
+}
+ .headImg {
+     height: 48px;
+     width: 48px;
+     background-color: yellow;
+     float: left;
+     margin-right: 12px;
+
+ }
+
+ .nickName {
+     line-height: 20px;
+     font-size: medium;
+     font-family: bold;
+     margin-bottom: 10px;
+
+ }
+
+ .userInfo {
+     position: relative;
+     margin-top: 8px;
+     margin-left: 8px;
+
+ }
+
+ .payMoney {
+     font-size: 16px;
+ }
