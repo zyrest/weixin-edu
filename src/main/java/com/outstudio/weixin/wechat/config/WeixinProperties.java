@@ -5,15 +5,11 @@ package com.outstudio.weixin.wechat.config;
  */
 public class WeixinProperties {
 
-    public static final String TOKEN = "samson";
-    public static final String appID = "wxd53def0a24d17b53";
-    public static final String appSecret = "14d2831e0d8153867040d95674808d40";
+    public static final String TOKEN = "wechat_edu";
+    public static final String appID = "wx6b2cfecab5b48621";
+    public static final String appSecret = "48a1796bdca284377046f40423da162e";
 
-    //刘明宇的测试号
-//    public static final String appID = "wxc6d57f9289e2394b";
-//    public static final String appSecret = "1c2bb4315e2ad986392b7c93d79cda1f";
-
-    public static final String mchID = "";
+    public static final String mchID = "";//商户id
     public static final String appKey = "2ab9071b06b9f739b950ddb41db2690d";
 
     public static final String BASE_SCOPE = "snsapi_base";
@@ -46,8 +42,9 @@ public class WeixinProperties {
 
     /**
      * 网页授权的时候跳转的url
+     * 此处必须填域名，并且在微信公众平台设置好，否则将无法完成正确的回调
      */
-    public static final String OAUTH_REDIRECT_URL = "http://xxxx/open/page/oauth";
+    public static final String OAUTH_REDIRECT_URL = "http://www.kuanx.cn/open/page/oauth";
 
     /**
      * 网页授权的时候USER_INFO_CODE中的state标识

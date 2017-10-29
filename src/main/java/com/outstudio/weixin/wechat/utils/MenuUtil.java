@@ -25,7 +25,7 @@ public class MenuUtil {
     }
 
     private static Button firstButton() {
-        return createViewButton("培训故事", "http://115.159.40.27/page/test/audio");
+        return createViewButton("培训故事", "http://www.kuanx.cn/page/view/audio");
     }
 
     private static Button secondButton() {
@@ -33,8 +33,8 @@ public class MenuUtil {
         button.setName("启蒙英语");
 
         List<Button> sub_buttons = new ArrayList<>();
-        sub_buttons.add(createViewButton("英语课堂", "http://115.159.40.27/page/test/english"));
-        sub_buttons.add(createViewButton("复习内容", "http://115.159.40.27/page/test/english#review"));
+        sub_buttons.add(createViewButton("英语课堂", "http://www.kuanx.cn/page/view/english"));
+        sub_buttons.add(createViewButton("复习内容", "http://www.kuanx.cn/page/view/english#review"));
         button.setSub_button(sub_buttons);
 
         return button;
@@ -43,9 +43,9 @@ public class MenuUtil {
     private static Button thirdButton() {
         Button button = new Button();
         List<Button> sub_button = new ArrayList<>();
-        sub_button.add(createViewButton("VIP注册", "http://www.baidu.com/"));
-        sub_button.add(createViewButton("访谈讲堂", "http://115.159.40.27/page/test/video"));
-        sub_button.add(createViewButton("通知", "http://www.baidu.com/"));
+        sub_button.add(createViewButton("VIP注册", "http://www.kuanx.cn/page/view/vip"));
+        sub_button.add(createViewButton("访谈讲堂", "http://www.kuanx.cn/page/view/video"));
+        sub_button.add(createViewButton("通知", "http://www.kuanx.cn/page/view/message"));
         button.setName("家长关注");
         button.setSub_button(sub_button);
         return button;
