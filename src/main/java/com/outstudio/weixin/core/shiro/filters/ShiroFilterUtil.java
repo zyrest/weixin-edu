@@ -19,11 +19,7 @@ import java.util.Map;
 public class ShiroFilterUtil {
     private static final Class<? extends ShiroFilterUtil> CLAZZ = ShiroFilterUtil.class;
     //登录页面
-    public static final String LOGIN_URL = "/open/back/login";//TODO
-    //踢出登录提示
-    public static final String KICKED_OUT = "";//TODO
-    //没有权限提醒
-    public static final String UNAUTHORIZED = "";//TODO
+    public static final String LOGIN_URL = "/open/back/login";
 
     private static final String[] opens = {"/open"};
 

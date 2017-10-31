@@ -14,10 +14,9 @@ import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.web.util.SavedRequest;
 import org.apache.shiro.web.util.WebUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -25,10 +24,11 @@ import javax.servlet.http.HttpServletRequest;
  * Created by 96428 on 2017/9/8.
  * This in weixin-edu, com.outstudio.weixin.back.controller
  */
-@RestController
+@Controller
 public class LoginController {
 
     @PostMapping("/open/back/sublogin")
+    @ResponseBody
     public MessageVo sublogin(HttpServletRequest request, @RequestBody ManagerEntity managerEntity) {
 
         try {
@@ -59,14 +59,17 @@ public class LoginController {
     }
 
     @RequestMapping("/back/logout")
-    public MessageVo logout() {
+    public ModelAndView logout() {
+        ModelAndView view = new ModelAndView();
 
         try {
             TokenManager.logout();
+            view.setViewName("redirect:/open/back/login");
         } catch (Exception e) {
+            view.setViewName("redirect:/error");
             throw new SystemErrorException();
         }
 
-        return MessageVoUtil.success();
+        return view;
     }
 }

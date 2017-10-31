@@ -25,6 +25,7 @@ public class LoginFilter extends AccessControlFilter {
 
         ManagerEntity token = TokenManager.getManagerToken();
         if (token != null || ShiroFilterUtil.isOpen(servletRequest)) {
+            LoggerUtil.debug(getClass(), "当前登录：" + token.getM_account());
             return true;
         }
 

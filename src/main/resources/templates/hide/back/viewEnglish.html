@@ -67,8 +67,8 @@
             <div class="col-lg-9 col-md-9 col-sm-9 ">
 
                 <div class="hr-div col-md-offset-3">
-                    <button id="clickVideo" type="button" class="btn btn-primary btn-lg" onclick="_videoClick()">导入视频资料</button>
-                    <button id="clickReview" type="button" class="btn btn-default btn-lg" onclick="_reviewClick()">导入复习资料</button>
+                    <button id="clickVideo" type="button" class="btn btn-primary btn-lg" onclick="_videoClick()">查看视频资料</button>
+                    <button id="clickReview" type="button" class="btn btn-default btn-lg" onclick="_reviewClick()">查看复习资料</button>
                 </div>
 
                 <br>
@@ -153,12 +153,12 @@
                 <div class="list-group">
                     <a href="#" class="list-group-item active">快速链接</a>
                     <a th:href="@{/back/index}" class="list-group-item">主页</a>
-                    <a th:href="@{/back/index}" class="list-group-item">导入英语</a>
-                    <a th:href="@{/back/index}" class="list-group-item">导入家长访谈</a>
-                    <a th:href="@{/back/index}" class="list-group-item">查看教育音频</a>
-                    <a th:href="@{/back/index}" class="list-group-item">查看英语</a>
-                    <a th:href="@{/back/index}" class="list-group-item">查看家长访谈</a>
-                    <a th:href="@{/back/index}" class="list-group-item">更改密码</a>
+                    <a th:href="@{/back/import/audio}" class="list-group-item">导入教育音频</a>
+                    <a th:href="@{/back/import/english}" class="list-group-item">导入英语</a>
+                    <a th:href="@{/back/import/video}" class="list-group-item">导入家长访谈</a>
+                    <a th:href="@{/back/view/audio}" class="list-group-item">查看教育音频</a>
+                    <a th:href="@{/back/view/video}" class="list-group-item">查看家长访谈</a>
+                    <a th:href="@{/back/password}" class="list-group-item">更改密码</a>
                 </div>
             </div>
 

@@ -1,9 +1,6 @@
 package com.outstudio.weixin.core.config;
 
-import com.outstudio.weixin.core.shiro.filters.ForbidFilter;
-import com.outstudio.weixin.core.shiro.filters.LoginFilter;
-import com.outstudio.weixin.core.shiro.filters.VipFilter;
-import com.outstudio.weixin.core.shiro.filters.WeixinAuthFilter;
+import com.outstudio.weixin.core.shiro.filters.*;
 import com.outstudio.weixin.core.shiro.token.MyRealm;
 import com.outstudio.weixin.core.shiro.token.RetryLimitHashedCredentialsMatcher;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
@@ -85,6 +82,7 @@ public class ShiroConfig {
         filterMap.put("forbid", forbidFilter());
         filterMap.put("weixinAuth", weixinAuthFilter());
         filterMap.put("vip", vipFilter());
+        filterMap.put("alreadyLogin", alreadyLoginFilter());
         shiroFilterFactoryBean.setFilters(filterMap);
 
         loadFiltersChain(shiroFilterFactoryBean);
@@ -103,6 +101,7 @@ public class ShiroConfig {
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
 
         // 配置不会被拦截的链接 顺序判断
+        filterChainDefinitionMap.put("/open/back/login", "alreadyLogin");
         filterChainDefinitionMap.put("/js/**", "anon");
         filterChainDefinitionMap.put("/css/**", "anon");
         filterChainDefinitionMap.put("/open/**", "anon");
@@ -111,7 +110,7 @@ public class ShiroConfig {
 //        filterChainDefinitionMap.put("/logout", "logout");
         //过滤链定义，从上向下顺序执行，一般将/**放在最为下边 -->:这是一个坑呢，一不小心代码就不好使了;
         //authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问
-//        filterChainDefinitionMap.put("/back/**", "login");
+        filterChainDefinitionMap.put("/back/**", "login");
         filterChainDefinitionMap.put("/hide/**", "forbid");
         filterChainDefinitionMap.put("/page/view/**", "weixinAuth");
         filterChainDefinitionMap.put("/open/page/wxpay", "weixinAuth");
@@ -147,6 +146,18 @@ public class ShiroConfig {
     @Bean
     public FilterRegistrationBean loginFilterRegistration() {
         FilterRegistrationBean registration = new FilterRegistrationBean(loginFilter());
+        registration.setEnabled(false);
+        return registration;
+    }
+
+    @Bean
+    public AlreadyLoginFilter alreadyLoginFilter() {
+        return new AlreadyLoginFilter();
+    }
+
+    @Bean
+    public FilterRegistrationBean alreadyLoginFilterRegistration() {
+        FilterRegistrationBean registration = new FilterRegistrationBean(alreadyLoginFilter());
         registration.setEnabled(false);
         return registration;
     }
