@@ -44,13 +44,25 @@ $(function() {
                 // var dat = JSON.stringify(result);
                 // alert(dat);
                 if(result && result.status !== 200) {
-                    BootstrapDialog.show({
+                    BootstrapDialog.alert({
+                        title : '警告',
                         message: result.message
                     });
                     $('input[name = m_password]').val('');
                 } else {
                     console.log("登陆成功");
-                    window.location.href = result.redirectUrl;
+                    BootstrapDialog.show( {
+                        title : '消息',
+                        message: '登陆成功',
+                        buttons: [{
+                            label: '确认',
+                            action: function(dialogRef) {
+                                window.location.href = result.redirectUrl;
+                                dialogRef.close();
+                            }
+                        }]
+                    });
+
                 }
             },
             error:function(e, XMLResponse) {

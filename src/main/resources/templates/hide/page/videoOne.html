@@ -211,7 +211,7 @@
     <div class="playing">
         <video id="media"
                preload="auto"
-               th:src="${isVip == true ? data.src : ''}"
+               th:src="${isVip == true || data.is_free == 1 ? data.src : ''}"
                controls="controls"
                style="width: 100%; height: 100%; object-fit: fill;"
                webkit-playsinline="true"
@@ -258,7 +258,7 @@
 <script type="text/javascript" th:inline="javascript">
 
     $(function () {
-        var isVip = /*[[${isVip}]]*/ false;
+        var isVip = /*[[${isVip == true || data.is_free == 1}]]*/ false;
         if (!isVip) {
             weui.dialog({
                 title: '提示',

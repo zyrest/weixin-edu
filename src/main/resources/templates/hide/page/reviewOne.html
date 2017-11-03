@@ -215,7 +215,7 @@
         </section>
     </div>
 
-    <div class="ui-whitespace ui-center" style="color: #5f5f5f;height:auto;font-size:13px;margin-bottom: 10px;">
+    <div class="ui-whitespace ui-center" style="color: #5f5f5f;height:auto;font-size:13px;margin-bottom: 10px;" th:if="isVip == true || data.is_free == 1">
 
         <div class="page">
             <div class="hd">
@@ -267,7 +267,7 @@
 
 <script type="text/javascript" th:inline="javascript">
     $(function () {
-        var isVip = /*[[${isVip}]]*/ false;
+        var isVip = /*[[${isVip == true or data.is_free == 1}]]*/ false;
         if (!isVip) {
             weui.dialog({
                 title: '提示',

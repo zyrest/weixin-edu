@@ -250,12 +250,12 @@
         ele: '#weixin-audio',
         title: /*[[${data.title}]]*/ '',
         disc: '',
-        src: /*[[${isVip == true ? data.src : ''}]]*/ "",
+        src: /*[[${isVip == true || data.is_free == 1 ? data.src : ''}]]*/ "",
         width: '85%'
     });
 
     $(function () {
-        var isVip = /*[[${isVip}]]*/ false;
+        var isVip = /*[[${isVip == true || data.is_free == 1}]]*/ false;
         if (!isVip) {
             weui.dialog({
                 title: '提示',

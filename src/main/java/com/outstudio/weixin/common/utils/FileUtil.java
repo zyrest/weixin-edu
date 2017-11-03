@@ -80,6 +80,7 @@ public class FileUtil {
         将获取的文件名进行base64编码，去除中文
          */
         newName = new String(Base64.getEncoder().encode(newName.getBytes("UTF-8"))).replaceAll("/", "");
+        newName += "." + type;
 
         File dir = new File(filePath);
         File savedFile = new File(dir, newName);

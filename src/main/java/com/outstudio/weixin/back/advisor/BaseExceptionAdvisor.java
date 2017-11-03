@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class BaseExceptionAdvisor {
 
     @ExceptionHandler(UnvalidException.class)
-    public MessageVo hanleUnvalid(UnvalidException e) {
+    public MessageVo handleUnvalid(UnvalidException e) {
         MessageVo messageVo = new MessageVo();
 
         messageVo.setStatus(ResponseStatus.UNVALID_PARAM).setMessage(e.getMessage());
@@ -24,7 +24,7 @@ public class BaseExceptionAdvisor {
     }
 
     @ExceptionHandler(SystemErrorException.class)
-    public MessageVo hanleError(SystemErrorException e) {
+    public MessageVo handleError(SystemErrorException e) {
         MessageVo messageVo = new MessageVo();
 
         messageVo.setStatus(ResponseStatus.SYSTEM_ERROE).setMessage(e.getMessage());
@@ -38,7 +38,7 @@ public class BaseExceptionAdvisor {
      * @return
      */
     @ExceptionHandler(NoresourceException.class)
-    public MessageVo hanleResource(NoresourceException e) {
+    public MessageVo handleResource(NoresourceException e) {
         MessageVo messageVo = new MessageVo();
 
         messageVo.setStatus(ResponseStatus.RESOURCE_NOT_FOUND).setMessage(e.getMessage());
