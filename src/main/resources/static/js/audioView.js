@@ -1,14 +1,32 @@
 var nowPage = 1;
 
 function deleteOne(id) {
-    $.ajax({
-        url : "/back/stories/" + id,
-        type : "DELETE",
-        success : function (result) {
-            alert(JSON.stringify(result))
-        }
+    BootstrapDialog.show( {
+        title: '危险！',
+        message: '是否删除该视频？',
+        buttons: [{
+            label: '关闭',
+            cssClass : 'btn',
+            action: function(dialogRef) {
+                dialogRef.close();
+            }
+        }, {
+            label: '确定',
+            cssClass : 'btn btn-warning',
+            action: function(dialogRef) {
+                $.ajax({
+                    url : "/back/stories/" + id,
+                    type : "DELETE",
+                    success : function (result) {
+                        alert('删除成功')
+                    }
+                });
+                setContent(nowPage);
+                dialogRef.close();
+            }
+        }]
     });
-    setContent(nowPage)
+
 }
 function setContent(pageNum) {
     $.ajax({

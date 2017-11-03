@@ -18,7 +18,7 @@ function deleteOne(id) {
                     url : "/back/interviewVideos/" + id,
                     type : "DELETE",
                     success : function (result) {
-                        alert(JSON.stringify(result)) //todo
+                        alert('删除成功') //todo
                     }
                 });
                 setContent(nowPage);
@@ -26,9 +26,8 @@ function deleteOne(id) {
             }
         }]
     });
-
-
 }
+
 function setContent(pageNum) {
     $.ajax({
         url : "/page/interviewVideos/page/" + pageNum,

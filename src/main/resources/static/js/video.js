@@ -7,7 +7,7 @@ jQuery(document).ready(function () {
 
 function fileSelected() {
     var file = document.getElementById('video').files[0];
-    alert(file.name);
+    // alert(file.name);
     if (file) {
         var fileSize = 0;
         if (file.size > 1024 * 1024)
@@ -54,18 +54,60 @@ function uploadProgress(evt) {
         document.getElementById('progressNumber').innerHTML = '无法计算';
     }
 }
-
 function uploadComplete(evt) {
     /* 当服务器响应后，这个事件就会被触发 */
-    alert(evt.target.responseText);
+    // alert(evt.target.responseText);
+    BootstrapDialog.show( {
+        title : '消息',
+        message: '上传成功',
+        buttons: [{
+            label: '确认',
+            action: function(dialogRef) {
+                clearInputs();
+                dialogRef.close();
+            }
+        }]
+    });
 }
 
 function uploadFailed(evt) {
-    alert("上传文件发生了错误尝试");
+    // alert("上传文件发生了错误尝试");
+    BootstrapDialog.show( {
+        title : '警告！',
+        message: '上传文件发生了错误尝试，请确保上传文件为mp4格式',
+        type: BootstrapDialog.TYPE_DANGER,
+        buttons: [{
+            label: '确认',
+            action: function(dialogRef) {
+                dialogRef.close();
+            }
+        }]
+    });
 }
 
 function uploadCanceled(evt) {
-    alert("上传被用户取消或者浏览器断开连接");
+    // alert("上传被用户取消或者浏览器断开连接");
+    BootstrapDialog.show( {
+        title : '取消',
+        type: BootstrapDialog.TYPE_WARNING,
+        message: '上传被用户取消或者浏览器断开连接',
+        buttons: [{
+            label: '确认',
+            action: function(dialogRef) {
+                dialogRef.close();
+            }
+        }]
+    });
+}
+
+function clearInputs() {
+    $('#title').val('');
+    $('#stage').val('');
+    $('#description').val('');
+    $('#photoCover').val('');
+    $('#fileSize').html('');
+    $('#fileType').html('');
+    $('#progressNumber').html('');
 }
 
 
