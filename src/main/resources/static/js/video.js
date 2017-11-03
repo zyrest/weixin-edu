@@ -57,13 +57,17 @@ function uploadProgress(evt) {
 function uploadComplete(evt) {
     /* 当服务器响应后，这个事件就会被触发 */
     // alert(evt.target.responseText);
+    var result = JSON.parse(evt.target.responseText);
+    var mes = '服务器发生错误！请确保上传文件为mp4格式！！';
+    if (result && result.status === 201) mes = '上传成功';
+
     BootstrapDialog.show( {
         title : '消息',
-        message: '上传成功',
+        message: mes,
         buttons: [{
             label: '确认',
             action: function(dialogRef) {
-                clearInputs();
+                if (result && result.status === 201) clearInputs();
                 dialogRef.close();
             }
         }]
@@ -74,7 +78,7 @@ function uploadFailed(evt) {
     // alert("上传文件发生了错误尝试");
     BootstrapDialog.show( {
         title : '警告！',
-        message: '上传文件发生了错误尝试，请确保上传文件为mp4格式',
+        message: '上传文件发生了错误尝试',
         type: BootstrapDialog.TYPE_DANGER,
         buttons: [{
             label: '确认',
