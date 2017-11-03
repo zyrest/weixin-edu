@@ -56,4 +56,5 @@ public class EnReviewService {
         return enReviewEntityMapper.selectStage();
     }
 
+    public Long getCount() {return enReviewEntityMapper.selectCount();}
 }

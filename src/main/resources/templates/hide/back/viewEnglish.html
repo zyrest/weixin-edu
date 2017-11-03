@@ -202,6 +202,13 @@
 </script>
 <script>
 
+    $(function () {
+        var url = window.location.toString();
+        var sharp = url.split('#')[1];
+
+        if (sharp === '_reviewClick') _reviewClick();
+    });
+
     function deleteOne(id) {
         BootstrapDialog.show( {
             title: '危险！',
@@ -222,11 +229,15 @@
                         url : url,
                         type : "DELETE",
                         success : function (result) {
-                            alert('删除成功') //todo
+                            alert('删除成功');//todo
+                            if (!isVideos) {
+                                window.location.href = window.location.toString().split('#')[0] + '#_reviewClick';
+                            } else {
+                                window.location.href = window.location.toString().split('#')[0];
+                            }
+                            location.reload();
                         }
                     });
-                    if (isVideos) setVideoContent(nowPage);
-                    else setReviewContent(nowPage);
                     dialogRef.close();
                 }
             }]

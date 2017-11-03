@@ -18,10 +18,11 @@ function deleteOne(id) {
                     url : "/back/interviewVideos/" + id,
                     type : "DELETE",
                     success : function (result) {
-                        alert('删除成功') //todo
+                        alert('删除成功'); //todo
+                        location.reload();
                     }
                 });
-                setContent(nowPage);
+
                 dialogRef.close();
             }
         }]

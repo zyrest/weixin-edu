@@ -18,7 +18,8 @@ function deleteOne(id) {
                     url : "/back/stories/" + id,
                     type : "DELETE",
                     success : function (result) {
-                        alert('删除成功')
+                        alert('删除成功');
+                        location.reload();
                     }
                 });
                 setContent(nowPage);

@@ -27,4 +27,7 @@ public interface EnVideoEntityMapper {
 
     @Select(value = "SELECT stage from t_en_video")
     Set<Integer> selectStage();
+
+    @Select(value = "SELECT COUNT(id) FROM t_en_video")
+    Long selectCount();
 }

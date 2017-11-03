@@ -58,5 +58,5 @@ public class EnVideoService {
         return enVideoEntityMapper.selectStage();
     }
 
-    public Long getCount() {}
+    public Long getCount() {return enVideoEntityMapper.selectCount();}
 }

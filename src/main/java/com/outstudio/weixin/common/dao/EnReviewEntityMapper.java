@@ -29,4 +29,7 @@ public interface EnReviewEntityMapper {
 
     @Select(value = "SELECT stage from t_en_review")
     Set<Integer> selectStage();
+
+    @Select(value = "SELECT COUNT(id) FROM t_en_review")
+    Long selectCount();
 }

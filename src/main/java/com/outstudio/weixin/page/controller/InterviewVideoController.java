@@ -59,6 +59,12 @@ public class InterviewVideoController {
         return MessageVoUtil.success(REDIRECT_URL, interviewVideoEntities);
     }
 
+    @GetMapping("/interviewVideos/stages")
+    @ResponseBody
+    public MessageVo getStages() {
+        return MessageVoUtil.success(REDIRECT_URL, interviewVideoService.getStage());
+    }
+
     @GetMapping("/interviewVideos/pageNum")
     @ResponseBody
     public MessageVo getPageNum() {
@@ -68,28 +74,5 @@ public class InterviewVideoController {
             ans += 1;
         }
         return MessageVoUtil.success(ans);
-    }
-
-    @GetMapping("/interviewVideos/stages")
-    @ResponseBody
-    public MessageVo getStages() {
-        return MessageVoUtil.success(REDIRECT_URL, interviewVideoService.getStage());
-    }
-
-    @GetMapping("/interviewVideos/pageNum")
-    @ResponseBody
-    public MessageVo getNum() {
-
-        return MessageVoUtil.success(getTotalPageNum());
-    }
-
-    private Long getTotalPageNum() {
-        Long got = interviewVideoService.getCount();
-        Long ans = got / pageSize;
-        if (got % pageSize != 0) {
-            ans += 1;
-        }
-
-        return ans;
     }
 }
