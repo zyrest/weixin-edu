@@ -52,7 +52,7 @@ public class PayController {
         data.put("out_trade_no", DateUtil.getFormatDate());
         data.put("device_info", "WEB");
         data.put("total_fee", "1");
-        data.put("spbill_create_ip", IpUtil.getRemoteIp(request));
+        data.put("spbill_create_ip",request.getRemoteAddr());
         data.put("notify_url", "/open/page/wxpayDone");
         data.put("trade_type", "JSAPI");
         data.put("openid", TokenManager.getWeixinToken().getOpenid());
