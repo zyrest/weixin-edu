@@ -20,7 +20,7 @@ import java.util.List;
 @RequestMapping("/page")
 public class EnReviewController {
     private static final String REDIRECT_URL = "";
-    private static final int pageSize = 15;
+    private static final int pageSize = 3;
 
     @Resource
     private EnReviewService enReviewService;
@@ -37,7 +37,7 @@ public class EnReviewController {
 
     @GetMapping("/enReviews/page/{pageNum}")
     @ResponseBody
-    public MessageVo getAllEnReviews(@PathVariable Integer pageNum) {
+    public MessageVo getAllEnReviews(@PathVariable int pageNum) {
         PageHelper.startPage(pageNum, pageSize);
         List<EnReviewEntity> enReviewEntities = enReviewService.getAll();
         return MessageVoUtil.success(REDIRECT_URL, enReviewEntities);
@@ -70,4 +70,20 @@ public class EnReviewController {
         return MessageVoUtil.success(REDIRECT_URL, enReviewService.getStage());
     }
 
+    @GetMapping("/enReviews/pageNum")
+    @ResponseBody
+    public MessageVo getNum() {
+
+        return MessageVoUtil.success(getTotalPageNum());
+    }
+
+    private Long getTotalPageNum() {
+        Long got = enReviewService.getCount();
+        Long ans = got / pageSize;
+        if (got % pageSize != 0) {
+            ans += 1;
+        }
+
+        return ans;
+    }
 }

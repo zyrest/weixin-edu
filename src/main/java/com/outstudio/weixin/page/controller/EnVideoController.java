@@ -66,4 +66,20 @@ public class EnVideoController {
         return MessageVoUtil.success(REDIRECT_URL, enVideoService.getStage());
     }
 
+    @GetMapping("/enVideos/pageNum")
+    @ResponseBody
+    public MessageVo getNum() {
+
+        return MessageVoUtil.success(getTotalPageNum());
+    }
+
+    private Long getTotalPageNum() {
+        Long got = enVideoService.getCount();
+        Long ans = got / pageSize;
+        if (got % pageSize != 0) {
+            ans += 1;
+        }
+
+        return ans;
+    }
 }

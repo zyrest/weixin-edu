@@ -57,4 +57,6 @@ public class EnVideoService {
     public Set<Integer> getStage() {
         return enVideoEntityMapper.selectStage();
     }
+
+    public Long getCount() {}
 }

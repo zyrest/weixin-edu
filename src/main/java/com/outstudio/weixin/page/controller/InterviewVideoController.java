@@ -75,4 +75,21 @@ public class InterviewVideoController {
     public MessageVo getStages() {
         return MessageVoUtil.success(REDIRECT_URL, interviewVideoService.getStage());
     }
+
+    @GetMapping("/interviewVideos/pageNum")
+    @ResponseBody
+    public MessageVo getNum() {
+
+        return MessageVoUtil.success(getTotalPageNum());
+    }
+
+    private Long getTotalPageNum() {
+        Long got = interviewVideoService.getCount();
+        Long ans = got / pageSize;
+        if (got % pageSize != 0) {
+            ans += 1;
+        }
+
+        return ans;
+    }
 }
