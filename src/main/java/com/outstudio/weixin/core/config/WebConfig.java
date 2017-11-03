@@ -57,7 +57,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
         registry.addViewController("/error").setViewName("error");
         registry.addViewController("/").setViewName("index");
-
     }
 
     @Bean

@@ -168,6 +168,15 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<!--
+				配置spring boot可以做为Linux的一个服务进程启动：service APPName start|restart|stop
+				1. $ln -s /var/yourapp/yourapp.jar /etc/init.d/yourapp
+				2. This allows you to start, stop and restart your application like
+				3. $/etc/init.d/yourapp start|stop|restart
+				-->
+				<configuration>
+					<executable>true</executable>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
