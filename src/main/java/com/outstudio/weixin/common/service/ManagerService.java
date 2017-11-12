@@ -23,7 +23,7 @@ public class ManagerService {
         return managerEntityMapper.selectByAccount(account);
     }
 
-    public String changePassword(String account, String newPassword, String oldPassword) {
+    public String changePassword(String newPassword, String oldPassword) {
         ManagerEntity managerEntity = TokenManager.getManagerToken();
         if (!managerEntity.getM_password().equals(oldPassword)) {
             return "old password is not right";

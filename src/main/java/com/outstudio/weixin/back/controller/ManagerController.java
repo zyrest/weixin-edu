@@ -19,7 +19,7 @@ public class ManagerController {
 
     @PutMapping("/password/{account}")
     public MessageVo changePassword(@RequestBody Map<String, String> map) {
-        String result = managerService.changePassword(TokenManager.getManagerToken().getM_account(), map.get("newPassword"), map.get("oldPassword"));
+        String result = managerService.changePassword(map.get("newPassword"), map.get("oldPassword"));
         if ("success".equalsIgnoreCase(result))
             return new MessageVo().setMessage(result).setStatus(ResponseStatus.SUCCESS);
         else
