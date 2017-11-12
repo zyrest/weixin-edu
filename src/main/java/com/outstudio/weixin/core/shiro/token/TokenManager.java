@@ -7,6 +7,8 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 
+import java.util.Date;
+
 /**
  * Created by 96428 on 2017/8/2.
  * This in electricity, io.github.cyingyo.electricity.core.shiro
@@ -72,6 +74,16 @@ public class TokenManager {
         } else {
             UserEntity user = getWeixinToken();
             return DateUtil.isNotExpire(user.getVip_end_date());
+        }
+    }
+
+    public static long tillDate() {
+        if (!isVip()) return 0;
+        else {
+            UserEntity user = getWeixinToken();
+            Date until = user.getVip_end_date();
+
+            return DateUtil.daysBetween(new Date(), until);
         }
     }
 }

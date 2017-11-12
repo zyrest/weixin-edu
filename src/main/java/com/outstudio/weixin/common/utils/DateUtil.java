@@ -44,7 +44,7 @@ public class DateUtil {
     public static Date dateAdd(Date baseDate, int addNum) {
         Calendar calendar = new GregorianCalendar();
         calendar.setTime(baseDate);
-        calendar.add(calendar.DATE, addNum);//把日期往后增加addNum天.整数往后推,负数往前移动
+        calendar.add(Calendar.DATE, addNum);//把日期往后增加addNum天.整数往后推,负数往前移动
         baseDate = calendar.getTime();   //这个时间就是日期往后推一天的结果
         return baseDate;
     }
@@ -76,5 +76,21 @@ public class DateUtil {
 
     public static boolean isNotExpire(Date date) {
         return date != null && date.after(new Date());
+    }
+
+    public static long daysBetween(Date one, Date two) {
+        long days = 0;
+        long time1 = one.getTime();
+        long time2 = two.getTime();
+        long diff ;
+
+        if(time1 < time2) {
+            diff = time2 - time1;
+        } else {
+            diff = time1 - time2;
+        }
+        days = diff / (1000 * 60 * 60 * 24);
+
+        return days;
     }
 }

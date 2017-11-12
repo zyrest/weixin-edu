@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>个人中心</title>
+    <link href="/css/weui.min.css" rel="stylesheet"/>
+    <script src="/js/weui.min.js"></script>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font: inherit;
+            font-size: 100%;
+            vertical-align: baseline;
+        }
+        html{
+            font-family: Arial,Helvetica,"STHeiti STXihei","Microsoft YaHei",Tohoma,serif;
+            -webkit-text-size-adjust: 100%;
+            -moz-text-size-adjust: 100%;
+            padding-bottom: 50px;
+            color: #333;
+        }
+
+        .header{
+            max-height: 38px;
+            min-height: 36px;
+            background-color: #000;
+            color: #b2bac8;
+        }
+        .header-info{
+            padding: 5px 0 5px 10px;
+        }
+        .header-content,.header-image{
+            height: 24px;
+            vertical-align: middle;
+            line-height: 32px;
+        }
+        .content{
+
+        }
+        .content-image{
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .show-img{
+            height: auto;
+            width: 100%;
+            max-width: 500px;
+        }
+        .content-name{
+            text-align: center;
+        }
+        .footer{
+            height: 50px;
+            width: 100%;
+        }
+        .bottom-fix{
+            background-color: #F44;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            border-top: 2px solid #e5e5e5;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        .buy-btn{
+            text-decoration: none;
+        }
+        .buy-vip{
+            font-size: 18px;
+            line-height: 50px;
+            text-align: center;
+            color: #fff;
+        }
+        .content-vip{
+            margin-top: 20px;
+            text-align: center;
+            height: 15%;
+        }
+        .responsive-wrapper-1{
+            width: 50%;
+            display: inline-block;
+            float: left;
+        }
+        .vip-content{
+            display: inline-block;
+            float: left;
+            width: 50%;
+            margin-bottom: 20px;
+        }
+        .separator{
+            position: relative;
+        }
+        .separator:after{
+            position: absolute;
+            top:0.1em;
+            height: calc(100% - 0.2em);
+            left:0;
+            content: '';
+            width:0;
+            border-left: solid gray 1px;
+        }
+        .content-money{
+            clear: both;
+            background-color: orangered;
+            margin: 10px 0;
+        }
+        .money-title{
+            font-size: 0.72em;
+            color: #f8f8f8;
+            margin-bottom: 20px;
+        }
+        .money-count{
+            font-size: 1.2em;
+            color: #f8f8f8;
+        }
+        .content-team{
+            text-align: center;
+            height: 15%;
+        }
+        .team-image{
+            height: 48px;
+            width: 48px;
+            vertical-align: middle;
+        }
+        .join-in{
+            position: fixed;
+            left: 0;
+            bottom: 52px;
+            width: 100%;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            text-align: right;
+            font-size: 0.9em;
+            color: gray;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+
+    <div class="header">
+        <div class="js-mp-info share-mp-info ">
+            <div class="header-info">
+                <img class="header-image" width="24" height="24" src="/img/star.png">
+                <i class="header-content">龙跃科技                            </i>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+
+        <div class="content-image">
+            <img class="show-img" src="/img/bolang.png">
+        </div>
+        <div class="content-name">
+            <p th:text="${user.nickname}">nickname</p>
+            <p style="color: red" th:text="${user.id}" >userId</p>
+        </div>
+
+        <div class="content-vip">
+            <div class="vip-content">
+                <p>是否为会员</p>
+                <p style="color: red" th:text="${isVip} == true ? '是' : '否'">否</p>
+            </div>
+            <!--<hr style="width:2px;height:20px;background-color: black"/>-->
+            <div class="vip-content separator" >
+                <p>会员剩余时间</p>
+                <p style="color: red" th:text="|${tillDate}天|">0天</p>
+            </div>
+        </div>
+
+        <div class="content-money">
+            <h2 class="money-title">可提现佣金(元):</h2>
+
+            <div class="money-count">
+                <span>¥</span><i class="count" th:text="${balance}">0.00</i>
+            </div>
+        </div>
+
+        <div class="content-team">
+            <div class="vip-content" >
+                <img class="team-image" width="48" height="48" src="/img/people.png">
+                <p>团队成员</p>
+                <p th:text="|${people}人|">0人</p>
+            </div>
+            <!--<hr style="width:2px;height:20px;background-color: black"/>-->
+            <div class="vip-content separator" >
+                <img class="team-image" width="48" height="48" src="/img/level.png">
+                <p>代理等级(1级最低)</p>
+                <p th:text="${level}">0</p>
+            </div>
+        </div>
+    </div>
+
+    <br><br><br><br><br><br>
+    <div class="join-in">如果您想加入代理，请联系客服123456</div>
+
+    <div class="bottom-fix footer">
+        <div class="responsive-wrapper-1">
+            <a href="javascript:ha()" class="buy-btn">
+                <div class="buy-vip">购买会员</div>
+            </a>
+        </div>
+
+        <div class="responsive-wrapper">
+            <a href="javascript:yo()" class="buy-btn">
+                <div class="buy-vip">会员中心</div>
+            </a>
+        </div>
+    </div>
+
+</div>
+
+</body>
+
+<script type="text/javascript">
+    //<![CDATA[
+    //全局变量
+    var money = '0';
+    //]]>
+</script>
+
+<script>
+    function showPicker() {
+        var param = [
+            {"label" : "一个月", "value" : '30'},
+            {"label" : "一年", "value" : '300'}
+        ];
+        weui.picker(param, {
+            onChange: function (result) {
+                console.log(result);
+            },
+            onConfirm: function (result) {
+                money = result;
+            }
+        });
+    }
+    function ha() {
+        alert("ha")
+    }
+    function yo() {
+        alert("yo")
+    }
+</script>
+</html>
