@@ -34,4 +34,6 @@ public interface UserEntityMapper {
     @Select("select id,pid,balance,vip_end_date,level,nickname from t_user where id=#{id}")
     UserEntity getUserById(@Param("id") Integer id);
 
+    @Select("SELECT COUNT(0) FROM t_user WHERE pid=#{pid}")
+    long getCountsByPid(@Param("pid") Integer pid);
 }

@@ -80,6 +80,8 @@ function setContent(pageNum) {
                 html += '<input type="button" class="btn btn-warning" value="删除" onclick="deleteOne(' + id + ');" />';
                 html += '</td>';
 
+                html += '</tr>';
+
                 $("#tbody_").append($(html));
             })
         }
@@ -96,7 +98,7 @@ page({
     num : 10,//页面展示的页码个数
     step : 6,//每次更新页码个数
     callBack:function(i){
-        setContent("/page/interviewVideos/page/" + i);
+        setContent(i);
         nowPage = i;
         console.log(i);
     }

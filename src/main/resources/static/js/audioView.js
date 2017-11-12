@@ -102,7 +102,7 @@ page({
     num : 10,//页面展示的页码个数
     step : 6,//每次更新页码个数
     callBack:function(i){
-        setContent("/page/stories/page/" + i);
+        setContent(i);
         nowPage = i;
         console.log(i);
     }

@@ -70,4 +70,6 @@ public class UserService {
         userEntity.setBalance(balance);
         return userEntityMapper.updateByIdSelective(userEntity);
     }
+
+    public long getCountsByPid(Integer pid) {return userEntityMapper.getCountsByPid(pid);}
 }

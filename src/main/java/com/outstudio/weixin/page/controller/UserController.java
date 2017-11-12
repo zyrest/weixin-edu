@@ -36,8 +36,8 @@ public class UserController {
         view.addObject("isVip", TokenManager.isVip());
         view.addObject("tillDate",TokenManager.tillDate());
 
-        view.addObject("balance", 20);
-        view.addObject("people", 20);
+        view.addObject("balance", user.getBalance());
+        view.addObject("people", userService.getCountsByPid(user.getId()));
         view.addObject("level", 1);
         view.setViewName("hide/page/personalCentre");
         return view;
