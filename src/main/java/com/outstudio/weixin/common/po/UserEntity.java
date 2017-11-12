@@ -6,6 +6,10 @@ import java.util.Date;
 public class UserEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    private Integer id;
+    private Integer pid;
+    private double balance;
+
     private String openid;
 
     private String nickname;
@@ -20,7 +24,6 @@ public class UserEntity implements Serializable {
 
     private Date vip_end_date;
 
-    private Integer points;
 
     public String getOpenid() {
         return openid;
@@ -32,6 +35,30 @@ public class UserEntity implements Serializable {
 
     public String getNickname() {
         return nickname;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getPid() {
+        return pid;
+    }
+
+    public void setPid(Integer pid) {
+        this.pid = pid;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Integer balance) {
+        this.balance = balance;
     }
 
     public void setNickname(String nickname) {
@@ -78,11 +105,4 @@ public class UserEntity implements Serializable {
         this.vip_end_date = vip_end_date;
     }
 
-    public Integer getPoints() {
-        return points;
-    }
-
-    public void setPoints(Integer points) {
-        this.points = points;
-    }
 }

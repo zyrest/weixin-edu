@@ -25,13 +25,20 @@ public class ChargeService {
     public void charge(String openid,
                        String transaction_id,
                        String out_trade_no,
-                       String now_date) {
+                       String now_date,
+                       String total_fee) {
+        int days = 0;
+        if ("3000".equalsIgnoreCase(total_fee)) {
+            days = 30;
+        } else if ("30000".equalsIgnoreCase(total_fee)) {
+            days = 365;
+        }
         UserEntity userEntity = userService.getUserByOpenId(openid);
         Date vip_end_date = userEntity.getVip_end_date();
         if (DateUtil.isNotExpire(vip_end_date)) {
-            userEntity.setVip_end_date(DateUtil.dateAdd(vip_end_date, 365));
+            userEntity.setVip_end_date(DateUtil.dateAdd(vip_end_date, days));
         } else {
-            userEntity.setVip_end_date(DateUtil.dateAdd(new Date(), 365));
+            userEntity.setVip_end_date(DateUtil.dateAdd(new Date(), days));
         }
         userService.updateUser(userEntity);
 

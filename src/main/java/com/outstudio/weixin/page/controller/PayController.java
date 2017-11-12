@@ -43,7 +43,8 @@ public class PayController {
     }
 
     @RequestMapping("/wxpay")
-    public Map<String, String> pay(HttpServletRequest request) {
+    public Map<String, String> pay(HttpServletRequest request,
+                                   @RequestParam("fee") String fee) {
 
         init();
 
@@ -51,8 +52,8 @@ public class PayController {
         data.put("body", "vip充值");
         data.put("out_trade_no", DateUtil.getFormatDate());
         data.put("device_info", "WEB");
-        data.put("total_fee", "1");
-        data.put("spbill_create_ip",request.getRemoteAddr());
+        data.put("total_fee", fee);
+        data.put("spbill_create_ip", request.getRemoteAddr());
         data.put("notify_url", "/open/page/wxpayDone");
         data.put("trade_type", "JSAPI");
         data.put("openid", TokenManager.getWeixinToken().getOpenid());
@@ -60,6 +61,7 @@ public class PayController {
         Map<String, String> result = null;
         try {
             result = wxPay.unifiedOrder(data);
+            result = processPayResult(result);
         } catch (Exception e) {
             LoggerUtil.error(getClass(), e.getMessage());
             e.printStackTrace();
@@ -67,10 +69,32 @@ public class PayController {
         return result;
     }
 
+
+    private Map<String, String> processPayResult(Map<String, String> result) {
+        Map<String, String> processResult = new HashMap<String, String>();
+        if ("SUCCESS".equalsIgnoreCase(result.get("return_code"))) {
+            if ("SUCCESS".equalsIgnoreCase(result.get("result_code"))) {
+                processResult.put("trade_type", result.get("trade_type"));
+                processResult.put("prepay_id", result.get("prepay_id"));
+                processResult.put("result", "success");
+                return processResult;
+            } else {
+                processResult.put("result_code", result.get("result_code"));
+                processResult.put("err_code", result.get("err_code"));
+                processResult.put("err_code_des", result.get("err_code_des"));
+                return processResult;
+            }
+        } else {
+            processResult.put("return_code", result.get("return_code"));
+            processResult.put("return_msg", result.get("return_msg"));
+            return processResult;
+        }
+    }
+
     @RequestMapping("/wxpayDone")
     public String processResult(@RequestParam("return_code") String return_code,
-                              @RequestParam("return_msg") String return_msg,
-                              HttpServletRequest request) {
+                                @RequestParam("return_msg") String return_msg,
+                                HttpServletRequest request) {
 
         String stringResult = null;
 
@@ -82,13 +106,15 @@ public class PayController {
                 String transaction_id = request.getParameter("transaction_id");
                 String out_trade_no = request.getParameter("out_trade_no");
                 String now_date = request.getParameter("time_end");
-                chargeService.charge(openid, transaction_id, out_trade_no, now_date);
+                String total_fee = request.getParameter("total_fee");
 
-                Map<String,String> result = new HashMap<>();
+                chargeService.charge(openid, transaction_id, out_trade_no, now_date, total_fee);
+
+                Map<String, String> result = new HashMap<>();
                 result.put("return_code", "SUCCESS");
                 result.put("return_msg", "OK");
                 try {
-                    stringResult=WXPayUtil.mapToXml(result);
+                    stringResult = WXPayUtil.mapToXml(result);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -103,7 +129,7 @@ public class PayController {
                 result.put("return_code", "FAIL");
                 result.put("return_msg", err_code + "----" + err_code_des);
                 try {
-                    stringResult= WXPayUtil.mapToXml(result);
+                    stringResult = WXPayUtil.mapToXml(result);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -114,7 +140,7 @@ public class PayController {
 
         Map<String, String> result = new HashMap<>();
         result.put("return_code", "FAIL");
-        result.put("return-msg", "支付失败，请联系管理员或者稍后重试 \n" + return_msg);
+        result.put("return-msg", return_msg);
         try {
             stringResult = WXPayUtil.mapToXml(result);
         } catch (Exception e) {

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by 96428 on 2017/9/6.
@@ -34,5 +35,21 @@ public class UserService {
 
     public void updateUser(UserEntity userEntity) {
         userEntityMapper.updateByPrimaryKeySelective(userEntity);
+    }
+
+    public List<UserEntity> getAllUsers() {
+        return userEntityMapper.getAllUsers();
+    }
+
+    public int setAgent(Integer id, Integer level) {
+        return userEntityMapper.setAgent(id, level);
+    }
+
+    public int setBalance(Integer id, double balance) {
+        return userEntityMapper.setBalance(id, balance);
+    }
+
+    public UserEntity getUserBuId(Integer id) {
+        return userEntityMapper.getUserById(id);
     }
 }
