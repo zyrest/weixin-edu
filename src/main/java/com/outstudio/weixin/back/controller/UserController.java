@@ -1,6 +1,7 @@
 package com.outstudio.weixin.back.controller;
 
 import com.github.pagehelper.PageHelper;
+import com.outstudio.weixin.common.po.UserEntity;
 import com.outstudio.weixin.common.service.UserService;
 import com.outstudio.weixin.common.utils.MessageVoUtil;
 import com.outstudio.weixin.common.vo.MessageVo;
@@ -8,17 +9,21 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.websocket.server.PathParam;
+import java.util.List;
 
 @RestController("/back")
 public class UserController {
+
+    private static final int pageSize = 10;
 
     @Resource
     UserService userService;
 
     @GetMapping("/users/{pageNum}")
     public MessageVo getUsers(@PathVariable int pageNum) {
-        PageHelper.startPage(pageNum, 10);
-        return MessageVoUtil.success(userService.getAllUsers());
+        PageHelper.startPage(pageNum, pageSize);
+        List<UserEntity> userEntities = userService.getAllUsers();
+        return MessageVoUtil.success(userEntities);
     }
 
     @PutMapping("/user/{id}")
