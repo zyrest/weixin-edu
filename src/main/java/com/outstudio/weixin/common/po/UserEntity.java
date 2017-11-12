@@ -9,6 +9,7 @@ public class UserEntity implements Serializable {
     private Integer id;
     private Integer pid;
     private double balance;
+    private Integer level;
 
     private String openid;
 
@@ -29,12 +30,41 @@ public class UserEntity implements Serializable {
         return openid;
     }
 
+    @Override
+    public String toString() {
+        return "UserEntity{" +
+                "id=" + id +
+                ", pid=" + pid +
+                ", balance=" + balance +
+                ", level=" + level +
+                ", openid='" + openid + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", sex=" + sex +
+                ", province='" + province + '\'' +
+                ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
+                ", vip_end_date=" + vip_end_date +
+                '}';
+    }
+
     public void setOpenid(String openid) {
         this.openid = openid == null ? null : openid.trim();
     }
 
     public String getNickname() {
         return nickname;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
     }
 
     public Integer getId() {

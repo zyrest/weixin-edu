@@ -17,6 +17,6 @@ public class TestUser {
 
     @Test
     public void test() {
-        System.out.println(userEntityMapper.getAllUsers().isEmpty());
+        System.out.println(userEntityMapper.getUserById(1));
     }
 }

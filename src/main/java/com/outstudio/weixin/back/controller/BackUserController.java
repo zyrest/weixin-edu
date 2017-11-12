@@ -11,8 +11,9 @@ import javax.annotation.Resource;
 import javax.websocket.server.PathParam;
 import java.util.List;
 
-@RestController("/back")
-public class UserController {
+@RestController
+@RequestMapping("/back")
+public class BackUserController {
 
     private static final int pageSize = 10;
 
