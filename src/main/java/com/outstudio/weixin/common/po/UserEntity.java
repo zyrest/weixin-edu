@@ -87,10 +87,6 @@ public class UserEntity implements Serializable {
         return balance;
     }
 
-    public void setBalance(Integer balance) {
-        this.balance = balance;
-    }
-
     public void setNickname(String nickname) {
         this.nickname = nickname == null ? null : nickname.trim();
     }

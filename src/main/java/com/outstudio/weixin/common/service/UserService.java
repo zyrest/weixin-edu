@@ -49,7 +49,25 @@ public class UserService {
         return userEntityMapper.setBalance(id, balance);
     }
 
-    public UserEntity getUserBuId(Integer id) {
+    public UserEntity getUserById(Integer id) {
         return userEntityMapper.getUserById(id);
+    }
+
+    public int addBalance(Integer id, double fee) {
+        UserEntity userEntity = getUserById(id);
+        double balance = userEntity.getBalance();
+        int level = userEntity.getLevel();
+        if (level == 0) {
+            balance = balance + 0;
+        } else if (level == 1) {
+            balance += fee * 0.2;
+        } else if (level == 2) {
+            balance += fee * 0.5;
+        } else if (level == 3) {
+            balance += fee * 0.7;
+        }
+
+        userEntity.setBalance(balance);
+        return userEntityMapper.updateByIdSelective(userEntity);
     }
 }

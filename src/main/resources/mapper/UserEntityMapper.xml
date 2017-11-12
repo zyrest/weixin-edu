@@ -135,6 +135,39 @@
         </set>
         where openid = #{openid,jdbcType=VARCHAR}
     </update>
+    <update id="updateByIdSelective" parameterType="com.outstudio.weixin.common.po.UserEntity">
+        update t_user
+        <set>
+            <if test="nickname != null">
+                nickname = #{nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                sex = #{sex,jdbcType=INTEGER},
+            </if>
+            <if test="province != null">
+                province = #{province,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null">
+                city = #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="country != null">
+                country = #{country,jdbcType=VARCHAR},
+            </if>
+            <if test="vip_end_date != null">
+                vip_end_date = #{vip_end_date,jdbcType=TIMESTAMP},
+            </if>
+            <if test="id != null">
+                id = #{id,jdbcType=INTEGER},
+            </if>
+            <if test="pid != null">
+                pid = #{pid,jdbcType=INTEGER},
+            </if>
+            <if test="balance != null">
+                balance = #{balance,jdbcType=DECIMAL},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
     <update id="updateByPrimaryKey" parameterType="com.outstudio.weixin.common.po.UserEntity">
         UPDATE t_user
         SET nickname     = #{nickname,jdbcType=VARCHAR},

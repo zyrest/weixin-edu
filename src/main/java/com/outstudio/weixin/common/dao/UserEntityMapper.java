@@ -18,6 +18,8 @@ public interface UserEntityMapper {
 
     int updateByPrimaryKeySelective(UserEntity record);
 
+    int updateByIdSelective(UserEntity record);
+
     int updateByPrimaryKey(UserEntity record);
 
     @Select("select id,pid,balance,vip_end_date,level,nickname from t_user")
@@ -31,4 +33,5 @@ public interface UserEntityMapper {
 
     @Select("select id,pid,balance,vip_end_date,level,nickname from t_user where id=#{id}")
     UserEntity getUserById(@Param("id") Integer id);
+
 }

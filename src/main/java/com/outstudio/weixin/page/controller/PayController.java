@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,7 +45,8 @@ public class PayController {
 
     @RequestMapping("/wxpay")
     public Map<String, String> pay(HttpServletRequest request,
-                                   @RequestParam("fee") String fee) {
+                                   @RequestParam("fee") String fee,
+                                   @RequestParam("pid") Integer pid) {
 
         init();
 
@@ -61,7 +63,7 @@ public class PayController {
         Map<String, String> result = null;
         try {
             result = wxPay.unifiedOrder(data);
-            result = processPayResult(result);
+            result = processPayResult(result, fee, pid);
         } catch (Exception e) {
             LoggerUtil.error(getClass(), e.getMessage());
             e.printStackTrace();
@@ -70,13 +72,17 @@ public class PayController {
     }
 
 
-    private Map<String, String> processPayResult(Map<String, String> result) {
+    private Map<String, String> processPayResult(Map<String, String> result, String fee, Integer pid) {
         Map<String, String> processResult = new HashMap<String, String>();
         if ("SUCCESS".equalsIgnoreCase(result.get("return_code"))) {
             if ("SUCCESS".equalsIgnoreCase(result.get("result_code"))) {
                 processResult.put("trade_type", result.get("trade_type"));
                 processResult.put("prepay_id", result.get("prepay_id"));
                 processResult.put("result", "success");
+                if (pid == null)
+                    chargeService.charge(TokenManager.getWeixinToken().getOpenid(), DateUtil.getFormatDate(), new Date(), fee);
+                else
+                    chargeService.charge(TokenManager.getWeixinToken().getOpenid(), DateUtil.getFormatDate(), new Date(), fee, pid);
                 return processResult;
             } else {
                 processResult.put("result_code", result.get("result_code"));
@@ -108,7 +114,7 @@ public class PayController {
                 String now_date = request.getParameter("time_end");
                 String total_fee = request.getParameter("total_fee");
 
-                chargeService.charge(openid, transaction_id, out_trade_no, now_date, total_fee);
+                 chargeService.charge(openid, transaction_id);
 
                 Map<String, String> result = new HashMap<>();
                 result.put("return_code", "SUCCESS");

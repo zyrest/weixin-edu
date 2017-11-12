@@ -23,9 +23,8 @@ public class ChargeService {
     private UserService userService;
 
     public void charge(String openid,
-                       String transaction_id,
                        String out_trade_no,
-                       String now_date,
+                       Date now_date,
                        String total_fee) {
         int days = 0;
         if ("3000".equalsIgnoreCase(total_fee)) {
@@ -42,17 +41,31 @@ public class ChargeService {
         }
         userService.updateUser(userEntity);
 
-        try {
-            ChargeEntity chargeEntity = new ChargeEntity();
-            chargeEntity.setOpenid(openid);
-            chargeEntity.setNow_date(DateUtil.StringToOriginalDate(now_date));
-            chargeEntity.setDates(365);
-            chargeEntity.setTransaction_id(transaction_id);
-            chargeEntity.setOut_trade_no(out_trade_no);
-
-            chargeEntityMapper.insertSelective(chargeEntity);
-        } catch (ParseException e) {
-            e.printStackTrace();
+        if (userEntity.getPid() != 0) {
+            userService.addBalance(userEntity.getPid(), Integer.parseInt(total_fee)/100);
         }
+
+        ChargeEntity chargeEntity = new ChargeEntity();
+        chargeEntity.setOpenid(openid);
+        chargeEntity.setNow_date(now_date);
+        chargeEntity.setDates(365);
+        chargeEntity.setOut_trade_no(out_trade_no);
+
+        chargeEntityMapper.insertSelective(chargeEntity);
+    }
+    public void charge(String openid,
+                       String out_trade_no,
+                       Date now_date,
+                       String total_fee,
+                       Integer pid) {
+        charge(openid, out_trade_no, now_date, total_fee);
+        double fee = Integer.parseInt(total_fee)/100;
+        userService.addBalance(pid, fee);
+    }
+
+    public void charge(String openid, String transaction_id) {
+        ChargeEntity chargeEntity = chargeEntityMapper.getByOpenid(openid);
+        chargeEntity.setTransaction_id(transaction_id);
+        chargeEntityMapper.updateByPrimaryKeySelective(chargeEntity);
     }
 }
