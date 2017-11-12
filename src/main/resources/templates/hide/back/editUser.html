@@ -147,7 +147,7 @@
 
         var data = JSON.stringify({id: id, balance: balance, level:level});
         $.ajax({
-            url : '',
+            url : '/back/users',
             type : "PUT",
             data : data,
             dataType:'json',

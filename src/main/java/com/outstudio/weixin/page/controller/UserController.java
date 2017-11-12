@@ -32,13 +32,14 @@ public class UserController {
 //        UserEntity user = new UserEntity();
 //        user.setNickname("zhangsan");
 //        user.setOpenid("asdasdads");
+//        user.setId(1);
         view.addObject("user", user);
         view.addObject("isVip", TokenManager.isVip());
         view.addObject("tillDate",TokenManager.tillDate());
 
         view.addObject("balance", user.getBalance());
         view.addObject("people", userService.getCountsByPid(user.getId()));
-        view.addObject("level", 1);
+        view.addObject("level", user.getLevel());
         view.setViewName("hide/page/personalCentre");
         return view;
     }

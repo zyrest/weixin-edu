@@ -80,7 +80,12 @@ public class TokenManager {
     public static long tillDate() {
         if (!isVip()) return 0;
         else {
-            UserEntity user = getWeixinToken();
+            UserEntity user;
+            try {
+                user = getWeixinToken();
+            } catch (Exception e) {
+                return 0;
+            }
             Date until = user.getVip_end_date();
 
             return DateUtil.daysBetween(new Date(), until);

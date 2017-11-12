@@ -26,7 +26,7 @@ public interface UserEntityMapper {
     List<UserEntity> getAllUsers();
 
     @Update("update t_user set level=#{level} where id = #{id}")
-    int setAgent(Integer id, Integer level);
+    int setAgent(@Param("id") Integer id,@Param("level") Integer level);
 
     @Update("update t_user set balance=#{balance} where id = #{id}")
     int setBalance(@Param("id") Integer id, @Param("balance") double balance);
@@ -36,4 +36,7 @@ public interface UserEntityMapper {
 
     @Select("SELECT COUNT(0) FROM t_user WHERE pid=#{pid}")
     long getCountsByPid(@Param("pid") Integer pid);
+
+    @Select("SELECT COUNT(0) FROM t_user")
+    long getCounts();
 }

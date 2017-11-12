@@ -171,8 +171,8 @@
             <img class="show-img" src="/img/bolang.png">
         </div>
         <div class="content-name">
-            <p th:text="${user.nickname}">nickname</p>
-            <p style="color: red" th:text="${user.id}" >userId</p>
+            <p th:text="|昵称：  ${user.nickname}|">nickname</p>
+            <p style="color: red" th:text="|ID：  ${user.id}|" >userId</p>
         </div>
 
         <div class="content-vip">
