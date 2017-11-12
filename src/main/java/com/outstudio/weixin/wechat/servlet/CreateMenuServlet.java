@@ -15,11 +15,11 @@ import javax.servlet.http.HttpServlet;
 /**
  * Created by 96428 on 2017/7/16.
  */
-//@WebServlet(
-//        name = "CreateMenuServlet",
-//        urlPatterns = "/self/CreateMenuServlet",
-//        loadOnStartup = 3
-//)
+@WebServlet(
+        name = "CreateMenuServlet",
+        urlPatterns = "/self/CreateMenuServlet",
+        loadOnStartup = 3
+)
 public class CreateMenuServlet extends HttpServlet {
     private Logger logger = Logger.getLogger(CreateMenuServlet.class);
 
