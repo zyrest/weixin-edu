@@ -20,7 +20,7 @@ import java.util.List;
 @RequestMapping("/page")
 public class InterviewVideoController {
     private static final String REDIRECT_URL = "";
-    private static final int pageSize = 5;
+    private static final int pageSize = 10;
 
     @Resource
     private InterviewVideoService interviewVideoService;

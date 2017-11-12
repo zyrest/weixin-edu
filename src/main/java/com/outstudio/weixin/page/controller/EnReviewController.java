@@ -20,7 +20,7 @@ import java.util.List;
 @RequestMapping("/page")
 public class EnReviewController {
     private static final String REDIRECT_URL = "";
-    private static final int pageSize = 3;
+    private static final int pageSize = 10;
 
     @Resource
     private EnReviewService enReviewService;

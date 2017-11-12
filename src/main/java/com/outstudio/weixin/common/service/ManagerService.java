@@ -31,6 +31,8 @@ public class ManagerService {
             int resultCode = setPassword(managerEntity.getM_account(), newPassword);
             if (resultCode != 0) {
                 return "success";
+            } else {
+                return "fail";
             }
         }
     }

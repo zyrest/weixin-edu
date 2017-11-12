@@ -1,5 +1,6 @@
 package com.outstudio.weixin.back.controller;
 
+import com.github.pagehelper.PageHelper;
 import com.outstudio.weixin.common.service.UserService;
 import com.outstudio.weixin.common.utils.MessageVoUtil;
 import com.outstudio.weixin.common.vo.MessageVo;
@@ -14,8 +15,9 @@ public class UserController {
     @Resource
     UserService userService;
 
-    @GetMapping("/users")
-    public MessageVo getUsers() {
+    @GetMapping("/users/{pageNum}")
+    public MessageVo getUsers(@PathVariable int pageNum) {
+        PageHelper.startPage(pageNum, 10);
         return MessageVoUtil.success(userService.getAllUsers());
     }
 
