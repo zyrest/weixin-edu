@@ -34,6 +34,7 @@ public class MenuUtil {
         Button button = new Button();
         button.setName("启蒙英语");
 
+
         List<Button> sub_buttons = new ArrayList<>();
         sub_buttons.add(createViewButton("英语课堂", domain+"page/view/english"));
         sub_buttons.add(createViewButton("复习内容", domain+"page/view/english#review"));
