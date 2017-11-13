@@ -130,7 +130,7 @@
             <h2 class="goods-title">购买会员享受全部课程</h2>
 
             <div class="goods-price">
-                <span>¥</span><i class="js-goods-price price">30.00</i>
+                <span>¥</span><i id="timePrice" class="js-goods-price price">30.00</i>
             </div>
         </div>
 
@@ -231,7 +231,8 @@
                 console.log(result);
             },
             onConfirm: function (result) {
-                $('.js-goods-price').html(result);
+                $('#timePrice').html(result);
+                $('#timePrice').val(result);
                 money = result;
             }
         });

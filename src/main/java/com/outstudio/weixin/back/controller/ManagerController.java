@@ -15,9 +15,9 @@ import java.util.Map;
 public class ManagerController {
 
     @Resource
-    ManagerService managerService;
+    private ManagerService managerService;
 
-    @PutMapping("/password/{account}")
+    @PutMapping("/sub/password")
     public MessageVo changePassword(@RequestBody Map<String, String> map) {
         String result = managerService.changePassword(map.get("newPassword"), map.get("oldPassword"));
         if ("success".equalsIgnoreCase(result))

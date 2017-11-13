@@ -15,15 +15,15 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/back")
+@RequestMapping("/back/users")
 public class BackUserController {
 
     private static final int pageSize = 10;
 
     @Resource
-    UserService userService;
+    private UserService userService;
 
-    @GetMapping("/users/page/{pageNum}")
+    @GetMapping("/page/{pageNum}")
     @ResponseBody
     public MessageVo getUsers(@PathVariable int pageNum) {
         PageHelper.startPage(pageNum, pageSize);
@@ -31,7 +31,7 @@ public class BackUserController {
         return MessageVoUtil.success(userEntities);
     }
 
-    @PutMapping("/users")
+    @PutMapping("")
     @ResponseBody
     public MessageVo setAgent(@RequestBody Map<String, String> maps) {
         Integer id = Integer.valueOf(maps.get("id"));
@@ -51,7 +51,7 @@ public class BackUserController {
 //        return MessageVoUtil.created("",);
 //    }
 
-    @GetMapping("/users/pageNum")
+    @GetMapping("/pageNum")
     @ResponseBody
     public MessageVo getPages() {
         long counts = userService.getCounts();
@@ -62,7 +62,7 @@ public class BackUserController {
         return MessageVoUtil.success(ans);
     }
 
-    @GetMapping("/users/info/{id}")
+    @GetMapping("/info/{id}")
     public ModelAndView onePage(@PathVariable("id") Integer id) {
         ModelAndView view = new ModelAndView();
         UserEntity user = userService.getUserById(id);
@@ -70,5 +70,6 @@ public class BackUserController {
         view.setViewName("hide/back/editUser");
         return view;
     }
+
 
 }
