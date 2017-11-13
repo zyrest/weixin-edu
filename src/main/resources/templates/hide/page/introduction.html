@@ -1,0 +1,273 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <title th:utext="${data.title}" >
+        某一id详细信息
+    </title>
+    <style>
+        body{
+            -webkit-user-select:initial;
+            background-color: #fff;
+        }
+        body>a{display: none;}
+        .ui-header-positive, .ui-footer-positive {
+            background-color: #62cfb3;
+        }
+        .ui-btn, .ui-btn-lg, .ui-btn-s {color: #62cfb3;}
+        .ui-list-link > li:after {color: #62cfb3;}
+        .ui-footer {
+            background-color:rgba(255, 255, 255, 0.9);
+        }
+        .ui-footer-wechat {
+            background-color:rgba(0, 0, 0, 0.8);
+        }
+        .ui-footer-wechat a {
+            color: #FFFFFF;
+        }
+        .ui-footer-btn {background-image: none;}
+
+        .upgrade {
+            color: #62cfb3;
+            vertical-align: middle;
+        }
+
+        .try-lesson {
+            background-color: #494e54;
+        }
+
+        .try-lesson img {
+            margin: 0 auto;
+            text-align: center;
+            display: block;
+            max-width: 100%;
+        }
+
+        .ui-txt-white {
+            padding-left: 10px;
+        }
+    </style>
+
+    <style>
+        .cl::after, .cl::before {
+            clear: both;
+            content: "";
+            display: block;
+            height: 0;
+        }
+        .fl {
+            float: left;
+        }
+        .fr {
+            float: right;
+        }
+        .abs {
+            position: absolute;
+        }
+        .rel {
+            position: relative;
+        }
+
+        .img, img {
+            border: medium none;
+            display: inline-block;
+            vertical-align: middle;
+            background-size: cover;
+        }
+
+        .btn, .icon_p {
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .icon_p {
+            background: rgba(0, 0, 0, 0) url("/img/music_sprite.png") no-repeat scroll 0 0 / 64px auto;
+        }
+
+        .icon-player-big {
+            height: 64px;
+            width: 64px;
+        }
+        .is-ready .icon-player-big {
+            background-position: 0 -2px;
+        }
+        .is-paused .icon-player-big {
+            background-position: 0 -70px;
+        }
+
+        .pic {
+            background-color: #ccc;
+        }
+
+        .wrapper {
+            padding: 0 10px;
+        }
+
+        .playing {
+            overflow: hidden;
+        }
+
+        .playing .bg-img {
+            background-position: center center;
+            background-size: cover;
+            filter: blur(10px);
+            height: 100%;
+            top: 0;
+            width: 100%;
+            z-index: -2;
+        }
+
+        .playing section.wrapper {
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .playing .wrapper .pic {
+            background-size: 100% auto;
+            display: block;
+            height: 0;
+            margin: 25px auto 14px;
+            padding-bottom: 50%;
+            width: 50%;
+        }
+
+        .playing .wrapper .img {
+            height: 0;
+            padding-bottom: 100%;
+            width: 100%;
+        }
+
+        .playing .btn-player {
+            left: 50%;
+            margin: -32px 0 0 -32px;
+            top: 50%;
+        }
+
+        .process-panel {
+            color: #b2bac8;
+            display: inline-block;
+            font-size: 10px;
+            line-height: 10px;
+            padding: 1px 0;
+            width: 50%;
+        }
+        .process-panel .fl {
+            margin-left: -40px;
+        }
+        .process-panel .fr {
+            margin-right: -40px;
+        }
+        .progressbar {
+            background-color: #d9dfe5;
+            height: 1px;
+            margin: 5px auto 0;
+        }
+        .playbar {
+            background-color: #0894ec;
+            height: 100%;
+            width: 50%;
+        }
+
+        h4 {
+            color: #1a1a1a;
+            padding-bottom: 4px;
+        }
+
+        .ui-dialog-bd h4 {
+            text-align: center;
+        }
+
+        .ui-btn-group > button {
+            color: #62cfb3;
+        }
+
+        div.ui-dialog-bd {
+            color: #5f5f5f;
+            font-size: 13px;
+            text-align: center;
+        }
+    </style>
+    <link rel="stylesheet" href="http://7xnvpc.com2.z0.glb.qiniucdn.com/misc/frozenui/css/frozen.css">
+
+    <script src="http://7xnvpc.com2.z0.glb.qiniucdn.com/misc/frozenui/lib/zepto.min.js?v=4"></script>
+    <script src="http://7xnvpc.com2.z0.glb.qiniucdn.com/misc/frozenui/js/frozen.js?v=4"></script>
+    <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.jplayer.min.js}"></script>
+
+    <link href="/css/weui.min.css" rel="stylesheet"/>
+    <script src="/js/weui.min.js"></script>
+</head>
+
+<body>
+
+<section class="ui-container">
+
+    <div class="playing">
+        <section class="wrapper">
+            <div class="pic default-img rel">
+                <span style="background-image:url('/img/longyue-logo.png');" class="img"></span>
+            </div>
+        </section>
+    </div>
+
+    <div class="ui-whitespace ui-center" style="color: #5f5f5f;height:auto;font-size:13px;margin-bottom: 10px;">
+
+        <div class="page">
+            <!--<div class="hd">-->
+                <!--<h1 class="page_title" th:utext="${data.title}">Article</h1>-->
+                <!--<h3 th:utext="${#dates.format(data.post_date, 'yyyy-MM-dd')}">post-date</h3>-->
+            <!--</div>-->
+            <!--<hr>-->
+            <div class="bd">
+                <article class="weui_article">
+                    <section>
+                        <!--<section style="margin-top: 10px;margin-bottom: 10px">-->
+                            <!--<p th:utext="${data.description}">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod-->
+                                <!--tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,-->
+                                <!--quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo-->
+                                <!--consequat. Duis aute</p>-->
+                        <!--</section>-->
+                        <!--<hr>-->
+                        <section>
+                            <p><span style="font-size: 14px; font-weight: bolder; ">龙跃科技，是一个致力于关注孩子成长和生活的教育平台。</span>
+                                <br> <br>
+                            <hr>
+                                我们秉承“用生活诠释教育，让教育回归本质”的理念，总结了家长在教育孩子过程中遇到的形形色色的问题，专门设置了故事培养和启蒙英语等板块。 <br> <br>
+                                <b>故事培养：</b>我们通过语音故事，让孩子逐步明白在成长过程中为人处事的道理。培养一个懂事乖巧，阳光活泼，热爱学习的孩子，是大多数家长的追求。为此，我们的故事涵盖了安全学习，生活和礼仪等方方面面的话题。
+                            <br>
+                            <b>启蒙英语：</b>语言学习最基本的目的是交流，是在生活中运用。我们根据人类学习语言的普遍规律——声音刺激、语言模仿、系统学习，拍摄了一系列生活化的英语视频，这些视频脱离了枯燥抽象的教材，结合了生活中常见的事物和场景。孩子通过重复看视频，便能在生活中使用。
+                            为激发孩子的学习兴趣，我们鼓励孩子参与我们的故事录音和英语视频制作。欢迎有意向和兴趣的家长和孩子，跟我们联系！我们制作的英语视频，都是孩子现场的真实的学习情况。只要按照我们的方法和节奏，三个月后，孩子并能进行日常的英语交流。
+                            </p>
+                        </section>
+                    </section>
+                </article>
+            </div>
+        </div>
+
+        <div class="try-lesson" th:if="${isVip == false}">
+            <a href="/open/page/free">
+                <img src="/img/try_lesson.png" alt="try free lesson">
+            </a>
+        </div>
+
+    </div>
+
+</section>
+
+<footer class="ui-footer ui-footer-btn" th:if="${isVip == false}">
+    <ul class="ui-tiled ui-border-t">
+        <li>
+            <a href="#todo_charge">
+                <span class="upgrade">升级账户｜解锁完整课程库</span>
+            </a>
+        </li>
+    </ul>
+</footer>
+
+</body>
+</html>

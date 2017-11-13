@@ -48,7 +48,7 @@ public class MenuUtil {
         sub_button.add(createViewButton("个人中心", domain+"page/view/userInfo"));
         sub_button.add(createViewButton("VIP注册", domain+"page/view/vip"));
         sub_button.add(createViewButton("教育讨论", domain+"page/view/video"));
-        sub_button.add(createViewButton("通知", domain+"page/view/message"));
+        sub_button.add(createViewButton("平台简介", domain+"page/view/introduction"));
         button.setName("家长关注");
         button.setSub_button(sub_button);
         return button;
