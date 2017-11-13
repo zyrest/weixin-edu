@@ -74,4 +74,8 @@ public class UserService {
     public long getCountsByPid(Integer pid) {return userEntityMapper.getCountsByPid(pid);}
 
     public long getCounts() {return userEntityMapper.getCounts();}
+
+    public int editUser(UserEntity userEntity) {
+        return userEntityMapper.updateByIdSelective(userEntity);
+    }
 }

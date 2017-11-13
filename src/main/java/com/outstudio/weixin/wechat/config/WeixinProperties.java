@@ -44,7 +44,7 @@ public class WeixinProperties {
      * 网页授权的时候跳转的url
      * 此处必须填域名，并且在微信公众平台设置好，否则将无法完成正确的回调
      */
-    public static final String OAUTH_REDIRECT_URL = "http://www.kuanx.cn/open/page/oauth";
+    public static final String OAUTH_REDIRECT_URL = "http://www.here52.cn/open/page/oauth";
 
     /**
      * 网页授权的时候USER_INFO_CODE中的state标识
@@ -55,4 +55,5 @@ public class WeixinProperties {
      * 格式化的网页授权url
      */
     public static final String FORMATED_USER_INFO_CODE = String.format(USER_INFO_CODE, appID, OAUTH_REDIRECT_URL, USERINFO_SCOPE, OAUTH_STATE);
+
 }

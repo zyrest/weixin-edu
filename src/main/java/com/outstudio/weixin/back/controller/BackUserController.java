@@ -33,23 +33,12 @@ public class BackUserController {
 
     @PutMapping("")
     @ResponseBody
-    public MessageVo setAgent(@RequestBody Map<String, String> maps) {
-        Integer id = Integer.valueOf(maps.get("id"));
-        Double balance = Double.valueOf(maps.get("balance"));
-        Integer level = Integer.valueOf(maps.get("level"));
+    public MessageVo setAgent(@ModelAttribute UserEntity userEntity) {
 
-        userService.setAgent(id, level);
-        userService.setBalance(id, balance);
+        userService.editUser(userEntity);
 
         return MessageVoUtil.success();
     }
-
-//    @PutMapping("/users/{id}/balance")
-//    @ResponseBody
-//    public MessageVo setBalance(@PathVariable("id") Integer id,
-//                                @RequestParam("balance") double balance) {
-//        return MessageVoUtil.created("",);
-//    }
 
     @GetMapping("/pageNum")
     @ResponseBody

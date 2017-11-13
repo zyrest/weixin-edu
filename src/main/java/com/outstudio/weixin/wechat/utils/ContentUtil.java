@@ -1,5 +1,6 @@
 package com.outstudio.weixin.wechat.utils;
 
+import com.outstudio.weixin.common.po.WelcomeEntity;
 import com.outstudio.weixin.common.service.WelcomeService;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +31,11 @@ public class ContentUtil {
         s.append("~");
         s.append("你好啊!\n\n");
         s.append("欢迎您的关注\n\n");
-        return s.append(welcomeService.getByIsUsing(1).getContent().replace("\\n", "\n")).toString();
+        WelcomeEntity welcomeEntity = welcomeService.getByIsUsing(1);
+        if (welcomeEntity == null) {
+            return s.toString();
+        }else {
+            return s.append(welcomeService.getByIsUsing(1).getContent().replace("\\n", "\n")).toString();
+        }
     }
 }

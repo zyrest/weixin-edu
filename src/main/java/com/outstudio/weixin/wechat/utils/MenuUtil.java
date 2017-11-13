@@ -12,6 +12,8 @@ import java.util.List;
  * Created by 96428 on 2017/7/16.
  */
 public class MenuUtil {
+
+    private static final String domain = "http://www.here52.cn/";
     /**
      * 创建一个默认的菜单栏
      *
@@ -25,7 +27,7 @@ public class MenuUtil {
     }
 
     private static Button firstButton() {
-        return createViewButton("故事培养", "http://www.kuanx.cn/page/view/audio");
+        return createViewButton("故事培养", domain+"page/view/audio");
     }
 
     private static Button secondButton() {
@@ -33,8 +35,8 @@ public class MenuUtil {
         button.setName("启蒙英语");
 
         List<Button> sub_buttons = new ArrayList<>();
-        sub_buttons.add(createViewButton("英语课堂", "http://www.kuanx.cn/page/view/english"));
-        sub_buttons.add(createViewButton("复习内容", "http://www.kuanx.cn/page/view/english#review"));
+        sub_buttons.add(createViewButton("英语课堂", domain+"page/view/english"));
+        sub_buttons.add(createViewButton("复习内容", domain+"page/view/english#review"));
         button.setSub_button(sub_buttons);
 
         return button;
@@ -43,9 +45,10 @@ public class MenuUtil {
     private static Button thirdButton() {
         Button button = new Button();
         List<Button> sub_button = new ArrayList<>();
-        sub_button.add(createViewButton("VIP注册", "http://www.kuanx.cn/page/view/vip"));
-        sub_button.add(createViewButton("教育讨论", "http://www.kuanx.cn/page/view/video"));
-        sub_button.add(createViewButton("通知", "http://www.kuanx.cn/page/view/message"));
+        sub_button.add(createViewButton("个人中心", domain+"page/userInfo"));
+        sub_button.add(createViewButton("VIP注册", domain+"page/view/vip"));
+        sub_button.add(createViewButton("教育讨论", domain+"page/view/video"));
+        sub_button.add(createViewButton("通知", domain+"page/view/message"));
         button.setName("家长关注");
         button.setSub_button(sub_button);
         return button;

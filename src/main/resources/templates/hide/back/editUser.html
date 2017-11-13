@@ -12,13 +12,14 @@
     <link th:href="@{/css/page.css}" rel="stylesheet"/>
     <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
     <script th:src="@{/js/bootstrap.min.js}"></script>
-    <link th:href="@{/css/bootstrap-dialog.min.css}" rel="stylesheet" type="text/css" media="all" />
-    <script th:src="@{/js/bootstrap-dialog.min.js}" type="text/javascript" ></script>
+    <link th:href="@{/css/bootstrap-dialog.min.css}" rel="stylesheet" type="text/css" media="all"/>
+    <script th:src="@{/js/bootstrap-dialog.min.js}" type="text/javascript"></script>
     <style>
-        table{
+        table {
             table-layout: fixed;
         }
-        .table tbody tr td{
+
+        .table tbody tr td {
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: normal;
@@ -27,9 +28,11 @@
             height: 20%;
             text-align: center;
         }
+
         th {
             text-align: center;
         }
+
         .videoClass .modal-dialog {
             width: 90%;
         }
@@ -70,12 +73,19 @@
                     <form>
                         <div class="form-group">
                             用户id：
-                            <input id="userId" class="form-control" required="required" readonly="readonly" th:value="${user.id}"/>
+                            <input id="userId" class="form-control" required="required" readonly="readonly"
+                                   th:value="${user.id}"/>
+                        </div>
+
+                        <div class="form-group">
+                            邀请人id：
+                            <input id="agentId" class="form-control" required="required" th:value="${user.pid}"/>
                         </div>
 
                         <div class="form-group">
                             当前余额：
-                            <input id="balance" type="number" class="form-control" required="required" th:value="${user.balance}"/>
+                            <input id="balance" type="number" class="form-control" required="required"
+                                   th:value="${user.balance}"/>
                         </div>
 
                         <div class="form-group">
@@ -137,20 +147,21 @@
     </div>
 </div>
 
-<script >
+<script>
     $('#submitUser').click(function () {
         var id = $('#userId').val();
         var balance = $('#balance').val();
         var level = $('#level').find('option:selected').val();
+        var pid = $('#agentId').val();
 
-        var data = JSON.stringify({id: id, balance: balance, level:level});
+        var data = JSON.stringify({id: id, balance: balance, level: level, pid: pid});
         $.ajax({
-            url : '/back/users',
-            type : "PUT",
-            data : data,
-            dataType:'json',
+            url: '/back/users',
+            type: "PUT",
+            data: data,
+            dataType: 'json',
             contentType: "application/json",
-            success : function (result) {
+            success: function (result) {
                 if (result.status == 200) {
                     alert('修改成功');
                     window.location.href = '/back/index';

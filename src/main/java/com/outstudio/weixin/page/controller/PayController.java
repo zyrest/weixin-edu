@@ -60,6 +60,8 @@ public class PayController {
         data.put("trade_type", "JSAPI");
         data.put("openid", TokenManager.getWeixinToken().getOpenid());
 
+        LoggerUtil.fmtDebug(getClass(), "支付信息", data.toString());
+
         Map<String, String> result = null;
         try {
             result = wxPay.unifiedOrder(data);
