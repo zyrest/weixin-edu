@@ -275,6 +275,8 @@
     var no_more = false;
     var pageNum = 1;
     var type = '0';
+
+    var nameMap = {1:'安全', 2:'学习', 3:'生活', 4:'礼仪'}
     //]]>
 </script>
 
@@ -423,7 +425,7 @@
         /**/
         html += '<div class="article_category">';
         html += '<span class="article_category">';
-        html += '第' + data.type + '类';
+        html += nameMap[data.type];
         html += '</span>';
         html += '</div>';
         /**/
