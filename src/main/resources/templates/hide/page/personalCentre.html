@@ -221,7 +221,7 @@
         </div>
 
         <div class="responsive-wrapper">
-            <a href="javascript:yo()" class="buy-btn">
+            <a href="javascript:" class="buy-btn">
                 <div class="buy-vip">会员中心</div>
             </a>
         </div>
@@ -231,33 +231,10 @@
 
 </body>
 
-<script type="text/javascript">
-    //<![CDATA[
-    //全局变量
-    var money = '0';
-    //]]>
-</script>
-
 <script>
-    function showPicker() {
-        var param = [
-            {"label" : "一个月", "value" : '30'},
-            {"label" : "一年", "value" : '300'}
-        ];
-        weui.picker(param, {
-            onChange: function (result) {
-                console.log(result);
-            },
-            onConfirm: function (result) {
-                money = result;
-            }
-        });
-    }
     function ha() {
-        alert("ha")
+        window.location.href = '/page/view/vip';
     }
-    function yo() {
-        alert("yo")
-    }
+
 </script>
 </html>

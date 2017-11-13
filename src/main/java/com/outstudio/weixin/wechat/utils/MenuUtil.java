@@ -45,7 +45,7 @@ public class MenuUtil {
     private static Button thirdButton() {
         Button button = new Button();
         List<Button> sub_button = new ArrayList<>();
-        sub_button.add(createViewButton("个人中心", domain+"page/userInfo"));
+        sub_button.add(createViewButton("个人中心", domain+"page/view/userInfo"));
         sub_button.add(createViewButton("VIP注册", domain+"page/view/vip"));
         sub_button.add(createViewButton("教育讨论", domain+"page/view/video"));
         sub_button.add(createViewButton("通知", domain+"page/view/message"));

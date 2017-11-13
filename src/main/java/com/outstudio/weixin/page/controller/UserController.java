@@ -24,7 +24,7 @@ public class UserController {
     @Resource
     private UserService userService;
 
-    @GetMapping("/userInfo")
+    @GetMapping("/view/userInfo")
     public ModelAndView getUserInfo() {
         ModelAndView view = new ModelAndView();
 
