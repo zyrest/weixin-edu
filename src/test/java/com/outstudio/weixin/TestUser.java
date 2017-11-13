@@ -1,6 +1,7 @@
 package com.outstudio.weixin;
 
 import com.outstudio.weixin.common.dao.UserEntityMapper;
+import com.outstudio.weixin.common.utils.PasswordUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,5 +19,10 @@ public class TestUser {
     @Test
     public void test() {
         System.out.println(userEntityMapper.getUserById(1));
+    }
+
+    @Test
+    public void t() {
+        System.out.println(PasswordUtil.createHash("qwerty"));
     }
 }

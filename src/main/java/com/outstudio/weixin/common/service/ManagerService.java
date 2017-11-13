@@ -3,6 +3,7 @@ package com.outstudio.weixin.common.service;
 import com.github.pagehelper.PageHelper;
 import com.outstudio.weixin.common.dao.ManagerEntityMapper;
 import com.outstudio.weixin.common.po.ManagerEntity;
+import com.outstudio.weixin.common.utils.PasswordUtil;
 import com.outstudio.weixin.core.shiro.token.TokenManager;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +26,8 @@ public class ManagerService {
 
     public String changePassword(String newPassword, String oldPassword) {
         ManagerEntity managerEntity = TokenManager.getManagerToken();
-        if (!managerEntity.getM_password().equals(oldPassword)) {
+        boolean flag = PasswordUtil.validatePassword(oldPassword, managerEntity.getM_password());
+        if (!flag) {
             return "old password is not right";
         } else {
             int resultCode = setPassword(managerEntity.getM_account(), newPassword);
@@ -37,7 +39,8 @@ public class ManagerService {
         }
     }
 
-    public int setPassword(String account, String passoword) {
-        return managerEntityMapper.setPassword(passoword, account);
+    private int setPassword(String account, String password) {
+        String encodedPass = PasswordUtil.createHash(password);
+        return managerEntityMapper.setPassword(encodedPass, account);
     }
 }
