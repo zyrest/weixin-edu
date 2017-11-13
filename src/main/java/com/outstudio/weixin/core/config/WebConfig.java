@@ -54,10 +54,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registry.addViewController("/page/view/audio").setViewName("hide/page/audio");
         registry.addViewController("/page/view/video").setViewName("hide/page/video");
         registry.addViewController("/page/view/english").setViewName("hide/page/english");
-//        registry.addViewController("/page/view/message").setViewName("hide/page/message");//通知界面，后台没有管理通知的模块，取消
+        registry.addViewController("/page/view/message").setViewName("hide/page/message");
         registry.addViewController("/page/view/video").setViewName("hide/page/video");
-        registry.addViewController("/page/view/introduction").setViewName("hide/page/introduction");
-
         registry.addViewController("/page/view/vip").setViewName("hide/page/vip");
 
         registry.addViewController("/error").setViewName("error");

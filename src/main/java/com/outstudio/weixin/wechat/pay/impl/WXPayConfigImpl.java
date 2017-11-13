@@ -18,7 +18,7 @@ public class WXPayConfigImpl extends WXPayConfig{
     private static WXPayConfigImpl INSTANCE;
 
     private WXPayConfigImpl() throws Exception{
-        /*
+        /**
          本地测试，先不使用证书，有证书的情况要去掉注释并且设置好证书文件的位置
          */
 //        String certPath = "D://CERT/common/apiclient_cert.p12";
