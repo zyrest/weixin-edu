@@ -1,5 +1,7 @@
 package com.outstudio.weixin.common.service;
 
+import com.alibaba.fastjson.JSONObject;
+import com.outstudio.weixin.cloud.util.CloudUtil;
 import com.outstudio.weixin.common.dao.InterviewVideoEntityMapper;
 import com.outstudio.weixin.common.po.InterviewVideoEntity;
 import com.outstudio.weixin.common.utils.FileUtil;
@@ -26,11 +28,21 @@ public class InterviewVideoService {
 
     public int deleteInterviewVideo(Integer id) {
         InterviewVideoEntity interviewVideoEntity = getInterviewVideoById(id);
+        JSONObject object = CloudUtil.deleteVodFile(interviewVideoEntity.getFileid());
 
-        int changedNum = interviewVideoEntityMapper.deleteByPrimaryKey(id);
-        if (changedNum != 0) {
-            FileUtil.deleteFileByUrlPath(interviewVideoEntity.getSrc());
+        Integer code = object.getInteger("code");
+
+        int changedNum = 0;
+        if (code == 0) {
+            changedNum = interviewVideoEntityMapper.deleteByPrimaryKey(id);
         }
+//        if (changedNum != 0) {
+//            FileUtil.deleteFileByUrlPath(interviewVideoEntity.getSrc());
+//        }
+                /*
+        视频存储改为存在腾讯视频云上
+         */
+
         return changedNum;
     }
 

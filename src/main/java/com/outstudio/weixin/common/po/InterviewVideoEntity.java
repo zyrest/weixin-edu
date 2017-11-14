@@ -20,14 +20,14 @@ public class InterviewVideoEntity implements Serializable {
 
     private String description;
 
-    private String fileId;
+    private String fileid;
 
-    public String getFileId() {
-        return fileId;
+    public String getFileid() {
+        return fileid;
     }
 
-    public void setFileId(String fileId) {
-        this.fileId = fileId;
+    public void setFileid(String fileid) {
+        this.fileid = fileid;
     }
 
     public Integer getId() {

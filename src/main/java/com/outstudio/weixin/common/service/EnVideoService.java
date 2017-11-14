@@ -1,5 +1,7 @@
 package com.outstudio.weixin.common.service;
 
+import com.alibaba.fastjson.JSONObject;
+import com.outstudio.weixin.cloud.util.CloudUtil;
 import com.outstudio.weixin.common.dao.EnVideoEntityMapper;
 import com.outstudio.weixin.common.po.EnVideoEntity;
 import com.outstudio.weixin.common.utils.FileUtil;
@@ -26,11 +28,21 @@ public class EnVideoService {
 
     public int deleteEnVideo(Integer id) {
         EnVideoEntity enVideoEntity = getEnVideoById(id);
+        JSONObject object = CloudUtil.deleteVodFile(enVideoEntity.getFileid());
 
-        int changedNum = enVideoEntityMapper.deleteByPrimaryKey(id);
-        if (changedNum != 0) {
-            FileUtil.deleteFileByUrlPath(enVideoEntity.getSrc());
+        Integer code = object.getInteger("code");
+
+        int changedNum = 0;
+        if (code == 0) {
+            changedNum = enVideoEntityMapper.deleteByPrimaryKey(id);
         }
+//        if (changedNum != 0) {
+//            FileUtil.deleteFileByUrlPath(enVideoEntity.getSrc());
+//        }
+        /*
+        视频存储改为存在腾讯视频云上
+         */
+
         return changedNum;
     }
 
