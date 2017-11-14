@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
-    <title th:utext="${data.title}" >
+    <title>
         平台简介
     </title>
     <style>
@@ -250,25 +250,25 @@
             </div>
         </div>
 
-        <div class="try-lesson" th:if="${isVip == false}">
-            <a href="/open/page/free">
-                <img src="/img/try_lesson.png" alt="try free lesson">
-            </a>
-        </div>
+        <!--<div class="try-lesson" th:if="${isVip == false}">-->
+            <!--<a href="/open/page/free">-->
+                <!--<img src="/img/try_lesson.png" alt="try free lesson">-->
+            <!--</a>-->
+        <!--</div>-->
 
     </div>
 
 </section>
 
-<footer class="ui-footer ui-footer-btn" th:if="${isVip == false}">
-    <ul class="ui-tiled ui-border-t">
-        <li>
-            <a href="#todo_charge">
-                <span class="upgrade">升级账户｜解锁完整课程库</span>
-            </a>
-        </li>
-    </ul>
-</footer>
+<!--<footer class="ui-footer ui-footer-btn" th:if="${isVip == false}">-->
+    <!--<ul class="ui-tiled ui-border-t">-->
+        <!--<li>-->
+            <!--<a href="#todo_charge">-->
+                <!--<span class="upgrade">升级账户｜解锁完整课程库</span>-->
+            <!--</a>-->
+        <!--</li>-->
+    <!--</ul>-->
+<!--</footer>-->
 
 </body>
 </html>

@@ -28,7 +28,8 @@ public class EnVideoService {
 
     public int deleteEnVideo(Integer id) {
         EnVideoEntity enVideoEntity = getEnVideoById(id);
-        JSONObject object = CloudUtil.deleteVodFile(enVideoEntity.getFileid());
+        String fileid = enVideoEntity.getFileid();
+        JSONObject object = CloudUtil.deleteVodFile(fileid);
 
         Integer code = object.getInteger("code");
 
