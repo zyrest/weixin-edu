@@ -20,6 +20,16 @@ public class EnVideoEntity implements Serializable {
 
     private String description;
 
+    private String fileid;
+
+    public String getFileid() {
+        return fileid;
+    }
+
+    public void setFileid(String fileid) {
+        this.fileid = fileid;
+    }
+
     public Integer getId() {
         return id;
     }

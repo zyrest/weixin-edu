@@ -9,9 +9,10 @@
     <result column="is_free" property="is_free" jdbcType="INTEGER" />
     <result column="post_date" property="post_date" jdbcType="TIMESTAMP" />
     <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="fileid" property="fileid" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, title, stage, src, is_free, post_date, description
+    id, title, stage, src, is_free, post_date, description,fileid
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -44,10 +45,10 @@
   <insert id="insert" parameterType="com.outstudio.weixin.common.po.InterviewVideoEntity" >
     insert into t_interview_video (id, title, stage, 
       src, is_free, post_date, 
-      description)
+      description,fileid)
     values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{stage,jdbcType=INTEGER}, 
       #{src,jdbcType=VARCHAR}, #{is_free,jdbcType=INTEGER}, #{post_date,jdbcType=TIMESTAMP}, 
-      #{description,jdbcType=VARCHAR})
+      #{description,jdbcType=VARCHAR},#{fileid,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.outstudio.weixin.common.po.InterviewVideoEntity" >
     insert into t_interview_video
@@ -73,6 +74,9 @@
       <if test="description != null" >
         description,
       </if>
+      <if test="fileid != null" >
+        fileid,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -95,6 +99,9 @@
       </if>
       <if test="description != null" >
         #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="fileid != null" >
+        #{fileid,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -119,6 +126,9 @@
       <if test="description != null" >
         description = #{description,jdbcType=VARCHAR},
       </if>
+      <if test="fileid != null" >
+        fileid = #{fileid,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -129,7 +139,8 @@
       src = #{src,jdbcType=VARCHAR},
       is_free = #{is_free,jdbcType=INTEGER},
       post_date = #{post_date,jdbcType=TIMESTAMP},
-      description = #{description,jdbcType=VARCHAR}
+      description = #{description,jdbcType=VARCHAR},
+      fileid = #{fileid,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

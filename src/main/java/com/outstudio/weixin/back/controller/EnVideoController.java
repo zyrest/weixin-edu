@@ -27,26 +27,7 @@ public class EnVideoController {
     private EnVideoService enVideoService;
 
     @PostMapping("/enVideos")
-    public MessageVo postEnVideo(@ModelAttribute EnVideoEntity enVideoEntity,
-                                 @RequestParam("video") MultipartFile video,
-                                 HttpServletRequest request) {
-
-        String fileType = FileUtil.getType(video);
-        if (!"mp4".equalsIgnoreCase(fileType)) {
-            throw new InvalidFileTypeException("上传的视频格式应为MP4");
-        }
-
-        String videoSrc;
-        try {
-            if (enVideoEntity.getIs_free().equals(1))
-                videoSrc = FileUtil.saveUploadFileAsUrlPath(request, video, "free");
-            else
-                videoSrc = FileUtil.saveUploadFileAsUrlPath(request, video, "charge");
-        } catch (IOException e) {
-            throw new SystemErrorException();
-        }
-
-        enVideoEntity.setSrc(videoSrc);
+    public MessageVo postEnVideo(@ModelAttribute EnVideoEntity enVideoEntity) {
 
         enVideoService.addEnVideo(enVideoEntity);
         return MessageVoUtil.created(REDIRECT_URL);

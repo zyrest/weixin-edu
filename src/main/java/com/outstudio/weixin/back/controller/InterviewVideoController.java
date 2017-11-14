@@ -26,26 +26,7 @@ public class InterviewVideoController {
     private InterviewVideoService interviewVideoService;
 
     @PostMapping("/interviewVideos")
-    public MessageVo postInterviewVideo(@ModelAttribute InterviewVideoEntity interviewVideoEntity,
-                                        @RequestParam("video") MultipartFile video,
-                                        HttpServletRequest request) {
-
-        String fileType = FileUtil.getType(video);
-        if (!"mp4".equalsIgnoreCase(fileType)) {
-            throw new InvalidFileTypeException("上传的视频格式应为MP4");
-        }
-
-        String videoSrc;
-        try {
-            if (interviewVideoEntity.getIs_free().equals(1))
-                videoSrc = FileUtil.saveUploadFileAsUrlPath(request, video, "free");
-            else
-                videoSrc = FileUtil.saveUploadFileAsUrlPath(request, video, "charge");
-        } catch (IOException e) {
-            throw new SystemErrorException();
-        }
-
-        interviewVideoEntity.setSrc(videoSrc);
+    public MessageVo postInterviewVideo(@ModelAttribute InterviewVideoEntity interviewVideoEntity) {
 
         interviewVideoService.addInterviewVideo(interviewVideoEntity);
         return MessageVoUtil.created(REDIRECT_URL);
