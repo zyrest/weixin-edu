@@ -1,3 +1,21 @@
+/**
+ * 计算签名
+ **/
+var getSignature = function(callback){
+    $.ajax({
+        url: '/cloud/signature',
+        type: 'GET',
+        dataType: 'json',
+        success: function(res){
+            if(res && res.data) {
+                callback(res.data);
+            } else {
+                return '获取签名失败';
+            }
+
+        }
+    });
+};
 
 var basePath ;
 jQuery(document).ready(function () {
@@ -22,87 +40,73 @@ function fileSelected() {
 }
 
 $('#submitVideo').click(function() {
+    // alert("start");
     var title = $('#title').val();
     var stage = $('#stage').val();
     var description = $('#description').val();
     var is_free = $('input[name="is_free"]:checked').val();
     var video = $('#video')[0].files[0];
 
-    var formData = new FormData();
-    formData.append("title", title);
-    formData.append("stage", stage);
-    formData.append("description", description);
-    formData.append("is_free", is_free);
-    formData.append("video", video);
+    qcVideo.ugcUploader.start({
+        videoFile: video,
+        getSignature: getSignature,
+        success: function(result){
 
-    var xhr = new XMLHttpRequest();
-    xhr.upload.addEventListener("progress", uploadProgress, false);
-    xhr.addEventListener("load", uploadComplete, false);
-    xhr.addEventListener("error", uploadFailed, false);
-    xhr.addEventListener("abort", uploadCanceled, false);
-    xhr.open("POST", basePath + "/back/interviewVideos");
-    xhr.send(formData);
+            BootstrapDialog.show( {
+                title : '消息',
+                message: '上传成功',
+                buttons: [{
+                    label: '确认',
+                    action: function(dialogRef) {
+                        clearInputs();
+                        dialogRef.close();
+                    }
+                }]
+            });
+        },
+        error: function(result) {
+            // alert(JSON.stringify(result));
+            BootstrapDialog.show( {
+                title : '警告！',
+                message: '上传文件发生了错误尝试，原因为：' + result.msg + '，上传文件类型为：' + result.type,
+                type: BootstrapDialog.TYPE_DANGER,
+                buttons: [{
+                    label: '确认',
+                    action: function(dialogRef) {
+                        dialogRef.close();
+                    }
+                }]
+            });
+        },
+        progress: function(result) {
+            if (result.curr) {
+                var percentComplete = Math.round(result.curr * 100);
+                document.getElementById('progressNumber').innerHTML = percentComplete.toString() + '%';
+            } else {
+                document.getElementById('progressNumber').innerHTML = '无法计算';
+            }
+        },
+        finish: function(result) {
+            var formData = new FormData();
+            formData.append("title", title);
+            formData.append("stage", stage);
+            formData.append("description", description);
+            formData.append("is_free", is_free);
+            formData.append("fileid", result.fileId);
+            // formData.append("videoName", result.videoName);
+            formData.append("src", result.videoUrl);
 
+            // alert("success");
+            var xhr = new XMLHttpRequest();
+            // xhr.upload.addEventListener("progress", uploadProgress, false);
+            // xhr.addEventListener("load", uploadComplete, false);
+            // xhr.addEventListener("error", uploadFailed, false);
+            // xhr.addEventListener("abort", uploadCanceled, false);
+            xhr.open("POST", basePath + "/back/interviewVideos");
+            xhr.send(formData);
+        }
+    });
 });
-
-function uploadProgress(evt) {
-    if (evt.lengthComputable) {
-        var percentComplete = Math.round(evt.loaded * 100 / evt.total);
-        document.getElementById('progressNumber').innerHTML = percentComplete.toString() + '%';
-    }
-    else {
-        document.getElementById('progressNumber').innerHTML = '无法计算';
-    }
-}
-function uploadComplete(evt) {
-    /* 当服务器响应后，这个事件就会被触发 */
-    // alert(evt.target.responseText);
-    var result = JSON.parse(evt.target.responseText);
-    var mes = '服务器发生错误！请确保上传文件为mp4格式！！';
-    if (result && result.status === 201) mes = '上传成功';
-
-    BootstrapDialog.show( {
-        title : '消息',
-        message: mes,
-        buttons: [{
-            label: '确认',
-            action: function(dialogRef) {
-                if (result && result.status === 201) clearInputs();
-                dialogRef.close();
-            }
-        }]
-    });
-}
-
-function uploadFailed(evt) {
-    // alert("上传文件发生了错误尝试");
-    BootstrapDialog.show( {
-        title : '警告！',
-        message: '上传文件发生了错误尝试',
-        type: BootstrapDialog.TYPE_DANGER,
-        buttons: [{
-            label: '确认',
-            action: function(dialogRef) {
-                dialogRef.close();
-            }
-        }]
-    });
-}
-
-function uploadCanceled(evt) {
-    // alert("上传被用户取消或者浏览器断开连接");
-    BootstrapDialog.show( {
-        title : '取消',
-        type: BootstrapDialog.TYPE_WARNING,
-        message: '上传被用户取消或者浏览器断开连接',
-        buttons: [{
-            label: '确认',
-            action: function(dialogRef) {
-                dialogRef.close();
-            }
-        }]
-    });
-}
 
 function clearInputs() {
     $('#title').val('');
