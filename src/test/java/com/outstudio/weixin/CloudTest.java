@@ -7,7 +7,6 @@ public class CloudTest {
 
     @Test
     public void deleteVodFileTest() {
-        CloudUtil.deleteVodFile("9031868223654381034");
-
+        CloudUtil.deleteVodFile("9031868223643987811");
     }
 }
