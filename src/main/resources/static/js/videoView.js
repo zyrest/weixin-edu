@@ -18,8 +18,13 @@ function deleteOne(id) {
                     url : "/back/interviewVideos/" + id,
                     type : "DELETE",
                     success : function (result) {
-                        alert('删除成功'); //todo
-                        location.reload();
+                        if (result.status == 204) {
+                            alert('删除成功'); //todo
+                            location.reload();
+                        } else {
+                            alert("该视频正在被用户播放！！请稍后再试！")
+                        }
+
                     }
                 });
 

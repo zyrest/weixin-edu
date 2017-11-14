@@ -1,16 +1,11 @@
 package com.outstudio.weixin.page.controller;
 
-import com.outstudio.weixin.common.consts.ResponseStatus;
 import com.outstudio.weixin.common.po.UserEntity;
 import com.outstudio.weixin.common.service.UserService;
-import com.outstudio.weixin.common.utils.MessageVoUtil;
-import com.outstudio.weixin.common.vo.MessageVo;
 import com.outstudio.weixin.core.shiro.token.TokenManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
@@ -38,6 +33,7 @@ public class UserController {
         view.addObject("tillDate",TokenManager.tillDate());
 
         view.addObject("balance", user.getBalance());
+//        view.addObject("people", 10);
         view.addObject("people", userService.getCountsByPid(user.getId()));
         view.addObject("level", user.getLevel());
         view.setViewName("hide/page/personalCentre");

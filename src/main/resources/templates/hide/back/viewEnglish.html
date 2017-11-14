@@ -227,13 +227,17 @@
                         url : url,
                         type : "DELETE",
                         success : function (result) {
-                            alert('删除成功');//todo
-                            if (!isVideos) {
-                                window.location.href = window.location.toString().split('#')[0] + '#_reviewClick';
+                            if (result.status == 204){
+                                alert('删除成功');//to // do
+                                if (!isVideos) {
+                                    window.location.href = window.location.toString().split('#')[0] + '#_reviewClick';
+                                } else {
+                                    window.location.href = window.location.toString().split('#')[0];
+                                }
+                                location.reload();
                             } else {
-                                window.location.href = window.location.toString().split('#')[0];
+                                alert("该视频正在被用户播放！！请稍后再试！")
                             }
-                            location.reload();
                         }
                     });
                     dialogRef.close();
