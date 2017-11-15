@@ -2,6 +2,7 @@ package com.outstudio.weixin.wechat.core.handler;
 
 import com.outstudio.weixin.common.po.UserEntity;
 import com.outstudio.weixin.common.service.UserService;
+import com.outstudio.weixin.common.utils.MessageVoUtil;
 import com.outstudio.weixin.wechat.utils.ContentUtil;
 import com.outstudio.weixin.wechat.utils.MessageUtil;
 import com.outstudio.weixin.wechat.utils.WechatUtil;
@@ -39,7 +40,7 @@ public class SubscribeHandler implements Handler {
             userService.saveUser(user);
             found = user;
         }
-
-        return MessageUtil.createTextMessageXml(fromUser, userOpenid, contentUtil.onSubscribe(found.getNickname()));
+        return MessageUtil.createArticlesMessageXml(fromUser, userOpenid, contentUtil.news());
+//        return MessageUtil.createTextMessageXml(fromUser, userOpenid, contentUtil.onSubscribe(found.getNickname()));
     }
 }

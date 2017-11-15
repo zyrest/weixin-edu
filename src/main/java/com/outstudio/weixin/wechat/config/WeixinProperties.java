@@ -56,4 +56,12 @@ public class WeixinProperties {
      */
     public static final String FORMATED_USER_INFO_CODE = String.format(USER_INFO_CODE, appID, OAUTH_REDIRECT_URL, USERINFO_SCOPE, OAUTH_STATE);
 
+    /*
+    获取素材列表
+     */
+    public static final String GET_MATERIAL_LIST_URL = "https://api.weixin.qq.com/cgi-bin/material/batchget_material?access_token=%s";
+
+    public static final String GET_MATERIAL_URL = "https://api.weixin.qq.com/cgi-bin/material/get_material?access_token=%s";
+
+
 }
