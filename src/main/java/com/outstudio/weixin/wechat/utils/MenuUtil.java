@@ -13,10 +13,10 @@ import java.util.List;
  */
 public class MenuUtil {
 
-//    private static final String domain = "http://www.here52.cn/";
+    private static final String domain = "http://www.here52.cn/";
 
     //测试使用
-    private static final String domain = "http://x78q7c.natappfree.cc/";
+//    private static final String domain = "http://x78q7c.natappfree.cc/";
 
     /**
      * 创建一个默认的菜单栏
