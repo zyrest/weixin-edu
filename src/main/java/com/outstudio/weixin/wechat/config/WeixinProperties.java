@@ -6,12 +6,12 @@ package com.outstudio.weixin.wechat.config;
 public class WeixinProperties {
 
     public static final String TOKEN = "wechat_edu";
-//    public static final String appID = "wx6b2cfecab5b48621";
-//    public static final String appSecret = "48a1796bdca284377046f40423da162e";
+    public static final String appID = "wx6b2cfecab5b48621";
+    public static final String appSecret = "48a1796bdca284377046f40423da162e";
 
     //测试
-    public static final String appID = "wxd53def0a24d17b53";
-    public static final String appSecret = "14d2831e0d8153867040d95674808d40";
+//    public static final String appID = "wxd53def0a24d17b53";
+//    public static final String appSecret = "14d2831e0d8153867040d95674808d40";
 
     public static final String mchID = "";//商户id
     public static final String appKey = "2ab9071b06b9f739b950ddb41db2690d";
@@ -61,5 +61,13 @@ public class WeixinProperties {
      * 格式化的网页授权url
      */
     public static final String FORMATED_USER_INFO_CODE = String.format(USER_INFO_CODE, appID, OAUTH_REDIRECT_URL, USERINFO_SCOPE, OAUTH_STATE);
+
+    /*
+    获取素材列表
+     */
+    public static final String GET_MATERIAL_LIST_URL = "https://api.weixin.qq.com/cgi-bin/material/batchget_material?access_token=%s";
+
+    public static final String GET_MATERIAL_URL = "https://api.weixin.qq.com/cgi-bin/material/get_material?access_token=%s";
+
 
 }
