@@ -6,8 +6,12 @@ package com.outstudio.weixin.wechat.config;
 public class WeixinProperties {
 
     public static final String TOKEN = "wechat_edu";
-    public static final String appID = "wx6b2cfecab5b48621";
-    public static final String appSecret = "48a1796bdca284377046f40423da162e";
+//    public static final String appID = "wx6b2cfecab5b48621";
+//    public static final String appSecret = "48a1796bdca284377046f40423da162e";
+
+    //测试
+    public static final String appID = "wxd53def0a24d17b53";
+    public static final String appSecret = "14d2831e0d8153867040d95674808d40";
 
     public static final String mchID = "";//商户id
     public static final String appKey = "2ab9071b06b9f739b950ddb41db2690d";
@@ -45,6 +49,8 @@ public class WeixinProperties {
      * 此处必须填域名，并且在微信公众平台设置好，否则将无法完成正确的回调
      */
     public static final String OAUTH_REDIRECT_URL = "http://www.here52.cn/open/page/oauth";
+
+//    public static final String OAUTH_REDIRECT_URL = "http://x78q7c.natappfree.cc/open/page/oauth";
 
     /**
      * 网页授权的时候USER_INFO_CODE中的state标识

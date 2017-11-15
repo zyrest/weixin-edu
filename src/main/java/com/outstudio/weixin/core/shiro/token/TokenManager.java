@@ -31,6 +31,10 @@ public class TokenManager {
         return (ManagerEntity) getSubject().getPrincipal();
     }
 
+    public static boolean isManager() {
+        return getSubject().getPrincipal() instanceof ManagerEntity;
+    }
+
     public static void loginBack(ManagerEntity manager, boolean rememberMe) {
         WeixinToken token = new WeixinToken();
         token.setAccount(manager.getM_account());
