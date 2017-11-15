@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.outstudio.weixin.common.po.WelcomeEntity;
 import com.outstudio.weixin.common.service.WelcomeService;
+import com.outstudio.weixin.common.utils.LoggerUtil;
 import com.outstudio.weixin.wechat.dto.message.media.Item;
 import org.springframework.stereotype.Service;
 
@@ -45,27 +46,47 @@ public class ContentUtil {
     }
 
     public List<Item> news() {
-        JSONObject materialListobject = WechatUtil.getMaterialList("news", "0", "1");
-        JSONArray itemArray = materialListobject.getJSONArray("item");
+        JSONObject newsListObject = WechatUtil.getMaterialList("news", "0", "1");
+        JSONArray itemArray = newsListObject.getJSONArray("item");
+
+        JSONObject imagesListObject = WechatUtil.getMaterialList("image", "0", "20");
+        JSONArray picItemArray = imagesListObject.getJSONArray("item");
 
         List<Item> items = new LinkedList<>();
 
-//        for (int i = 0;i<itemArray.size();i++) {
-            JSONObject itemObject = (JSONObject) itemArray.get(0);
-            String media_id = itemObject.getString("media_id");
-            JSONObject news_item = itemObject.getJSONObject("content");
-            JSONArray newsItemArray = news_item.getJSONArray("news_item");
+        if (itemArray.size()==0)
+            return null;
 
-            for (int j = 0;j<newsItemArray.size();j++) {
+            JSONObject itemObject = (JSONObject) itemArray.get(0);
+            JSONObject contentObject = itemObject.getJSONObject("content");
+            JSONArray newsItemArray = contentObject.getJSONArray("news_item");
+            for (int j = 0; j < newsItemArray.size(); j++) {
                 JSONObject newsItemObject = (JSONObject) newsItemArray.get(j);
+
                 Item item = new Item();
                 item.setTitle(newsItemObject.getString("title"));
                 item.setPicUrl(newsItemObject.getString("url"));
-                item.setUrl(newsItemObject.getString("content_source_url"));
-                item.setDescription("");
+                item.setUrl(newsItemObject.getString("url"));
+                item.setDescription("digest");
+
+                String picId = newsItemObject.getString("thumb_media_id");
+
+                for (int k = 0; k < picItemArray.size(); k++) {
+                    JSONObject picObject = (JSONObject) picItemArray.get(k);
+                    String media_id = picObject.getString("media_id");
+                    try {
+                        if (picId.equalsIgnoreCase(media_id)) {
+                            item.setPicUrl(picObject.getString("url"));
+                        }
+                    } catch (Exception e) {
+                        LoggerUtil.error(getClass(), "获取素材列表中的图片发生错误，可能是图文消息不存在", e);
+                    }
+                }
+
+
                 items.add(item);
             }
-//        }
+
         return items;
     }
 }
