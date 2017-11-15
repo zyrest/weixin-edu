@@ -288,7 +288,7 @@
                     console.log("pageNum is : " + pageNum);
                     pageNum++;
                     if(!is_refresh) {
-                        $('#load_more').empty().text('上滑加载更多...');
+                        $('#load_more').empty().text('点击加载更多...');
                         loading = false;
                     } else {
                         $('#refresh_tip').css('display','none');
@@ -312,7 +312,7 @@
             error:function () {
 //                    alert("出错了!");
                 if(!is_refresh) {
-                    $('#load_more').empty().text('上拉加载更多...');
+                    $('#load_more').empty().text('点击加载更多...');
                     loading = false;
                 }else {
                     $('#refresh_tip').css('display','none');
@@ -338,22 +338,6 @@
             pageNum = 1;
             no_more = false;
             load_articles(true, false);
-        }
-    }
-
-
-    function scroll_listener() {
-        var container_ele = document.getElementById("container");
-        //滚动到底部
-        if(document.documentElement.clientHeight + container_ele.scrollTop >= container_ele.scrollHeight) {
-            if(loading) {
-                return;
-            }
-            if(no_more) {
-                return;
-            }
-            loading = true;
-            load_articles(false,false);
         }
     }
 
@@ -406,7 +390,16 @@
         });
         document.getElementById("container").addEventListener("touchend", touchmove_listener);
 
-        document.getElementById("container").addEventListener("scroll", scroll_listener);
+        $('#load_more').click(function () {
+            if(loading) {
+                return;
+            }
+            if(no_more) {
+                return;
+            }
+            loading = true;
+            load_articles(false,false);
+        })
     })
 </script>
 

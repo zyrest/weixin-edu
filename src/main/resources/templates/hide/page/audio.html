@@ -341,7 +341,7 @@
                     console.log("pageNum is : " + pageNum);
                     pageNum++;
                     if(!is_refresh) {
-                        $('#load_more').empty().text('上滑加载更多...');
+                        $('#load_more').empty().text('点击加载更多...');
                         loading = false;
                     } else {
                         $('#refresh_tip').css('display','none');
@@ -357,15 +357,13 @@
                         refreshing = false;
                     }
                 }
-                if(flag) {
-                    $('#container').scrollTop($("#article_list").offset().top)
-                }
-
+//                if(flag) {
+//                    $('#container').scrollTop($("#article_list").offset().top)
+//                }
             },
             error:function () {
-//                    alert("出错了!");
                 if(!is_refresh) {
-                    $('#load_more').empty().text('上拉加载更多...');
+                    $('#load_more').empty().text('点击加载更多...');
                     loading = false;
                 }else {
                     $('#refresh_tip').css('display','none');
@@ -394,21 +392,20 @@
         }
     }
 
-
-    function scroll_listener() {
-        var container_ele = document.getElementById("container");
-        //滚动到底部
-        if(document.documentElement.clientHeight + container_ele.scrollTop >= container_ele.scrollHeight) {
-            if(loading) {
-                return;
-            }
-            if(no_more) {
-                return;
-            }
-            loading = true;
-            load_articles(false,false);
-        }
-    }
+//    function scroll_listener() {
+//        var container_ele = document.getElementById("article_container");
+//        //滚动到底部
+//        if(container_ele.height + container_ele.scrollTop >= container_ele.scrollHeight-20) {
+//            if(loading) {
+//                return;
+//            }
+//            if(no_more) {
+//                return;
+//            }
+//            loading = true;
+//            load_articles(false,false);
+//        }
+//    }
 
     function build_article_dom(data) {
         var html = '<div class="article" article_id="' + data.id + '">';
@@ -459,7 +456,18 @@
         });
         document.getElementById("container").addEventListener("touchend", touchmove_listener);
 
-        document.getElementById("container").addEventListener("scroll", scroll_listener);
+        $('#load_more').click(function () {
+            if(loading) {
+                return;
+            }
+            if(no_more) {
+                return;
+            }
+            loading = true;
+            load_articles(false,false);
+        })
+//        document.getElementById("article_container").addEventListener("scroll", scroll_listener);
+
     })
 </script>
 
