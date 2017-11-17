@@ -46,11 +46,8 @@ public class WeixinProperties {
 
     /**
      * 网页授权的时候跳转的url
-     * 此处必须填域名，并且在微信公众平台设置好，否则将无法完成正确的回调
      */
-    public static final String OAUTH_REDIRECT_URL = "http://www.here52.cn/open/page/oauth";
-
-//    public static final String OAUTH_REDIRECT_URL = "http://x78q7c.natappfree.cc/open/page/oauth";
+    public static final String OAUTH_REDIRECT_URL = "http://xxxx/open/page/oauth";
 
     /**
      * 网页授权的时候USER_INFO_CODE中的state标识
@@ -62,12 +59,14 @@ public class WeixinProperties {
      */
     public static final String FORMATED_USER_INFO_CODE = String.format(USER_INFO_CODE, appID, OAUTH_REDIRECT_URL, USERINFO_SCOPE, OAUTH_STATE);
 
-    /*
-    获取素材列表
+
+    /**
+     * 获取素材列表api
      */
     public static final String GET_MATERIAL_LIST_URL = "https://api.weixin.qq.com/cgi-bin/material/batchget_material?access_token=%s";
 
+    /**
+     * 根据media id获取永久素材api
+     */
     public static final String GET_MATERIAL_URL = "https://api.weixin.qq.com/cgi-bin/material/get_material?access_token=%s";
-
-
 }

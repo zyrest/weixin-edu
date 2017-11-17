@@ -15,6 +15,8 @@ public interface ChargeEntityMapper {
 
     int updateByPrimaryKeySelective(ChargeEntity record);
 
+    int updateByOpenidSelective(ChargeEntity record);
+
     int updateByPrimaryKey(ChargeEntity record);
 
     @Select("select * from t_charge where openid=#{openid}")

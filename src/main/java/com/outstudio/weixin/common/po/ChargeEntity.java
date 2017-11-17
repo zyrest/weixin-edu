@@ -18,6 +18,26 @@ public class ChargeEntity implements Serializable {
 
     private String out_trade_no;
 
+    private Integer toPid;
+
+    private Integer prepared;
+
+    public Integer getToPid() {
+        return toPid;
+    }
+
+    public void setToPid(Integer toPid) {
+        this.toPid = toPid;
+    }
+
+    public Integer getPrepared() {
+        return prepared;
+    }
+
+    public void setPrepared(Integer prepared) {
+        this.prepared = prepared;
+    }
+
     public String getTransaction_id() {
         return transaction_id;
     }

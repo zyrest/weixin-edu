@@ -1,102 +1,151 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.outstudio.weixin.common.dao.ChargeEntityMapper" >
-  <resultMap id="BaseResultMap" type="com.outstudio.weixin.common.po.ChargeEntity" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="openid" property="openid" jdbcType="VARCHAR" />
-    <result column="now_date" property="now_date" jdbcType="TIMESTAMP" />
-    <result column="dates" property="dates" jdbcType="INTEGER" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    id, openid, now_date, dates,transaction_id,out_trade_no
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from t_charge
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from t_charge
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.outstudio.weixin.common.po.ChargeEntity" >
-    insert into t_charge (id, openid, now_date, 
-      dates,transaction_id,out_trade_no)
-    values (#{id,jdbcType=INTEGER}, #{openid,jdbcType=VARCHAR}, #{now_date,jdbcType=TIMESTAMP}, 
-      #{dates,jdbcType=INTEGER},#{transaction_id,jdbcType=VARCHAR},#{out_trade_no,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.outstudio.weixin.common.po.ChargeEntity" >
-    insert into t_charge
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="openid != null" >
-        openid,
-      </if>
-      <if test="now_date != null" >
-        now_date,
-      </if>
-      <if test="dates != null" >
-        dates,
-      </if>
-      <if test="transaction_id != null" >
-        transaction_id,
-      </if>
-      <if test="out_trade_no != null" >
-        out_trade_no,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="openid != null" >
-        #{openid,jdbcType=VARCHAR},
-      </if>
-      <if test="now_date != null" >
-        #{now_date,jdbcType=TIMESTAMP},
-      </if>
-      <if test="dates != null" >
-        #{dates,jdbcType=INTEGER},
-      </if>
-      <if test="transaction_id != null" >
-        #{transaction_id,jdbcType=VARCHAR},
-      </if>
-      <if test="out_trade_no != null" >
-        #{out_trade_no,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.outstudio.weixin.common.po.ChargeEntity" >
-    update t_charge
-    <set >
-      <if test="openid != null" >
-        openid = #{openid,jdbcType=VARCHAR},
-      </if>
-      <if test="now_date != null" >
-        now_date = #{now_date,jdbcType=TIMESTAMP},
-      </if>
-      <if test="dates != null" >
-        dates = #{dates,jdbcType=INTEGER},
-      </if>
-      <if test="transaction_id != null" >
-        dates = #{transaction_id,jdbcType=VARCHAR},
-      </if>
-      <if test="out_trade_no != null" >
-        out_trade_no = #{dates,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.outstudio.weixin.common.po.ChargeEntity" >
-    update t_charge
-    set openid = #{openid,jdbcType=VARCHAR},
-      now_date = #{now_date,jdbcType=TIMESTAMP},
-      dates = #{dates,jdbcType=INTEGER},
-      transaction_id = #{transaction_id,jdbcType=VARCHAR},
-      out_trade_no = #{out_trade_no,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+<mapper namespace="com.outstudio.weixin.common.dao.ChargeEntityMapper">
+    <resultMap id="BaseResultMap" type="com.outstudio.weixin.common.po.ChargeEntity">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="openid" property="openid" jdbcType="VARCHAR"/>
+        <result column="now_date" property="now_date" jdbcType="TIMESTAMP"/>
+        <result column="dates" property="dates" jdbcType="INTEGER"/>
+        <result column="prepared" property="prepared" jdbcType="INTEGER"/>
+        <result column="toPid" property="toPid" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, openid, now_date, dates, transaction_id, out_trade_no, prepared, toPid
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from t_charge
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        DELETE FROM t_charge
+        WHERE id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.outstudio.weixin.common.po.ChargeEntity">
+        INSERT INTO t_charge (id, openid, now_date,
+                              dates, transaction_id, out_trade_no, prepared, toPid)
+        VALUES (#{id,jdbcType=INTEGER}, #{openid,jdbcType=VARCHAR}, #{now_date,jdbcType=TIMESTAMP},
+                #{dates,jdbcType=INTEGER}, #{transaction_id,jdbcType=VARCHAR}, #{out_trade_no,jdbcType=VARCHAR},
+                #{prepared,jdbcType=INTEGER}, #{toPid,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" parameterType="com.outstudio.weixin.common.po.ChargeEntity">
+        insert into t_charge
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="openid != null">
+                openid,
+            </if>
+            <if test="now_date != null">
+                now_date,
+            </if>
+            <if test="dates != null">
+                dates,
+            </if>
+            <if test="transaction_id != null">
+                transaction_id,
+            </if>
+            <if test="out_trade_no != null">
+                out_trade_no,
+            </if>
+            <if test="prepared != null">
+                prepared,
+            </if>
+            <if test="toPid != null">
+                toPid,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="openid != null">
+                #{openid,jdbcType=VARCHAR},
+            </if>
+            <if test="now_date != null">
+                #{now_date,jdbcType=TIMESTAMP},
+            </if>
+            <if test="dates != null">
+                #{dates,jdbcType=INTEGER},
+            </if>
+            <if test="transaction_id != null">
+                #{transaction_id,jdbcType=VARCHAR},
+            </if>
+            <if test="out_trade_no != null">
+                #{out_trade_no,jdbcType=VARCHAR},
+            </if>
+            <if test="prepared != null">
+                #{prepared,jdbcType=INTEGER},
+            </if>
+            <if test="toPid != null">
+                #{toPid,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.outstudio.weixin.common.po.ChargeEntity">
+        update t_charge
+        <set>
+            <if test="openid != null">
+                openid = #{openid,jdbcType=VARCHAR},
+            </if>
+            <if test="now_date != null">
+                now_date = #{now_date,jdbcType=TIMESTAMP},
+            </if>
+            <if test="dates != null">
+                dates = #{dates,jdbcType=INTEGER},
+            </if>
+            <if test="transaction_id != null">
+                dates = #{transaction_id,jdbcType=VARCHAR},
+            </if>
+            <if test="out_trade_no != null">
+                out_trade_no = #{dates,jdbcType=VARCHAR},
+            </if>
+            <if test="prepared != null">
+                prepared = #{prepared,jdbcType=INTEGER},
+            </if>
+            <if test="toPid != null">
+                toPid = #{toPid,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByOpenidSelective" parameterType="com.outstudio.weixin.common.po.ChargeEntity">
+        update t_charge
+        <set>
+            <if test="now_date != null">
+                now_date = #{now_date,jdbcType=TIMESTAMP},
+            </if>
+            <if test="dates != null">
+                dates = #{dates,jdbcType=INTEGER},
+            </if>
+            <if test="transaction_id != null">
+                dates = #{transaction_id,jdbcType=VARCHAR},
+            </if>
+            <if test="out_trade_no != null">
+                out_trade_no = #{dates,jdbcType=VARCHAR},
+            </if>
+            <if test="prepared != null">
+                prepared = #{prepared,jdbcType=INTEGER},
+            </if>
+            <if test="toPid != null">
+                toPid = #{toPid,jdbcType=INTEGER},
+            </if>
+        </set>
+        where openid = #{openid,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.outstudio.weixin.common.po.ChargeEntity">
+        UPDATE t_charge
+        SET openid         = #{openid,jdbcType=VARCHAR},
+            now_date       = #{now_date,jdbcType=TIMESTAMP},
+            dates          = #{dates,jdbcType=INTEGER},
+            transaction_id = #{transaction_id,jdbcType=VARCHAR},
+            out_trade_no   = #{out_trade_no,jdbcType=VARCHAR},
+            prepared       = #{prepared,jdbcType=INTEGER},
+            toPid          = #{toPid,jdbcType=INTEGER}
+        WHERE id = #{id,jdbcType=INTEGER}
+    </update>
 </mapper>

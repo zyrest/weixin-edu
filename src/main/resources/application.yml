@@ -37,7 +37,7 @@ logging:
         weixin: debug
 
 
-fileSavedPath: file:/home/ubuntu/weixin/
+fileSavedPath: file:D:/piu/
 
 server:
   tomcat:
