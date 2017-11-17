@@ -91,4 +91,14 @@ public class BaseExceptionAdvisor {
 
         return messageVo;
     }
+
+    @ExceptionHandler(InvalidRequestException.class)
+    public MessageVo handleInvalidRequest(InvalidRequestException e) {
+        MessageVo messageVo = new MessageVo();
+
+        messageVo.setMessage(e.getMessage()).setStatus(ResponseStatus.LOGICAL_ERROR);
+
+        return messageVo;
+    }
+
 }

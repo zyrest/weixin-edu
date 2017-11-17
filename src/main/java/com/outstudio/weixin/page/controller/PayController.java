@@ -2,7 +2,6 @@ package com.outstudio.weixin.page.controller;
 
 import com.outstudio.weixin.common.service.ChargeService;
 import com.outstudio.weixin.common.utils.DateUtil;
-import com.outstudio.weixin.common.utils.IpUtil;
 import com.outstudio.weixin.common.utils.LoggerUtil;
 import com.outstudio.weixin.core.shiro.token.TokenManager;
 import com.outstudio.weixin.wechat.pay.impl.WXPayConfigImpl;
@@ -14,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -65,7 +66,7 @@ public class PayController {
         Map<String, String> result = null;
         try {
             result = wxPay.unifiedOrder(data);
-            result = processPayResult(result, fee, pid);
+            processPayResult(result, pid);
         } catch (Exception e) {
             LoggerUtil.error(getClass(), e.getMessage());
             e.printStackTrace();
@@ -74,28 +75,14 @@ public class PayController {
     }
 
 
-    private Map<String, String> processPayResult(Map<String, String> result, String fee, Integer pid) {
-        Map<String, String> processResult = new HashMap<String, String>();
+    private void processPayResult(Map<String, String> result, Integer pid) {
+
         if ("SUCCESS".equalsIgnoreCase(result.get("return_code"))) {
             if ("SUCCESS".equalsIgnoreCase(result.get("result_code"))) {
-                processResult.put("trade_type", result.get("trade_type"));
-                processResult.put("prepay_id", result.get("prepay_id"));
-                processResult.put("result", "success");
-                if (pid == null)
-                    chargeService.charge(TokenManager.getWeixinToken().getOpenid(), DateUtil.getFormatDate(), new Date(), fee);
-                else
-                    chargeService.charge(TokenManager.getWeixinToken().getOpenid(), DateUtil.getFormatDate(), new Date(), fee, pid);
-                return processResult;
-            } else {
-                processResult.put("result_code", result.get("result_code"));
-                processResult.put("err_code", result.get("err_code"));
-                processResult.put("err_code_des", result.get("err_code_des"));
-                return processResult;
+
+                chargeService.preCharge(TokenManager.getWeixinToken().getOpenid(), pid);
+
             }
-        } else {
-            processResult.put("return_code", result.get("return_code"));
-            processResult.put("return_msg", result.get("return_msg"));
-            return processResult;
         }
     }
 
@@ -116,7 +103,16 @@ public class PayController {
                 String now_date = request.getParameter("time_end");
                 String total_fee = request.getParameter("total_fee");
 
-                 chargeService.charge(openid, transaction_id);
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+                Date date = null;
+                try {
+                    date = sdf.parse(now_date);
+                    LoggerUtil.fmtDebug(getClass(),"格式化后的交易日期为%s",date.toString());
+                } catch (ParseException e) {
+                    LoggerUtil.error(getClass(), "日期格式转化错误", e);
+                }
+
+                chargeService.charge(openid, out_trade_no,transaction_id, date, total_fee);
 
                 Map<String, String> result = new HashMap<>();
                 result.put("return_code", "SUCCESS");

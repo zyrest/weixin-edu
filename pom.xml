@@ -137,6 +137,13 @@
             <artifactId>vod_api</artifactId>
             <version>1.0.0</version>
         </dependency>
+
+        <!--生成二维码的工具包-->
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>3.3.0</version>
+        </dependency>
     </dependencies>
 
     <build>

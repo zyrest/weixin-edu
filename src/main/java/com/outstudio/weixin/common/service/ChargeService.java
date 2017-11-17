@@ -1,14 +1,15 @@
 package com.outstudio.weixin.common.service;
 
+import com.outstudio.weixin.back.exception.InvalidRequestException;
 import com.outstudio.weixin.common.dao.ChargeEntityMapper;
 import com.outstudio.weixin.common.po.ChargeEntity;
 import com.outstudio.weixin.common.po.UserEntity;
 import com.outstudio.weixin.common.utils.DateUtil;
+import com.outstudio.weixin.common.utils.LoggerUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.text.ParseException;
 import java.util.Date;
 
 /**
@@ -24,14 +25,20 @@ public class ChargeService {
 
     public void charge(String openid,
                        String out_trade_no,
+                       String transaction_id,
                        Date now_date,
                        String total_fee) {
+
+        Integer pid = checkPreCharge(openid);
+
         int days = 0;
         if ("3000".equalsIgnoreCase(total_fee)) {
             days = 30;
         } else if ("30000".equalsIgnoreCase(total_fee)) {
             days = 365;
         }
+
+
         UserEntity userEntity = userService.getUserByOpenId(openid);
         Date vip_end_date = userEntity.getVip_end_date();
         if (DateUtil.isNotExpire(vip_end_date)) {
@@ -39,33 +46,51 @@ public class ChargeService {
         } else {
             userEntity.setVip_end_date(DateUtil.dateAdd(new Date(), days));
         }
+
+        userEntity.setPid(pid);
         userService.updateUser(userEntity);
 
         if (userEntity.getPid() != 0) {
-            userService.addBalance(userEntity.getPid(), Integer.parseInt(total_fee)/100);
+            userService.addBalance(userEntity.getPid(), Integer.parseInt(total_fee) / 100);
         }
 
         ChargeEntity chargeEntity = new ChargeEntity();
         chargeEntity.setOpenid(openid);
         chargeEntity.setNow_date(now_date);
-        chargeEntity.setDates(365);
+        chargeEntity.setDates(days);
         chargeEntity.setOut_trade_no(out_trade_no);
+        chargeEntity.setTransaction_id(transaction_id);
+        chargeEntity.setPrepared(0);
+        chargeEntity.setToPid(pid);
+
+        chargeEntityMapper.updateByOpenidSelective(chargeEntity);
+    }
+
+    private Integer checkPreCharge(String openid) {
+        ChargeEntity chargeEntity = chargeEntityMapper.getByOpenid(openid);
+
+        if (chargeEntity == null) {
+            LoggerUtil.error(getClass(),"用户没有完成预支付流程");
+            throw new InvalidRequestException("非法请求");
+        }
+
+        Integer prepared = chargeEntity.getPrepared();
+        if (prepared != 1) {
+            LoggerUtil.error(getClass(),"用户没有完成预支付流程");
+            throw new InvalidRequestException("非法请求");
+        } else {
+            return chargeEntity.getToPid();
+        }
+
+    }
+
+    public void preCharge(String openid, Integer pid) {
+        ChargeEntity chargeEntity = new ChargeEntity();
+
+        chargeEntity.setOpenid(openid);
+        chargeEntity.setPrepared(1);
+        chargeEntity.setToPid(pid);
 
         chargeEntityMapper.insertSelective(chargeEntity);
-    }
-    public void charge(String openid,
-                       String out_trade_no,
-                       Date now_date,
-                       String total_fee,
-                       Integer pid) {
-        charge(openid, out_trade_no, now_date, total_fee);
-        double fee = Integer.parseInt(total_fee)/100;
-        userService.addBalance(pid, fee);
-    }
-
-    public void charge(String openid, String transaction_id) {
-        ChargeEntity chargeEntity = chargeEntityMapper.getByOpenid(openid);
-        chargeEntity.setTransaction_id(transaction_id);
-        chargeEntityMapper.updateByPrimaryKeySelective(chargeEntity);
     }
 }

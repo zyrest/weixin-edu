@@ -82,5 +82,4 @@ public class WeixinController {
         modelAndView.setViewName(state);
         return modelAndView;
     }
-
 }
