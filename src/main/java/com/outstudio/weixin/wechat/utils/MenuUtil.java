@@ -31,7 +31,15 @@ public class MenuUtil {
     }
 
     private static Button firstButton() {
-        return createViewButton("故事培养", domain+"page/view/audio");
+        Button button = new Button();
+        button.setName("语音熏陶");
+
+        List<Button> sub_buttons = new ArrayList<>();
+        sub_buttons.add(createViewButton("经典儿歌", ""));
+        sub_buttons.add(createViewButton("故事培养", domain + "page/view/audio"));
+        button.setSub_button(sub_buttons);
+
+        return button;
     }
 
     private static Button secondButton() {
