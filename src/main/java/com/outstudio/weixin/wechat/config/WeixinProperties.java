@@ -15,7 +15,7 @@ public class WeixinProperties {
 //    public static final String appID = "wxd53def0a24d17b53";
 //    public static final String appSecret = "14d2831e0d8153867040d95674808d40";
 
-    public static final String mchID = "";//商户id
+    public static final String mchID = "1491353082";//商户id
     public static final String appKey = "2ab9071b06b9f739b950ddb41db2690d";
 
     public static final String BASE_SCOPE = "snsapi_base";
