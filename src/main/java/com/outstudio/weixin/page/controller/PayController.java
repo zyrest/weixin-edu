@@ -66,7 +66,7 @@ public class PayController {
         Map<String, String> result = null;
         try {
             result = wxPay.unifiedOrder(data);
-            result = processPayResult(result, pid);
+            processPayResult(result, pid);
         } catch (Exception e) {
             LoggerUtil.error(getClass(), e.getMessage());
             e.printStackTrace();
@@ -75,29 +75,14 @@ public class PayController {
     }
 
 
-    private Map<String, String> processPayResult(Map<String, String> result, Integer pid) {
-
-        Map<String, String> processResult = new HashMap<String, String>();
+    private void processPayResult(Map<String, String> result, Integer pid) {
 
         if ("SUCCESS".equalsIgnoreCase(result.get("return_code"))) {
             if ("SUCCESS".equalsIgnoreCase(result.get("result_code"))) {
-                processResult.put("trade_type", result.get("trade_type"));
-                processResult.put("prepay_id", result.get("prepay_id"));
-                processResult.put("result", "success");
 
                 chargeService.preCharge(TokenManager.getWeixinToken().getOpenid(), pid);
 
-                return processResult;
-            } else {
-                processResult.put("result_code", result.get("result_code"));
-                processResult.put("err_code", result.get("err_code"));
-                processResult.put("err_code_des", result.get("err_code_des"));
-                return processResult;
             }
-        } else {
-            processResult.put("return_code", result.get("return_code"));
-            processResult.put("return_msg", result.get("return_msg"));
-            return processResult;
         }
     }
 

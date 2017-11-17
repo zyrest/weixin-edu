@@ -69,4 +69,9 @@ public class WeixinProperties {
      * 根据media id获取永久素材api
      */
     public static final String GET_MATERIAL_URL = "https://api.weixin.qq.com/cgi-bin/material/get_material?access_token=%s";
+
+    /**
+     * 新增临时素材
+     */
+    public static final String UPLOAD_TEMPORARY_MATERIAL = "https://api.weixin.qq.com/cgi-bin/media/upload?access_token=%s&type=%s";
 }
