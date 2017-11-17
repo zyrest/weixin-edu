@@ -30,6 +30,15 @@ public class ContentUtil {
         return s.toString();
     }
 
+    public static String defualt() {
+        StringBuilder s = new StringBuilder();
+        s.append("欢迎关注龙跃科技\n");
+        s.append("如果想要做代理，请在个人中心页面查看客服联系方式\n");
+        s.append("如果您是代理，请回复 代理 来获取自己的推广二维码\n");
+        s.append("如果有人通过您的推广二维码成为会员，您将得到一定收益");
+        return s.toString();
+    }
+
     public String onSubscribe(String nickname) {
 
         StringBuilder s = new StringBuilder();

@@ -60,4 +60,16 @@ public class WechatUtil {
         return NetWorkUtil.doPostUri(url, jsonParams);
     }
 
+    /**
+     * 上传临时素材
+     * @param localFilePath
+     * @return
+     */
+    public static JSONObject uploadTemporaryMaterial(String localFilePath,String type) {
+        String url = String.format(WeixinProperties.UPLOAD_TEMPORARY_MATERIAL,
+                AccessTokenCache.getAccessToken().getAccess_token(),
+                type);
+        return NetWorkUtil.uploadFile(url, localFilePath, "media");
+    }
+
 }

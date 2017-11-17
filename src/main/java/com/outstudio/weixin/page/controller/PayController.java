@@ -28,6 +28,8 @@ public class PayController {
     private WXPay wxPay;
     private WXPayConfigImpl config;
 
+    private static final String backOffUrl = "http://www.here52.cn/open/page/wxpayDone";
+
     @Resource
     private ChargeService chargeService;
 
@@ -57,7 +59,7 @@ public class PayController {
         data.put("device_info", "WEB");
         data.put("total_fee", fee);
         data.put("spbill_create_ip", request.getRemoteAddr());
-        data.put("notify_url", "/open/page/wxpayDone");
+        data.put("notify_url", backOffUrl);
         data.put("trade_type", "JSAPI");
         data.put("openid", TokenManager.getWeixinToken().getOpenid());
 

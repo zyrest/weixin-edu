@@ -5,6 +5,8 @@ package com.outstudio.weixin.wechat.config;
  */
 public class WeixinProperties {
 
+    public static final String DOMAIN = "http://www.here52.cn";
+
     public static final String TOKEN = "wechat_edu";
     public static final String appID = "wx6b2cfecab5b48621";
     public static final String appSecret = "48a1796bdca284377046f40423da162e";

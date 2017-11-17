@@ -2,6 +2,7 @@ package com.outstudio.weixin.wechat.utils;
 
 
 import com.outstudio.weixin.wechat.config.EventType;
+import com.outstudio.weixin.wechat.config.WeixinProperties;
 import com.outstudio.weixin.wechat.dto.menu.*;
 
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import java.util.List;
  */
 public class MenuUtil {
 
-    private static final String domain = "http://www.here52.cn/";
+    private static final String domain = WeixinProperties.DOMAIN;
 
     //测试使用
 //    private static final String domain = "http://x78q7c.natappfree.cc/";
