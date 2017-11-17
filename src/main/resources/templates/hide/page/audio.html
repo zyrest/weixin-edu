@@ -10,7 +10,6 @@
     <title>故事培养</title>
     <!-- BOOTSTRAP CORE STYLE CSS -->
     <link href="/css/weui.min.css" rel="stylesheet"/>
-    <script src="/js/weui.min.js"></script>
 
     <style type="text/css">
         body{
@@ -261,6 +260,9 @@
 
 </div>
 
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script src="/js/weui.min.js"></script>
+
 <script type="text/javascript">
 //    weui.confirm("真的？");
     weui.searchBar('#search_bar');
@@ -279,8 +281,6 @@
     var nameMap = {1:'安全', 2:'学习', 3:'生活', 4:'优秀童声'}
     //]]>
 </script>
-
-<script src="/js/jquery-3.2.1.min.js"></script>
 
 <script type="text/javascript">
 
@@ -357,9 +357,6 @@
                         refreshing = false;
                     }
                 }
-//                if(flag) {
-//                    $('#container').scrollTop($("#article_list").offset().top)
-//                }
             },
             error:function () {
                 if(!is_refresh) {
@@ -391,21 +388,6 @@
             load_articles(true, false);
         }
     }
-
-//    function scroll_listener() {
-//        var container_ele = document.getElementById("article_container");
-//        //滚动到底部
-//        if(container_ele.height + container_ele.scrollTop >= container_ele.scrollHeight-20) {
-//            if(loading) {
-//                return;
-//            }
-//            if(no_more) {
-//                return;
-//            }
-//            loading = true;
-//            load_articles(false,false);
-//        }
-//    }
 
     function build_article_dom(data) {
         var html = '<div class="article" article_id="' + data.id + '">';

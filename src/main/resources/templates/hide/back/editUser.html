@@ -72,20 +72,23 @@
 
                     <form>
                         <div class="form-group">
-                            用户id：
-                            <input id="userId" class="form-control" required="required" readonly="readonly"
-                                   th:value="${user.id}"/>
+                            用户ID：
+                            <input id="userId" class="form-control" required="required" readonly="readonly" th:value="${user.id}"/>
                         </div>
 
                         <div class="form-group">
-                            邀请人id：
-                            <input id="agentId" class="form-control" required="required" th:value="${user.pid}"/>
+                            用户昵称：
+                            <input id="userNickname" class="form-control" required="required" readonly="readonly" th:value="${user.nickname}"/>
+                        </div>
+
+                        <div class="form-group">
+                            邀请人ID：
+                            <input id="agentId" class="form-control" required="required" readonly="readonly" th:value="${user.pid}"/>
                         </div>
 
                         <div class="form-group">
                             当前余额：
-                            <input id="balance" type="number" class="form-control" required="required"
-                                   th:value="${user.balance}"/>
+                            <input id="balance" type="number" class="form-control" required="required" th:value="${user.balance}"/>
                         </div>
 
                         <div class="form-group">

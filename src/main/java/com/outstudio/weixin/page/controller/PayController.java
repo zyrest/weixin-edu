@@ -6,6 +6,7 @@ import com.outstudio.weixin.common.utils.LoggerUtil;
 import com.outstudio.weixin.core.shiro.token.TokenManager;
 import com.outstudio.weixin.wechat.pay.impl.WXPayConfigImpl;
 import com.outstudio.weixin.wechat.pay.sdk.WXPay;
+import com.outstudio.weixin.wechat.pay.sdk.WXPayConstants;
 import com.outstudio.weixin.wechat.pay.sdk.WXPayUtil;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,9 +16,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by lmy on 2017/9/16.
@@ -35,7 +34,7 @@ public class PayController {
     private void init() {
         try {
             config = WXPayConfigImpl.getInstance();
-            wxPay = new WXPay(config);
+            wxPay = new WXPay(config, "/open/page/wxpayDone");
 
         } catch (Exception e) {
             LoggerUtil.error(getClass(), e.getMessage());
@@ -50,8 +49,9 @@ public class PayController {
                                    @RequestParam("pid") Integer pid) {
 
         init();
+        Map<String, String> returnMap = new HashMap<>();
 
-        HashMap<String, String> data = new HashMap<String, String>();
+        HashMap<String, String> data = new HashMap<>();
         data.put("body", "vip充值");
         data.put("out_trade_no", DateUtil.getFormatDate());
         data.put("device_info", "WEB");
@@ -68,21 +68,46 @@ public class PayController {
             result = wxPay.unifiedOrder(data);
             processPayResult(result, pid);
         } catch (Exception e) {
+            returnMap.put("status", "400");
             LoggerUtil.error(getClass(), e.getMessage());
-            e.printStackTrace();
+            return returnMap;
         }
-        return result;
+
+        //生成H5调起微信支付API相关参数（前端页面js的配置参数）
+        long timestamp = DateUtil.getTimestampSeconds();//当前时间的时间戳（秒）
+        String packages = "prepay_id=" + result.get("prepay_id");//订单详情扩展字符串
+        String nonceStr = WXPayUtil.generateUUID();
+
+        returnMap.put("appId", config.getAppID());//公众号appid
+        returnMap.put("timeStamp", String.valueOf(timestamp));
+        returnMap.put("nonceStr", nonceStr); //随机数
+        returnMap.put("package", packages);
+        returnMap.put("signType", "MD5");//签名方式
+        String sign = null;
+        try {
+            sign = WXPayUtil.generateSignature(returnMap, config.getKey(), WXPayConstants.SignType.MD5);
+        } catch (Exception e) {
+            LoggerUtil.fmtDebug(getClass(), "生成Sign出错，message：-> {%s}", e.getMessage());
+            returnMap.put("status", "401");
+            return returnMap;
+        }
+        returnMap.put("paySign", sign);
+        returnMap.put("status", "200");
+
+        return returnMap;
     }
 
-
-    private void processPayResult(Map<String, String> result, Integer pid) {
-
+    private void processPayResult(Map<String, String> result, Integer pid) throws Exception {
         if ("SUCCESS".equalsIgnoreCase(result.get("return_code"))) {
+
             if ("SUCCESS".equalsIgnoreCase(result.get("result_code"))) {
-
                 chargeService.preCharge(TokenManager.getWeixinToken().getOpenid(), pid);
-
+            } else {
+                throw new Exception("err_code：" + result.get("err_code") + "，err_code_des：" + result.get("err_code_des"));
             }
+
+        } else {
+            throw new Exception("return_msg：" + result.get("return_msg"));
         }
     }
 

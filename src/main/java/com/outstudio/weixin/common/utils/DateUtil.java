@@ -93,4 +93,10 @@ public class DateUtil {
 
         return days;
     }
+
+    public static long getTimestampSeconds() {
+        Date now = new Date();
+        long timestamp = now.getTime();
+        return timestamp / 1000;
+    }
 }
