@@ -12,7 +12,7 @@ import java.util.UUID;
 
 /**
  * Created by 96428 on 2017/7/17.
- * This in TestWeixin, samson.back.util
+ * This in TestWeixin, samson.back.utils
  */
 public class FileUtil {
 

@@ -5,7 +5,7 @@ import org.springframework.util.StringUtils;
 
 /**
  * Created by 96428 on 2017/7/21.
- * This in ssmjavaconfig, samson.common.util
+ * This in ssmjavaconfig, samson.common.utils
  */
 public class LoggerUtil {
     /**
