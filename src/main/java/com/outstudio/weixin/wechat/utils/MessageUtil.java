@@ -12,9 +12,11 @@ import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
+import org.xml.sax.InputSource;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.*;
 
 /**
@@ -48,6 +50,26 @@ public class MessageUtil {
 
         return map;
     }
+
+    public static Map<String, String> xml2Map(String xml) throws DocumentException {
+        Map<String, String> map = new HashMap<String, String>();
+
+        StringReader stringReader = new StringReader(xml);
+        InputSource source = new InputSource(stringReader);
+
+        SAXReader reader = new SAXReader();
+        Document document = reader.read(source);
+
+        Element root = document.getRootElement();
+        List<Element> nodes = root.elements();
+
+        for (Element e : nodes) {
+            map.put(e.getName(), e.getText());
+        }
+
+        return map;
+    }
+
 
     public static String createTextMessageXml(String fromUser, String toUser, String content) {
 

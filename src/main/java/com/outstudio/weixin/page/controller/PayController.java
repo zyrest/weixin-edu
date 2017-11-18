@@ -9,15 +9,20 @@ import com.outstudio.weixin.wechat.pay.impl.WXPayConfigImpl;
 import com.outstudio.weixin.wechat.pay.sdk.WXPay;
 import com.outstudio.weixin.wechat.pay.sdk.WXPayConstants;
 import com.outstudio.weixin.wechat.pay.sdk.WXPayUtil;
+import com.outstudio.weixin.wechat.utils.MessageUtil;
+import org.dom4j.DocumentException;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by lmy on 2017/9/16.
@@ -116,21 +121,23 @@ public class PayController {
     }
 
     @RequestMapping("/wxpayDone")
-    public String processResult(@RequestParam("return_code") String return_code,
-                                @RequestParam("return_msg") String return_msg,
-                                HttpServletRequest request) {
+    public String processResult(HttpServletRequest request) throws IOException, DocumentException {
+
+        Map<String, String> map = MessageUtil.xml2Map(request);
+
+        String return_code = map.get("return_code");
+        String return_msg = map.get("return_msg");
 
         String stringResult = null;
-
         if ("SUCCESS".equalsIgnoreCase(return_code)) {
-            String result_code = request.getParameter("result_code");
+            String result_code = map.get("result_code");
             if ("SUCCESS".equalsIgnoreCase(result_code)) {
                 // 成功将成功信息写进数据库，返回SUCCESS
-                String openid = request.getParameter("openid");
-                String transaction_id = request.getParameter("transaction_id");
-                String out_trade_no = request.getParameter("out_trade_no");
-                String now_date = request.getParameter("time_end");
-                String total_fee = request.getParameter("total_fee");
+                String openid = map.get("openid");
+                String transaction_id = map.get("transaction_id");
+                String out_trade_no = map.get("out_trade_no");
+                String now_date = map.get("time_end");
+                String total_fee = map.get("total_fee");
 
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
                 Date date = null;
@@ -156,8 +163,8 @@ public class PayController {
 
             } else {
                 // 失败，返回FAIL
-                String err_code = request.getParameter("err_code");
-                String err_code_des = request.getParameter("err-code_des");
+                String err_code = map.get("err_code");
+                String err_code_des = map.get("err-code_des");
                 Map<String, String> result = new HashMap<>();
                 result.put("return_code", "FAIL");
                 result.put("return_msg", err_code + "----" + err_code_des);
