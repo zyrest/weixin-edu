@@ -6,6 +6,7 @@ import com.outstudio.weixin.common.service.ManagerService;
 import com.outstudio.weixin.common.service.UserService;
 import com.outstudio.weixin.common.utils.DateUtil;
 import com.outstudio.weixin.common.utils.LoggerUtil;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -81,5 +82,9 @@ public class MyRealm extends AuthorizingRealm {
         return authorizationInfo;
     }
 
+    public void clearCached() {
+        PrincipalCollection principals = SecurityUtils.getSubject().getPrincipals();
+        super.clearCache(principals);
+    }
 
 }

@@ -86,6 +86,10 @@ public class TokenManager {
         }
     }
 
+    public static boolean isVip(UserEntity user) {
+        return DateUtil.isNotExpire(user.getVip_end_date());
+    }
+
     public static long tillDate() {
         if (!isVip()) return 0;
         else {
@@ -99,5 +103,9 @@ public class TokenManager {
 
             return DateUtil.daysBetween(new Date(), until);
         }
+    }
+
+    public static long tillDate(UserEntity user) {
+        return DateUtil.daysBetween(new Date(), user.getVip_end_date());
     }
 }

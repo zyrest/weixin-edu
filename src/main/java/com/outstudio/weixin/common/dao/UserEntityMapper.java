@@ -31,7 +31,7 @@ public interface UserEntityMapper {
     @Update("update t_user set balance=#{balance} where id = #{id}")
     int setBalance(@Param("id") Integer id, @Param("balance") double balance);
 
-    @Select("select id,pid,balance,vip_end_date,level,nickname from t_user where id=#{id}")
+    @Select("select openid,nickname,sex,province,city,country,id,pid,balance,vip_end_date,level from t_user where id=#{id}")
     UserEntity getUserById(@Param("id") Integer id);
 
     @Select("SELECT COUNT(0) FROM t_user WHERE pid=#{pid}")
