@@ -55,6 +55,12 @@ public class TokenManager {
         getSubject().login(token);
     }
 
+    public static void reLoginWeixin() {
+        LoggerUtil.fmtDebug(TokenManager.class, "重新登陆当前用户：-> {%s}", getWeixinToken().getOpenid());
+        logout();
+        loginWeixin(getWeixinToken());
+        LoggerUtil.fmtDebug(TokenManager.class, "重新登陆成功，当前缓存中的用户。-> {%s}", JSON.toJSONString(getWeixinToken()));
+    }
     public static void logout() {
         getSubject().logout();
     }

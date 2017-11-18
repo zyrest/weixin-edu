@@ -18,6 +18,7 @@ public class WeixinAuthFilter extends AccessControlFilter {
     protected boolean isAccessAllowed(ServletRequest servletRequest, ServletResponse servletResponse, Object o) throws Exception {
 
         if (TokenManager.isManager()) {
+            TokenManager.reLoginWeixin();
             return true;
         }
         UserEntity user = TokenManager.getWeixinToken();

@@ -29,19 +29,18 @@ public class UserController {
     public ModelAndView getUserInfo() {
         ModelAndView view = new ModelAndView();
 
-        UserEntity user = TokenManager.getWeixinToken();
-        int userId = user.getId();
-
-        UserEntity gotUser = userService.getUserById(userId);
-        LoggerUtil.fmtDebug(getClass(), "数据库中的用户，%s", JSON.toJSONString(gotUser));
+//        UserEntity user = TokenManager.getWeixinToken();
+//        int userId = user.getId();
+//        UserEntity gotUser = userService.getUserById(userId);
+//        LoggerUtil.fmtDebug(getClass(), "数据库中的用户，%s", JSON.toJSONString(gotUser));
 //        user.setVip_end_date(gotUser.getVip_end_date());
-        LoggerUtil.fmtDebug(getClass(), "开始重新登陆！");
+        LoggerUtil.fmtDebug(getClass(), "开始重新登陆！以清除当前缓存的会员日期。");
         myRealm.clearCached();
-        TokenManager.logout();
-        TokenManager.loginWeixin(gotUser);
+        TokenManager.reLoginWeixin();
         LoggerUtil.fmtDebug(getClass(), "重新登陆成功！！");
         LoggerUtil.fmtDebug(getClass(), "目前缓存中的用户, %s", JSON.toJSONString(TokenManager.getWeixinToken()));
 
+        UserEntity gotUser = TokenManager.getWeixinToken();
         view.addObject("user", gotUser);
         view.addObject("isVip", TokenManager.isVip());
         view.addObject("tillDate",TokenManager.tillDate());
