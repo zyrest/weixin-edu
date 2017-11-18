@@ -12,9 +12,10 @@
         <result column="vip_end_date" property="vip_end_date" jdbcType="TIMESTAMP"/>
         <result column="pid" property="pid" jdbcType="INTEGER"/>
         <result column="balance" property="balance" jdbcType="DECIMAL"/>
+        <result column="level" property="level" jdbcType="INTEGER"/>
     </resultMap>
     <sql id="Base_Column_List">
-        openid, nickname, sex, province, city, country, vip_end_date, pid, id, balance
+        openid, nickname, sex, province, city, country, vip_end_date, pid, id, balance,level
     </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
         select
@@ -68,6 +69,9 @@
             <if test="balance != null">
                 balance,
             </if>
+            <if test="level != null">
+                level,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="openid != null">
@@ -100,6 +104,9 @@
             <if test="balance != null">
                 #{balance,jdbcType=DECIMAL},
             </if>
+            <if test="level != null">
+                #{level,jdbcType=INTEGER},
+            </if>
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.outstudio.weixin.common.po.UserEntity">
@@ -131,6 +138,9 @@
             </if>
             <if test="balance != null">
                 balance = #{balance,jdbcType=DECIMAL},
+            </if>
+            <if test="level != null">
+                level = #{level,jdbcType=INTEGER},
             </if>
         </set>
         where openid = #{openid,jdbcType=VARCHAR}
@@ -165,6 +175,9 @@
             <if test="balance != null">
                 balance = #{balance,jdbcType=DECIMAL},
             </if>
+            <if test="level != null">
+                level = #{level,jdbcType=INTEGER},
+            </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
@@ -178,7 +191,8 @@
             vip_end_date = #{vip_end_date,jdbcType=TIMESTAMP},
             id           = #{id,jdbcType=INTEGER},
             pid          = #{pid,jdbcType=INTEGER},
-            balance      = #{balance,jdbcType=DECIMAL}
+            balance      = #{balance,jdbcType=DECIMAL},
+            level          = #{level,jdbcType=INTEGER}
             WHERE openid = #{openid,jdbcType=VARCHAR};
 
     </update>

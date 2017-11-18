@@ -1,8 +1,10 @@
 package com.outstudio.weixin.back.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
 import com.outstudio.weixin.common.po.UserEntity;
 import com.outstudio.weixin.common.service.UserService;
+import com.outstudio.weixin.common.utils.LoggerUtil;
 import com.outstudio.weixin.common.utils.MessageVoUtil;
 import com.outstudio.weixin.common.vo.MessageVo;
 import org.springframework.stereotype.Controller;
@@ -10,9 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
-import javax.websocket.server.PathParam;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/back/users")
@@ -31,10 +31,11 @@ public class BackUserController {
         return MessageVoUtil.success(userEntities);
     }
 
-    @PutMapping("")
+    @PutMapping
     @ResponseBody
-    public MessageVo setAgent(@ModelAttribute UserEntity userEntity) {
+    public MessageVo setAgent(@RequestBody UserEntity userEntity) {
 
+        LoggerUtil.fmtDebug(getClass(), JSON.toJSONString(userEntity));
         userService.editUser(userEntity);
 
         return MessageVoUtil.success();
