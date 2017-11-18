@@ -98,6 +98,7 @@ public class ChargeService {
         chargeEntity.setOpenid(openid);
         chargeEntity.setPrepared(1);
         chargeEntity.setToPid(pid);
+        chargeEntity.setNow_date(new Date());
 
         chargeEntityMapper.insertSelective(chargeEntity);
     }

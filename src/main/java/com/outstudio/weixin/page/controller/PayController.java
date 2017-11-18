@@ -1,5 +1,6 @@
 package com.outstudio.weixin.page.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.outstudio.weixin.common.service.ChargeService;
 import com.outstudio.weixin.common.utils.DateUtil;
 import com.outstudio.weixin.common.utils.LoggerUtil;
@@ -96,6 +97,7 @@ public class PayController {
         returnMap.put("paySign", sign);
         returnMap.put("status", "200");
 
+        LoggerUtil.fmtDebug(getClass(), JSON.toJSONString(returnMap));
         return returnMap;
     }
 
