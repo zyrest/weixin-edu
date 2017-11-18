@@ -125,6 +125,7 @@ public class PayController {
 
         Map<String, String> map = MessageUtil.xml2Map(request);
 
+        LoggerUtil.fmtDebug(getClass(), "response message is : -> {%s}", JSON.toJSONString(map));
         String return_code = map.get("return_code");
         String return_msg = map.get("return_msg");
 
