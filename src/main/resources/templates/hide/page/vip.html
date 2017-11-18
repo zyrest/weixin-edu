@@ -193,17 +193,25 @@
 <script type="text/javascript">
     //<![CDATA[
     //全局变量
-    var money = 3000;
+    var money = 1;
     var pid = 0;
     //]]>
 </script>
 
 <script>
+    $(function () {
+        var url = window.location.toString();
+        var hs = url.split("#")[1];
+        var p = parseInt(hs);
+
+        if (isNaN(hs)) pid = 0;
+        else pid = p;
+    });
 
     function showPicker() {
         var param = [
-            {"label" : "一个月", "value" : 3000},
-            {"label" : "一年", "value" : 30000}
+            {"label" : "一个月", "value" : 1},
+            {"label" : "一年", "value" : 1}
             ];
         weui.picker(param, {
             onChange: function (result) {
@@ -212,16 +220,22 @@
             onConfirm: function (result) {
                 money = result[0].value;
                 console.log(money);
-                $('#timePrice').text( (result/100) + '.00');
+//                $('#timePrice').text( (result/100) + '.00');
             }
         });
     }
 
     function ha() {
+//        var postData = JSON.stringify({fee: money, pid: pid});
+        var formData = new FormData();
+        formData.append("fee", money);
+        formData.append("pid", pid);
         $.ajax({
-            url:'',
-            type: "get",
-            dataType: "json",
+            url: '/open/page/wxpay',
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
             success: function(result) {
                 if (result.status == "200") {
                     WeixinJSBridge.invoke(
@@ -235,25 +249,25 @@
                             "paySign": result.paySign
                         },
                         function(res) { //调起微信支付成功
-                            WeixinJSBridge.log(res.err_msg);
+//                            WeixinJSBridge.log(res.err_msg);
                             if (res.err_msg == "get_brand_wcpay_request:ok") {
-                                alert("微信支付成功!");
+                                weui.alert("充值成功！");
+                                window.location.href = '/page/view/userInfo';
                                 //跳转
                             } else {
-                                alert("支付失败或取消");
+                                weui.alert("调起微信支付失败，请在微信页面内购买！");
                             }
                         }
                     );
                 } else {
-                    alert('后台出错');
+                    weui.alert('后台出错，请稍后再试。');
                 }
             },
             //调起微信支付失败
             error:function(){
-                alert("调起微信支付失败，请在微信页面内购买！")
+                weui.alert('后台出错，请稍后再试。');
             }
         });
-
     }
 
 

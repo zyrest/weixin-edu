@@ -157,7 +157,7 @@
         var level = $('#level').find('option:selected').val();
         var pid = $('#agentId').val();
 
-        var data = JSON.stringify({id: id, balance: balance, level: level, pid: pid});
+        var data = JSON.stringify({id: id, balance: balance, level: level});
         $.ajax({
             url: '/back/users',
             type: "PUT",
