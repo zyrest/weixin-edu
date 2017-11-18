@@ -31,12 +31,12 @@ public class ChargeService {
 
         Integer pid = checkPreCharge(openid);
 
-        int days = 0;
-        if ("3000".equalsIgnoreCase(total_fee)) {
-            days = 30;
-        } else if ("30000".equalsIgnoreCase(total_fee)) {
-            days = 365;
-        }
+        int days = 30;
+//        if ("3000".equalsIgnoreCase(total_fee)) {
+//            days = 30;
+//        } else if ("30000".equalsIgnoreCase(total_fee)) {
+//            days = 365;
+//        }
 
 
         UserEntity userEntity = userService.getUserByOpenId(openid);
@@ -48,6 +48,14 @@ public class ChargeService {
         }
 
         userEntity.setPid(pid);
+
+        //检查前端传过来的pid是否合法，即pid是否存在
+        UserEntity pUser = userService.getUserById(pid);
+        if (pUser == null) {
+            LoggerUtil.error(getClass(), "非法请求，pid不存在");
+            userEntity.setPid(0);
+        }
+
         userService.updateUser(userEntity);
 
         if (userEntity.getPid() != 0) {

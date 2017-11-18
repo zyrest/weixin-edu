@@ -36,7 +36,7 @@ public class PayController {
     private void init() {
         try {
             config = WXPayConfigImpl.getInstance();
-            wxPay = new WXPay(config, "/open/page/wxpayDone");
+            wxPay = new WXPay(config, backOffUrl);
 
         } catch (Exception e) {
             LoggerUtil.error(getClass(), e.getMessage());
