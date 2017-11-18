@@ -102,6 +102,7 @@ public class ShiroConfig {
 
         // 配置不会被拦截的链接 顺序判断
         filterChainDefinitionMap.put("/open/back/login", "alreadyLogin");
+        filterChainDefinitionMap.put("/open/page/wxpay", "weixinAuth");
         filterChainDefinitionMap.put("/js/**", "anon");
         filterChainDefinitionMap.put("/css/**", "anon");
         filterChainDefinitionMap.put("/open/**", "anon");
@@ -112,7 +113,6 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/back/**", "login");
         filterChainDefinitionMap.put("/hide/**", "forbid");
         filterChainDefinitionMap.put("/page/**", "weixinAuth");
-        filterChainDefinitionMap.put("/open/page/wxpay", "weixinAuth");
 
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
     }

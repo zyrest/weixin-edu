@@ -59,6 +59,7 @@ public class PayController {
         data.put("out_trade_no", DateUtil.getFormatDate());
         data.put("device_info", "WEB");
         data.put("total_fee", fee);
+        data.put("notify_url", backOffUrl);
         data.put("spbill_create_ip", request.getRemoteAddr());
         data.put("trade_type", "JSAPI");
         data.put("openid", TokenManager.getWeixinToken().getOpenid());
@@ -122,6 +123,7 @@ public class PayController {
 
         String stringResult = null;
 
+        LoggerUtil.fmtDebug(getClass(), "return_code: %s; reuturn_msg: %s", return_code, return_msg);
         if ("SUCCESS".equalsIgnoreCase(return_code)) {
             String result_code = request.getParameter("result_code");
             if ("SUCCESS".equalsIgnoreCase(result_code)) {
@@ -174,6 +176,8 @@ public class PayController {
         Map<String, String> result = new HashMap<>();
         result.put("return_code", "FAIL");
         result.put("return-msg", return_msg);
+
+        LoggerUtil.fmtDebug(getClass(),"返回参数为： %s",result);
         try {
             stringResult = WXPayUtil.mapToXml(result);
         } catch (Exception e) {
