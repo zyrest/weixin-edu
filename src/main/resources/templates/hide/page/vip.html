@@ -237,6 +237,7 @@
             processData: false,
             contentType: false,
             success: function(result) {
+                alert(JSON.stringify(result));
                 if (result.status == "200") {
                     WeixinJSBridge.invoke(
                         'getBrandWCPayRequest',
@@ -264,7 +265,7 @@
                 }
             },
             //调起微信支付失败
-            error:function(){
+            error:function() {
                 weui.alert('后台出错，请稍后再试。');
             }
         });

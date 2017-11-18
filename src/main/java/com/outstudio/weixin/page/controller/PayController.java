@@ -72,7 +72,7 @@ public class PayController {
         } catch (Exception e) {
             returnMap.put("status", "400");
             LoggerUtil.error(getClass(), e.getMessage());
-            LoggerUtil.error(getClass(), result.toString());
+            LoggerUtil.error(getClass(), JSON.toJSONString(result));
             return returnMap;
         }
 
@@ -85,10 +85,10 @@ public class PayController {
         returnMap.put("timeStamp", String.valueOf(timestamp));
         returnMap.put("nonceStr", nonceStr); //随机数
         returnMap.put("package", packages);
-        returnMap.put("signType", "MD5");//签名方式
+        returnMap.put("signType", WXPayConstants.HMACSHA256);//签名方式
         String sign = null;
         try {
-            sign = WXPayUtil.generateSignature(returnMap, config.getKey(), WXPayConstants.SignType.MD5);
+            sign = WXPayUtil.generateSignature(returnMap, config.getKey(), WXPayConstants.SignType.HMACSHA256);
         } catch (Exception e) {
             LoggerUtil.fmtDebug(getClass(), "生成Sign出错，message：-> {%s}", e.getMessage());
             returnMap.put("status", "401");
