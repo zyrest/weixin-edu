@@ -226,7 +226,6 @@
     }
 
     function ha() {
-//        var postData = JSON.stringify({fee: money, pid: pid});
         var formData = new FormData();
         formData.append("fee", money);
         formData.append("pid", pid);
@@ -237,7 +236,7 @@
             processData: false,
             contentType: false,
             success: function(result) {
-                alert(JSON.stringify(result));
+//                alert(JSON.stringify(result));
                 if (result.status == "200") {
                     WeixinJSBridge.invoke(
                         'getBrandWCPayRequest',
