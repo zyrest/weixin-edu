@@ -59,7 +59,6 @@ public class PayController {
         data.put("device_info", "WEB");
         data.put("total_fee", fee);
         data.put("spbill_create_ip", request.getRemoteAddr());
-        data.put("notify_url", backOffUrl);
         data.put("trade_type", "JSAPI");
         data.put("openid", TokenManager.getWeixinToken().getOpenid());
 
@@ -72,6 +71,7 @@ public class PayController {
         } catch (Exception e) {
             returnMap.put("status", "400");
             LoggerUtil.error(getClass(), e.getMessage());
+            LoggerUtil.error(getClass(), result.toString());
             return returnMap;
         }
 
