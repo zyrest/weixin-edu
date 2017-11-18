@@ -122,10 +122,10 @@
                 dates = #{dates,jdbcType=INTEGER},
             </if>
             <if test="transaction_id != null">
-                dates = #{transaction_id,jdbcType=VARCHAR},
+                transaction_id = #{transaction_id,jdbcType=VARCHAR},
             </if>
             <if test="out_trade_no != null">
-                out_trade_no = #{dates,jdbcType=VARCHAR},
+                out_trade_no = #{out_trade_no,jdbcType=VARCHAR},
             </if>
             <if test="prepared != null">
                 prepared = #{prepared,jdbcType=INTEGER},
