@@ -33,7 +33,7 @@ public class MenuUtil {
         button.setName("语音熏陶");
 
         List<Button> sub_buttons = new ArrayList<>();
-        sub_buttons.add(createViewButton("经典儿歌", "http://www.baidu.com"));
+        sub_buttons.add(createViewButton("经典儿歌", "http://mp.weixin.qq.com/s/xv4tQenLcgafwbLfNlZvAQ"));
         sub_buttons.add(createViewButton("故事培养", domain + "/page/view/audio"));
         button.setSub_button(sub_buttons);
 
