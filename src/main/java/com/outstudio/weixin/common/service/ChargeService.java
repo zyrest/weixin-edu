@@ -31,12 +31,12 @@ public class ChargeService {
 
         Integer pid = checkPreCharge(openid);
 
-        int days = 30;
-//        if ("3000".equalsIgnoreCase(total_fee)) {
-//            days = 30;
-//        } else if ("30000".equalsIgnoreCase(total_fee)) {
-//            days = 365;
-//        }
+        int days = 0;
+        if ("3000".equalsIgnoreCase(total_fee)) {
+            days = 30;
+        } else if ("30000".equalsIgnoreCase(total_fee)) {
+            days = 365;
+        }
 
 
         UserEntity userEntity = userService.getUserByOpenId(openid);
