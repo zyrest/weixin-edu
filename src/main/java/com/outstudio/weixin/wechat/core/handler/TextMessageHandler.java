@@ -15,6 +15,7 @@ import com.outstudio.weixin.wechat.utils.MessageUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -46,11 +47,11 @@ public class TextMessageHandler implements Handler {
 
             //生成二维码并保存在本地
             try {
-                QRCodeUtil.generateQRCode(WeixinProperties.DOMAIN + "/page/view/vip/#"+id, 400, 400, "png", "/home/ubuntu/weixin/qrcode/"+id+".png");
-                LoggerUtil.debug(getClass(),"生成二维码成功");
+                QRCodeUtil.generateQRCode(WeixinProperties.DOMAIN + "/page/view/vip#" + id, 400, 400, "png", "/home/ubuntu/weixin/qrcode/" + id + ".png");
+                LoggerUtil.debug(getClass(), "生成二维码成功");
             } catch (Exception e) {
                 e.printStackTrace();
-                LoggerUtil.debug(getClass(),"生成二维码失败");
+                LoggerUtil.debug(getClass(), "生成二维码失败");
             }
 
 
@@ -58,11 +59,16 @@ public class TextMessageHandler implements Handler {
             String url = String.format(WeixinProperties.UPLOAD_TEMPORARY_MATERIAL,
                     AccessTokenCache.getAccessToken().getAccess_token(),
                     "image");
-            JSONObject jsonObject = NetWorkUtil.uploadFile(url, "/home/ubuntu/weixin/qrcode/" + id + ".png", "media");
+            File file = new File("/home/ubuntu/weixin/qrcode/" + id + ".png");
 
+//            JSONObject jsonObject = NetWorkUtil.uploadFile(url, "/home/ubuntu/weixin/qrcode/" + id + ".png", "media");
+            JSONObject jsonObject = NetWorkUtil.httpRequest(url, file);
             Image image = new Image();
-            image.setMediaId(jsonObject.getString("media_id"));
-            result = MessageUtil.createImageMessageXml(fromUser, toUser, image);
+            String media_id = jsonObject.getString("media_id");
+            if (media_id != null) {
+                image.setMediaId(media_id);
+                result = MessageUtil.createImageMessageXml(fromUser, toUser, image);
+            }
         } else if (content.equals("测试")) {
             List<Item> items = new ArrayList<>();
 

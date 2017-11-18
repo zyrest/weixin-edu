@@ -16,9 +16,6 @@ public class MenuUtil {
 
     private static final String domain = WeixinProperties.DOMAIN;
 
-    //测试使用
-//    private static final String domain = "http://x78q7c.natappfree.cc/";
-
     /**
      * 创建一个默认的菜单栏
      *
@@ -36,8 +33,8 @@ public class MenuUtil {
         button.setName("语音熏陶");
 
         List<Button> sub_buttons = new ArrayList<>();
-        sub_buttons.add(createViewButton("经典儿歌", ""));
-        sub_buttons.add(createViewButton("故事培养", domain + "page/view/audio"));
+        sub_buttons.add(createViewButton("经典儿歌", "http://www.baidu.com"));
+        sub_buttons.add(createViewButton("故事培养", domain + "/page/view/audio"));
         button.setSub_button(sub_buttons);
 
         return button;
@@ -49,8 +46,8 @@ public class MenuUtil {
 
 
         List<Button> sub_buttons = new ArrayList<>();
-        sub_buttons.add(createViewButton("英语课堂", domain+"page/view/english"));
-        sub_buttons.add(createViewButton("复习内容", domain+"page/view/english#review"));
+        sub_buttons.add(createViewButton("英语课堂", domain+"/page/view/english"));
+        sub_buttons.add(createViewButton("复习内容", domain+"/page/view/english#review"));
         button.setSub_button(sub_buttons);
 
         return button;
@@ -59,10 +56,10 @@ public class MenuUtil {
     private static Button thirdButton() {
         Button button = new Button();
         List<Button> sub_button = new ArrayList<>();
-        sub_button.add(createViewButton("个人中心", domain+"page/view/userInfo"));
-        sub_button.add(createViewButton("VIP注册", domain+"page/view/vip"));
-        sub_button.add(createViewButton("教育讨论", domain+"page/view/video"));
-        sub_button.add(createViewButton("平台介绍", domain+"page/view/introduction"));
+        sub_button.add(createViewButton("个人中心", domain+"/page/view/userInfo"));
+        sub_button.add(createViewButton("VIP注册", domain+"/page/view/vip"));
+        sub_button.add(createViewButton("教育讨论", domain+"/page/view/video"));
+        sub_button.add(createViewButton("平台介绍", domain+"/page/view/introduction"));
         button.setName("家长关注");
         button.setSub_button(sub_button);
         return button;
