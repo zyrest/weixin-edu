@@ -51,7 +51,7 @@ public class ChargeService {
 
         //检查前端传过来的pid是否合法，即pid是否存在
         UserEntity pUser = userService.getUserById(pid);
-        if (pUser == null) {
+        if (pid != 0 && pUser == null) {
             LoggerUtil.error(getClass(), "非法请求，pid不存在");
             userEntity.setPid(0);
         }
@@ -78,13 +78,13 @@ public class ChargeService {
         ChargeEntity chargeEntity = chargeEntityMapper.getByOpenid(openid);
 
         if (chargeEntity == null) {
-            LoggerUtil.error(getClass(),"用户没有完成预支付流程");
+            LoggerUtil.error(getClass(), "用户没有完成预支付流程");
             throw new InvalidRequestException("非法请求");
         }
 
         Integer prepared = chargeEntity.getPrepared();
         if (prepared != 1) {
-            LoggerUtil.error(getClass(),"用户没有完成预支付流程");
+            LoggerUtil.error(getClass(), "用户没有完成预支付流程");
             throw new InvalidRequestException("非法请求");
         } else {
             return chargeEntity.getToPid();
@@ -93,13 +93,20 @@ public class ChargeService {
     }
 
     public void preCharge(String openid, Integer pid) {
-        ChargeEntity chargeEntity = new ChargeEntity();
+        ChargeEntity chargeEntity = chargeEntityMapper.getByOpenid(openid);
 
-        chargeEntity.setOpenid(openid);
-        chargeEntity.setPrepared(1);
-        chargeEntity.setToPid(pid);
-        chargeEntity.setNow_date(new Date());
-
-        chargeEntityMapper.insertSelective(chargeEntity);
+        if (chargeEntity == null) {
+            chargeEntity = new ChargeEntity();
+            chargeEntity.setOpenid(openid);
+            chargeEntity.setPrepared(1);
+            chargeEntity.setToPid(pid);
+            chargeEntity.setNow_date(new Date());
+            chargeEntityMapper.insertSelective(chargeEntity);
+        } else {
+            chargeEntity.setPrepared(1);
+            chargeEntity.setToPid(pid);
+            chargeEntity.setNow_date(new Date());
+            chargeEntityMapper.updateByOpenidSelective(chargeEntity);
+        }
     }
 }
