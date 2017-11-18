@@ -12,6 +12,7 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -74,6 +75,6 @@ public class TestJson {
                 "</xml>";
 
         Map<String, String> map = MessageUtil.xml2Map(xml);
-        System.out.println(JSON.toJSONString(map));
+        System.out.println(new Date(1513594023000L));
     }
 }

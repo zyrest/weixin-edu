@@ -1,7 +1,9 @@
 package com.outstudio.weixin.page.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.outstudio.weixin.common.po.UserEntity;
 import com.outstudio.weixin.common.service.UserService;
+import com.outstudio.weixin.common.utils.LoggerUtil;
 import com.outstudio.weixin.core.shiro.token.TokenManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,18 +26,23 @@ public class UserController {
         ModelAndView view = new ModelAndView();
 
         UserEntity user = TokenManager.getWeixinToken();
-//        UserEntity user = new UserEntity();
-//        user.setNickname("zhangsan");
-//        user.setOpenid("asdasdads");
-//        user.setId(1);
-        view.addObject("user", user);
+
+        int userId = user.getId();
+        UserEntity gotUser = userService.getUserById(userId);
+
+        LoggerUtil.fmtDebug(getClass(), "数据库中的用户，%s", JSON.toJSONString(gotUser));
+        user = gotUser;
+
+        view.addObject("user", gotUser);
         view.addObject("isVip", TokenManager.isVip());
         view.addObject("tillDate",TokenManager.tillDate());
 
-        view.addObject("balance", user.getBalance());
-//        view.addObject("people", 10);
-        view.addObject("people", userService.getCountsByPid(user.getId()));
-        view.addObject("level", user.getLevel());
+        view.addObject("balance", gotUser.getBalance());
+        view.addObject("people", userService.getCountsByPid(gotUser.getId()));
+        view.addObject("level", gotUser.getLevel());
+
+        LoggerUtil.fmtDebug(getClass(), JSON.toJSONString(view.getModel()));
+
         view.setViewName("hide/page/personalCentre");
         return view;
     }

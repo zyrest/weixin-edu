@@ -171,19 +171,19 @@
             <img class="show-img" src="/img/bolang.png">
         </div>
         <div class="content-name">
-            <p th:text="|昵称：  ${user.nickname}|">nickname</p>
-            <p style="color: red" th:text="|ID：  ${user.id}|" >userId</p>
+            <p th:utext="|昵称：  ${user.nickname}|">nickname</p>
+            <p style="color: red" th:utext="|ID：  ${user.id}|" >userId</p>
         </div>
 
         <div class="content-vip">
             <div class="vip-content">
                 <p>是否为会员</p>
-                <p style="color: red" th:text="${isVip} == true ? '是' : '否'">否</p>
+                <p style="color: red" th:utext="${isVip} == true ? '是' : '否'">否</p>
             </div>
             <!--<hr style="width:2px;height:20px;background-color: black"/>-->
             <div class="vip-content separator" >
                 <p>会员剩余时间</p>
-                <p style="color: red" th:text="|${tillDate}天|">0天</p>
+                <p style="color: red" th:utext="|${tillDate}天|">0天</p>
             </div>
         </div>
 
@@ -191,7 +191,7 @@
             <h2 class="money-title">可提现佣金(元):</h2>
 
             <div class="money-count">
-                <span>¥</span><i class="count" th:text="${balance}">0.00</i>
+                <span>¥</span><i class="count" th:utext="${balance}">0.00</i>
             </div>
         </div>
 
@@ -199,13 +199,13 @@
             <div class="vip-content" >
                 <img class="team-image" width="48" height="48" src="/img/people.png">
                 <p>团队成员</p>
-                <p th:text="|${people}人|">0人</p>
+                <p th:utext="|${people}人|">0人</p>
             </div>
             <!--<hr style="width:2px;height:20px;background-color: black"/>-->
             <div class="vip-content separator" >
                 <img class="team-image" width="48" height="48" src="/img/level.png">
                 <p>代理等级(1级最低)</p>
-                <p th:text="${level}">0</p>
+                <p th:utext="${level}">0</p>
             </div>
         </div>
     </div>

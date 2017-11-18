@@ -193,7 +193,7 @@
 <script type="text/javascript">
     //<![CDATA[
     //全局变量
-    var money = 1;
+    var money = 3000;
     var pid = 0;
     //]]>
 </script>
@@ -210,8 +210,8 @@
 
     function showPicker() {
         var param = [
-            {"label" : "一个月", "value" : 1},
-            {"label" : "一年", "value" : 1}
+            {"label" : "一个月", "value" : 3000},
+            {"label" : "一年", "value" : 30000}
             ];
         weui.picker(param, {
             onChange: function (result) {
@@ -220,7 +220,7 @@
             onConfirm: function (result) {
                 money = result[0].value;
                 console.log(money);
-//                $('#timePrice').text( (result/100) + '.00');
+                $('#timePrice').text( (result/100) + '.00');
             }
         });
     }

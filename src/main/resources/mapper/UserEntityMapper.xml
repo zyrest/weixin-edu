@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.outstudio.weixin.common.dao.UserEntityMapper">
     <resultMap id="BaseResultMap" type="com.outstudio.weixin.common.po.UserEntity">
-        <id column="openid" property="openid" jdbcType="VARCHAR"/>
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="openid" property="openid" jdbcType="VARCHAR"/>
         <result column="nickname" property="nickname" jdbcType="VARCHAR"/>
         <result column="sex" property="sex" jdbcType="INTEGER"/>
         <result column="province" property="province" jdbcType="VARCHAR"/>
@@ -10,7 +11,6 @@
         <result column="country" property="country" jdbcType="VARCHAR"/>
         <result column="vip_end_date" property="vip_end_date" jdbcType="TIMESTAMP"/>
         <result column="pid" property="pid" jdbcType="INTEGER"/>
-        <result column="id" property="id" jdbcType="INTEGER"/>
         <result column="balance" property="balance" jdbcType="DECIMAL"/>
     </resultMap>
     <sql id="Base_Column_List">

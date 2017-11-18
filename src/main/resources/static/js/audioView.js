@@ -78,6 +78,7 @@ function setContent(pageNum) {
                 var audioTar = document.createElement("audio");
                 audioTar.setAttribute("src", src);
                 audioTar.setAttribute("controls", "controls");
+                audioTar.setAttribute("preload", "none");
                 srcTd.appendChild(audioTar);
                 $(srcTd).val("浏览器不支持");
                 trNode.appendChild(srcTd);

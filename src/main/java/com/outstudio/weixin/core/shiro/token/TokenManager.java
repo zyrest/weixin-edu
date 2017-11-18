@@ -1,8 +1,10 @@
 package com.outstudio.weixin.core.shiro.token;
 
+import com.alibaba.fastjson.JSON;
 import com.outstudio.weixin.common.po.ManagerEntity;
 import com.outstudio.weixin.common.po.UserEntity;
 import com.outstudio.weixin.common.utils.DateUtil;
+import com.outstudio.weixin.common.utils.LoggerUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
@@ -48,7 +50,7 @@ public class TokenManager {
         WeixinToken token = new WeixinToken();
         token.setWeixinOpenid(user.getOpenid());
         token.setWechat(true);
-        token.setRememberMe(true);
+        token.setRememberMe(false);
 
         getSubject().login(token);
     }
@@ -77,6 +79,9 @@ public class TokenManager {
             return true;
         } else {
             UserEntity user = getWeixinToken();
+
+            LoggerUtil.fmtDebug(TokenManager.class, "isVip方法中的用户 %s",JSON.toJSONString(user));
+
             return DateUtil.isNotExpire(user.getVip_end_date());
         }
     }
