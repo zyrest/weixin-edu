@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <title>
+        家有童声
+    </title>
+    <style>
+        body{
+            -webkit-user-select:initial;
+            background-color: #fff;
+        }
+        body>a{display: none;}
+        .ui-header-positive, .ui-footer-positive {
+            background-color: #62cfb3;
+        }
+        .ui-btn, .ui-btn-lg, .ui-btn-s {color: #62cfb3;}
+        .ui-list-link > li:after {color: #62cfb3;}
+        .ui-footer {
+            background-color:rgba(255, 255, 255, 0.9);
+        }
+        .ui-footer-wechat {
+            background-color:rgba(0, 0, 0, 0.8);
+        }
+        .ui-footer-wechat a {
+            color: #FFFFFF;
+        }
+        .ui-footer-btn {background-image: none;}
+
+        .upgrade {
+            color: #62cfb3;
+            vertical-align: middle;
+        }
+
+        .try-lesson {
+            background-color: #494e54;
+        }
+
+        .try-lesson img {
+            margin: 0 auto;
+            text-align: center;
+            display: block;
+            max-width: 100%;
+        }
+
+        .ui-txt-white {
+            padding-left: 10px;
+        }
+    </style>
+
+    <style>
+        .cl::after, .cl::before {
+            clear: both;
+            content: "";
+            display: block;
+            height: 0;
+        }
+        .fl {
+            float: left;
+        }
+        .fr {
+            float: right;
+        }
+        .abs {
+            position: absolute;
+        }
+        .rel {
+            position: relative;
+        }
+
+        .img, img {
+            border: medium none;
+            display: inline-block;
+            vertical-align: middle;
+            background-size: cover;
+        }
+
+        .btn, .icon_p {
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .icon_p {
+            background: rgba(0, 0, 0, 0) url("/img/music_sprite.png") no-repeat scroll 0 0 / 64px auto;
+        }
+
+        .icon-player-big {
+            height: 64px;
+            width: 64px;
+        }
+        .is-ready .icon-player-big {
+            background-position: 0 -2px;
+        }
+        .is-paused .icon-player-big {
+            background-position: 0 -70px;
+        }
+
+        .pic {
+            background-color: #ccc;
+        }
+
+        .wrapper {
+            padding: 0 10px;
+        }
+
+        .playing {
+            overflow: hidden;
+        }
+
+        .playing .bg-img {
+            background-position: center center;
+            background-size: cover;
+            filter: blur(10px);
+            height: 100%;
+            top: 0;
+            width: 100%;
+            z-index: -2;
+        }
+
+        .playing section.wrapper {
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .playing .wrapper .pic {
+            background-size: 100% auto;
+            display: block;
+            height: 0;
+            margin: 25px auto 14px;
+            padding-bottom: 50%;
+            width: 50%;
+        }
+
+        .playing .wrapper .img {
+            height: 0;
+            padding-bottom: 100%;
+            width: 100%;
+        }
+
+        .playing .btn-player {
+            left: 50%;
+            margin: -32px 0 0 -32px;
+            top: 50%;
+        }
+
+        .process-panel {
+            color: #b2bac8;
+            display: inline-block;
+            font-size: 10px;
+            line-height: 10px;
+            padding: 1px 0;
+            width: 50%;
+        }
+        .process-panel .fl {
+            margin-left: -40px;
+        }
+        .process-panel .fr {
+            margin-right: -40px;
+        }
+        .progressbar {
+            background-color: #d9dfe5;
+            height: 1px;
+            margin: 5px auto 0;
+        }
+        .playbar {
+            background-color: #0894ec;
+            height: 100%;
+            width: 50%;
+        }
+
+        h4 {
+            color: #1a1a1a;
+            padding-bottom: 4px;
+        }
+
+        .ui-dialog-bd h4 {
+            text-align: center;
+        }
+
+        .ui-btn-group > button {
+            color: #62cfb3;
+        }
+
+        div.ui-dialog-bd {
+            color: #5f5f5f;
+            font-size: 13px;
+            text-align: center;
+        }
+    </style>
+    <link rel="stylesheet" href="http://7xnvpc.com2.z0.glb.qiniucdn.com/misc/frozenui/css/frozen.css">
+
+</head>
+
+<body>
+
+<section class="ui-container">
+
+
+    <div class="playing">
+        <section class="wrapper">
+            <div class="pic default-img rel">
+                <span style="background-image:url('/img/longyue-logo.png');" class="img"></span>
+            </div>
+        </section>
+    </div>
+
+    <div class="ui-whitespace ui-center" style="color: #5f5f5f;height:auto;font-size:13px;margin-bottom: 10px;">
+
+        <div class="page">
+            <div class="bd">
+                <article class="weui_article">
+                    <!--<section>-->
+
+                        <!--<section>-->
+                            <!--<h3>-->
+                                <!--<span style="font-size: 16px; font-weight: bolder; ">公司及平台简介</span>-->
+                                <!--<br> <br>-->
+                            <!--</h3>-->
+                            <!--<hr>-->
+                            <!--<p>南宁市龙跃网络科技有限公司成立于 2017年，注册资金 200万，是广西南宁一家专业的互联网+教育的网络服务公司。公司依托互联网+教育，主要服务于幼儿、中小学生及其家长。公司秉承“用生活诠释教育，让教育回归本质”的理念，希望通过我们专业的水平和不懈努力，从根本上解决家长在培育孩子过程中遇到的种种困惑和难题，从而让孩子从小形成人格健全的价值观，是非分明的道德观，积极乐观的人生观。</p>-->
+                            <!--<br>-->
+
+                            <!--<p>公司以网络为载体，精心推出了<em>龙跃科技公众号（longyue3333）</em>。公众号专门设置了故事培养，英语启蒙和全面教育等板块。</p>-->
+                            <!--<br>-->
+
+                            <!--<p><b>故事培养:</b>公司原创了一系列日常生活故事，并录成语音，适用于幼儿园阶段的孩子。这些故事涉及了安全意识，学习习惯，生活礼仪等方方面面的话题。通过反复聆听这些故事，孩子便会逐渐明白在成长过程中为人处事的道理，并形成独立自主，和群力他，善思好学，乐观向上和文明礼貌的完美人格。同时，我们还设立了“优秀童声”栏目，用于鼓励会员儿童录制身边的故事，经公司审核通过后，我们会把它放在专栏里供其他孩子学习。</p>-->
+                            <!--<br>-->
+
+                            <!--<p><b>英语启蒙:</b>语言学习最根本的目的是在生活中交流使用。人类学习语言的普遍规律是声音感知——语音模仿——系统学习。因此，我们打破传统的教育方法，主张脱离教材，先在生活中学会说，后期在系统学习的学习理念，拍摄了一系列生活中常用的英语视频，我们制作的视频，都是零基础的孩子现场学习的真实过程，易于广大孩子模仿和学习。只要按视频中的方法和要求，三个月后孩子便能进行日常的英语交流。孩子能运用视频中的日常英语后，可报名参加现场的英语游戏活动。这些活动为孩子提供了良好的语言环境，让孩子学有所用。</p>-->
+                            <!--<br>-->
+
+                            <!--<p><b>全民教育（筹划中）:</b>，随着公司规模的扩大，我们后期会推出中小学同步课程视频，涵盖小学初中高中的语数英理化各科，以及针对艺术生的文化课程。敬请各位期待。</p>-->
+                            <!--<br>-->
+
+                            <!--<p style="font-size: 16px; font-weight: bold;">为激发孩子学习的兴趣，将来我们会不定期的举行故事演讲竞赛，户外英语联谊活动，以达到学以致用的效果。</p>-->
+                        <!--</section>-->
+                    <!--</section>-->
+                    内容正在添加....
+                </article>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+</body>
+
+<script src="http://7xnvpc.com2.z0.glb.qiniucdn.com/misc/frozenui/lib/zepto.min.js?v=4"></script>
+<script src="http://7xnvpc.com2.z0.glb.qiniucdn.com/misc/frozenui/js/frozen.js?v=4"></script>
+<script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
+
+<link href="/css/weui.min.css" rel="stylesheet"/>
+<script src="/js/weui.min.js"></script>
+</html>

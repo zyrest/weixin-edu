@@ -42,13 +42,13 @@ public class MenuUtil {
 
     private static Button secondButton() {
         Button button = new Button();
-        button.setName("视频带动");
+        button.setName("启蒙英语");
 
 
         List<Button> sub_buttons = new ArrayList<>();
         sub_buttons.add(createViewButton("英语课堂", domain+"/page/view/english"));
-        sub_buttons.add(createViewButton("家有童声", domain+"/page/view/video"));
-//        sub_buttons.add(createViewButton("复习内容", domain+"/page/view/english#review"));
+        sub_buttons.add(createViewButton("复习内容", domain + "/page/view/english#review"));
+        sub_buttons.add(createViewButton("教育讨论", domain+"/page/view/video"));
         button.setSub_button(sub_buttons);
 
         return button;
@@ -59,6 +59,7 @@ public class MenuUtil {
         List<Button> sub_button = new ArrayList<>();
         sub_button.add(createViewButton("个人中心", domain+"/page/view/userInfo"));
         sub_button.add(createViewButton("VIP注册", domain+"/page/view/vip"));
+        sub_button.add(createViewButton("家有童声",domain+"/page/view/voiceInHome"));
         sub_button.add(createViewButton("平台介绍", domain+"/page/view/introduction"));
         button.setName("家长关注");
         button.setSub_button(sub_button);
