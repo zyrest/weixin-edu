@@ -8,7 +8,7 @@
     <link th:href="@{/css/weui.min.css}" rel="stylesheet"/>
     <link href="http://7xnvpc.com2.z0.glb.qiniucdn.com/misc/frozenui/css/frozen.css" rel="stylesheet"/>
     <style>
-        *{
+        * {
             margin: 0;
             padding: 0;
             border: 0;
@@ -16,57 +16,69 @@
             font-size: 100%;
             vertical-align: baseline;
         }
-        html{
-            font-family: Arial,Helvetica,"STHeiti STXihei","Microsoft YaHei",Tohoma,serif;
+
+        html {
+            font-family: Arial, Helvetica, "STHeiti STXihei", "Microsoft YaHei", Tohoma, serif;
             -webkit-text-size-adjust: 100%;
             -moz-text-size-adjust: 100%;
             padding-bottom: 50px;
             color: #333;
         }
 
-        .header{
+        .header {
             max-height: 38px;
             min-height: 36px;
             background-color: #000;
             color: #b2bac8;
         }
-        .header-info{
+
+        .header-info {
             padding: 5px 0 5px 10px;
         }
-        .header-content,.header-image{
+
+        .header-content, .header-image {
             height: 24px;
             vertical-align: middle;
             line-height: 32px;
         }
-        .content{
+
+        .content {
 
         }
-        .content-image{
+
+        .content-image {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 10px;
         }
-        .show-img{
+
+        .show-img {
             height: auto;
             width: 100%;
             max-width: 500px;
         }
-        .content-goods,.content-date{
+
+        .content-goods, .content-date {
             padding: 0 10px;
+            text-align: center;
         }
-        .goods-title{
+
+        .goods-title {
             line-height: 22px;
         }
-        .goods-price{
+
+        .goods-price {
             color: #f44;
-            text-align: left;
+            text-align: center;
             margin: 10px 0;
             font-size: 18px;
         }
-        .date-name{
+
+        .date-name {
             display: inline;
             color: #333;
         }
-        .date-enter{
+
+        .date-enter {
             float: right;
             height: 14px;
             line-height: 14px;
@@ -75,11 +87,13 @@
             color: #999;
             padding-right: 15px;
         }
-        .footer{
+
+        .footer {
             height: 50px;
             width: 100%;
         }
-        .bottom-fix{
+
+        .bottom-fix {
             background-color: #F44;
             position: fixed;
             left: 0;
@@ -95,14 +109,20 @@
             -moz-box-sizing: border-box;
             box-sizing: border-box;
         }
-        .buy-btn{
+
+        .buy-btn {
             text-decoration: none;
         }
-        .buy-vip{
+
+        .buy-vip {
             font-size: 18px;
             line-height: 50px;
             text-align: center;
             color: #fff;
+        }
+
+        .monthVip {
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -129,19 +149,24 @@
             <h2 class="goods-title">购买会员享受全部课程</h2>
 
             <div class="goods-price">
-                <span>¥</span><i id="timePrice" class="js-goods-price price">30.00</i>
+                <div class="monthVip">月费会员 <span>¥</span><i id="monthVip" class="js-goods-price price">30.00  </i> &nbsp;
+                    <a href="javascript:;" onclick="ha($('#monthVip').text())" class="weui-btn weui-btn_mini weui-btn_primary" style="left: 15%">立即购买</a>
+                </div>
+                <div>年费会员 <span>¥</span><i id="yearVip" class="js-goods-price price">300.00</i>
+                    <a href="javascript:;" onclick="ha($('#yearVip').text())" class="weui-btn weui-btn_mini weui-btn_primary" style="left: 15%;">立即购买</a>
+                </div>
             </div>
         </div>
 
-        <div class="content-date">
-            <div class="goods-date">
-                <a class="buy-btn" href="javascript:showPicker()">
-                    <div class="date-img"></div>
-                    <div class="date-name">选择购买时长</div>
-                    <span class="date-enter">点击选择</span>
-                </a>
-            </div>
-        </div>
+        <!--<div class="content-date">-->
+        <!--<div class="goods-date">-->
+        <!--<a class="buy-btn" href="javascript:showPicker()">-->
+        <!--<div class="date-img"></div>-->
+        <!--<div class="date-name">选择购买时长</div>-->
+        <!--<span class="date-enter">点击选择</span>-->
+        <!--</a>-->
+        <!--</div>-->
+        <!--</div>-->
 
         <br><br>
         <hr>
@@ -149,18 +174,19 @@
         <div class="ui-whitespace ui-center" style="color: #5f5f5f;height:auto;font-size:13px;margin-bottom: 10px;">
             <div class="page">
                 <div class="hd">
-                    <h1 class="page_title" style="text-align: center; color: #ff4444; font-size: 1.5em; font-weight: bold;">VIP权利！！！</h1>
+                    <h1 class="page_title"
+                        style="text-align: center; color: #ff4444; font-size: 1.5em; font-weight: bold;">VIP权利！！！</h1>
                 </div>
                 <hr>
                 <div class="bd">
                     <article class="weui_article">
                         <section>
                             <section style="margin-top: 10px;margin-bottom: 10px">
-                                <p> <em>超值月会员（30元/月）：</em> <br>可聆听经典儿歌，录音故事；可观看启蒙英语视频</p>
+                                <p><em>超值月会员（30元/月）：</em> <br>可聆听经典儿歌，录音故事；可观看启蒙英语视频</p>
                             </section>
                             <hr>
                             <section>
-                                <p> <em>至尊年会员（300元/年）：</em> <br>可聆听经典儿歌，录音故事；可观看启蒙英语视频；可录制语音故事；可参与现场英语游戏的视频制作。</p>
+                                <p><em>至尊年会员（300元/年）：</em> <br>可聆听经典儿歌，录音故事；可观看启蒙英语视频；可录制语音故事；可参与现场英语游戏的视频制作。</p>
                             </section>
 
                             <br>
@@ -173,15 +199,15 @@
     </div>
 
     <div class="push"></div>
-    <div class="bottom-fix footer">
-        <div class="responsive-wrapper">
-            <a href="javascript:ha()" class="buy-btn">
-                <div class="buy-vip">
-                    立即购买
-                </div>
-            </a>
-        </div>
-    </div>
+    <!--<div class="bottom-fix footer">-->
+    <!--<div class="responsive-wrapper">-->
+    <!--<a href="javascript:ha()" class="buy-btn">-->
+    <!--<div class="buy-vip">-->
+    <!--立即购买-->
+    <!--</div>-->
+    <!--</a>-->
+    <!--</div>-->
+    <!--</div>-->
 
 </div>
 </body>
@@ -193,7 +219,7 @@
 <script type="text/javascript">
     //<![CDATA[
     //全局变量
-    var money = 3000;
+    //    var money = 3000;
     var pid = 0;
     //]]>
 </script>
@@ -208,26 +234,26 @@
         else pid = p;
     });
 
-    function showPicker() {
-        var param = [
-            {"label" : "一个月", "value" : 3000},
-            {"label" : "一年", "value" : 30000}
-            ];
-        weui.picker(param, {
-            onChange: function (result) {
-                console.log(result);
-            },
-            onConfirm: function (result) {
-                money = result[0].value;
-                console.log(money);
-                $('#timePrice').text( (result/100) + '.00');
-            }
-        });
-    }
+    //    function showPicker() {
+    //        var param = [
+    //            {"label" : "一个月", "value" : 3000},
+    //            {"label" : "一年", "value" : 30000}
+    //            ];
+    //        weui.picker(param, {
+    //            onChange: function (result) {
+    //                console.log(result);
+    //            },
+    //            onConfirm: function (result) {
+    //                money = result[0].value;
+    //                console.log(money);
+    //                $('#timePrice').text( (result/100) + '.00');
+    //            }
+    //        });
+    //    }
 
-    function ha() {
+    function ha(money) {
         var formData = new FormData();
-        formData.append("fee", money);
+        formData.append("fee", money * 100);
         formData.append("pid", pid);
         $.ajax({
             url: '/open/page/wxpay',
@@ -235,7 +261,7 @@
             data: formData,
             processData: false,
             contentType: false,
-            success: function(result) {
+            success: function (result) {
 //                alert(JSON.stringify(result));
                 if (result.status == "200") {
                     WeixinJSBridge.invoke(
@@ -248,14 +274,14 @@
                             "signType": result.signType,
                             "paySign": result.paySign
                         },
-                        function(res) { //调起微信支付成功
+                        function (res) { //调起微信支付成功
 //                            WeixinJSBridge.log(res.err_msg);
                             if (res.err_msg == "get_brand_wcpay_request:ok") {
                                 weui.alert("充值成功！");
                                 window.location.href = '/page/view/userInfo';
                                 //跳转
                             } else {
-                                weui.alert("调起微信支付失败，请在微信页面内购买！");
+                                weui.alert("调起微信支付失败！");
                             }
                         }
                     );
@@ -264,7 +290,7 @@
                 }
             },
             //调起微信支付失败
-            error:function() {
+            error: function () {
                 weui.alert('后台出错，请稍后再试。');
             }
         });
