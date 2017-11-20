@@ -314,6 +314,16 @@
             setVideoContent(i);
             nowPage = i;
             console.log(i);
+        },
+        next : function () {
+            nowPage++;
+            if (nowPage > count) nowPage = count;
+            setContent(nowPage);
+        },
+        pre : function () {
+            nowPage--;
+            if (nowPage < 1) nowPage = 1;
+            setContent(nowPage);
         }
     });
     function getVideoPageNum() {
@@ -418,6 +428,16 @@
             setReviewContent(i);
             nowPage = i;
             console.log(i);
+        },
+        next : function () {
+            nowPage++;
+            if (nowPage > count) nowPage = count;
+            setContent(nowPage);
+        },
+        pre : function () {
+            nowPage--;
+            if (nowPage < 1) nowPage = 1;
+            setContent(nowPage);
         }
     });
     function getReviewPageNum() {

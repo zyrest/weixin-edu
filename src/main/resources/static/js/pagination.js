@@ -47,7 +47,7 @@
 				var preurl='',nexturl='';
 				preurl=this.page==1?this.href+this.page:this.href+(--this.page);
 				nexturl=this.page==this.count?this.href+this.page:this.href+(++this.page+this.num);
-				dom = '<div class="page-contain"><a href="'+preurl+'"><</a><div class="page-box">'+a+'</div><a href="'+nexturl+'">></a></div>';	
+				dom = '<div class="page-contain"><div class="page-box">'+a+'</div></div>';
 			}else{
 				if(aNum<0){
 					for(var i=0;i<this.count;i++){
@@ -58,7 +58,7 @@
 						a+= "<a href='javascript:void(0);' class='"+(i==0?'active':'')+" "+(this.num-i==1?'page-next':'')+"'>"+(1+i)+"</a>";
 					}	
 				}
-				dom = '<div class="page-contain"><a href="javascript:void(0);" class="goPre"><</a><div class="page-box">'+a+'</div><a href="javascript:void(0);" class="goNext">></a></div>';
+				dom = '<div class="page-contain"><a href="javascript:void(0);" class="goPre">||</a><div class="page-box">'+a+'</div><a href="javascript:void(0);" class="goNext">||</a></div>';
 			}
 			
 			var id = document.getElementById(_this.box);
