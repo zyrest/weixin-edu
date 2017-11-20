@@ -102,10 +102,20 @@ page({
     count : parseInt(getPageNum()),//getPageNum(),//总页数
     num : 10,//页面展示的页码个数
     step : 6,//每次更新页码个数
-    callBack:function(i){
+    callBack: function(i){
         setContent(i);
         nowPage = i;
         console.log(i);
+    },
+    next : function () {
+        nowPage++;
+        if (nowPage > count) nowPage = count;
+        setContent(nowPage);
+    },
+    pre : function () {
+        nowPage--;
+        if (nowPage < 1) nowPage = 1;
+        setContent(nowPage);
     }
 });
 function getPageNum() {
