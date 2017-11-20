@@ -41,7 +41,7 @@ public class AuthController {
         }
         TokenManager.loginWeixin(user);
 
-        String url = "/open/page/index";
+        String url = "/page/view/audio";
         SavedRequest savedRequest = WebUtils.getSavedRequest(request);
         if (null != savedRequest && !StringUtil.isBlank(savedRequest.getRequestUrl())) {
             url = savedRequest.getRequestUrl();
