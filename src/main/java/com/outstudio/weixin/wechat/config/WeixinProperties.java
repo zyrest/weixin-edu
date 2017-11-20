@@ -76,4 +76,11 @@ public class WeixinProperties {
      * 新增临时素材
      */
     public static final String UPLOAD_TEMPORARY_MATERIAL = "https://api.weixin.qq.com/cgi-bin/media/upload?access_token=%s&type=%s";
+
+    /**
+     * 生成带参数的二维码
+     */
+    public static final String CREATE_QRCODE = " https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=%s";
+
+    public static final String GET_QRCODE_BY_TICKET = "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=%s";
 }

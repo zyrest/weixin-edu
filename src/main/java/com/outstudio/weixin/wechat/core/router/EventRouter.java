@@ -17,6 +17,9 @@ public class EventRouter implements Router {
     @Resource(name = "subscribeHandler")
     private Handler subscribeHandler;
 
+    @Resource(name = "scanHandler")
+    private Handler scanHandler;
+
     @Override
     public String dispatchMessage(Map<String, String> messageMap) {
         String event = messageMap.get("Event");
@@ -29,6 +32,7 @@ public class EventRouter implements Router {
             case (EventType.EVENT_UNSUBSCRIBE) :
                 break;
             case (EventType.EVENT_SCAN) :
+                result = scanHandler.handler(messageMap);
                 break;
             case (EventType.EVENT_LOCATION) :
                 break;

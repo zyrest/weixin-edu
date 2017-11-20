@@ -5,13 +5,13 @@ import com.outstudio.weixin.common.bitmatrix.utils.QRCodeUtil;
 import com.outstudio.weixin.common.po.UserEntity;
 import com.outstudio.weixin.common.service.UserService;
 import com.outstudio.weixin.common.utils.LoggerUtil;
-import com.outstudio.weixin.common.utils.NetWorkUtil;
 import com.outstudio.weixin.wechat.cache.AccessTokenCache;
 import com.outstudio.weixin.wechat.config.WeixinProperties;
 import com.outstudio.weixin.wechat.dto.message.media.Image;
 import com.outstudio.weixin.wechat.dto.message.media.Item;
 import com.outstudio.weixin.wechat.utils.ContentUtil;
 import com.outstudio.weixin.wechat.utils.MessageUtil;
+import com.outstudio.weixin.wechat.utils.WechatUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -45,9 +45,13 @@ public class TextMessageHandler implements Handler {
             UserEntity userEntity = userService.getUserByOpenId(toUser);
             Integer id = userEntity.getId();
 
+            JSONObject object = createQRCode(id);
+            String qrcodeUrl = object.getString("url");
+
             //生成二维码并保存在本地
             try {
-                QRCodeUtil.generateQRCode(WeixinProperties.DOMAIN + "/page/view/vip#" + id, 400, 400, "png", "/home/ubuntu/weixin/qrcode/" + id + ".png");
+//                QRCodeUtil.generateQRCode(WeixinProperties.DOMAIN + "/page/view/vip#" + id, 400, 400, "png", "/home/ubuntu/weixin/qrcode/" + id + ".png");
+                QRCodeUtil.generateQRCode(qrcodeUrl, 400, 400, "png", "/home/ubuntu/weixin/qrcode/" + id + ".png");
                 LoggerUtil.debug(getClass(), "生成二维码成功");
             } catch (Exception e) {
                 e.printStackTrace();
@@ -61,8 +65,7 @@ public class TextMessageHandler implements Handler {
                     "image");
             File file = new File("/home/ubuntu/weixin/qrcode/" + id + ".png");
 
-//            JSONObject jsonObject = NetWorkUtil.uploadFile(url, "/home/ubuntu/weixin/qrcode/" + id + ".png", "media");
-            JSONObject jsonObject = NetWorkUtil.httpRequest(url, file);
+            JSONObject jsonObject = WechatUtil.httpRequest(url, file);
             Image image = new Image();
             String media_id = jsonObject.getString("media_id");
             if (media_id != null) {
@@ -93,5 +96,9 @@ public class TextMessageHandler implements Handler {
         }
 
         return result;
+    }
+
+    private JSONObject createQRCode(Integer id) {
+        return WechatUtil.produceQRCode("2592000", id.toString());
     }
 }

@@ -34,6 +34,12 @@ public class SubscribeHandler implements Handler {
         String fromUser = messageMap.get("ToUserName");
         String userOpenid = messageMap.get("FromUserName");
 
+        String EventKey = messageMap.get("EventKey");
+        if (EventKey != null) {
+            int pid = Integer.parseInt(EventKey.substring(8));
+            userService.setPid(pid, userOpenid);
+        }
+
         UserEntity found = userService.getUserByOpenId(userOpenid);
         UserEntity user = WechatUtil.getUserInfoOnSubscribe(userOpenid);
         if (found == null) {

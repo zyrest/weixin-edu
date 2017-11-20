@@ -39,4 +39,7 @@ public interface UserEntityMapper {
 
     @Select("SELECT COUNT(0) FROM t_user")
     long getCounts();
+
+    @Update("update t_user set pid=#{pid} where openid = #{openid}")
+    int setPid(@Param("pid") Integer pid,@Param("openid")String openid);
 }

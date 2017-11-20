@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.outstudio.weixin.common.po.WelcomeEntity;
 import com.outstudio.weixin.common.service.WelcomeService;
 import com.outstudio.weixin.common.utils.LoggerUtil;
+import com.outstudio.weixin.wechat.config.WeixinProperties;
 import com.outstudio.weixin.wechat.dto.message.media.Item;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,15 @@ public class ContentUtil {
 
     @Resource
     private WelcomeService welcomeService;
+
+    public String onScan() {
+        StringBuilder s = new StringBuilder();
+        s.append("龙跃科技是一家专注于儿童教育的公司 \n");
+        s.append("<a href='" + WeixinProperties.DOMAIN + "/page/view/introduction" + "'>点我了解更多</a> \n");
+        s.append("<a href='" + WeixinProperties.DOMAIN + "/page/view/vip" + "'>购买会员，享受更多权利</a> \n");
+
+        return s.toString();
+    }
 
     public static String hello1() {
         StringBuilder s = new StringBuilder();

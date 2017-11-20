@@ -78,4 +78,8 @@ public class UserService {
     public int editUser(UserEntity userEntity) {
         return userEntityMapper.updateByIdSelective(userEntity);
     }
+
+    public void setPid(Integer pid,String openid) {
+        userEntityMapper.setPid(pid, openid);
+    }
 }
