@@ -40,11 +40,19 @@ public class ChargeService {
 
 
         UserEntity userEntity = userService.getUserByOpenId(openid);
-        Date vip_end_date = userEntity.getVip_end_date();
-        if (DateUtil.isNotExpire(vip_end_date)) {
-            userEntity.setVip_end_date(DateUtil.dateAdd(vip_end_date, days));
-        } else {
+
+        if (userEntity == null) {
+            userEntity = new UserEntity();
             userEntity.setVip_end_date(DateUtil.dateAdd(new Date(), days));
+            userEntity.setOpenid(openid);
+            userService.saveUser(userEntity);
+        } else {
+            Date vip_end_date = userEntity.getVip_end_date();
+            if (DateUtil.isNotExpire(vip_end_date)) {
+                userEntity.setVip_end_date(DateUtil.dateAdd(vip_end_date, days));
+            } else {
+                userEntity.setVip_end_date(DateUtil.dateAdd(new Date(), days));
+            }
         }
 
         userEntity.setPid(pid);
