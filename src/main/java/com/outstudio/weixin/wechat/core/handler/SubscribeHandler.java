@@ -35,11 +35,15 @@ public class SubscribeHandler implements Handler {
         String userOpenid = messageMap.get("FromUserName");
 
         UserEntity found = userService.getUserByOpenId(userOpenid);
+        UserEntity user = WechatUtil.getUserInfoOnSubscribe(userOpenid);
         if (found == null) {
-            UserEntity user = WechatUtil.getUserInfoOnSubscribe(userOpenid);
             userService.saveUser(user);
             found = user;
+        }else {
+            userService.updateUser(user);
         }
+
+
         return MessageUtil.createArticlesMessageXml(fromUser, userOpenid, contentUtil.news());
 //        return MessageUtil.createTextMessageXml(fromUser, userOpenid, contentUtil.onSubscribe(found.getNickname()));
     }
