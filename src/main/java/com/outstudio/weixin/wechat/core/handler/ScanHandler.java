@@ -29,6 +29,11 @@ public class ScanHandler implements Handler {
         int pid = Integer.parseInt(EventKey);
 
         UserEntity user = userService.getUserByOpenId(userOpenid);
+
+        if (user.getId() == pid) {
+            return MessageUtil.createTextMessageXml(fromUser, userOpenid, contentUtil.onScanDenied());
+        }
+
         if (user.getPid() == 0) {
             userService.setPid(pid, userOpenid);
             return MessageUtil.createTextMessageXml(fromUser, userOpenid, contentUtil.onScan());

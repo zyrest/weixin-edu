@@ -40,6 +40,15 @@ public class ContentUtil {
         return s.toString();
     }
 
+    public String onScanDenied() {
+        StringBuilder s = new StringBuilder();
+        s.append("不可以扫自己的推广二维码的哦~~~ \n");
+        s.append("<a href='" + WeixinProperties.DOMAIN + "/page/view/introduction" + "'>点我了解更多</a> \n");
+        s.append("<a href='" + WeixinProperties.DOMAIN + "/page/view/vip" + "'>购买会员，享受更多权利</a> \n");
+
+        return s.toString();
+    }
+
     public static String hello1() {
         StringBuilder s = new StringBuilder();
         s.append("你好啊!\n\n");
