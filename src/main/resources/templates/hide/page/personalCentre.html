@@ -173,6 +173,7 @@
         <div class="content-name">
             <p th:utext="|昵称：  ${user.nickname}|">nickname</p>
             <p style="color: red" th:utext="|ID：  ${user.id}|" >userId</p>
+            <p style="color: deepskyblue" th:if="@{user.pid} != 0" th:utext="|邀请人ID：  ${user.pid}|" >Pid</p>
         </div>
 
         <div class="content-vip">

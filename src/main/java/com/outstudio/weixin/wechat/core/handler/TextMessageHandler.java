@@ -43,6 +43,9 @@ public class TextMessageHandler implements Handler {
 
             //获取用户的id
             UserEntity userEntity = userService.getUserByOpenId(toUser);
+            if (userEntity.getLevel() == 0) {
+                return MessageUtil.createTextMessageXml(fromUser, toUser, "对不起，您还未成为代理，有意者请联系-尹 15077107934  0771-2717765");
+            }
             Integer id = userEntity.getId();
 
             JSONObject object = createQRCode(id);
@@ -57,7 +60,6 @@ public class TextMessageHandler implements Handler {
                 e.printStackTrace();
                 LoggerUtil.debug(getClass(), "生成二维码失败");
             }
-
 
             //将二维码上传到微信服务器并拿到media_id
             String url = String.format(WeixinProperties.UPLOAD_TEMPORARY_MATERIAL,

@@ -220,19 +220,19 @@
     //<![CDATA[
     //全局变量
     //    var money = 3000;
-    var pid = 0;
+//    var pid = 0;
     //]]>
 </script>
 
 <script>
-    $(function () {
-        var url = window.location.toString();
-        var hs = url.split("#")[1];
-        var p = parseInt(hs);
-
-        if (isNaN(hs)) pid = 0;
-        else pid = p;
-    });
+//    $(function () {
+//        var url = window.location.toString();
+//        var hs = url.split("#")[1];
+//        var p = parseInt(hs);
+//
+//        if (isNaN(hs)) pid = 0;
+//        else pid = p;
+//    });
 
     //    function showPicker() {
     //        var param = [
@@ -254,7 +254,6 @@
     function ha(money) {
         var formData = new FormData();
         formData.append("fee", money * 100);
-        formData.append("pid", pid);
         $.ajax({
             url: '/open/page/wxpay',
             type: "POST",

@@ -34,12 +34,6 @@ public class SubscribeHandler implements Handler {
         String fromUser = messageMap.get("ToUserName");
         String userOpenid = messageMap.get("FromUserName");
 
-        String EventKey = messageMap.get("EventKey");
-        if (EventKey != null) {
-            int pid = Integer.parseInt(EventKey.substring(8));
-            userService.setPid(pid, userOpenid);
-        }
-
         UserEntity found = userService.getUserByOpenId(userOpenid);
         UserEntity user = WechatUtil.getUserInfoOnSubscribe(userOpenid);
         if (found == null) {
@@ -49,6 +43,11 @@ public class SubscribeHandler implements Handler {
             userService.updateUser(user);
         }
 
+        String EventKey = messageMap.get("EventKey");
+        if (EventKey != null) {
+            int pid = Integer.parseInt(EventKey.substring(8));
+            userService.setPid(pid, userOpenid);
+        }
 
         return MessageUtil.createArticlesMessageXml(fromUser, userOpenid, contentUtil.news());
 //        return MessageUtil.createTextMessageXml(fromUser, userOpenid, contentUtil.onSubscribe(found.getNickname()));
