@@ -3,6 +3,7 @@ package com.outstudio.weixin.common.service;
 import com.outstudio.weixin.common.dao.UserEntityMapper;
 import com.outstudio.weixin.common.po.UserEntity;
 import com.outstudio.weixin.common.utils.DateUtil;
+import com.outstudio.weixin.common.utils.LoggerUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -55,6 +56,10 @@ public class UserService {
 
     public int addBalance(Integer id, double fee) {
         UserEntity userEntity = getUserById(id);
+        if (userEntity == null) {
+            LoggerUtil.error(getClass(),"用户的pid不存在");
+            return -1;
+        }
         double balance = userEntity.getBalance();
         int level = userEntity.getLevel();
         if (level == 0) {
