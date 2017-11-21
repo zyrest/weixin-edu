@@ -22,7 +22,6 @@
             padding-bottom: 50px;
             color: #333;
         }
-
         .header{
             max-height: 38px;
             min-height: 36px;
@@ -173,7 +172,7 @@
         <div class="content-name">
             <p th:utext="|昵称：  ${user.nickname}|">nickname</p>
             <p style="color: red" th:utext="|ID：  ${user.id}|" >userId</p>
-            <p style="color: deepskyblue" th:if="@{user.pid} != 0" th:utext="|邀请人ID：  ${user.pid}|" >Pid</p>
+            <p style="color: deepskyblue" th:if="${user.pid}" ><span th:utext="|邀请人ID：  ${user.pid}|">Pid</span></p>
         </div>
 
         <div class="content-vip">
@@ -216,14 +215,14 @@
 
     <div class="bottom-fix footer">
         <div class="responsive-wrapper-1">
-            <a href="javascript:ha()" class="buy-btn">
+            <a th:href="@{/page/view/vip}" class="buy-btn">
                 <div class="buy-vip">购买会员</div>
             </a>
         </div>
 
         <div class="responsive-wrapper">
-            <a href="javascript:" class="buy-btn">
-                <div class="buy-vip">会员中心</div>
+            <a th:href="@{/page/view/agent}" class="buy-btn">
+                <div class="buy-vip">我要推广</div>
             </a>
         </div>
     </div>
@@ -232,12 +231,6 @@
 
 </body>
 
-<script src="/js/weui.min.js"></script>
-<script>
-    function ha() {
-//        alert("目前开放会员中，您不需要购买会员即可享受全站资源。");
-        window.location.href = '/page/view/vip';
-    }
+<script th:src="@{/js/weui.min.js}"></script>
 
-</script>
 </html>

@@ -38,15 +38,17 @@ public class SubscribeHandler implements Handler {
         UserEntity user = WechatUtil.getUserInfoOnSubscribe(userOpenid);
         if (found == null) {
             userService.saveUser(user);
-            found = user;
-        }else {
+        } else {
             userService.updateUser(user);
         }
 
+        UserEntity now = userService.getUserByOpenId(userOpenid);
         String EventKey = messageMap.get("EventKey");
         if (EventKey != null) {
             int pid = Integer.parseInt(EventKey.substring(8));
-            userService.setPid(pid, userOpenid);
+            if (now.getPid() == 0) {
+                userService.setPid(pid, userOpenid);
+            }
         }
 
         return MessageUtil.createArticlesMessageXml(fromUser, userOpenid, contentUtil.news());

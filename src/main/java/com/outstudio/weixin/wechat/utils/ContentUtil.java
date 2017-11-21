@@ -31,6 +31,15 @@ public class ContentUtil {
         return s.toString();
     }
 
+    public String onHasPidScan() {
+        StringBuilder s = new StringBuilder();
+        s.append("您已经填写了邀请码 \n");
+        s.append("<a href='" + WeixinProperties.DOMAIN + "/page/view/introduction" + "'>点我了解更多</a> \n");
+        s.append("<a href='" + WeixinProperties.DOMAIN + "/page/view/vip" + "'>购买会员，享受更多权利</a> \n");
+
+        return s.toString();
+    }
+
     public static String hello1() {
         StringBuilder s = new StringBuilder();
         s.append("你好啊!\n\n");
