@@ -78,7 +78,6 @@ public class WechatUtil {
     /**
      * 生成带参数的二维码
      * @param expire_seconds
-     * @param action_name
      * @param scene_str
      * @return
      */
@@ -86,9 +85,18 @@ public class WechatUtil {
                                            String scene_str) {
         String getTicketUrl = String.format(WeixinProperties.CREATE_QRCODE, AccessTokenCache.getAccessToken().getAccess_token());
 
-        String param = "{expire_seconds: "+expire_seconds+", action_name: QR_STR_SCENE, action_info: {scene: {scene_str: "+scene_str+"}}}";
+        Map<String, Object> params = new HashMap<>();
+        Map<String, Object> scene = new HashMap<>();
+        Map<String, Object> str = new HashMap<>();
 
-        return NetWorkUtil.doPostUri(getTicketUrl, JSON.toJSONString(param));
+        str.put("scene_str", scene_str);
+        scene.put("scene", str);
+
+        params.put("expire_seconds", expire_seconds);
+        params.put("action_name", "QR_STR_SCENE");
+        params.put("action_info", scene);
+
+        return NetWorkUtil.doPostUri(getTicketUrl, JSON.toJSONString(params));
     }
 
 
