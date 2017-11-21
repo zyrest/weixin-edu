@@ -48,6 +48,8 @@ public class SubscribeHandler implements Handler {
             int pid = Integer.parseInt(EventKey.substring(8));
             if (now.getPid() == 0) {
                 userService.setPid(pid, userOpenid);
+            } else if (now.getId() == pid) {
+                //do nothing
             }
         }
 
