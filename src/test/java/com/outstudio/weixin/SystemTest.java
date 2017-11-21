@@ -8,6 +8,8 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by lmy on 2017/11/17.
@@ -24,6 +26,17 @@ public class SystemTest {
 //        System.out.println("weixin_edu".getBytes());
 //        System.out.println(Base64.getEncoder().encode("weixin_edu".getBytes()));
 //        System.out.println("qrscene_123123".substring(8));
-        System.out.println(JSON.toJSONString("{expire_seconds: 604800, action_name: QR_STR_SCENE, action_info: {scene: {scene_str: test}}}"));
+        Map<String, Object> params = new HashMap<>();
+        Map<String, Object> scene = new HashMap<>();
+        Map<String, Object> str = new HashMap<>();
+
+        str.put("scene_str", "ww");
+        scene.put("scene", str);
+
+        params.put("expire_seconds", "1231");
+        params.put("action_name", "QR_STR_SCENE");
+        params.put("action_info", scene);
+        System.out.println(JSON.toJSONString(params));
+
     }
 }

@@ -53,8 +53,7 @@ public class PayController {
 
     @RequestMapping("/wxpay")
     public Map<String, String> pay(HttpServletRequest request,
-                                   @RequestParam("fee") String fee,
-                                   @RequestParam("pid") Integer pid) {
+                                   @RequestParam("fee") String fee) {
 
         init();
         Map<String, String> returnMap = new HashMap<>();
@@ -73,7 +72,7 @@ public class PayController {
         Map<String, String> result = null;
         try {
             result = wxPay.unifiedOrder(data);
-            processPayResult(result, pid);
+            processPayResult(result);
         } catch (Exception e) {
             returnMap.put("status", "400");
             LoggerUtil.error(getClass(), e.getMessage());
@@ -106,11 +105,11 @@ public class PayController {
         return returnMap;
     }
 
-    private void processPayResult(Map<String, String> result, Integer pid) throws Exception {
+    private void processPayResult(Map<String, String> result) throws Exception {
         if ("SUCCESS".equalsIgnoreCase(result.get("return_code"))) {
 
             if ("SUCCESS".equalsIgnoreCase(result.get("result_code"))) {
-                chargeService.preCharge(TokenManager.getWeixinToken().getOpenid(), pid);
+                chargeService.preCharge(TokenManager.getWeixinToken().getOpenid());
             } else {
                 throw new Exception("err_code：" + result.get("err_code") + "，err_code_des：" + result.get("err_code_des"));
             }
