@@ -60,6 +60,7 @@ public class UserService {
             LoggerUtil.error(getClass(),"用户的pid不存在");
             return -1;
         }
+
         double balance = userEntity.getBalance();
         int level = userEntity.getLevel();
         if (level == 0) {
@@ -73,7 +74,40 @@ public class UserService {
         }
 
         userEntity.setBalance(balance);
+
+        __addBalance(userEntity.getPid(),fee,userEntity.getLevel());
+
         return userEntityMapper.updateByIdSelective(userEntity);
+    }
+
+
+    /**
+     * 通过递归一层层的给上级提成
+     * @param pid 上级用户id
+     * @param fee 当前用户交易价格
+     * @param level 当前用户代理等级
+     */
+    private void __addBalance(Integer pid, double fee, Integer level) {
+        if (pid == 0) {
+            return;
+        }
+
+        if (level == 0) {
+            return;
+        }
+
+        UserEntity userEntity = getUserById(pid);
+
+        if (level >= userEntity.getLevel()) {
+            return;
+        }
+
+        double balance = userEntity.getBalance();
+        balance += fee * 0.2;
+        userEntity.setBalance(balance);
+        userEntityMapper.updateByIdSelective(userEntity);
+
+        __addBalance(userEntity.getPid(),fee,userEntity.getLevel());
     }
 
     public long getCountsByPid(Integer pid) {return userEntityMapper.getCountsByPid(pid);}

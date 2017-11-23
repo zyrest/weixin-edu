@@ -35,6 +35,7 @@ logging:
     com:
       outstudio:
         weixin: debug
+  file: log.log
 
 
 fileSavedPath: file:/home/ubuntu/weixin/

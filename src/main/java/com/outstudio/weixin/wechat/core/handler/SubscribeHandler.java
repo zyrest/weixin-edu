@@ -46,10 +46,13 @@ public class SubscribeHandler implements Handler {
         String EventKey = messageMap.get("EventKey");
         if (EventKey != null) {
             int pid = Integer.parseInt(EventKey.substring(8));
+
+            if (now.getId() == pid) {
+                //do nothing
+            }
+
             if (now.getPid() == 0) {
                 userService.setPid(pid, userOpenid);
-            } else if (now.getId() == pid) {
-                //do nothing
             }
         }
 
