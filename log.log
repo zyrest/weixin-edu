@@ -1,0 +1,976 @@
+2017-11-24 13:01:30.639  INFO 9600 --- [restartedMain] c.outstudio.weixin.WeixinEduApplication  : Starting WeixinEduApplication on Samson with PID 9600 (D:\IDEAwork\weixin-edu\target\classes started by 96428 in D:\IDEAwork\weixin-edu)
+2017-11-24 13:01:30.640 DEBUG 9600 --- [restartedMain] c.outstudio.weixin.WeixinEduApplication  : Running with Spring Boot v1.5.6.RELEASE, Spring v4.3.10.RELEASE
+2017-11-24 13:01:30.640  INFO 9600 --- [restartedMain] c.outstudio.weixin.WeixinEduApplication  : No active profile set, falling back to default profiles: default
+2017-11-24 13:01:30.642  INFO 9600 --- [restartedMain] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@5b32a6f0: startup date [Fri Nov 24 13:01:30 CST 2017]; root of context hierarchy
+2017-11-24 13:01:31.129  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'shiroConfig' of type [com.outstudio.weixin.core.config.ShiroConfig$$EnhancerBySpringCGLIB$$bb37c9cf] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:31.144  WARN 9600 --- [restartedMain] net.sf.ehcache.CacheManager              : One or more caches require a DiskStore but there is no diskStore element configured. Using the default disk store path of C:\Users\96428\AppData\Local\Temp\. Please explicitly configure the diskStore element in ehcache.xml.
+2017-11-24 13:01:31.160  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'ehCacheManager' of type [org.apache.shiro.cache.ehcache.EhCacheManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:31.160  INFO 9600 --- [restartedMain] o.a.shiro.cache.ehcache.EhCacheManager   : Cache with name 'com.outstudio.weixin.core.shiro.token.MyRealm.authorizationCache.1' does not yet exist.  Creating now.
+2017-11-24 13:01:31.160  INFO 9600 --- [restartedMain] o.a.shiro.cache.ehcache.EhCacheManager   : Added EhCache named [com.outstudio.weixin.core.shiro.token.MyRealm.authorizationCache.1]
+2017-11-24 13:01:31.176  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'ehcacheConfig' of type [com.outstudio.weixin.core.config.EhcacheConfig$$EnhancerBySpringCGLIB$$6834ea5d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:31.176  INFO 9600 --- [restartedMain] o.s.c.ehcache.EhCacheManagerFactoryBean  : Initializing EhCache CacheManager
+2017-11-24 13:01:31.176  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'ehCacheManagerFactoryBean' of type [org.springframework.cache.ehcache.EhCacheManagerFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:31.176  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'ehCacheManagerFactoryBean' of type [net.sf.ehcache.CacheManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:31.176  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'ehCacheCacheManager' of type [org.springframework.cache.ehcache.EhCacheCacheManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:31.176  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'retryLimitHashedCredentialsMatcher' of type [com.outstudio.weixin.core.shiro.token.RetryLimitHashedCredentialsMatcher] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:31.191  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'sessionIdCookie' of type [org.apache.shiro.web.servlet.SimpleCookie] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:31.191  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'sessionIdGenerator' of type [org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:31.191  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'sessionDAO' of type [org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:31.191  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'sessionManager' of type [org.apache.shiro.web.session.mgt.DefaultWebSessionManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:31.191  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'rememberMeCookie' of type [org.apache.shiro.web.servlet.SimpleCookie] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:31.191  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'rememberMeManager' of type [org.apache.shiro.web.mgt.CookieRememberMeManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:31.191  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'securityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:31.191  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodInvokingFactoryBean' of type [org.springframework.beans.factory.config.MethodInvokingFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:31.207  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Tomcat' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Tomcat] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:31.222  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'spring.datasource-org.springframework.boot.autoconfigure.jdbc.DataSourceProperties' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:31.269  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'dataSource' of type [org.apache.tomcat.jdbc.pool.DataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:31.269  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'mybatisConfig' of type [com.outstudio.weixin.core.config.MybatisConfig$$EnhancerBySpringCGLIB$$18e7aef1] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:31.269  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'pageInterceptor' of type [com.github.pagehelper.PageInterceptor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:31.347  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionFactory' of type [org.apache.ibatis.session.defaults.DefaultSqlSessionFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:31.347  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionTemplate' of type [org.mybatis.spring.SqlSessionTemplate] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:31.347  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'userEntityMapper' of type [org.mybatis.spring.mapper.MapperFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:31.347  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'userEntityMapper' of type [com.sun.proxy.$Proxy112] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:31.347  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'userService' of type [com.outstudio.weixin.common.service.UserService] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:31.363  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'managerEntityMapper' of type [org.mybatis.spring.mapper.MapperFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:31.363  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'managerEntityMapper' of type [com.sun.proxy.$Proxy113] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:31.363  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'managerService' of type [com.outstudio.weixin.common.service.ManagerService] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:31.363  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'myRealm' of type [com.outstudio.weixin.core.shiro.token.MyRealm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:31.363  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'securityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:31.363  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'loginFilter' of type [com.outstudio.weixin.core.shiro.filters.LoginFilter] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:31.363  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'forbidFilter' of type [com.outstudio.weixin.core.shiro.filters.ForbidFilter] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:31.363  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'weixinAuthFilter' of type [com.outstudio.weixin.core.shiro.filters.WeixinAuthFilter] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:31.363  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'alreadyLoginFilter' of type [com.outstudio.weixin.core.shiro.filters.AlreadyLoginFilter] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:31.379  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'authorizationAttributeSourceAdvisor' of type [org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:31.379  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$bef1ce09] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:31.394  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cache.annotation.ProxyCachingConfiguration' of type [org.springframework.cache.annotation.ProxyCachingConfiguration$$EnhancerBySpringCGLIB$$8040427] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:31.629  INFO 9600 --- [restartedMain] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2017-11-24 13:01:31.629  INFO 9600 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2017-11-24 13:01:31.629  INFO 9600 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.16
+2017-11-24 13:01:31.676  INFO 9600 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2017-11-24 13:01:31.676  INFO 9600 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1034 ms
+2017-11-24 13:01:31.921  INFO 9600 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-11-24 13:01:31.921  INFO 9600 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2017-11-24 13:01:31.921  INFO 9600 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2017-11-24 13:01:31.921  INFO 9600 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2017-11-24 13:01:31.921  INFO 9600 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Filter loginFilter was not registered (disabled)
+2017-11-24 13:01:31.921  INFO 9600 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Filter alreadyLoginFilter was not registered (disabled)
+2017-11-24 13:01:31.921  INFO 9600 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Filter forbidFilter was not registered (disabled)
+2017-11-24 13:01:31.921  INFO 9600 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Filter weixinAuthFilter was not registered (disabled)
+2017-11-24 13:01:31.921  INFO 9600 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'shiroFilter' to: [/*]
+2017-11-24 13:01:31.921  INFO 9600 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'vipFilter' to: [/*]
+2017-11-24 13:01:31.921  INFO 9600 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2017-11-24 13:01:32.468  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@5b32a6f0: startup date [Fri Nov 24 13:01:30 CST 2017]; root of context hierarchy
+2017-11-24 13:01:32.499  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/users],methods=[PUT]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.BackUserController.setAgent(com.outstudio.weixin.common.po.UserEntity)
+2017-11-24 13:01:32.499  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/users/info/{id}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.outstudio.weixin.back.controller.BackUserController.onePage(java.lang.Integer)
+2017-11-24 13:01:32.499  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/users/pageNum],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.BackUserController.getPages()
+2017-11-24 13:01:32.499  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/users/page/{pageNum}],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.BackUserController.getUsers(int)
+2017-11-24 13:01:32.499  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/enReviews/{id}],methods=[DELETE]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.EnReviewController.deleteEnReview(java.lang.Integer)
+2017-11-24 13:01:32.499  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/enReviews/{id}],methods=[PUT]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.EnReviewController.modifyEnReview(java.lang.Integer,com.outstudio.weixin.common.po.EnReviewEntity)
+2017-11-24 13:01:32.499  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/enReviews],methods=[POST]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.EnReviewController.addEnReview(com.outstudio.weixin.common.po.EnReviewEntity)
+2017-11-24 13:01:32.499  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/enReviews/{id}],methods=[PATCH]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.EnReviewController.modifyEnReviewExceptContent(java.lang.Integer,com.outstudio.weixin.common.po.EnReviewEntity)
+2017-11-24 13:01:32.499  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/enVideos],methods=[POST]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.EnVideoController.postEnVideo(com.outstudio.weixin.common.po.EnVideoEntity)
+2017-11-24 13:01:32.499  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/enVideos/{id}],methods=[DELETE]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.EnVideoController.deleteEnVideo(java.lang.Integer)
+2017-11-24 13:01:32.499  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/enVideos/{id}],methods=[PATCH]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.EnVideoController.modifyEnVideo(java.lang.Integer,com.outstudio.weixin.common.po.EnVideoEntity)
+2017-11-24 13:01:32.515  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/interviewVideo],methods=[PUT]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.InterviewVideoController.modifyInterview(java.lang.Integer,com.outstudio.weixin.common.po.InterviewVideoEntity)
+2017-11-24 13:01:32.515  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/interviewVideos],methods=[POST]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.InterviewVideoController.postInterviewVideo(com.outstudio.weixin.common.po.InterviewVideoEntity)
+2017-11-24 13:01:32.515  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/interviewVideos/{id}],methods=[DELETE]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.InterviewVideoController.deleteInterviewVideo(java.lang.Integer)
+2017-11-24 13:01:32.515  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/logout]}" onto public org.springframework.web.servlet.ModelAndView com.outstudio.weixin.back.controller.LoginController.logout()
+2017-11-24 13:01:32.515  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/open/back/sublogin],methods=[POST]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.LoginController.sublogin(javax.servlet.http.HttpServletRequest,com.outstudio.weixin.common.po.ManagerEntity)
+2017-11-24 13:01:32.515  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/sub/password],methods=[PUT]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.ManagerController.changePassword(java.util.Map<java.lang.String, java.lang.String>)
+2017-11-24 13:01:32.515  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/messages/{id}],methods=[PUT]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.MessageController.modifyMessage(java.lang.Integer,com.outstudio.weixin.common.po.MessageEntity)
+2017-11-24 13:01:32.515  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/messages/{id}],methods=[DELETE]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.MessageController.deleteMessage(java.lang.Integer)
+2017-11-24 13:01:32.515  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/messages],methods=[POST]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.MessageController.postMessage(com.outstudio.weixin.common.po.MessageEntity)
+2017-11-24 13:01:32.515  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/stories],methods=[POST]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.StoryController.uploadStory(org.springframework.web.multipart.MultipartFile,javax.servlet.http.HttpServletRequest,com.outstudio.weixin.common.po.StoryEntity)
+2017-11-24 13:01:32.515  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/stories/{id}],methods=[DELETE]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.StoryController.deleteStory(java.lang.Integer)
+2017-11-24 13:01:32.530  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/stories/{id}],methods=[PATCH]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.StoryController.modifyStory(java.lang.Integer,com.outstudio.weixin.common.po.StoryEntity)
+2017-11-24 13:01:32.530  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/open/back/welcomes],methods=[POST]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.WelcomeController.post(com.outstudio.weixin.common.po.WelcomeEntity)
+2017-11-24 13:01:32.530  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/open/back/welcomes],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.WelcomeController.getWelcomes()
+2017-11-24 13:01:32.530  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/open/back/welcomes/{id}],methods=[PUT]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.WelcomeController.modifyWelcome(java.lang.Integer,com.outstudio.weixin.common.po.WelcomeEntity)
+2017-11-24 13:01:32.530  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/open/back/welcomes/{id}],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.WelcomeController.getWelcomeById(java.lang.Integer)
+2017-11-24 13:01:32.530  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/open/back/welcomes/{id}],methods=[PATCH]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.WelcomeController.useWelcomeById(java.lang.Integer)
+2017-11-24 13:01:32.530  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/open/back/welcomes/{id}],methods=[DELETE]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.WelcomeController.deleteWelcomeById(java.lang.Integer)
+2017-11-24 13:01:32.530  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/cloud/signature]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.cloud.CloudController.getSignature()
+2017-11-24 13:01:32.530  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/hello],methods=[GET]}" onto public java.lang.String com.outstudio.weixin.common.controller.CommonController.hello()
+2017-11-24 13:01:32.530  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/open/page/oauth]}" onto public java.lang.String com.outstudio.weixin.page.controller.AuthController.oauth(javax.servlet.http.HttpServletRequest,java.lang.String,java.lang.String)
+2017-11-24 13:01:32.530  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/enReviews/stages],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.EnReviewController.getStages()
+2017-11-24 13:01:32.530  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/enReviews],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.EnReviewController.searchEnReviews(java.lang.String)
+2017-11-24 13:01:32.546  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/enReviews/{id}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.outstudio.weixin.page.controller.EnReviewController.getEnReview(java.lang.Integer)
+2017-11-24 13:01:32.546  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/enReviews/pageNum],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.EnReviewController.getNum()
+2017-11-24 13:01:32.546  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/enReviews/page/{pageNum}],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.EnReviewController.getAllEnReviews(int)
+2017-11-24 13:01:32.546  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/enReviews/stage/{stage}/page/{pageNum}],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.EnReviewController.getEnReviewsByStage(java.lang.Integer,java.lang.Integer)
+2017-11-24 13:01:32.546  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/enVideos/{id}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.outstudio.weixin.page.controller.EnVideoController.getenVideoById(java.lang.Integer)
+2017-11-24 13:01:32.546  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/enVideos],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.EnVideoController.searchEnVideos(java.lang.String)
+2017-11-24 13:01:32.546  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/enVideos/page/{pageNum}],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.EnVideoController.getAllEnVideos(java.lang.Integer)
+2017-11-24 13:01:32.546  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/enVideos/stages],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.EnVideoController.getStages()
+2017-11-24 13:01:32.546  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/enVideos/pageNum],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.EnVideoController.getNum()
+2017-11-24 13:01:32.546  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/enVideos/stage/{stage}/page/{pageNum}],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.EnVideoController.getEnVideosByStage(java.lang.Integer,java.lang.Integer)
+2017-11-24 13:01:32.546  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/interviewVideos/{id}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.outstudio.weixin.page.controller.InterviewVideoController.getenVideoById(java.lang.Integer)
+2017-11-24 13:01:32.561  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/interviewVideos/stages],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.InterviewVideoController.getStages()
+2017-11-24 13:01:32.561  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/interviewVideos/page/{pageNum}],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.InterviewVideoController.getAllInterviews(java.lang.Integer)
+2017-11-24 13:01:32.561  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/interviewVideos/pageNum],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.InterviewVideoController.getPageNum()
+2017-11-24 13:01:32.561  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/interviewVideos],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.InterviewVideoController.searchInterviewVideos(java.lang.String)
+2017-11-24 13:01:32.561  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/interviewVideos/stage/{stage}/page/{pageNum}],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.InterviewVideoController.getInterviewsByStage(java.lang.Integer,java.lang.Integer)
+2017-11-24 13:01:32.561  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/messages/{id}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.outstudio.weixin.page.controller.MessageController.getMessageById(java.lang.Integer)
+2017-11-24 13:01:32.561  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/messages],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.MessageController.searchParam(java.lang.String)
+2017-11-24 13:01:32.561  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/messages/page/{pageNum}],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.MessageController.getAllMessages(java.lang.Integer)
+2017-11-24 13:01:32.561  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/open/page/unauth]}" onto public org.springframework.web.servlet.ModelAndView com.outstudio.weixin.page.controller.PageBaseController.unauth()
+2017-11-24 13:01:32.561  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/open/page/wxpayDone]}" onto public java.lang.String com.outstudio.weixin.page.controller.PayController.processResult(javax.servlet.http.HttpServletRequest) throws java.io.IOException,org.dom4j.DocumentException
+2017-11-24 13:01:32.561  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/open/page/wxpay]}" onto public java.util.Map<java.lang.String, java.lang.String> com.outstudio.weixin.page.controller.PayController.pay(javax.servlet.http.HttpServletRequest,java.lang.String)
+2017-11-24 13:01:32.577  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/stories/page/{pageNum}],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.StoryController.getAllStories(java.lang.Integer)
+2017-11-24 13:01:32.577  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/stories/pageNum],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.StoryController.getNum()
+2017-11-24 13:01:32.577  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/stories/type/{type}/page/{pageNum}],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.StoryController.getStotiesByType(java.lang.Integer,java.lang.Integer)
+2017-11-24 13:01:32.577  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/stories/{id}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.outstudio.weixin.page.controller.StoryController.getStory(java.lang.Integer)
+2017-11-24 13:01:32.577  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/stories],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.StoryController.searchStories(java.lang.String)
+2017-11-24 13:01:32.577  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/view/userInfo],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.outstudio.weixin.page.controller.UserController.getUserInfo()
+2017-11-24 13:01:32.577  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/oauth],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.outstudio.weixin.wechat.controller.WeixinController.oauth(java.lang.String,java.lang.String,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException
+2017-11-24 13:01:32.577  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/weixin],methods=[GET]}" onto public java.lang.String com.outstudio.weixin.wechat.controller.WeixinController.weixin(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+2017-11-24 13:01:32.577  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/weixin],methods=[POST]}" onto public void com.outstudio.weixin.wechat.controller.WeixinController.weixin(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException
+2017-11-24 13:01:32.577  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-11-24 13:01:32.577  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-11-24 13:01:32.608  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/open/back/login] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:32.608  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/back/index] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:32.608  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/back/password] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:32.608  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/back/admin] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:32.608  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/back/import/audio] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:32.608  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/back/import/video] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:32.608  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/back/import/english] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:32.608  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/back/view/audio] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:32.608  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/back/view/video] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:32.608  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/back/view/english] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:32.608  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/page/view/audio] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:32.608  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/page/view/video] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:32.608  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/page/view/english] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:32.608  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/page/view/introduction] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:32.624  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/page/view/vip] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:32.624  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/page/view/voiceInHome] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:32.624  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/page/view/agent] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:32.624  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/error] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:32.624  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Root mapping to handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:32.655  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/mp3/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-24 13:01:32.655  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/mp4/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-24 13:01:32.655  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-24 13:01:32.655  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-24 13:01:32.686  INFO 9600 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in baseExceptionAdvisor
+2017-11-24 13:01:32.718  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-24 13:01:33.749  INFO 9600 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2017-11-24 13:01:33.827  INFO 9600 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2017-11-24 13:01:33.843  INFO 9600 --- [restartedMain] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2017-11-24 13:01:33.858  INFO 9600 --- [restartedMain] c.outstudio.weixin.WeixinEduApplication  : Started WeixinEduApplication in 3.283 seconds (JVM running for 38.734)
+2017-11-24 13:01:36.471  INFO 9600 --- [Thread-27] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@5b32a6f0: startup date [Fri Nov 24 13:01:30 CST 2017]; root of context hierarchy
+2017-11-24 13:01:36.471  INFO 9600 --- [Thread-27] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2017-11-24 13:01:36.487  INFO 9600 --- [Thread-27] o.s.c.ehcache.EhCacheManagerFactoryBean  : Shutting down EhCache CacheManager
+2017-11-24 13:01:37.409  INFO 9600 --- [restartedMain] c.outstudio.weixin.WeixinEduApplication  : Starting WeixinEduApplication on Samson with PID 9600 (D:\IDEAwork\weixin-edu\target\classes started by 96428 in D:\IDEAwork\weixin-edu)
+2017-11-24 13:01:37.409 DEBUG 9600 --- [restartedMain] c.outstudio.weixin.WeixinEduApplication  : Running with Spring Boot v1.5.6.RELEASE, Spring v4.3.10.RELEASE
+2017-11-24 13:01:37.409  INFO 9600 --- [restartedMain] c.outstudio.weixin.WeixinEduApplication  : No active profile set, falling back to default profiles: default
+2017-11-24 13:01:37.409  INFO 9600 --- [restartedMain] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@471eedaf: startup date [Fri Nov 24 13:01:37 CST 2017]; root of context hierarchy
+2017-11-24 13:01:38.239  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'shiroConfig' of type [com.outstudio.weixin.core.config.ShiroConfig$$EnhancerBySpringCGLIB$$bb37c9cf] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:38.255  WARN 9600 --- [restartedMain] net.sf.ehcache.CacheManager              : One or more caches require a DiskStore but there is no diskStore element configured. Using the default disk store path of C:\Users\96428\AppData\Local\Temp\. Please explicitly configure the diskStore element in ehcache.xml.
+2017-11-24 13:01:38.270  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'ehCacheManager' of type [org.apache.shiro.cache.ehcache.EhCacheManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:38.270  INFO 9600 --- [restartedMain] o.a.shiro.cache.ehcache.EhCacheManager   : Cache with name 'com.outstudio.weixin.core.shiro.token.MyRealm.authorizationCache.2' does not yet exist.  Creating now.
+2017-11-24 13:01:38.270  INFO 9600 --- [restartedMain] o.a.shiro.cache.ehcache.EhCacheManager   : Added EhCache named [com.outstudio.weixin.core.shiro.token.MyRealm.authorizationCache.2]
+2017-11-24 13:01:38.286  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'ehcacheConfig' of type [com.outstudio.weixin.core.config.EhcacheConfig$$EnhancerBySpringCGLIB$$6834ea5d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:38.286  INFO 9600 --- [restartedMain] o.s.c.ehcache.EhCacheManagerFactoryBean  : Initializing EhCache CacheManager
+2017-11-24 13:01:38.286  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'ehCacheManagerFactoryBean' of type [org.springframework.cache.ehcache.EhCacheManagerFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:38.286  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'ehCacheManagerFactoryBean' of type [net.sf.ehcache.CacheManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:38.286  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'ehCacheCacheManager' of type [org.springframework.cache.ehcache.EhCacheCacheManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:38.286  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'retryLimitHashedCredentialsMatcher' of type [com.outstudio.weixin.core.shiro.token.RetryLimitHashedCredentialsMatcher] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:38.302  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'sessionIdCookie' of type [org.apache.shiro.web.servlet.SimpleCookie] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:38.302  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'sessionIdGenerator' of type [org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:38.302  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'sessionDAO' of type [org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:38.302  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'sessionManager' of type [org.apache.shiro.web.session.mgt.DefaultWebSessionManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:38.302  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'rememberMeCookie' of type [org.apache.shiro.web.servlet.SimpleCookie] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:38.302  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'rememberMeManager' of type [org.apache.shiro.web.mgt.CookieRememberMeManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:38.302  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'securityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:38.302  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodInvokingFactoryBean' of type [org.springframework.beans.factory.config.MethodInvokingFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:38.302  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Tomcat' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Tomcat] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:38.333  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'spring.datasource-org.springframework.boot.autoconfigure.jdbc.DataSourceProperties' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:38.380  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'dataSource' of type [org.apache.tomcat.jdbc.pool.DataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:38.380  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'mybatisConfig' of type [com.outstudio.weixin.core.config.MybatisConfig$$EnhancerBySpringCGLIB$$18e7aef1] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:38.380  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'pageInterceptor' of type [com.github.pagehelper.PageInterceptor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:38.474  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionFactory' of type [org.apache.ibatis.session.defaults.DefaultSqlSessionFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:38.474  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionTemplate' of type [org.mybatis.spring.SqlSessionTemplate] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:38.474  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'userEntityMapper' of type [org.mybatis.spring.mapper.MapperFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:38.474  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'userEntityMapper' of type [com.sun.proxy.$Proxy121] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:38.474  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'userService' of type [com.outstudio.weixin.common.service.UserService] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:38.474  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'managerEntityMapper' of type [org.mybatis.spring.mapper.MapperFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:38.474  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'managerEntityMapper' of type [com.sun.proxy.$Proxy122] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:38.489  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'managerService' of type [com.outstudio.weixin.common.service.ManagerService] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:38.489  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'myRealm' of type [com.outstudio.weixin.core.shiro.token.MyRealm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:38.489  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'securityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:38.489  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'loginFilter' of type [com.outstudio.weixin.core.shiro.filters.LoginFilter] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:38.505  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'forbidFilter' of type [com.outstudio.weixin.core.shiro.filters.ForbidFilter] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:38.505  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'weixinAuthFilter' of type [com.outstudio.weixin.core.shiro.filters.WeixinAuthFilter] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:38.505  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'alreadyLoginFilter' of type [com.outstudio.weixin.core.shiro.filters.AlreadyLoginFilter] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:38.520  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'authorizationAttributeSourceAdvisor' of type [org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:38.520  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$bef1ce09] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:38.552  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cache.annotation.ProxyCachingConfiguration' of type [org.springframework.cache.annotation.ProxyCachingConfiguration$$EnhancerBySpringCGLIB$$8040427] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:38.739  INFO 9600 --- [restartedMain] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2017-11-24 13:01:38.739  INFO 9600 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2017-11-24 13:01:38.739  INFO 9600 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.16
+2017-11-24 13:01:38.770  INFO 9600 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2017-11-24 13:01:38.770  INFO 9600 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1361 ms
+2017-11-24 13:01:38.956  INFO 9600 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-11-24 13:01:38.956  INFO 9600 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2017-11-24 13:01:38.956  INFO 9600 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2017-11-24 13:01:38.956  INFO 9600 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2017-11-24 13:01:38.956  INFO 9600 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Filter loginFilter was not registered (disabled)
+2017-11-24 13:01:38.956  INFO 9600 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Filter alreadyLoginFilter was not registered (disabled)
+2017-11-24 13:01:38.956  INFO 9600 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Filter forbidFilter was not registered (disabled)
+2017-11-24 13:01:38.956  INFO 9600 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Filter weixinAuthFilter was not registered (disabled)
+2017-11-24 13:01:38.956  INFO 9600 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'shiroFilter' to: [/*]
+2017-11-24 13:01:38.956  INFO 9600 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'vipFilter' to: [/*]
+2017-11-24 13:01:38.956  INFO 9600 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2017-11-24 13:01:39.479  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@471eedaf: startup date [Fri Nov 24 13:01:37 CST 2017]; root of context hierarchy
+2017-11-24 13:01:39.526  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/users],methods=[PUT]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.BackUserController.setAgent(com.outstudio.weixin.common.po.UserEntity)
+2017-11-24 13:01:39.526  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/users/info/{id}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.outstudio.weixin.back.controller.BackUserController.onePage(java.lang.Integer)
+2017-11-24 13:01:39.526  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/users/pageNum],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.BackUserController.getPages()
+2017-11-24 13:01:39.526  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/users/page/{pageNum}],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.BackUserController.getUsers(int)
+2017-11-24 13:01:39.526  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/enReviews/{id}],methods=[DELETE]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.EnReviewController.deleteEnReview(java.lang.Integer)
+2017-11-24 13:01:39.526  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/enReviews/{id}],methods=[PUT]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.EnReviewController.modifyEnReview(java.lang.Integer,com.outstudio.weixin.common.po.EnReviewEntity)
+2017-11-24 13:01:39.526  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/enReviews],methods=[POST]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.EnReviewController.addEnReview(com.outstudio.weixin.common.po.EnReviewEntity)
+2017-11-24 13:01:39.526  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/enReviews/{id}],methods=[PATCH]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.EnReviewController.modifyEnReviewExceptContent(java.lang.Integer,com.outstudio.weixin.common.po.EnReviewEntity)
+2017-11-24 13:01:39.526  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/enVideos],methods=[POST]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.EnVideoController.postEnVideo(com.outstudio.weixin.common.po.EnVideoEntity)
+2017-11-24 13:01:39.526  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/enVideos/{id}],methods=[DELETE]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.EnVideoController.deleteEnVideo(java.lang.Integer)
+2017-11-24 13:01:39.526  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/enVideos/{id}],methods=[PATCH]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.EnVideoController.modifyEnVideo(java.lang.Integer,com.outstudio.weixin.common.po.EnVideoEntity)
+2017-11-24 13:01:39.542  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/interviewVideo],methods=[PUT]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.InterviewVideoController.modifyInterview(java.lang.Integer,com.outstudio.weixin.common.po.InterviewVideoEntity)
+2017-11-24 13:01:39.542  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/interviewVideos],methods=[POST]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.InterviewVideoController.postInterviewVideo(com.outstudio.weixin.common.po.InterviewVideoEntity)
+2017-11-24 13:01:39.542  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/interviewVideos/{id}],methods=[DELETE]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.InterviewVideoController.deleteInterviewVideo(java.lang.Integer)
+2017-11-24 13:01:39.542  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/logout]}" onto public org.springframework.web.servlet.ModelAndView com.outstudio.weixin.back.controller.LoginController.logout()
+2017-11-24 13:01:39.542  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/open/back/sublogin],methods=[POST]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.LoginController.sublogin(javax.servlet.http.HttpServletRequest,com.outstudio.weixin.common.po.ManagerEntity)
+2017-11-24 13:01:39.542  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/sub/password],methods=[PUT]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.ManagerController.changePassword(java.util.Map<java.lang.String, java.lang.String>)
+2017-11-24 13:01:39.542  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/messages/{id}],methods=[PUT]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.MessageController.modifyMessage(java.lang.Integer,com.outstudio.weixin.common.po.MessageEntity)
+2017-11-24 13:01:39.542  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/messages/{id}],methods=[DELETE]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.MessageController.deleteMessage(java.lang.Integer)
+2017-11-24 13:01:39.542  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/messages],methods=[POST]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.MessageController.postMessage(com.outstudio.weixin.common.po.MessageEntity)
+2017-11-24 13:01:39.542  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/stories],methods=[POST]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.StoryController.uploadStory(org.springframework.web.multipart.MultipartFile,javax.servlet.http.HttpServletRequest,com.outstudio.weixin.common.po.StoryEntity)
+2017-11-24 13:01:39.542  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/stories/{id}],methods=[DELETE]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.StoryController.deleteStory(java.lang.Integer)
+2017-11-24 13:01:39.558  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/stories/{id}],methods=[PATCH]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.StoryController.modifyStory(java.lang.Integer,com.outstudio.weixin.common.po.StoryEntity)
+2017-11-24 13:01:39.558  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/open/back/welcomes],methods=[POST]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.WelcomeController.post(com.outstudio.weixin.common.po.WelcomeEntity)
+2017-11-24 13:01:39.558  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/open/back/welcomes],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.WelcomeController.getWelcomes()
+2017-11-24 13:01:39.558  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/open/back/welcomes/{id}],methods=[PUT]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.WelcomeController.modifyWelcome(java.lang.Integer,com.outstudio.weixin.common.po.WelcomeEntity)
+2017-11-24 13:01:39.558  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/open/back/welcomes/{id}],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.WelcomeController.getWelcomeById(java.lang.Integer)
+2017-11-24 13:01:39.558  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/open/back/welcomes/{id}],methods=[PATCH]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.WelcomeController.useWelcomeById(java.lang.Integer)
+2017-11-24 13:01:39.558  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/open/back/welcomes/{id}],methods=[DELETE]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.WelcomeController.deleteWelcomeById(java.lang.Integer)
+2017-11-24 13:01:39.558  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/cloud/signature]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.cloud.CloudController.getSignature()
+2017-11-24 13:01:39.558  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/hello],methods=[GET]}" onto public java.lang.String com.outstudio.weixin.common.controller.CommonController.hello()
+2017-11-24 13:01:39.558  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/open/page/oauth]}" onto public java.lang.String com.outstudio.weixin.page.controller.AuthController.oauth(javax.servlet.http.HttpServletRequest,java.lang.String,java.lang.String)
+2017-11-24 13:01:39.558  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/enReviews/stages],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.EnReviewController.getStages()
+2017-11-24 13:01:39.558  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/enReviews],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.EnReviewController.searchEnReviews(java.lang.String)
+2017-11-24 13:01:39.573  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/enReviews/{id}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.outstudio.weixin.page.controller.EnReviewController.getEnReview(java.lang.Integer)
+2017-11-24 13:01:39.573  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/enReviews/pageNum],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.EnReviewController.getNum()
+2017-11-24 13:01:39.573  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/enReviews/page/{pageNum}],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.EnReviewController.getAllEnReviews(int)
+2017-11-24 13:01:39.573  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/enReviews/stage/{stage}/page/{pageNum}],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.EnReviewController.getEnReviewsByStage(java.lang.Integer,java.lang.Integer)
+2017-11-24 13:01:39.573  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/enVideos/{id}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.outstudio.weixin.page.controller.EnVideoController.getenVideoById(java.lang.Integer)
+2017-11-24 13:01:39.573  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/enVideos],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.EnVideoController.searchEnVideos(java.lang.String)
+2017-11-24 13:01:39.573  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/enVideos/page/{pageNum}],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.EnVideoController.getAllEnVideos(java.lang.Integer)
+2017-11-24 13:01:39.573  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/enVideos/stages],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.EnVideoController.getStages()
+2017-11-24 13:01:39.573  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/enVideos/pageNum],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.EnVideoController.getNum()
+2017-11-24 13:01:39.573  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/enVideos/stage/{stage}/page/{pageNum}],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.EnVideoController.getEnVideosByStage(java.lang.Integer,java.lang.Integer)
+2017-11-24 13:01:39.573  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/interviewVideos/{id}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.outstudio.weixin.page.controller.InterviewVideoController.getenVideoById(java.lang.Integer)
+2017-11-24 13:01:39.589  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/interviewVideos/stages],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.InterviewVideoController.getStages()
+2017-11-24 13:01:39.589  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/interviewVideos/page/{pageNum}],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.InterviewVideoController.getAllInterviews(java.lang.Integer)
+2017-11-24 13:01:39.589  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/interviewVideos/pageNum],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.InterviewVideoController.getPageNum()
+2017-11-24 13:01:39.589  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/interviewVideos],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.InterviewVideoController.searchInterviewVideos(java.lang.String)
+2017-11-24 13:01:39.589  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/interviewVideos/stage/{stage}/page/{pageNum}],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.InterviewVideoController.getInterviewsByStage(java.lang.Integer,java.lang.Integer)
+2017-11-24 13:01:39.589  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/messages/{id}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.outstudio.weixin.page.controller.MessageController.getMessageById(java.lang.Integer)
+2017-11-24 13:01:39.589  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/messages],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.MessageController.searchParam(java.lang.String)
+2017-11-24 13:01:39.589  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/messages/page/{pageNum}],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.MessageController.getAllMessages(java.lang.Integer)
+2017-11-24 13:01:39.589  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/open/page/unauth]}" onto public org.springframework.web.servlet.ModelAndView com.outstudio.weixin.page.controller.PageBaseController.unauth()
+2017-11-24 13:01:39.589  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/open/page/wxpayDone]}" onto public java.lang.String com.outstudio.weixin.page.controller.PayController.processResult(javax.servlet.http.HttpServletRequest) throws java.io.IOException,org.dom4j.DocumentException
+2017-11-24 13:01:39.589  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/open/page/wxpay]}" onto public java.util.Map<java.lang.String, java.lang.String> com.outstudio.weixin.page.controller.PayController.pay(javax.servlet.http.HttpServletRequest,java.lang.String)
+2017-11-24 13:01:39.604  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/stories/page/{pageNum}],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.StoryController.getAllStories(java.lang.Integer)
+2017-11-24 13:01:39.604  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/stories/pageNum],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.StoryController.getNum()
+2017-11-24 13:01:39.604  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/stories/type/{type}/page/{pageNum}],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.StoryController.getStotiesByType(java.lang.Integer,java.lang.Integer)
+2017-11-24 13:01:39.604  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/stories/{id}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.outstudio.weixin.page.controller.StoryController.getStory(java.lang.Integer)
+2017-11-24 13:01:39.604  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/stories],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.StoryController.searchStories(java.lang.String)
+2017-11-24 13:01:39.604  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/view/userInfo],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.outstudio.weixin.page.controller.UserController.getUserInfo()
+2017-11-24 13:01:39.604  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/oauth],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.outstudio.weixin.wechat.controller.WeixinController.oauth(java.lang.String,java.lang.String,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException
+2017-11-24 13:01:39.604  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/weixin],methods=[GET]}" onto public java.lang.String com.outstudio.weixin.wechat.controller.WeixinController.weixin(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+2017-11-24 13:01:39.604  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/weixin],methods=[POST]}" onto public void com.outstudio.weixin.wechat.controller.WeixinController.weixin(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException
+2017-11-24 13:01:39.604  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-11-24 13:01:39.604  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-11-24 13:01:39.636  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/open/back/login] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:39.636  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/back/index] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:39.636  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/back/password] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:39.636  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/back/admin] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:39.636  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/back/import/audio] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:39.636  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/back/import/video] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:39.636  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/back/import/english] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:39.636  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/back/view/audio] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:39.636  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/back/view/video] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:39.636  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/back/view/english] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:39.636  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/page/view/audio] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:39.636  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/page/view/video] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:39.636  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/page/view/english] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:39.636  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/page/view/introduction] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:39.651  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/page/view/vip] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:39.651  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/page/view/voiceInHome] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:39.651  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/page/view/agent] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:39.651  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/error] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:39.651  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Root mapping to handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:39.667  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/mp3/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-24 13:01:39.667  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/mp4/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-24 13:01:39.667  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-24 13:01:39.667  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-24 13:01:39.698  INFO 9600 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in baseExceptionAdvisor
+2017-11-24 13:01:39.729  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-24 13:01:40.073  INFO 9600 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2017-11-24 13:01:40.136  INFO 9600 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2017-11-24 13:01:40.151  INFO 9600 --- [restartedMain] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2017-11-24 13:01:40.151  INFO 9600 --- [restartedMain] c.outstudio.weixin.WeixinEduApplication  : Started WeixinEduApplication in 2.852 seconds (JVM running for 45.037)
+2017-11-24 13:01:41.544  INFO 9600 --- [Thread-35] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@471eedaf: startup date [Fri Nov 24 13:01:37 CST 2017]; root of context hierarchy
+2017-11-24 13:01:41.544  INFO 9600 --- [Thread-35] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2017-11-24 13:01:41.560  INFO 9600 --- [Thread-35] o.s.c.ehcache.EhCacheManagerFactoryBean  : Shutting down EhCache CacheManager
+2017-11-24 13:01:41.957  INFO 9600 --- [restartedMain] c.outstudio.weixin.WeixinEduApplication  : Starting WeixinEduApplication on Samson with PID 9600 (D:\IDEAwork\weixin-edu\target\classes started by 96428 in D:\IDEAwork\weixin-edu)
+2017-11-24 13:01:41.957 DEBUG 9600 --- [restartedMain] c.outstudio.weixin.WeixinEduApplication  : Running with Spring Boot v1.5.6.RELEASE, Spring v4.3.10.RELEASE
+2017-11-24 13:01:41.957  INFO 9600 --- [restartedMain] c.outstudio.weixin.WeixinEduApplication  : No active profile set, falling back to default profiles: default
+2017-11-24 13:01:41.957  INFO 9600 --- [restartedMain] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@7091cf6: startup date [Fri Nov 24 13:01:41 CST 2017]; root of context hierarchy
+2017-11-24 13:01:42.363  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'shiroConfig' of type [com.outstudio.weixin.core.config.ShiroConfig$$EnhancerBySpringCGLIB$$bb37c9cf] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:42.363  WARN 9600 --- [restartedMain] net.sf.ehcache.CacheManager              : One or more caches require a DiskStore but there is no diskStore element configured. Using the default disk store path of C:\Users\96428\AppData\Local\Temp\. Please explicitly configure the diskStore element in ehcache.xml.
+2017-11-24 13:01:42.379  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'ehCacheManager' of type [org.apache.shiro.cache.ehcache.EhCacheManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:42.379  INFO 9600 --- [restartedMain] o.a.shiro.cache.ehcache.EhCacheManager   : Cache with name 'com.outstudio.weixin.core.shiro.token.MyRealm.authorizationCache.3' does not yet exist.  Creating now.
+2017-11-24 13:01:42.379  INFO 9600 --- [restartedMain] o.a.shiro.cache.ehcache.EhCacheManager   : Added EhCache named [com.outstudio.weixin.core.shiro.token.MyRealm.authorizationCache.3]
+2017-11-24 13:01:42.394  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'ehcacheConfig' of type [com.outstudio.weixin.core.config.EhcacheConfig$$EnhancerBySpringCGLIB$$6834ea5d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:42.394  INFO 9600 --- [restartedMain] o.s.c.ehcache.EhCacheManagerFactoryBean  : Initializing EhCache CacheManager
+2017-11-24 13:01:42.394  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'ehCacheManagerFactoryBean' of type [org.springframework.cache.ehcache.EhCacheManagerFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:42.394  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'ehCacheManagerFactoryBean' of type [net.sf.ehcache.CacheManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:42.394  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'ehCacheCacheManager' of type [org.springframework.cache.ehcache.EhCacheCacheManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:42.394  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'retryLimitHashedCredentialsMatcher' of type [com.outstudio.weixin.core.shiro.token.RetryLimitHashedCredentialsMatcher] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:42.410  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'sessionIdCookie' of type [org.apache.shiro.web.servlet.SimpleCookie] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:42.410  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'sessionIdGenerator' of type [org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:42.410  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'sessionDAO' of type [org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:42.410  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'sessionManager' of type [org.apache.shiro.web.session.mgt.DefaultWebSessionManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:42.410  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'rememberMeCookie' of type [org.apache.shiro.web.servlet.SimpleCookie] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:42.410  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'rememberMeManager' of type [org.apache.shiro.web.mgt.CookieRememberMeManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:42.410  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'securityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:42.410  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodInvokingFactoryBean' of type [org.springframework.beans.factory.config.MethodInvokingFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:42.410  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Tomcat' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Tomcat] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:42.441  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'spring.datasource-org.springframework.boot.autoconfigure.jdbc.DataSourceProperties' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:42.504  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'dataSource' of type [org.apache.tomcat.jdbc.pool.DataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:42.504  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'mybatisConfig' of type [com.outstudio.weixin.core.config.MybatisConfig$$EnhancerBySpringCGLIB$$18e7aef1] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:42.504  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'pageInterceptor' of type [com.github.pagehelper.PageInterceptor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:42.597  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionFactory' of type [org.apache.ibatis.session.defaults.DefaultSqlSessionFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:42.597  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionTemplate' of type [org.mybatis.spring.SqlSessionTemplate] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:42.597  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'userEntityMapper' of type [org.mybatis.spring.mapper.MapperFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:42.597  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'userEntityMapper' of type [com.sun.proxy.$Proxy130] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:42.597  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'userService' of type [com.outstudio.weixin.common.service.UserService] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:42.597  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'managerEntityMapper' of type [org.mybatis.spring.mapper.MapperFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:42.597  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'managerEntityMapper' of type [com.sun.proxy.$Proxy131] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:42.597  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'managerService' of type [com.outstudio.weixin.common.service.ManagerService] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:42.597  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'myRealm' of type [com.outstudio.weixin.core.shiro.token.MyRealm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:42.597  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'securityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:42.613  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'loginFilter' of type [com.outstudio.weixin.core.shiro.filters.LoginFilter] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:42.613  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'forbidFilter' of type [com.outstudio.weixin.core.shiro.filters.ForbidFilter] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:42.629  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'weixinAuthFilter' of type [com.outstudio.weixin.core.shiro.filters.WeixinAuthFilter] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:42.629  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'alreadyLoginFilter' of type [com.outstudio.weixin.core.shiro.filters.AlreadyLoginFilter] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:42.644  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'authorizationAttributeSourceAdvisor' of type [org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:42.660  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$bef1ce09] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:42.675  INFO 9600 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cache.annotation.ProxyCachingConfiguration' of type [org.springframework.cache.annotation.ProxyCachingConfiguration$$EnhancerBySpringCGLIB$$8040427] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-11-24 13:01:42.910  INFO 9600 --- [restartedMain] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2017-11-24 13:01:42.910  INFO 9600 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2017-11-24 13:01:42.910  INFO 9600 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.16
+2017-11-24 13:01:42.941  INFO 9600 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2017-11-24 13:01:42.941  INFO 9600 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 984 ms
+2017-11-24 13:01:43.129  INFO 9600 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-11-24 13:01:43.129  INFO 9600 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2017-11-24 13:01:43.129  INFO 9600 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2017-11-24 13:01:43.129  INFO 9600 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2017-11-24 13:01:43.129  INFO 9600 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Filter loginFilter was not registered (disabled)
+2017-11-24 13:01:43.129  INFO 9600 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Filter alreadyLoginFilter was not registered (disabled)
+2017-11-24 13:01:43.129  INFO 9600 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Filter forbidFilter was not registered (disabled)
+2017-11-24 13:01:43.129  INFO 9600 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Filter weixinAuthFilter was not registered (disabled)
+2017-11-24 13:01:43.129  INFO 9600 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'shiroFilter' to: [/*]
+2017-11-24 13:01:43.129  INFO 9600 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'vipFilter' to: [/*]
+2017-11-24 13:01:43.129  INFO 9600 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2017-11-24 13:01:43.129  INFO 9600 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'AccessTokenServlet' to [/self/AccessTokenServlet]
+2017-11-24 13:01:43.129  INFO 9600 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'CreateMenuServlet' to [/self/CreateMenuServlet]
+2017-11-24 13:01:43.535  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@7091cf6: startup date [Fri Nov 24 13:01:41 CST 2017]; root of context hierarchy
+2017-11-24 13:01:43.566  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/users],methods=[PUT]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.BackUserController.setAgent(com.outstudio.weixin.common.po.UserEntity)
+2017-11-24 13:01:43.566  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/users/info/{id}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.outstudio.weixin.back.controller.BackUserController.onePage(java.lang.Integer)
+2017-11-24 13:01:43.566  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/users/pageNum],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.BackUserController.getPages()
+2017-11-24 13:01:43.566  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/users/page/{pageNum}],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.BackUserController.getUsers(int)
+2017-11-24 13:01:43.566  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/enReviews/{id}],methods=[DELETE]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.EnReviewController.deleteEnReview(java.lang.Integer)
+2017-11-24 13:01:43.566  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/enReviews/{id}],methods=[PUT]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.EnReviewController.modifyEnReview(java.lang.Integer,com.outstudio.weixin.common.po.EnReviewEntity)
+2017-11-24 13:01:43.566  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/enReviews],methods=[POST]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.EnReviewController.addEnReview(com.outstudio.weixin.common.po.EnReviewEntity)
+2017-11-24 13:01:43.566  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/enReviews/{id}],methods=[PATCH]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.EnReviewController.modifyEnReviewExceptContent(java.lang.Integer,com.outstudio.weixin.common.po.EnReviewEntity)
+2017-11-24 13:01:43.566  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/enVideos],methods=[POST]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.EnVideoController.postEnVideo(com.outstudio.weixin.common.po.EnVideoEntity)
+2017-11-24 13:01:43.566  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/enVideos/{id}],methods=[DELETE]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.EnVideoController.deleteEnVideo(java.lang.Integer)
+2017-11-24 13:01:43.566  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/enVideos/{id}],methods=[PATCH]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.EnVideoController.modifyEnVideo(java.lang.Integer,com.outstudio.weixin.common.po.EnVideoEntity)
+2017-11-24 13:01:43.582  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/interviewVideo],methods=[PUT]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.InterviewVideoController.modifyInterview(java.lang.Integer,com.outstudio.weixin.common.po.InterviewVideoEntity)
+2017-11-24 13:01:43.582  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/interviewVideos],methods=[POST]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.InterviewVideoController.postInterviewVideo(com.outstudio.weixin.common.po.InterviewVideoEntity)
+2017-11-24 13:01:43.582  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/interviewVideos/{id}],methods=[DELETE]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.InterviewVideoController.deleteInterviewVideo(java.lang.Integer)
+2017-11-24 13:01:43.582  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/logout]}" onto public org.springframework.web.servlet.ModelAndView com.outstudio.weixin.back.controller.LoginController.logout()
+2017-11-24 13:01:43.582  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/open/back/sublogin],methods=[POST]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.LoginController.sublogin(javax.servlet.http.HttpServletRequest,com.outstudio.weixin.common.po.ManagerEntity)
+2017-11-24 13:01:43.582  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/sub/password],methods=[PUT]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.ManagerController.changePassword(java.util.Map<java.lang.String, java.lang.String>)
+2017-11-24 13:01:43.582  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/messages/{id}],methods=[PUT]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.MessageController.modifyMessage(java.lang.Integer,com.outstudio.weixin.common.po.MessageEntity)
+2017-11-24 13:01:43.582  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/messages/{id}],methods=[DELETE]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.MessageController.deleteMessage(java.lang.Integer)
+2017-11-24 13:01:43.582  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/messages],methods=[POST]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.MessageController.postMessage(com.outstudio.weixin.common.po.MessageEntity)
+2017-11-24 13:01:43.582  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/stories],methods=[POST]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.StoryController.uploadStory(org.springframework.web.multipart.MultipartFile,javax.servlet.http.HttpServletRequest,com.outstudio.weixin.common.po.StoryEntity)
+2017-11-24 13:01:43.582  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/stories/{id}],methods=[DELETE]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.StoryController.deleteStory(java.lang.Integer)
+2017-11-24 13:01:43.598  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/back/stories/{id}],methods=[PATCH]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.StoryController.modifyStory(java.lang.Integer,com.outstudio.weixin.common.po.StoryEntity)
+2017-11-24 13:01:43.598  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/open/back/welcomes],methods=[POST]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.WelcomeController.post(com.outstudio.weixin.common.po.WelcomeEntity)
+2017-11-24 13:01:43.598  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/open/back/welcomes],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.WelcomeController.getWelcomes()
+2017-11-24 13:01:43.598  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/open/back/welcomes/{id}],methods=[PUT]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.WelcomeController.modifyWelcome(java.lang.Integer,com.outstudio.weixin.common.po.WelcomeEntity)
+2017-11-24 13:01:43.598  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/open/back/welcomes/{id}],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.WelcomeController.getWelcomeById(java.lang.Integer)
+2017-11-24 13:01:43.598  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/open/back/welcomes/{id}],methods=[PATCH]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.WelcomeController.useWelcomeById(java.lang.Integer)
+2017-11-24 13:01:43.598  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/open/back/welcomes/{id}],methods=[DELETE]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.back.controller.WelcomeController.deleteWelcomeById(java.lang.Integer)
+2017-11-24 13:01:43.598  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/cloud/signature]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.cloud.CloudController.getSignature()
+2017-11-24 13:01:43.598  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/hello],methods=[GET]}" onto public java.lang.String com.outstudio.weixin.common.controller.CommonController.hello()
+2017-11-24 13:01:43.598  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/open/page/oauth]}" onto public java.lang.String com.outstudio.weixin.page.controller.AuthController.oauth(javax.servlet.http.HttpServletRequest,java.lang.String,java.lang.String)
+2017-11-24 13:01:43.598  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/enReviews/stages],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.EnReviewController.getStages()
+2017-11-24 13:01:43.598  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/enReviews],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.EnReviewController.searchEnReviews(java.lang.String)
+2017-11-24 13:01:43.613  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/enReviews/{id}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.outstudio.weixin.page.controller.EnReviewController.getEnReview(java.lang.Integer)
+2017-11-24 13:01:43.613  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/enReviews/pageNum],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.EnReviewController.getNum()
+2017-11-24 13:01:43.613  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/enReviews/page/{pageNum}],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.EnReviewController.getAllEnReviews(int)
+2017-11-24 13:01:43.613  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/enReviews/stage/{stage}/page/{pageNum}],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.EnReviewController.getEnReviewsByStage(java.lang.Integer,java.lang.Integer)
+2017-11-24 13:01:43.613  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/enVideos/{id}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.outstudio.weixin.page.controller.EnVideoController.getenVideoById(java.lang.Integer)
+2017-11-24 13:01:43.613  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/enVideos],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.EnVideoController.searchEnVideos(java.lang.String)
+2017-11-24 13:01:43.613  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/enVideos/page/{pageNum}],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.EnVideoController.getAllEnVideos(java.lang.Integer)
+2017-11-24 13:01:43.613  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/enVideos/stages],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.EnVideoController.getStages()
+2017-11-24 13:01:43.613  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/enVideos/pageNum],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.EnVideoController.getNum()
+2017-11-24 13:01:43.613  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/enVideos/stage/{stage}/page/{pageNum}],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.EnVideoController.getEnVideosByStage(java.lang.Integer,java.lang.Integer)
+2017-11-24 13:01:43.613  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/interviewVideos/{id}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.outstudio.weixin.page.controller.InterviewVideoController.getenVideoById(java.lang.Integer)
+2017-11-24 13:01:43.629  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/interviewVideos/stages],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.InterviewVideoController.getStages()
+2017-11-24 13:01:43.629  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/interviewVideos/page/{pageNum}],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.InterviewVideoController.getAllInterviews(java.lang.Integer)
+2017-11-24 13:01:43.629  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/interviewVideos/pageNum],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.InterviewVideoController.getPageNum()
+2017-11-24 13:01:43.629  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/interviewVideos],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.InterviewVideoController.searchInterviewVideos(java.lang.String)
+2017-11-24 13:01:43.629  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/interviewVideos/stage/{stage}/page/{pageNum}],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.InterviewVideoController.getInterviewsByStage(java.lang.Integer,java.lang.Integer)
+2017-11-24 13:01:43.629  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/messages/{id}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.outstudio.weixin.page.controller.MessageController.getMessageById(java.lang.Integer)
+2017-11-24 13:01:43.629  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/messages],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.MessageController.searchParam(java.lang.String)
+2017-11-24 13:01:43.629  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/messages/page/{pageNum}],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.MessageController.getAllMessages(java.lang.Integer)
+2017-11-24 13:01:43.629  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/open/page/unauth]}" onto public org.springframework.web.servlet.ModelAndView com.outstudio.weixin.page.controller.PageBaseController.unauth()
+2017-11-24 13:01:43.629  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/open/page/wxpayDone]}" onto public java.lang.String com.outstudio.weixin.page.controller.PayController.processResult(javax.servlet.http.HttpServletRequest) throws java.io.IOException,org.dom4j.DocumentException
+2017-11-24 13:01:43.629  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/open/page/wxpay]}" onto public java.util.Map<java.lang.String, java.lang.String> com.outstudio.weixin.page.controller.PayController.pay(javax.servlet.http.HttpServletRequest,java.lang.String)
+2017-11-24 13:01:43.645  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/stories/page/{pageNum}],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.StoryController.getAllStories(java.lang.Integer)
+2017-11-24 13:01:43.645  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/stories/pageNum],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.StoryController.getNum()
+2017-11-24 13:01:43.645  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/stories/type/{type}/page/{pageNum}],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.StoryController.getStotiesByType(java.lang.Integer,java.lang.Integer)
+2017-11-24 13:01:43.645  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/stories/{id}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.outstudio.weixin.page.controller.StoryController.getStory(java.lang.Integer)
+2017-11-24 13:01:43.645  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/stories],methods=[GET]}" onto public com.outstudio.weixin.common.vo.MessageVo com.outstudio.weixin.page.controller.StoryController.searchStories(java.lang.String)
+2017-11-24 13:01:43.645  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/page/view/userInfo],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.outstudio.weixin.page.controller.UserController.getUserInfo()
+2017-11-24 13:01:43.645  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/oauth],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.outstudio.weixin.wechat.controller.WeixinController.oauth(java.lang.String,java.lang.String,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException
+2017-11-24 13:01:43.645  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/weixin],methods=[GET]}" onto public java.lang.String com.outstudio.weixin.wechat.controller.WeixinController.weixin(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+2017-11-24 13:01:43.645  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/weixin],methods=[POST]}" onto public void com.outstudio.weixin.wechat.controller.WeixinController.weixin(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException
+2017-11-24 13:01:43.645  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-11-24 13:01:43.645  INFO 9600 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-11-24 13:01:43.691  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/open/back/login] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:43.691  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/back/index] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:43.691  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/back/password] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:43.691  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/back/admin] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:43.691  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/back/import/audio] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:43.691  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/back/import/video] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:43.691  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/back/import/english] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:43.691  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/back/view/audio] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:43.691  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/back/view/video] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:43.691  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/back/view/english] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:43.691  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/page/view/audio] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:43.691  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/page/view/video] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:43.691  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/page/view/english] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:43.691  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/page/view/introduction] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:43.707  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/page/view/vip] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:43.707  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/page/view/voiceInHome] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:43.707  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/page/view/agent] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:43.707  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/error] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:43.707  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Root mapping to handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2017-11-24 13:01:43.723  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/mp3/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-24 13:01:43.723  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/mp4/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-24 13:01:43.723  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-24 13:01:43.723  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-24 13:01:43.754  INFO 9600 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in baseExceptionAdvisor
+2017-11-24 13:01:43.769  INFO 9600 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-11-24 13:01:44.051  INFO 9600 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2017-11-24 13:01:44.098  INFO 9600 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2017-11-24 13:01:44.113  INFO 9600 --- [restartedMain] c.o.w.wechat.servlet.AccessTokenServlet  : 服务已经启动，正在加载AccessTokenServlet
+2017-11-24 13:01:44.113  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:01:44.676  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [Cdw11a0705e575]"}
+2017-11-24 13:01:44.769 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:01:44.785 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:01:45.795  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:01:46.453  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [VJcQAA0707e575]"}
+2017-11-24 13:01:46.453 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:01:46.453 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:01:47.458  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:01:47.629  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [6n0708e544]"}
+2017-11-24 13:01:47.645 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:01:47.645 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:01:48.645  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:01:48.880  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [OUcfDA0709e544]"}
+2017-11-24 13:01:48.880 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:01:48.880 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:01:49.880  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:01:50.365  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [0711e514]"}
+2017-11-24 13:01:50.380 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:01:50.380 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:01:51.380  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:01:52.041  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [J7.dWA0712en10]"}
+2017-11-24 13:01:52.056 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:01:52.056 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:01:53.071  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:01:53.274  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [XJP7AA0714e575]"}
+2017-11-24 13:01:53.274 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:01:53.274 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:01:54.274  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:01:54.509  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [0715e544]"}
+2017-11-24 13:01:54.509 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:01:54.509 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:01:55.509  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:01:55.743  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [aw8mHA0716e544]"}
+2017-11-24 13:01:55.743 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:01:55.743 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:01:56.743  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:02:02.200  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [6ZJZhA0722e606]"}
+2017-11-24 13:02:02.200 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:02:02.200 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:02:03.200  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:02:03.421  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [MOZQma0724en10]"}
+2017-11-24 13:02:03.421 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:02:03.421 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:02:04.437  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:02:04.624  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [V5Y0725e578]"}
+2017-11-24 13:02:04.624 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:02:04.624 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:02:05.637  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:02:05.872  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [j1HBNA0726e606]"}
+2017-11-24 13:02:05.872 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:02:05.872 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:02:06.873  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:02:07.357  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [2SWcvA0727e606]"}
+2017-11-24 13:02:07.357 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:02:07.357 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:02:08.372  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:02:08.632  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [q8Tuya0729en10]"}
+2017-11-24 13:02:08.632 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:02:08.632 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:02:09.635  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:02:09.854  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [Q_odya0730e575]"}
+2017-11-24 13:02:09.854 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:02:09.854 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:02:10.854  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:02:11.089  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [GzmhDa0731e544]"}
+2017-11-24 13:02:11.089 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:02:11.089 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:02:12.099  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:02:12.466  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [WGPmdA0733e544]"}
+2017-11-24 13:02:12.466 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:02:12.466 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:02:13.466  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:02:13.669  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [eMohaa0734e606]"}
+2017-11-24 13:02:13.669 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:02:13.669 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:02:14.669  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:02:15.154  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [QVWMha0735e578]"}
+2017-11-24 13:02:15.154 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:02:15.154 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:02:16.163  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:02:16.381  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [h5OFoA0737e606]"}
+2017-11-24 13:02:16.381 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:02:16.381 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:02:17.394  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:02:17.871  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [ZIqMCA0738e514]"}
+2017-11-24 13:02:17.872 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:02:17.872 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:02:18.886  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:02:19.120  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [OMrera0739en10]"}
+2017-11-24 13:02:19.120 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:02:19.120 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:02:20.134  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:02:20.665  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [Kry7JA0741e606]"}
+2017-11-24 13:02:20.665 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:02:20.665 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:02:21.678  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:02:22.506  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [jgzSSA0743e578]"}
+2017-11-24 13:02:22.506 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:02:22.506 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:02:23.508  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:02:23.712  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [DevpNA0744e606]"}
+2017-11-24 13:02:23.712 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:02:23.712 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:02:24.721  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:02:24.908  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [WLW5rA0745e606]"}
+2017-11-24 13:02:24.908 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:02:24.908 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:02:25.909  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:02:26.127  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [AWQ_Ma0746e544]"}
+2017-11-24 13:02:26.127 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:02:26.127 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:02:27.131  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:02:28.209  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [c3Dc70748e606]"}
+2017-11-24 13:02:28.209 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:02:28.209 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:02:29.219  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:02:32.861  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [c8QXca0753e606]"}
+2017-11-24 13:02:32.876 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:02:32.876 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:02:33.877  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:02:34.127  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [RtAuxa0754e606]"}
+2017-11-24 13:02:34.127 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:02:34.127 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:02:35.127  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:02:35.674  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [ZDLwUa0756en10]"}
+2017-11-24 13:02:35.674 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:02:35.674 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:02:36.689  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:02:36.883  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [_MRV4a0757e575]"}
+2017-11-24 13:02:36.883 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:02:36.883 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:02:37.887  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:02:38.091  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [70758e514]"}
+2017-11-24 13:02:38.106 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:02:38.106 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:02:39.116  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:02:39.608  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [bnMGAa0760e544]"}
+2017-11-24 13:02:39.609 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:02:39.609 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:02:40.620  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:02:41.135  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [gSuX9a0761e575]"}
+2017-11-24 13:02:41.135 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:02:41.135 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:02:42.136  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:02:42.644  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [HYuura0763e514]"}
+2017-11-24 13:02:42.644 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:02:42.644 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:02:43.649  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:02:44.180  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [40764e544]"}
+2017-11-24 13:02:44.196 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:02:44.196 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:02:45.202  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:02:45.421  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [0766e514]"}
+2017-11-24 13:02:45.421 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:02:45.421 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:02:46.429  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:02:46.632  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [0767en10]"}
+2017-11-24 13:02:46.632 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:02:46.632 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:02:47.640  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:02:47.865  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [Bg5WRA0768e575]"}
+2017-11-24 13:02:47.865 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:02:47.865 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:02:48.865  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:02:49.084  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [9lLGbA0769en10]"}
+2017-11-24 13:02:49.084 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:02:49.084 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:02:50.084  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:02:50.304  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [WHPBXa0771e606]"}
+2017-11-24 13:02:50.304 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:02:50.304 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:02:51.304  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:02:51.522  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [bl1NUA0772e575]"}
+2017-11-24 13:02:51.522 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:02:51.522 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
+2017-11-24 13:02:52.523  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : do get the https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6b2cfecab5b48621&secret=48a1796bdca284377046f40423da162e
+2017-11-24 13:02:52.742  INFO 9600 --- [Thread-50] c.o.weixin.common.utils.NetWorkUtil      : got response : {"errcode":40164,"errmsg":"invalid ip 222.173.59.6, not in whitelist hint: [PUSrDa0773e575]"}
+2017-11-24 13:02:52.742 DEBUG 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 已经正确获取AccessToken, 现在的token为->{null}
+2017-11-24 13:02:52.742 ERROR 9600 --- [Thread-50] c.o.w.wechat.servlet.AccessTokenServlet  : 获取AccessToken出现错误, 错误信息为->{null}
+
+java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Integer.java:542) ~[na:1.8.0_101]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[na:1.8.0_101]
+	at com.outstudio.weixin.wechat.servlet.AccessTokenServlet.lambda$init$0(AccessTokenServlet.java:42) ~[classes/:na]
+	at java.lang.Thread.run(Thread.java:745) ~[na:1.8.0_101]
+
