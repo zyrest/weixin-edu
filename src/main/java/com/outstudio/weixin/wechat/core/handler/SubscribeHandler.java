@@ -2,7 +2,7 @@ package com.outstudio.weixin.wechat.core.handler;
 
 import com.outstudio.weixin.common.po.UserEntity;
 import com.outstudio.weixin.common.service.UserService;
-import com.outstudio.weixin.common.utils.MessageVoUtil;
+import com.outstudio.weixin.common.utils.LoggerUtil;
 import com.outstudio.weixin.wechat.utils.ContentUtil;
 import com.outstudio.weixin.wechat.utils.MessageUtil;
 import com.outstudio.weixin.wechat.utils.WechatUtil;
@@ -26,6 +26,7 @@ public class SubscribeHandler implements Handler {
 
     /**
      * 当用户关注公众号时, 自动拉取用户信息, 保存在用户数据库中
+     *
      * @param messageMap 获得到的信息
      * @return 问候消息
      */
@@ -44,7 +45,8 @@ public class SubscribeHandler implements Handler {
 
         UserEntity now = userService.getUserByOpenId(userOpenid);
         String EventKey = messageMap.get("EventKey");
-        if (EventKey != null) {
+        LoggerUtil.fmtDebug(getClass(), "message：{%s}", messageMap);
+        if (EventKey != null && !EventKey.isEmpty()) {
             int pid = Integer.parseInt(EventKey.substring(8));
 
             if (now.getId() == pid) {
