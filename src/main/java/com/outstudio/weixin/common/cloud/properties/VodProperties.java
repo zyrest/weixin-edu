@@ -1,4 +1,4 @@
-package com.outstudio.weixin.cloud.properties;
+package com.outstudio.weixin.common.cloud.properties;
 
 public class VodProperties {
 

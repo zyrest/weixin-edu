@@ -1,7 +1,7 @@
-package com.outstudio.weixin.cloud.util;
+package com.outstudio.weixin.common.cloud.util;
 
 import com.alibaba.fastjson.JSONObject;
-import com.outstudio.weixin.cloud.properties.VodProperties;
+import com.outstudio.weixin.common.cloud.properties.VodProperties;
 import com.outstudio.weixin.common.utils.LoggerUtil;
 import com.outstudio.weixin.common.utils.NetWorkUtil;
 import com.qcloud.Common.Request;

@@ -1,6 +1,6 @@
-package com.outstudio.weixin.cloud;
+package com.outstudio.weixin.common.cloud;
 
-import com.outstudio.weixin.cloud.util.CloudUtil;
+import com.outstudio.weixin.common.cloud.util.CloudUtil;
 import com.outstudio.weixin.common.consts.ResponseStatus;
 import com.outstudio.weixin.common.utils.MessageVoUtil;
 import com.outstudio.weixin.common.vo.MessageVo;

@@ -1,10 +1,9 @@
 package com.outstudio.weixin.common.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.outstudio.weixin.cloud.util.CloudUtil;
+import com.outstudio.weixin.common.cloud.util.CloudUtil;
 import com.outstudio.weixin.common.dao.InterviewVideoEntityMapper;
 import com.outstudio.weixin.common.po.InterviewVideoEntity;
-import com.outstudio.weixin.common.utils.FileUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
