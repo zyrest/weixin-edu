@@ -58,7 +58,7 @@ public class SubscribeHandler implements Handler {
             }
         }
 
-        return MessageUtil.createArticlesMessageXml(fromUser, userOpenid, contentUtil.news());
+        return MessageUtil.createArticlesMessageXml(fromUser, userOpenid, contentUtil.news("news","0","20"));
 //        return MessageUtil.createTextMessageXml(fromUser, userOpenid, contentUtil.onSubscribe(found.getNickname()));
     }
 }

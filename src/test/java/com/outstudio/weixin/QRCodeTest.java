@@ -15,7 +15,7 @@ public class QRCodeTest {
     @Test
     public void generate() {
         try {
-            QRCodeUtil.generateQRCode("http://www.baidu.com", 400, 400, "png","E:\\qrcode.png");
+//            QRCodeUtil.generateQRCode("http://www.baidu.com", 400, 400, "png","E:\\qrcode.png");
         } catch (Exception e) {
             e.printStackTrace();
         }

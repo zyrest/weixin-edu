@@ -30,6 +30,8 @@ public class TextMessageHandler implements Handler {
     @Resource
     private UserService userService;
 
+    @Resource
+    private ContentUtil contentUtil;
     @Override
     public String handler(Map<String, String> messageMap) {
         String content = messageMap.get("Content");
@@ -48,7 +50,7 @@ public class TextMessageHandler implements Handler {
             }
             Integer id = userEntity.getId();
 
-            JSONObject object = createQRCode(id);
+            JSONObject object = produceQRCode(id);
             String qrcodeUrl = object.getString("url");
 
             //生成二维码并保存在本地
@@ -93,6 +95,8 @@ public class TextMessageHandler implements Handler {
             items.add(two);
 
             result = MessageUtil.createArticlesMessageXml(fromUser, toUser, items);
+        } else if (content.equals("高考")) {
+            result = MessageUtil.createArticlesMessageXml(fromUser, toUser, contentUtil.gaokao());
         } else {
             result = MessageUtil.createTextMessageXml(fromUser, toUser, ContentUtil.defualt());
         }
@@ -100,7 +104,7 @@ public class TextMessageHandler implements Handler {
         return result;
     }
 
-    private JSONObject createQRCode(Integer id) {
+    private JSONObject produceQRCode(Integer id) {
         return WechatUtil.produceQRCode("2592000", id.toString());
     }
 }
