@@ -5,8 +5,6 @@ import com.outstudio.weixin.common.bitmatrix.utils.QRCodeUtil;
 import com.outstudio.weixin.common.po.UserEntity;
 import com.outstudio.weixin.common.service.UserService;
 import com.outstudio.weixin.common.utils.LoggerUtil;
-import com.outstudio.weixin.wechat.cache.AccessTokenCache;
-import com.outstudio.weixin.wechat.config.WeixinProperties;
 import com.outstudio.weixin.wechat.dto.message.media.Image;
 import com.outstudio.weixin.wechat.dto.message.media.Item;
 import com.outstudio.weixin.wechat.utils.ContentUtil;
@@ -15,7 +13,6 @@ import com.outstudio.weixin.wechat.utils.WechatUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +29,7 @@ public class TextMessageHandler implements Handler {
 
     @Resource
     private ContentUtil contentUtil;
+
     @Override
     public String handler(Map<String, String> messageMap) {
         String content = messageMap.get("Content");
@@ -42,61 +40,13 @@ public class TextMessageHandler implements Handler {
         String result = "success";
 
         if (content.equals("代理")) {
-
-            //获取用户的id
-            UserEntity userEntity = userService.getUserByOpenId(toUser);
-            if (userEntity.getLevel() == 0) {
-                return MessageUtil.createTextMessageXml(fromUser, toUser, "对不起，您还未成为代理，有意者请联系-尹 15077107934  0771-2717765");
-            }
-            Integer id = userEntity.getId();
-
-            JSONObject object = produceQRCode(id);
-            String qrcodeUrl = object.getString("url");
-
-            //生成二维码并保存在本地
-            try {
-//                QRCodeUtil.generateQRCode(WeixinProperties.DOMAIN + "/page/view/vip#" + id, 400, 400, "png", "/home/ubuntu/weixin/qrcode/" + id + ".png");
-                QRCodeUtil.generateQRCode(qrcodeUrl, 400, 400, "png", "/home/ubuntu/weixin/qrcode/" + id + ".png");
-                LoggerUtil.debug(getClass(), "生成二维码成功");
-            } catch (Exception e) {
-                e.printStackTrace();
-                LoggerUtil.debug(getClass(), "生成二维码失败");
-            }
-
-            //将二维码上传到微信服务器并拿到media_id
-            String url = String.format(WeixinProperties.UPLOAD_TEMPORARY_MATERIAL,
-                    AccessTokenCache.getAccessToken().getAccess_token(),
-                    "image");
-            File file = new File("/home/ubuntu/weixin/qrcode/" + id + ".png");
-
-            JSONObject jsonObject = WechatUtil.httpRequest(url, file);
-            Image image = new Image();
-            String media_id = jsonObject.getString("media_id");
-            if (media_id != null) {
-                image.setMediaId(media_id);
-                result = MessageUtil.createImageMessageXml(fromUser, toUser, image);
-            }
+            result = QRCodeResult(fromUser, toUser);
         } else if (content.equals("测试")) {
-            List<Item> items = new ArrayList<>();
-
-            Item one = new Item();
-            one.setTitle("测试内容1");
-            one.setDescription("csdn博客");
-            one.setUrl("http://blog.csdn.net/");
-            one.setPicUrl("http://ss.csdn.net/p?http://mmbiz.qpic.cn/mmbiz_jpg/1hReHaqafaflH9mgsL0dialsMGWcxxEXORvRwqKGxCxgxXq5OickOWdRB3DJQNjTnFQ7O2iasQFQMhaaIMGecU1Zw/640?wx_fmt=jpeg");
-
-            Item two = new Item();
-            two.setTitle("测试内容2");
-            two.setDescription("还是csdn博客");
-            two.setUrl("http://blog.csdn.net/");
-            two.setPicUrl("http://ss.csdn.net/p?http://mmbiz.qpic.cn/mmbiz_jpg/1hReHaqafaflH9mgsL0dialsMGWcxxEXORvRwqKGxCxgxXq5OickOWdRB3DJQNjTnFQ7O2iasQFQMhaaIMGecU1Zw/640?wx_fmt=jpeg");
-
-            items.add(one);
-            items.add(two);
-
-            result = MessageUtil.createArticlesMessageXml(fromUser, toUser, items);
+            result = test(fromUser, toUser);
         } else if (content.equals("高考")) {
-            result = MessageUtil.createArticlesMessageXml(fromUser, toUser, contentUtil.gaokao());
+            Integer newsCount = WechatUtil.getMaterialCount("news_count");
+            String offset = String.valueOf(newsCount - 2);
+            result = MessageUtil.createArticlesMessageXml(fromUser, toUser, contentUtil.news(offset, "1"));
         } else {
             result = MessageUtil.createTextMessageXml(fromUser, toUser, ContentUtil.defualt());
         }
@@ -106,5 +56,76 @@ public class TextMessageHandler implements Handler {
 
     private JSONObject produceQRCode(Integer id) {
         return WechatUtil.produceQRCode("2592000", id.toString());
+    }
+
+    private String getQRCodeUrl(Integer id) {
+        JSONObject object = produceQRCode(id);
+        return object.getString("url");
+    }
+
+    /**
+     * 将传入的content生成二维码,并将二维码以用户id命名存在本地
+     *
+     * @param content  二维码的内容
+     * @param fileName 保存在本地的文件名
+     */
+    private void saveToLocal(String content, String fileName) {
+        try {
+//                QRCodeUtil.generateQRCode(WeixinProperties.DOMAIN + "/page/view/vip#" + id, 400, 400, "png", "/home/ubuntu/weixin/qrcode/" + id + ".png");
+            QRCodeUtil.generateQRCode(content, 400, 400, "png", "/home/ubuntu/weixin/qrcode/" + fileName + ".png");
+            LoggerUtil.debug(getClass(), "生成二维码成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            LoggerUtil.debug(getClass(), "生成二维码失败");
+        }
+
+    }
+
+
+    private String QRCodeResult(String fromUser, String toUser) {
+
+        //获取用户的id
+        UserEntity userEntity = userService.getUserByOpenId(toUser);
+
+        if (userEntity.getLevel() == 0) {
+            return MessageUtil.createTextMessageXml(fromUser, toUser, "对不起，您还未成为代理，有意者请联系-尹 15077107934  0771-2717765");
+        }
+        Integer id = userEntity.getId();
+
+        String qrcodeUrl = getQRCodeUrl(id);
+
+        //生成二维码并保存在本地
+        saveToLocal(qrcodeUrl, id.toString());
+
+        //将二维码上传到微信服务器并拿到media_id
+        String media_id = WechatUtil.uploadLocalToWeixin("/home/ubuntu/weixin/qrcode/" + id + ".png");
+
+        Image image = new Image();
+        if (media_id != null) {
+            image.setMediaId(media_id);
+            return MessageUtil.createImageMessageXml(fromUser, toUser, image);
+        }
+        return "success";
+    }
+
+    private String test(String fromUser, String toUser) {
+        List<Item> items = new ArrayList<>();
+
+        Item one = new Item();
+        one.setTitle("测试内容1");
+        one.setDescription("csdn博客");
+        one.setUrl("http://blog.csdn.net/");
+        one.setPicUrl("http://ss.csdn.net/p?http://mmbiz.qpic.cn/mmbiz_jpg/1hReHaqafaflH9mgsL0dialsMGWcxxEXORvRwqKGxCxgxXq5OickOWdRB3DJQNjTnFQ7O2iasQFQMhaaIMGecU1Zw/640?wx_fmt=jpeg");
+
+        Item two = new Item();
+        two.setTitle("测试内容2");
+        two.setDescription("还是csdn博客");
+        two.setUrl("http://blog.csdn.net/");
+        two.setPicUrl("http://ss.csdn.net/p?http://mmbiz.qpic.cn/mmbiz_jpg/1hReHaqafaflH9mgsL0dialsMGWcxxEXORvRwqKGxCxgxXq5OickOWdRB3DJQNjTnFQ7O2iasQFQMhaaIMGecU1Zw/640?wx_fmt=jpeg");
+
+        items.add(one);
+        items.add(two);
+
+        return MessageUtil.createArticlesMessageXml(fromUser, toUser, items);
     }
 }

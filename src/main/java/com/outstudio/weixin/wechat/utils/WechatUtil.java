@@ -183,5 +183,37 @@ public class WechatUtil {
         return JSON.parseObject(buffer.toString());
     }
 
+    /**
+     * 将以用户id命名的二维码传到微信服务器,并返回服务器上的media_id(临时素材)
+     * @param fileName
+     * @return
+     */
+    public static String uploadLocalToWeixin(String fileName) {
+        String url = String.format(WeixinProperties.UPLOAD_TEMPORARY_MATERIAL,
+                AccessTokenCache.getAccessToken().getAccess_token(),
+                "image");
+        File file = new File(fileName);
+
+        JSONObject jsonObject = WechatUtil.httpRequest(url, file);
+
+        return jsonObject.getString("media_id");
+    }
+
+    /**
+     * 请求接口返回值说明:
+     {
+     "voice_count":COUNT,
+     "video_count":COUNT,
+     "image_count":COUNT,
+     "news_count":COUNT
+     }
+     * @return
+     */
+    public static Integer getMaterialCount(String materialName) {
+        String url = String.format(WeixinProperties.GET_MATERIAL_COUNT,
+                AccessTokenCache.getAccessToken().getAccess_token());
+        JSONObject object = NetWorkUtil.doGetUri(url);
+        return object.getInteger(materialName);
+    }
 
 }

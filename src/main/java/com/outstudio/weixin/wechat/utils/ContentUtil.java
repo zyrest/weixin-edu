@@ -22,6 +22,24 @@ public class ContentUtil {
     @Resource
     private WelcomeService welcomeService;
 
+    public static String hello1() {
+        StringBuilder s = new StringBuilder();
+        s.append("你好啊!\n\n");
+        s.append("这是我的测试账号\n\n");
+        s.append("输入的指令正确，指令为 1");
+
+        return s.toString();
+    }
+
+    public static String defualt() {
+        StringBuilder s = new StringBuilder();
+        s.append("欢迎关注龙跃科技\n");
+        s.append("如果想要做代理，请在个人中心页面查看客服联系方式\n");
+        s.append("如果您是代理，请回复 代理 来获取自己的推广二维码\n");
+        s.append("如果有人通过您的推广二维码成为会员，您将得到一定收益");
+        return s.toString();
+    }
+
     public String onScan() {
         StringBuilder s = new StringBuilder();
         s.append("龙跃科技是一家专注于儿童教育的公司 \n");
@@ -49,24 +67,6 @@ public class ContentUtil {
         return s.toString();
     }
 
-    public static String hello1() {
-        StringBuilder s = new StringBuilder();
-        s.append("你好啊!\n\n");
-        s.append("这是我的测试账号\n\n");
-        s.append("输入的指令正确，指令为 1");
-
-        return s.toString();
-    }
-
-    public static String defualt() {
-        StringBuilder s = new StringBuilder();
-        s.append("欢迎关注龙跃科技\n");
-        s.append("如果想要做代理，请在个人中心页面查看客服联系方式\n");
-        s.append("如果您是代理，请回复 代理 来获取自己的推广二维码\n");
-        s.append("如果有人通过您的推广二维码成为会员，您将得到一定收益");
-        return s.toString();
-    }
-
     public String onSubscribe(String nickname) {
 
         StringBuilder s = new StringBuilder();
@@ -77,57 +77,43 @@ public class ContentUtil {
         WelcomeEntity welcomeEntity = welcomeService.getByIsUsing(1);
         if (welcomeEntity == null) {
             return s.toString();
-        }else {
+        } else {
             return s.append(welcomeService.getByIsUsing(1).getContent().replace("\\n", "\n")).toString();
         }
     }
 
-    public List<Item> news(String type,String offset,String count) {
-//        JSONObject newsListObject = WechatUtil.getMaterialList("news", "0", "20");
-        JSONObject newsListObject = WechatUtil.getMaterialList(type, offset, count);
+    public List<Item> news(String offset, String count) {
+        JSONObject newsListObject = WechatUtil.getMaterialList("news", offset, count);
         JSONArray itemArray = newsListObject.getJSONArray("item");
-
-        JSONObject imagesListObject = WechatUtil.getMaterialList("image", "0", "20");
-        JSONArray picItemArray = imagesListObject.getJSONArray("item");
 
         List<Item> items = new LinkedList<>();
 
-        if (itemArray.size()==0)
+        if (itemArray.size() == 0)
+            //如果返回的item为空,直接返回(即素材中心没有图文消息)
             return null;
 
-            JSONObject itemObject = (JSONObject) itemArray.get(itemArray.size()-1);
-            JSONObject contentObject = itemObject.getJSONObject("content");
-            JSONArray newsItemArray = contentObject.getJSONArray("news_item");
-            for (int j = 0; j < newsItemArray.size(); j++) {
-                JSONObject newsItemObject = (JSONObject) newsItemArray.get(j);
+        JSONObject itemObject = (JSONObject) itemArray.get(itemArray.size() - 1);//获取item数组中的最后一个
+        JSONObject contentObject = itemObject.getJSONObject("content");//获取最后一个中的content
+        JSONArray newsItemArray = contentObject.getJSONArray("news_item");//获取content中的news_item数组
 
-                Item item = new Item();
-                item.setTitle(newsItemObject.getString("title"));
-                item.setPicUrl(newsItemObject.getString("url"));
-                item.setUrl(newsItemObject.getString("url"));
-                item.setDescription("digest");
+        //将news_item数组中的图文消息放进要返回的list
+        for (Object aNewsItemArray : newsItemArray) {
+            JSONObject newsItemObject = (JSONObject) aNewsItemArray;
 
-                String picId = newsItemObject.getString("thumb_media_id");
+            Item item = new Item();
+            item.setTitle(newsItemObject.getString("title"));
+            item.setPicUrl(newsItemObject.getString("thumb_url"));
+            item.setUrl(newsItemObject.getString("url"));
+            item.setDescription("digest");
 
-                for (int k = 0; k < picItemArray.size(); k++) {
-                    JSONObject picObject = (JSONObject) picItemArray.get(k);
-                    String media_id = picObject.getString("media_id");
-                    try {
-                        if (picId.equalsIgnoreCase(media_id)) {
-                            item.setPicUrl(picObject.getString("url"));
-                        }
-                    } catch (Exception e) {
-                        LoggerUtil.error(getClass(), "获取素材列表中的图片发生错误，可能是图文消息不存在", e);
-                    }
-                }
-
-
-                items.add(item);
-            }
+            items.add(item);
+        }
 
         return items;
     }
 
+    /*
+    //旧方法,后来发现在返回的content.news_item里面就有封面缩略图的url(thumb_url);所以不用再去请求素材中心的所有图片然后根据thumb_media_id组合.
     public List<Item> gaokao() {
         JSONObject newsListObject = WechatUtil.getMaterialList("news", "0", "20");
         JSONArray itemArray = newsListObject.getJSONArray("item");
@@ -137,10 +123,10 @@ public class ContentUtil {
 
         List<Item> items = new LinkedList<>();
 
-        if (itemArray.size()==0)
+        if (itemArray.size() == 0)
             return null;
 
-        JSONObject itemObject = (JSONObject) itemArray.get(itemArray.size()-2);
+        JSONObject itemObject = (JSONObject) itemArray.get(itemArray.size() - 2);
         JSONObject contentObject = itemObject.getJSONObject("content");
         JSONArray newsItemArray = contentObject.getJSONArray("news_item");
         for (int j = 0; j < newsItemArray.size(); j++) {
@@ -171,5 +157,5 @@ public class ContentUtil {
         }
 
         return items;
-    }
+    }*/
 }

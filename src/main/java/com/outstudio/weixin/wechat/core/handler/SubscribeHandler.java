@@ -35,6 +35,22 @@ public class SubscribeHandler implements Handler {
         String fromUser = messageMap.get("ToUserName");
         String userOpenid = messageMap.get("FromUserName");
 
+        updateLocalUser(userOpenid);
+
+        setPid(userOpenid, messageMap);
+
+        Integer newsCount = WechatUtil.getMaterialCount("news_count");
+        String offset = String.valueOf(newsCount - 1);
+        return MessageUtil.createArticlesMessageXml(fromUser, userOpenid, contentUtil.news(offset,"1"));
+//        return MessageUtil.createTextMessageXml(fromUser, userOpenid, contentUtil.onSubscribe(found.getNickname()));
+    }
+
+    /**
+     * 如果数据库中存在用户,就更新用户信息;如果不存在,将用户信息保存在数据库中
+     * @param userOpenid
+     */
+    private void updateLocalUser(String userOpenid) {
+
         UserEntity found = userService.getUserByOpenId(userOpenid);
         UserEntity user = WechatUtil.getUserInfoOnSubscribe(userOpenid);
         if (found == null) {
@@ -42,7 +58,14 @@ public class SubscribeHandler implements Handler {
         } else {
             userService.updateUser(user);
         }
+    }
 
+    /**
+     * 根据传来的EventKey设置当前用户的pid
+     * @param userOpenid
+     * @param messageMap
+     */
+    private void setPid(String userOpenid, Map<String, String> messageMap) {
         UserEntity now = userService.getUserByOpenId(userOpenid);
         String EventKey = messageMap.get("EventKey");
         LoggerUtil.fmtDebug(getClass(), "message：{%s}", messageMap);
@@ -57,8 +80,5 @@ public class SubscribeHandler implements Handler {
                 userService.setPid(pid, userOpenid);
             }
         }
-
-        return MessageUtil.createArticlesMessageXml(fromUser, userOpenid, contentUtil.news("news","0","20"));
-//        return MessageUtil.createTextMessageXml(fromUser, userOpenid, contentUtil.onSubscribe(found.getNickname()));
     }
 }

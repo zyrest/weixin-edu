@@ -82,5 +82,13 @@ public class WeixinProperties {
      */
     public static final String CREATE_QRCODE = "https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=%s";
 
+    /**
+     * 根据上一个接口返回的ticket获取二维码
+     */
     public static final String GET_QRCODE_BY_TICKET = "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=%s";
+
+    /**
+     * 获取素材中心的素材总数
+     */
+    public static final String GET_MATERIAL_COUNT = "https://api.weixin.qq.com/cgi-bin/material/get_materialcount?access_token=%s";
 }
