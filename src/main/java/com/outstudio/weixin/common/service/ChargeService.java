@@ -10,7 +10,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 
 /**
  * Created by lmy on 2017/9/12.
@@ -98,5 +101,29 @@ public class ChargeService {
             chargeEntity.setNow_date(new Date());
             chargeEntityMapper.updateByOpenidSelective(chargeEntity);
         }
+    }
+
+    /**
+     * 处理返回的xml信息,存进数据库之前数据的处理
+     * @param map
+     */
+    public void charge(Map<String, String> map) {
+        String openid = map.get("openid");
+        String transaction_id = map.get("transaction_id");
+        String out_trade_no = map.get("out_trade_no");
+        String now_date = map.get("time_end");
+        String total_fee = map.get("total_fee");
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+        Date date = null;
+        try {
+            date = sdf.parse(now_date);
+            LoggerUtil.fmtDebug(getClass(),"格式化后的交易日期为%s",date.toString());
+        } catch (ParseException e) {
+            LoggerUtil.error(getClass(), "日期格式转化错误", e);
+        }
+
+        charge(openid, out_trade_no,transaction_id, date, total_fee);
+
     }
 }

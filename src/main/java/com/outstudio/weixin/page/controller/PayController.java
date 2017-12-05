@@ -18,9 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,11 +28,9 @@ import java.util.Map;
 @RequestMapping("/open/page")
 public class PayController {
 
+    private static final String backOffUrl = "http://www.here52.cn/open/page/wxpayDone";
     private WXPay wxPay;
     private WXPayConfigImpl config;
-
-    private static final String backOffUrl = "http://www.here52.cn/open/page/wxpayDone";
-
     @Resource
     private ChargeService chargeService;
 
@@ -58,27 +53,8 @@ public class PayController {
         init();
         Map<String, String> returnMap = new HashMap<>();
 
-        HashMap<String, String> data = new HashMap<>();
-        data.put("body", "vip充值");
-        data.put("out_trade_no", DateUtil.getFormatDate());
-        data.put("device_info", "WEB");
-        data.put("total_fee", fee);
-        data.put("spbill_create_ip", request.getRemoteAddr());
-        data.put("trade_type", "JSAPI");
-        data.put("openid", TokenManager.getWeixinToken().getOpenid());
-
-        LoggerUtil.fmtDebug(getClass(), "支付信息", data.toString());
-
-        Map<String, String> result = null;
-        try {
-            result = wxPay.unifiedOrder(data);
-            processPayResult(result);
-        } catch (Exception e) {
-            returnMap.put("status", "400");
-            LoggerUtil.error(getClass(), e.getMessage());
-            LoggerUtil.error(getClass(), JSON.toJSONString(result));
-            return returnMap;
-        }
+        String ip = request.getRemoteAddr();
+        Map<String, String> result = doPay(fee, ip);
 
         //生成H5调起微信支付API相关参数（前端页面js的配置参数）
         long timestamp = DateUtil.getTimestampSeconds();//当前时间的时间戳（秒）
@@ -119,6 +95,32 @@ public class PayController {
         }
     }
 
+    private Map<String, String> doPay(String fee, String ip) {
+        HashMap<String, String> data = new HashMap<>();
+        data.put("body", "vip充值");
+        data.put("out_trade_no", DateUtil.getFormatDate());
+        data.put("device_info", "WEB");
+        data.put("total_fee", fee);
+        data.put("spbill_create_ip", ip);
+        data.put("trade_type", "JSAPI");
+        data.put("openid", TokenManager.getWeixinToken().getOpenid());
+
+        LoggerUtil.fmtDebug(getClass(), "支付信息", data.toString());
+
+        Map<String, String> result = null;
+        try {
+            result = wxPay.unifiedOrder(data);
+            processPayResult(result);
+        } catch (Exception e) {
+            result = new HashMap<>();
+            result.put("status", "400");
+            LoggerUtil.error(getClass(), e.getMessage());
+            LoggerUtil.error(getClass(), JSON.toJSONString(result));
+            return result;
+        }
+        return result;
+    }
+
     @RequestMapping("/wxpayDone")
     public String processResult(HttpServletRequest request) throws IOException, DocumentException {
 
@@ -133,22 +135,7 @@ public class PayController {
             String result_code = map.get("result_code");
             if ("SUCCESS".equalsIgnoreCase(result_code)) {
                 // 成功将成功信息写进数据库，返回SUCCESS
-                String openid = map.get("openid");
-                String transaction_id = map.get("transaction_id");
-                String out_trade_no = map.get("out_trade_no");
-                String now_date = map.get("time_end");
-                String total_fee = map.get("total_fee");
-
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-                Date date = null;
-                try {
-                    date = sdf.parse(now_date);
-                    LoggerUtil.fmtDebug(getClass(),"格式化后的交易日期为%s",date.toString());
-                } catch (ParseException e) {
-                    LoggerUtil.error(getClass(), "日期格式转化错误", e);
-                }
-
-                chargeService.charge(openid, out_trade_no,transaction_id, date, total_fee);
+                chargeService.charge(map);
 
                 Map<String, String> result = new HashMap<>();
                 result.put("return_code", "SUCCESS");
