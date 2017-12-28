@@ -59,7 +59,7 @@ public class WXPay {
             throw new Exception("appid in config is empty");
         }
         /**
-         本地测试，先不使用证书，上线的时候要取消第一个if的注释
+         todo 本地测试，先不使用证书，上线的时候要取消第一个if的注释
          */
 //        if (this.config.getCertStream() == null) {
 //            throw new Exception("cert stream in config is empty");

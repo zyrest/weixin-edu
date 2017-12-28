@@ -39,7 +39,7 @@ public class CreateMenuServlet extends HttpServlet {
         String uri = String.format(WeixinProperties.CREATE_MENU_URI,
                 AccessTokenCache.getAccessToken().getAccess_token());
 
-        JSONObject response = NetWorkUtil.doPostUri(uri, menuInfo);
+        JSONObject response = NetWorkUtil.doPostUriReturnJson(uri, menuInfo);
 
         logger.info("create menu status : " + response.toJSONString());
     }

@@ -47,7 +47,7 @@ public class WechatUtil {
         params.put("offset", offset);
         params.put("count", count);
         String jsonParams = JSON.toJSONString(params);
-        return NetWorkUtil.doPostUri(url, jsonParams);
+        return NetWorkUtil.doPostUriReturnJson(url, jsonParams);
     }
 
     /*
@@ -60,7 +60,7 @@ public class WechatUtil {
         params.put("access_token", AccessTokenCache.getAccessToken().getAccess_token());
         params.put("media_id", media_id);
         String jsonParams = JSON.toJSONString(params);
-        return NetWorkUtil.doPostUri(url, jsonParams);
+        return NetWorkUtil.doPostUriReturnJson(url, jsonParams);
     }
 
     /**
@@ -96,7 +96,7 @@ public class WechatUtil {
         params.put("action_name", "QR_STR_SCENE");
         params.put("action_info", scene);
 
-        return NetWorkUtil.doPostUri(getTicketUrl, JSON.toJSONString(params));
+        return NetWorkUtil.doPostUriReturnJson(getTicketUrl, JSON.toJSONString(params));
     }
 
 

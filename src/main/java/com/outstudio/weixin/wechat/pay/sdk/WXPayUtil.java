@@ -97,7 +97,7 @@ public class WXPayUtil {
         try {
             writer.close();
         }
-        catch (Exception ex) {
+        catch (Exception ignored) {
         }
         return output;
     }

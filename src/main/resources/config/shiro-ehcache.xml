@@ -45,4 +45,12 @@
            timeToLiveSeconds="3600"
            timeToIdleSeconds="3600"
     />
+
+    <cache name="payCache"
+           maxElementsInMemory="10000"
+           overflowToDisk="false"
+           eternal="false"
+           timeToLiveSeconds="300"
+           timeToIdleSeconds="300"
+    />
 </ehcache>

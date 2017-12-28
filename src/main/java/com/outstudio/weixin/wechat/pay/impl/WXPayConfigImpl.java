@@ -12,14 +12,14 @@ import java.io.InputStream;
 public class WXPayConfigImpl extends WXPayConfig{
 
     /**
-     本地测试，先不使用证书，有证书的情况要去掉注释并且设置好证书文件的位置
+      todo 本地测试，先不使用证书，有证书的情况要去掉注释并且设置好证书文件的位置
      */
     private byte[] certData;
     private static WXPayConfigImpl INSTANCE;
 
     private WXPayConfigImpl() throws Exception{
         /**
-         本地测试，先不使用证书，有证书的情况要去掉注释并且设置好证书文件的位置
+         todo 本地测试，先不使用证书，有证书的情况要去掉注释并且设置好证书文件的位置
          */
 //        String certPath = "D://CERT/common/apiclient_cert.p12";
 //        File file = new File(certPath);

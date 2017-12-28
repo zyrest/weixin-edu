@@ -26,11 +26,11 @@ public class ChargeService {
     @Resource
     private UserService userService;
 
-    public void charge(String openid,
-                       String out_trade_no,
-                       String transaction_id,
-                       Date now_date,
-                       String total_fee) {
+    private void charge(String openid,
+                        String out_trade_no,
+                        String transaction_id,
+                        Date now_date,
+                        String total_fee) {
 
         checkPreCharge(openid);
 
@@ -41,21 +41,16 @@ public class ChargeService {
             days = 365;
         }
 
+        userService.updateUserDate(openid, days);
+        userService.updateParentBalance(openid,total_fee);
+        updateChargeHistory(openid, days, out_trade_no, transaction_id, now_date);
+    }
 
-        UserEntity userEntity = userService.getUserByOpenId(openid);
-
-        Date vip_end_date = userEntity.getVip_end_date();
-        if (DateUtil.isNotExpire(vip_end_date)) {
-            userEntity.setVip_end_date(DateUtil.dateAdd(vip_end_date, days));
-        } else {
-            userEntity.setVip_end_date(DateUtil.dateAdd(new Date(), days));
-        }
-
-        userService.updateUser(userEntity);
-
-        if (userEntity.getPid() != 0) {
-            userService.addBalance(userEntity.getPid(), Integer.parseInt(total_fee) / 100);
-        }
+    private void updateChargeHistory(String openid,
+                                     Integer days,
+                                     String out_trade_no,
+                                     String transaction_id,
+                                     Date now_date) {
 
         ChargeEntity chargeEntity = new ChargeEntity();
         chargeEntity.setOpenid(openid);
@@ -64,7 +59,6 @@ public class ChargeService {
         chargeEntity.setOut_trade_no(out_trade_no);
         chargeEntity.setTransaction_id(transaction_id);
         chargeEntity.setPrepared(0);
-        chargeEntity.setToPid(userEntity.getPid());
 
         chargeEntityMapper.updateByOpenidSelective(chargeEntity);
     }
@@ -124,6 +118,5 @@ public class ChargeService {
         }
 
         charge(openid, out_trade_no,transaction_id, date, total_fee);
-
     }
 }

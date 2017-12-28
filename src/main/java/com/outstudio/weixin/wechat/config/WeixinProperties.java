@@ -91,4 +91,10 @@ public class WeixinProperties {
      * 获取素材中心的素材总数
      */
     public static final String GET_MATERIAL_COUNT = "https://api.weixin.qq.com/cgi-bin/material/get_materialcount?access_token=%s";
+
+    /**
+     * 查询订单接口
+     */
+    public static final String ORDER_QUERY = "https://api.mch.weixin.qq.com/pay/orderquery";
+
 }

@@ -121,4 +121,25 @@ public class UserService {
     public void setPid(Integer pid,String openid) {
         userEntityMapper.setPid(pid, openid);
     }
+
+    public void updateUserDate(String openid,int days) {
+        UserEntity userEntity = getUserByOpenId(openid);
+
+        Date vip_end_date = userEntity.getVip_end_date();
+        if (DateUtil.isNotExpire(vip_end_date)) {
+            userEntity.setVip_end_date(DateUtil.dateAdd(vip_end_date, days));
+        } else {
+            userEntity.setVip_end_date(DateUtil.dateAdd(new Date(), days));
+        }
+
+        updateUser(userEntity);
+
+    }
+
+    public void updateParentBalance(String openid,String total_fee) {
+        Integer pid = getUserByOpenId(openid).getPid();
+        if (pid != 0) {
+            addBalance(pid, Integer.parseInt(total_fee) / 100);
+        }
+    }
 }

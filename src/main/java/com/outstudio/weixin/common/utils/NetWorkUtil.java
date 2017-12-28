@@ -79,7 +79,17 @@ public class NetWorkUtil {
         return JSON.parseObject(result);
     }
 
-    public static JSONObject doPostUri(String uri, String params) {
+    public static JSONObject doPostUriReturnJson(String uri, String params) {
+        String result = doPost(uri, params);
+        return JSON.parseObject(result);
+    }
+
+    public static String doPostUriReturnPlainText(String uri, String params) {
+
+        return doPost(uri, params);
+    }
+
+    private static String doPost(String uri,String params) {
         logger.info("do post the " + uri);
 
         CloseableHttpClient httpClient = HttpClients.createDefault();
@@ -107,9 +117,6 @@ public class NetWorkUtil {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (ClassCastException e) {
-            logger.info("the response is not JSON");
-            e.printStackTrace();
         } finally {
             try {
                 httpClient.close();
@@ -117,8 +124,7 @@ public class NetWorkUtil {
                 e.printStackTrace();
             }
         }
-
-        return JSON.parseObject(result);
+        return result;
     }
 
     /**
