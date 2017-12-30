@@ -20,7 +20,7 @@ import java.io.IOException;
  * Created by ZhouYing.
  * www.zhouying.xyz
  */
-@Controller
+@RestController
 @RequestMapping("/back/gandong")
 public class GandongController {
 

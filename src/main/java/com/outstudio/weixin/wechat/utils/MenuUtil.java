@@ -35,6 +35,7 @@ public class MenuUtil {
         List<Button> sub_buttons = new ArrayList<>();
         sub_buttons.add(createViewButton("经典儿歌", "http://mp.weixin.qq.com/s/xv4tQenLcgafwbLfNlZvAQ"));
         sub_buttons.add(createViewButton("故事培养", domain + "/page/view/audio"));
+        sub_buttons.add(createViewButton("感动心灵", domain + "/page/view/gandong"));
         button.setSub_button(sub_buttons);
 
         return button;
