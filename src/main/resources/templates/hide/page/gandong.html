@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <!--[if IE]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <![endif]-->
+    <title>故事培养</title>
+    <!-- BOOTSTRAP CORE STYLE CSS -->
+    <link href="/css/weui.min.css" rel="stylesheet"/>
+    <link href="/css/list.css" rel="stylesheet"/>
+</head>
+
+<body>
+<div id="container">
+
+    <div class="topic_normal_load" id="refresh_tip" style="display: none"> 刷新中...<span class="loading"></span> </div>
+
+    <div class="weui-tab">
+        <div class="weui-tab__panel">
+
+            <div id="article_container" class="component">
+                <div  class="component_title">
+                    <span>最新更新</span>
+                </div>
+                <div id="article_list">
+
+                    <!--<div class="article" article_id="10">-->
+                    <!--<div class="article_desc">-->
+                    <!--<div class="article_title">test0</div>-->
+                    <!--<div class="article_category">-->
+                    <!--<span class="article_category">3</span>-->
+                    <!--</div>-->
+                    <!--<div class="article_create_time">1506000057000</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
+
+                </div>
+            </div>
+            <div class="topic_normal_load" id="load_more"></div>
+        </div>
+    </div>
+
+</div>
+
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script src="/js/weui.min.js"></script>
+
+<script type="text/javascript">
+    //<![CDATA[
+    //全局变量
+    var start_y;//滑动开始时纵坐标
+    var refreshing = false;
+    var loading = false;
+    var no_more = false;
+    var pageNum = 1;
+    //]]>
+</script>
+
+<script type="text/javascript">
+
+    function load_articles(is_refresh, flag) {
+        if(!is_refresh) {
+            $('#load_more').empty().html("加载中...<span class='loading'></span>");
+        } else {
+            $('#refresh_tip').css('display','block');
+        }
+        var url = "/page/gandong/page/" + pageNum;
+        $.ajax({
+            type : "get",
+            url : url,
+            success : function (result) {
+                var data = result.data;
+                $.each(data, function (i, n) {
+                    render_article(n);
+                });
+
+                if(data !== null && data.length !== 0) {
+                    //下次加载下一页
+                    console.log("pageNum is : " + pageNum);
+                    pageNum++;
+                    if(!is_refresh) {
+                        $('#load_more').empty().text('点击加载更多...');
+                        loading = false;
+                    } else {
+                        $('#refresh_tip').css('display','none');
+                        refreshing = false;
+                    }
+                } else {//没有更多资源了
+                    if(!is_refresh) {
+                        $('#load_more').empty().text('没有更多了...');
+                        loading = false;
+                        no_more = true;
+                    } else {
+                        $('#refresh_tip').css('display','none');
+                        refreshing = false;
+                    }
+                }
+            },
+            error:function () {
+                if(!is_refresh) {
+                    $('#load_more').empty().text('点击加载更多...');
+                    loading = false;
+                }else {
+                    $('#refresh_tip').css('display','none');
+                    refreshing = false;
+                }
+            }
+        })
+    }
+
+    function touchmove_listener(e) {
+        var end_y = e.changedTouches[0].pageY;
+
+        //获取滑动距离
+        var distance_y = end_y - start_y;
+        var container_ele = document.getElementById('container');
+        //滚动到顶部且手指是往下滑动则刷新
+        if(container_ele.scrollTop === 0 && distance_y > 60){
+            if(refreshing) {
+                return;
+            }
+            refreshing = true;
+            $("#article_list").empty();
+            pageNum = 1;
+            no_more = false;
+            load_articles(true, false);
+        }
+    }
+
+    function build_article_dom(data) {
+        var html = '<div class="article" article_id="' + data.id + '">';
+        /**/
+        html += '<div class="article_thumbnail">';
+        html += '<img src="/img/' + (data.is_free === 1 ? 'free':'charge') + '.png' + '" style="width:100%;border-radius: 4px;">';
+        html += '</div>';
+        /**/
+        html += '<div class="article_desc">';
+        /**/
+        html += '<div class="article_title">';
+        html += data.title;
+        html += '</div>';
+        /**/
+        html += '<div class="article_create_time">';
+        var postDate = new Date(data.post_date);
+        html += postDate.toLocaleDateString();
+        html += '</div>';
+        /**/
+        html += '</div>';
+        /**/
+        html += '</div>';
+        var dom = $(html);
+        $(dom).click(jump_2_article);
+        return dom;
+    }
+
+    function render_article(data) {
+        $("#article_list").append(build_article_dom(data))
+    }
+
+    function jump_2_article() {
+        var url = '/page/gandong/';
+        var article_id = $(this).attr('article_id');
+        window.location.href = url + article_id;
+    }
+
+    $(function() {
+        load_articles(false, true);
+        document.getElementById("container").addEventListener("touchstart", function (e) {
+            start_y = e.changedTouches[0].pageY;
+        });
+        document.getElementById("container").addEventListener("touchend", touchmove_listener);
+
+        $('#load_more').click(function () {
+            if(loading) {
+                return;
+            }
+            if(no_more) {
+                return;
+            }
+            loading = true;
+            load_articles(false,false);
+        })
+    })
+</script>
+
+</body>
+</html>

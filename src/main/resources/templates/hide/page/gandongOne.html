@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <title th:utext="${data.title}">
+        某一id详细信息
+    </title>
+
+    <link rel="stylesheet" href="http://7xnvpc.com2.z0.glb.qiniucdn.com/misc/frozenui/css/frozen.css">
+    <link rel="stylesheet" th:href="@{/css/article.css}">
+    <link th:href="@{/css/weui.min.css}" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/css/wx_audio.css}">
+</head>
+
+<body>
+<section class="ui-container">
+
+    <div class="playing">
+        <div id="jquery_jplayer_1" class="jp-jplayer"></div>
+        <section class="wrapper">
+            <div class="pic default-img rel">
+                <span style="background-image:url('/img/audio-bg.jpg');" class="img"></span>
+            </div>
+
+            <hr>
+            <div id="weixin-audio" style="margin-top: 20px; margin-bottom: 20px"></div>
+
+        </section>
+    </div>
+
+    <hr>
+    <div class="ui-whitespace ui-center" style="color: #5f5f5f;height:auto;font-size:13px;margin-bottom: 10px;">
+        <p th:utext="${data.description}">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>
+
+    <div class="ui-whitespace">
+        <ul class="ui-list ui-list-text ui-list-link ui-border-tb">
+            <!--<li class="ui-border-t purchase-tip">-->
+            <!--<a><h4>对话</h4></a>-->
+            <!--</li>-->
+        </ul>
+    </div>
+
+    <div class="try-lesson" th:if="${isVip == false}">
+        <a href="/page/view/vip">
+            <img src="/img/try_lesson.png" alt="try free lesson">
+        </a>
+    </div>
+</section>
+
+<!--<footer class="ui-footer ui-footer-btn" th:if="${isVip == false}">-->
+<!--<ul class="ui-tiled ui-border-t">-->
+<!--<li>-->
+<!--<a href="#todo_charge">-->
+<!--<span class="upgrade">升级账户｜解锁完整课程库</span>-->
+<!--</a>-->
+<!--</li>-->
+<!--</ul>-->
+<!--</footer>-->
+</body>
+
+<script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/js/weui.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/wx_audio.js}"></script>
+
+<script th:inline="javascript" type="text/javascript">
+    var wxAudio = new Wxaudio({
+        ele: '#weixin-audio',
+        title: /*[[${data.title}]]*/ '',
+        disc: '',
+        src: /*[[${isVip == true || data.is_free == 1 ? data.src : ''}]]*/ "",
+        width: '85%'
+    });
+
+    $(function () {
+        var isVip = /*[[${isVip == true || data.is_free == 1}]]*/ false;
+        if (!isVip) {
+            weui.dialog({
+                title: '提示',
+                content: '您无法预览该音频，请升级账户享受所有课程。',
+                className: 'classname',
+                buttons: [{
+                    label: '取消',
+                    type: 'default',
+                    onClick: function () {
+                        window.history.back(-1);
+                    }
+                }, {
+                    label: '升级账户',
+                    type: 'primary',
+                    onClick: function () {
+                        window.location.href = '#todo_charge'
+                    }
+                }]
+            });
+        }
+    });
+</script>
+
+</html>

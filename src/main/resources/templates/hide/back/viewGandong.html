@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+    <title>查看感动心灵</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <link th:href="@{/css/page.css}" rel="stylesheet"/>
+    <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <link th:href="@{/css/bootstrap-dialog.min.css}" rel="stylesheet" type="text/css" media="all" />
+    <script th:src="@{/js/bootstrap-dialog.min.js}" type="text/javascript" ></script>
+    <style>
+        table{
+            table-layout: fixed;
+        }
+        .table tbody tr td{
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: normal;
+            word-break: break-all;
+            word-wrap: break-word;
+            height: 20%;
+            text-align: center;
+        }
+        th {
+            text-align: center;
+        }
+        .videoClass .modal-dialog {
+            width: 90%;
+        }
+    </style>
+
+</head>
+
+<body>
+<div id="head">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <a th:href="@{/back/index}">
+                    <img th:src="@{/img/logo.png}"/>
+                </a>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 text-center">
+                <img th:src="@{/img/top-mouse.png}" class="header-mid"/>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <h4><span>E-mail:</span> samson.zying@gmail.com</h4>
+            </div>
+        </div>
+    </div>
+</div>
+<section>
+    <div class="container">
+        <div class="row noti-div">
+            <div class="col-lg-9 col-md-9 col-sm-9 ">
+
+                <h3>All User List</h3>
+                <div class="hr-div"> <hr/></div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+
+                        <thead>
+                        <tr>
+                            <th class="center" style='width:10%;'>标题</th>
+                            <th class="center" style='width:10%;'>是否免费</th>
+                            <th class="center" style='width:15%;'>发布时间</th>
+                            <th class="center" style='width:40%;'>描述</th>
+                            <th class="center" style='width:10%;'>试听</th>
+                            <th class="center" style='width:10%;'>删除</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tbody_">
+                        <tr>
+                            <td style="display: none">id</td>
+                            <td>title</td>
+                            <td>is_free</td>
+                            <td>post_date</td>
+                            <td>describe</td>
+                            <td><audio src="/mp3/test.mp3" controls="controls">浏览器不支持</audio> </td>
+                            <td><button class="btn btn-warning" >删除</button></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="pagination">
+
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-3">
+                <a th:href="@{/back/logout}" class="label label-danger"><strong>登出</strong> </a>
+                <div class="list-group">
+                    <a href="#" class="list-group-item active">快速链接</a>
+                    <a th:href="@{/back/index}" class="list-group-item">主页</a>
+                    <a th:href="@{/back/import/audio}" class="list-group-item">导入教育音频</a>
+                    <a th:href="@{/back/import/english}" class="list-group-item">导入英语</a>
+                    <a th:href="@{/back/import/video}" class="list-group-item">导入家长访谈</a>
+                    <a th:href="@{/back/view/english}" class="list-group-item">查看英语</a>
+                    <a th:href="@{/back/view/video}" class="list-group-item">查看家长访谈</a>
+                    <a th:href="@{/back/password}" class="list-group-item">更改密码</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+<div id="footer">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <h3>我们在哪</h3>
+                <p>
+                    <i>地址 :</i> 济南市舜华路1500号山东大学软件园校区
+                    <br/>
+                    &copy; 2017 OUT studio All right reserved
+                </p>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <h3>客服</h3>
+                <h4><span>E-mail: </span>samson.zying@gmail.com</h4>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4"></div>
+        </div>
+
+    </div>
+</div>
+
+<script th:src="@{/js/pagination.js}"></script>
+</body>
+
+<script>
+    var nowPage = 1;
+
+    function deleteOne(id) {
+        BootstrapDialog.show( {
+            title: '危险！',
+            message: '是否删除该视频？',
+            buttons: [{
+                label: '关闭',
+                cssClass : 'btn',
+                action: function(dialogRef) {
+                    dialogRef.close();
+                }
+            }, {
+                label: '确定',
+                cssClass : 'btn btn-warning',
+                action: function(dialogRef) {
+                    $.ajax({
+                        url : "/back/gandong/" + id,
+                        type : "DELETE",
+                        success : function (result) {
+                            alert('删除成功');
+                            location.reload();
+                        }
+                    });
+                    setContent(nowPage);
+                    dialogRef.close();
+                }
+            }]
+        });
+
+    }
+    function setContent(pageNum) {
+        $.ajax({
+            url : "/page/gandong/page/" + pageNum,
+            type : "GET",
+            success : function (result) {
+                $('#tbody_').html("");
+                var data_ = result.data;
+                $.each(data_, function (i, n) {
+                    var id = n.id;
+                    var title = n.title;
+                    var src = n.src;
+                    var is_free = n.is_free;
+                    var post_date = n.post_date;
+                    var description = n.description;
+
+                    //tr标签
+                    var trNode = document.createElement("tr");
+
+                    var idTd = document.createElement("td");
+                    $(idTd).html(id);
+                    idTd.style.display = "none";
+                    trNode.appendChild(idTd);
+
+                    var titleTd = document.createElement("td");
+                    $(titleTd).html(title);
+                    trNode.appendChild(titleTd);
+
+                    var freeTd = document.createElement("td");
+                    $(freeTd).html(is_free === 1 ? "免费" : "收费");
+                    trNode.appendChild(freeTd);
+
+                    var dateTd = document.createElement("td");
+                    var date = new Date(post_date);
+                    $(dateTd).html(date.toLocaleString());
+                    trNode.appendChild(dateTd);
+
+                    var descTd = document.createElement("td");
+                    $(descTd).html(description);
+                    trNode.appendChild(descTd);
+
+                    var srcTd = document.createElement("td");
+                    var audioTar = document.createElement("audio");
+                    audioTar.setAttribute("src", src);
+                    audioTar.setAttribute("controls", "controls");
+                    audioTar.setAttribute("preload", "none");
+                    srcTd.appendChild(audioTar);
+                    $(srcTd).val("浏览器不支持");
+                    trNode.appendChild(srcTd);
+
+                    var deleteTd = document.createElement("td");
+                    deleteTd.innerHTML = '<input type="button" class="btn btn-warning" value="删除" onclick="deleteOne(' + id + ');" />';
+                    trNode.appendChild(deleteTd);
+
+                    document.getElementById("tbody_").appendChild(trNode);
+                })
+            }
+        })
+    }
+
+    jQuery(document).ready(function () {
+        setContent(1);
+    });
+
+    page({
+        box : 'pagination',//存放分页的容器
+        count : parseInt(getPageNum()),//getPageNum(),//总页数
+        num : 10,//页面展示的页码个数
+        step : 6,//每次更新页码个数
+        callBack: function(i){
+            setContent(i);
+            nowPage = i;
+            console.log(i);
+        },
+        next : function () {
+            nowPage++;
+            if (nowPage > count) nowPage = count;
+            setContent(nowPage);
+        },
+        pre : function () {
+            nowPage--;
+            if (nowPage < 1) nowPage = 1;
+            setContent(nowPage);
+        }
+    });
+    function getPageNum() {
+        var pageNum = 1;
+        $.ajax({
+            url : "/page/gandong/pageNum",
+            type : "GET",
+            async : false,
+            success : function (result) {
+                pageNum = result.data;
+            }
+        });
+        return pageNum;
+    }
+</script>
+</html>

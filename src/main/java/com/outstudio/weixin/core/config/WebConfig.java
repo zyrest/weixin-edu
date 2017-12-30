@@ -44,14 +44,17 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registry.addViewController("/back/password").setViewName("hide/back/password");
         registry.addViewController("/back/admin").setViewName("hide/back/adminUser");
         registry.addViewController("/back/import/audio").setViewName("hide/back/importAudio");
+        registry.addViewController("/back/import/gandong").setViewName("hide/back/importGandong");
         registry.addViewController("/back/import/video").setViewName("hide/back/importVideo");
         registry.addViewController("/back/import/english").setViewName("hide/back/importEnglish");
         registry.addViewController("/back/view/audio").setViewName("hide/back/viewAudio");
+        registry.addViewController("/back/view/gandong").setViewName("hide/back/viewGandong");
         registry.addViewController("/back/view/video").setViewName("hide/back/viewVideo");
         registry.addViewController("/back/view/english").setViewName("hide/back/viewEnglish");
 
 
         registry.addViewController("/page/view/audio").setViewName("hide/page/audio");
+        registry.addViewController("/page/view/gandong").setViewName("hide/page/gandong");
         registry.addViewController("/page/view/video").setViewName("hide/page/video");
         registry.addViewController("/page/view/english").setViewName("hide/page/english");
 //        registry.addViewController("/page/view/message").setViewName("hide/page/message");//通知界面，后台没有管理通知的模块，取消

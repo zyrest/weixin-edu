@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+
+    <title>导入感动心灵</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <link th:href="@{/css/file.css}" rel="stylesheet"/>
+    <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <link th:href="@{/css/bootstrap-dialog.min.css}" rel="stylesheet" type="text/css" media="all" />
+    <script th:src="@{/js/bootstrap-dialog.min.js}" type="text/javascript" ></script>
+</head>
+<body>
+<div id="head">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <a th:href="@{/back/index}">
+                    <img th:src="@{/img/logo.png}"/>
+                </a>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 text-center">
+                <img th:src="@{/img/top-mouse.png}" class="header-mid"/>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <h4><span>E-mail:</span> samson.zying@gmail.com</h4>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<section id="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-9 col-sm-9 ">
+
+                <div class="hr-div">
+                    <hr/>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-7 col-md-offset-1">
+
+                    <form>
+                        <div class="form-group">
+                            标题：
+                            <input id="title" type="text" name="title" class="form-control" required="required" placeholder="标题"/>
+                        </div>
+
+                        <div class="form-group">
+                            描述：
+                            <textarea id="description" name="description" class="form-control" required="required" placeholder="描述一下吧"></textarea>
+                        </div>
+
+                        <div class="form-group" >
+                            是否收费：
+                            <label class="radio-inline">
+                                <input type="radio" checked="checked" name="is_free" value="0"/>收费
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="is_free" value="1"/>免费
+                            </label>
+                        </div>
+
+                        <div class="form-group">
+                            音频文件：
+                            <input id="audio" type="file" name="audio" style="display:none" required="required" onchange="fileSelected()">
+                            <div class="input-append">
+                                <input id="photoCover" class="form-control form-control-xxx" type="text" disabled style="width:85%">
+                                <button type="button" class="btn btn-success" onclick="$('input[id=audio]').click();">浏览</button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div id="fileSize"></div>
+                            <div id="fileType"></div>
+                            <div id="progressNumber"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <button id="submitAudio" class="btn btn-primary" type="button">新增</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-3">
+                <a th:href="@{/back/logout}" class="label label-danger"><strong>登出</strong> </a>
+                <div class="list-group">
+                    <a href="#" class="list-group-item active">快速链接</a>
+                    <a th:href="@{/back/index}" class="list-group-item">主页</a>
+                    <a th:href="@{/back/import/english}" class="list-group-item">导入英语</a>
+                    <a th:href="@{/back/import/video}" class="list-group-item">导入家长访谈</a>
+                    <a th:href="@{/back/view/audio}" class="list-group-item">查看教育音频</a>
+                    <a th:href="@{/back/view/english}" class="list-group-item">查看英语</a>
+                    <a th:href="@{/back/view/video}" class="list-group-item">查看家长访谈</a>
+                    <a th:href="@{/back/password}" class="list-group-item">更改密码</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="footer">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <h3>我们在哪</h3>
+                <p>
+                    <i>地址 :</i> 济南市舜华路1500号山东大学软件园校区
+                    <br/>
+                    &copy; 2017 OUT studio All right reserved
+                </p>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <h3>客服</h3>
+                <h4><span>E-mail: </span>samson.zying@gmail.com</h4>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script>
+    var basePath ;
+    jQuery(document).ready(function () {
+        var loc = (window.location+'').split('/');
+        basePath = loc[0]+'//'+loc[2]
+    });
+
+    function fileSelected() {
+        var file = document.getElementById('audio').files[0];
+        if (file) {
+            var fileSize = 0;
+            if (file.size > 1024 * 1024)
+                fileSize = (Math.round(file.size * 100 / (1024 * 1024)) / 100).toString() + 'MB';
+            else
+                fileSize = (Math.round(file.size * 100 / 1024) / 100).toString() + 'KB';
+
+            $('#photoCover').val(file.name);
+            document.getElementById('fileSize').innerHTML = '大小: ' + fileSize;
+            document.getElementById('fileType').innerHTML = '类型: ' + file.type;
+        }
+    }
+
+    $('#submitAudio').click(function() {
+        var title = $('#title').val();
+        var description = $('#description').val();
+        var is_free = $('input[name="is_free"]:checked').val();
+        var audio = $('#audio')[0].files[0];
+
+        var formData = new FormData();
+        formData.append("title", title);
+        formData.append("description", description);
+        formData.append("is_free", is_free);
+        formData.append("audio", audio);
+
+        // var data = {title:title, description:description, is_free:is_free, type:type, audio:formData};
+        var xhr = new XMLHttpRequest();
+        xhr.upload.addEventListener("progress", uploadProgress, false);
+        xhr.addEventListener("load", uploadComplete, false);
+        xhr.addEventListener("error", uploadFailed, false);
+        xhr.addEventListener("abort", uploadCanceled, false);
+        xhr.open("POST", basePath + "/back/gandong");
+        xhr.send(formData);
+    });
+
+    function uploadProgress(evt) {
+        if (evt.lengthComputable) {
+            var percentComplete = Math.round(evt.loaded * 100 / evt.total);
+            document.getElementById('progressNumber').innerHTML = percentComplete.toString() + '%';
+        }
+        else {
+            document.getElementById('progressNumber').innerHTML = '无法计算';
+        }
+    }
+
+    function uploadComplete(evt) {
+        /* 当服务器响应后，这个事件就会被触发 */
+        // alert(evt.target.responseText);
+        var result = JSON.parse(evt.target.responseText);
+        var mes = '服务器发生错误！请确保上传文件格式为mp3格式！！';
+        if (result && result.status === 201) mes = '上传成功';
+
+        BootstrapDialog.show( {
+            title : '消息',
+            message: mes,
+            buttons: [{
+                label: '确认',
+                action: function(dialogRef) {
+                    if (result && result.status === 201) clearInputs();
+                    dialogRef.close();
+                }
+            }]
+        });
+    }
+
+    function uploadFailed(evt) {
+        // alert("上传文件发生了错误尝试");
+        BootstrapDialog.show( {
+            title : '警告！',
+            message: '上传文件发生了错误尝试，请确保上传文件为mp3格式',
+            type: BootstrapDialog.TYPE_DANGER,
+            buttons: [{
+                label: '确认',
+                action: function(dialogRef) {
+                    dialogRef.close();
+                }
+            }]
+        });
+    }
+
+    function uploadCanceled(evt) {
+        // alert("上传被用户取消或者浏览器断开连接");
+        BootstrapDialog.show( {
+            title : '取消',
+            type: BootstrapDialog.TYPE_WARNING,
+            message: '上传被用户取消或者浏览器断开连接',
+            buttons: [{
+                label: '确认',
+                action: function(dialogRef) {
+                    dialogRef.close();
+                }
+            }]
+        });
+    }
+
+    function clearInputs() {
+        $('#title').val('');
+        $('#description').val('');
+        $('#photoCover').val('');
+        $('#fileSize').html('');
+        $('#progressNumber').html('');
+    }
+</script>
+</html>
