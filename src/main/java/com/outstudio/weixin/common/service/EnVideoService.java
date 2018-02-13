@@ -36,12 +36,6 @@ public class EnVideoService {
         if (code == 0) {
             changedNum = enVideoEntityMapper.deleteByPrimaryKey(id);
         }
-//        if (changedNum != 0) {
-//            FileUtil.deleteFileByUrlPath(enVideoEntity.getSrc());
-//        }
-        /*
-        视频存储改为存在腾讯视频云上
-         */
 
         return changedNum;
     }
@@ -54,21 +48,21 @@ public class EnVideoService {
         return enVideoEntityMapper.selectByPrimaryKey(id);
     }
 
-    public List<EnVideoEntity> getAllEnVideos() {
-        return enVideoEntityMapper.selectAll();
+    public List<EnVideoEntity> getAllEnVideos(String type) {
+        return enVideoEntityMapper.selectAll(type);
     }
 
-    public List<EnVideoEntity> getEnVideosByStage(Integer stage) {
-        return enVideoEntityMapper.selectByStage(stage);
+    public List<EnVideoEntity> getEnVideosByStage(Integer stage,String type) {
+        return enVideoEntityMapper.selectByStage(stage,type);
     }
 
-    public List<EnVideoEntity> getEnVideosBySearchParam(String searchParam) {
-        return enVideoEntityMapper.selectBySearchParam(searchParam);
+    public List<EnVideoEntity> getEnVideosBySearchParam(String searchParam,String type) {
+        return enVideoEntityMapper.selectBySearchParam(searchParam,type);
     }
 
-    public Set<Integer> getStage() {
-        return enVideoEntityMapper.selectStage();
+    public Set<Integer> getStage(String type) {
+        return enVideoEntityMapper.selectStage(type);
     }
 
-    public Long getCount() {return enVideoEntityMapper.selectCount();}
+    public Long getCount(String type) {return enVideoEntityMapper.selectCount(type);}
 }

@@ -10,12 +10,15 @@
         <result column="city" property="city" jdbcType="VARCHAR"/>
         <result column="country" property="country" jdbcType="VARCHAR"/>
         <result column="vip_end_date" property="vip_end_date" jdbcType="TIMESTAMP"/>
+        <result column="math_end_date" property="math_end_date" jdbcType="TIMESTAMP"/>
+        <result column="physics_end_date" property="physics_end_date" jdbcType="TIMESTAMP"/>
+        <result column="chemistry_end_date" property="chemistry_end_date" jdbcType="TIMESTAMP"/>
         <result column="pid" property="pid" jdbcType="INTEGER"/>
         <result column="balance" property="balance" jdbcType="DECIMAL"/>
         <result column="level" property="level" jdbcType="INTEGER"/>
     </resultMap>
     <sql id="Base_Column_List">
-        openid, nickname, sex, province, city, country, vip_end_date, pid, id, balance,level
+        openid, nickname, sex, province, city, country, vip_end_date,math_end_date,physics_end_date,chemistry_end_date, pid, id, balance,level
     </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
         select
@@ -30,10 +33,12 @@
     <insert id="insert" parameterType="com.outstudio.weixin.common.po.UserEntity">
         INSERT INTO t_user (openid, nickname, sex,
                             province, city, country,
-                            vip_end_date, id, pid, balance)
+                            vip_end_date,math_end_date,physics_end_date,chemistry_end_date, id, pid, balance)
         VALUES (#{openid,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER},
                 #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR},
-                #{vip_end_date,jdbcType=TIMESTAMP}, #{id,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER},
+                #{vip_end_date,jdbcType=TIMESTAMP}, #{math_end_date,jdbcType=TIMESTAMP},
+                #{physics_end_date,jdbcType=TIMESTAMP},#{chemistry_end_date,jdbcType=TIMESTAMP},
+                #{id,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER},
                 #{balance,jdbcType=DECIMAL})
     </insert>
     <insert id="insertSelective" parameterType="com.outstudio.weixin.common.po.UserEntity">
@@ -59,6 +64,15 @@
             </if>
             <if test="vip_end_date != null">
                 vip_end_date,
+            </if>
+            <if test="math_end_date != null">
+                math_end_date,
+            </if>
+            <if test="physics_end_date != null">
+                physics_end_date,
+            </if>
+            <if test="chemistry_end_date != null">
+                chemistry_end_date,
             </if>
             <if test="id != null">
                 id,
@@ -95,6 +109,15 @@
             <if test="vip_end_date != null">
                 #{vip_end_date,jdbcType=TIMESTAMP},
             </if>
+            <if test="math_end_date != null">
+                #{math_end_date,jdbcType=TIMESTAMP},
+            </if>
+            <if test="physics_end_date != null">
+                #{physics_end_date,jdbcType=TIMESTAMP},
+            </if>
+            <if test="chemistry_end_date != null">
+                #{chemistry_end_date,jdbcType=TIMESTAMP},
+            </if>
             <if test="id != null">
                 #{id,jdbcType=INTEGER},
             </if>
@@ -129,6 +152,15 @@
             </if>
             <if test="vip_end_date != null">
                 vip_end_date = #{vip_end_date,jdbcType=TIMESTAMP},
+            </if>
+            <if test="math_end_date != null">
+                math_end_date = #{math_end_date,jdbcType=TIMESTAMP},
+            </if>
+            <if test="physics_end_date != null">
+                physics_end_date = #{physics_end_date,jdbcType=TIMESTAMP},
+            </if>
+            <if test="chemistry_end_date != null">
+                chemistry_end_date = #{chemistry_end_date,jdbcType=TIMESTAMP},
             </if>
             <if test="id != null">
                 id = #{id,jdbcType=INTEGER},
@@ -166,6 +198,15 @@
             <if test="vip_end_date != null">
                 vip_end_date = #{vip_end_date,jdbcType=TIMESTAMP},
             </if>
+            <if test="math_end_date != null">
+                math_end_date = #{math_end_date,jdbcType=TIMESTAMP},
+            </if>
+            <if test="physics_end_date != null">
+                physics_end_date = #{physics_end_date,jdbcType=TIMESTAMP},
+            </if>
+            <if test="chemistry_end_date != null">
+                chemistry_end_date = #{chemistry_end_date,jdbcType=TIMESTAMP},
+            </if>
             <if test="id != null">
                 id = #{id,jdbcType=INTEGER},
             </if>
@@ -189,6 +230,9 @@
             city         = #{city,jdbcType=VARCHAR},
             country      = #{country,jdbcType=VARCHAR},
             vip_end_date = #{vip_end_date,jdbcType=TIMESTAMP},
+            math_end_date = #{math_end_date,jdbcType=TIMESTAMP},
+            physics_end_date = #{physics_end_date,jdbcType=TIMESTAMP},
+            chemistry_end_date = #{chemistry_end_date,jdbcType=TIMESTAMP},
             id           = #{id,jdbcType=INTEGER},
             pid          = #{pid,jdbcType=INTEGER},
             balance      = #{balance,jdbcType=DECIMAL},

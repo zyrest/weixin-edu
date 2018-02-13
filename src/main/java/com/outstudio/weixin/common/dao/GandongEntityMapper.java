@@ -1,7 +1,6 @@
 package com.outstudio.weixin.common.dao;
 
 import com.outstudio.weixin.common.po.GandongEntity;
-import com.outstudio.weixin.common.po.StoryEntity;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;

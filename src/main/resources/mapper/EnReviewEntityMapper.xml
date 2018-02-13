@@ -32,7 +32,7 @@
     ,
     <include refid="Blob_Column_List" />
     from t_en_review
-    where stage = #{stage,jdbcType=INTEGER}
+    where stage = #{stage,jdbcType=INTEGER} AND type = #{type}
   </select>
   <select id="selectBySearchParam" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
     select
@@ -40,8 +40,9 @@
     ,
     <include refid="Blob_Column_List" />
     from t_en_review
-    where title LIKE concat(concat('%',#{searchParam,jdbcType=VARCHAR}),'%')
-    OR description LIKE concat(concat('%',#{searchParam,jdbcType=VARCHAR}),'%')
+    where (title LIKE concat(concat('%',#{searchParam,jdbcType=VARCHAR}),'%')
+    OR description LIKE concat(concat('%',#{searchParam,jdbcType=VARCHAR}),'%'))
+    AND type = #{type}
   </select>
   <select id="selectAll" resultMap="ResultMapWithBLOBs">
     select
@@ -49,6 +50,7 @@
     ,
     <include refid="Blob_Column_List" />
     from t_en_review
+    where type = #{type}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from t_en_review

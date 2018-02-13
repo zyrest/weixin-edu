@@ -36,45 +36,48 @@ public class EnVideoController {
         return view;
     }
 
-    @GetMapping("/enVideos/page/{pageNum}")
+    @GetMapping("/enVideos/page/{pageNum}/{type}")
     @ResponseBody
-    public MessageVo getAllEnVideos(@PathVariable Integer pageNum) {
+    public MessageVo getAllEnVideos(@PathVariable Integer pageNum,
+                                    @PathVariable String type) {
         PageHelper.startPage(pageNum, pageSize);
-        List<EnVideoEntity> enVideoEntities = enVideoService.getAllEnVideos();
+        List<EnVideoEntity> enVideoEntities = enVideoService.getAllEnVideos(type);
         return MessageVoUtil.success(REDIRECT_URL, enVideoEntities);
-}
+    }
 
-    @GetMapping("/enVideos/stage/{stage}/page/{pageNum}")
+    @GetMapping("/enVideos/stage/{stage}/page/{pageNum}/{type}")
     @ResponseBody
     public MessageVo getEnVideosByStage(@PathVariable Integer stage,
-                                        @PathVariable Integer pageNum) {
+                                        @PathVariable Integer pageNum,
+                                        @PathVariable String type) {
         PageHelper.startPage(pageNum, pageSize);
-        List<EnVideoEntity> enVideoEntities = enVideoService.getEnVideosByStage(stage);
+        List<EnVideoEntity> enVideoEntities = enVideoService.getEnVideosByStage(stage, type);
         return MessageVoUtil.success(REDIRECT_URL, enVideoEntities);
     }
 
-    @GetMapping("/enVideos")
+    @GetMapping("/enVideos/{type}")
     @ResponseBody
-    public MessageVo searchEnVideos(@RequestParam("searchParam") String searchParam) {
-        List<EnVideoEntity> enVideoEntities = enVideoService.getEnVideosBySearchParam(searchParam);
+    public MessageVo searchEnVideos(@RequestParam("searchParam") String searchParam,
+                                    @PathVariable String type) {
+        List<EnVideoEntity> enVideoEntities = enVideoService.getEnVideosBySearchParam(searchParam, type);
         return MessageVoUtil.success(REDIRECT_URL, enVideoEntities);
     }
 
-    @GetMapping("/enVideos/stages")
+    @GetMapping("/enVideos/stages/{type}")
     @ResponseBody
-    public MessageVo getStages() {
-        return MessageVoUtil.success(REDIRECT_URL, enVideoService.getStage());
+    public MessageVo getStages(@PathVariable String type) {
+        return MessageVoUtil.success(REDIRECT_URL, enVideoService.getStage(type));
     }
 
-    @GetMapping("/enVideos/pageNum")
+    @GetMapping("/enVideos/pageNum/{type}")
     @ResponseBody
-    public MessageVo getNum() {
+    public MessageVo getNum(@PathVariable String type) {
 
-        return MessageVoUtil.success(getTotalPageNum());
+        return MessageVoUtil.success(getTotalPageNum(type));
     }
 
-    private Long getTotalPageNum() {
-        Long got = enVideoService.getCount();
+    private Long getTotalPageNum(String type) {
+        Long got = enVideoService.getCount(type);
         Long ans = got / pageSize;
         if (got % pageSize != 0) {
             ans += 1;

@@ -25,9 +25,38 @@ public class UserEntity implements Serializable {
 
     private Date vip_end_date;
 
+    private Date math_end_date;//数学会员到期时间
+
+    private Date physics_end_date;//物理会员到期时间
+
+    private Date chemistry_end_date;//化学会员到期时间
 
     public String getOpenid() {
         return openid;
+    }
+
+    public Date getMath_end_date() {
+        return math_end_date;
+    }
+
+    public void setMath_end_date(Date math_end_date) {
+        this.math_end_date = math_end_date;
+    }
+
+    public Date getPhysics_end_date() {
+        return physics_end_date;
+    }
+
+    public void setPhysics_end_date(Date physics_end_date) {
+        this.physics_end_date = physics_end_date;
+    }
+
+    public Date getChemistry_end_date() {
+        return chemistry_end_date;
+    }
+
+    public void setChemistry_end_date(Date chemistry_end_date) {
+        this.chemistry_end_date = chemistry_end_date;
     }
 
     @Override

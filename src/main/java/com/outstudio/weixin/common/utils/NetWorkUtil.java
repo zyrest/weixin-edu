@@ -39,7 +39,7 @@ public class NetWorkUtil {
     private static Logger logger = Logger.getLogger(NetWorkUtil.class);
 
     public static JSONObject doGetUri(String uri) {
-        logger.info("do get the " + uri);
+        logger.debug("do get the " + uri);
 
         CloseableHttpClient httpClient = HttpClients.createDefault();
         HttpGet get = new HttpGet(uri);
@@ -59,9 +59,9 @@ public class NetWorkUtil {
 
             if (response.getStatusLine().getStatusCode() == 200) {
                 result = EntityUtils.toString(response.getEntity(), "UTF-8");/** 设置utf-8字符集，否则请求微信数据可能会出现中文乱码 */
-                logger.info("got response : " + result);
+                logger.debug("got response : " + result);
             } else {
-                logger.info("something wrong happened");
+                logger.error("something wrong happened");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -111,7 +111,7 @@ public class NetWorkUtil {
 
             if (response.getStatusLine().getStatusCode() == 200) {
                 result = EntityUtils.toString(response.getEntity(), "UTF-8");
-                logger.info("got response : " + result);
+                logger.debug("got response : " + result);
             } else {
                 logger.info("something wrong happened,error code is " + response.getStatusLine().getStatusCode());
             }
@@ -193,9 +193,9 @@ public class NetWorkUtil {
 
             if (statusCode == 200) {
                 result = EntityUtils.toString(httpResponse.getEntity(), "UTF-8");
-                logger.info("got response : " + result);
+                logger.debug("got response : " + result);
             } else {
-                logger.info("something wrong happened,error code is " + statusCode);
+                logger.error("something wrong happened,error code is " + statusCode);
             }
         } catch (Exception e) {
             LoggerUtil.error(NetWorkUtil.class, "发送请求失败");
