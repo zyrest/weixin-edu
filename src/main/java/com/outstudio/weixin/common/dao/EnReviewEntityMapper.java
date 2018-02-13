@@ -1,6 +1,7 @@
 package com.outstudio.weixin.common.dao;
 
 import com.outstudio.weixin.common.po.EnReviewEntity;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -15,11 +16,11 @@ public interface EnReviewEntityMapper {
 
     EnReviewEntity selectByPrimaryKey(Integer id);
 
-    List<EnReviewEntity> selectByStage(Integer stage);
+    List<EnReviewEntity> selectByStage(Integer stage,String type);
 
-    List<EnReviewEntity> selectAll();
+    List<EnReviewEntity> selectAll(String type);
 
-    List<EnReviewEntity> selectBySearchParam(String searchParam);
+    List<EnReviewEntity> selectBySearchParam(String searchParam,String type);
 
     int updateByPrimaryKeySelective(EnReviewEntity record);
 
@@ -27,9 +28,9 @@ public interface EnReviewEntityMapper {
 
     int updateByPrimaryKey(EnReviewEntity record);
 
-    @Select(value = "SELECT stage from t_en_review")
-    Set<Integer> selectStage();
+    @Select(value = "SELECT stage from t_en_review where type=#{type}")
+    Set<Integer> selectStage(@Param("type")String type);
 
-    @Select(value = "SELECT COUNT(id) FROM t_en_review")
-    Long selectCount();
+    @Select(value = "SELECT COUNT(id) FROM t_en_review where type=#{type}")
+    Long selectCount(@Param("type")String type);
 }

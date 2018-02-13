@@ -35,50 +35,54 @@ public class EnReviewController {
         return view;
     }
 
-    @GetMapping("/enReviews/page/{pageNum}")
+    @GetMapping("/enReviews/page/{pageNum}/{type}")
     @ResponseBody
-    public MessageVo getAllEnReviews(@PathVariable int pageNum) {
+    public MessageVo getAllEnReviews(@PathVariable int pageNum,
+                                     @PathVariable String type) {
         PageHelper.startPage(pageNum, pageSize);
-        List<EnReviewEntity> enReviewEntities = enReviewService.getAll();
+        List<EnReviewEntity> enReviewEntities = enReviewService.getAll(type);
         return MessageVoUtil.success(REDIRECT_URL, enReviewEntities);
     }
 
-    @GetMapping("/enReviews/stage/{stage}/page/{pageNum}")
+    @GetMapping("/enReviews/stage/{stage}/page/{pageNum}/{type}")
     @ResponseBody
     public MessageVo getEnReviewsByStage(@PathVariable Integer stage,
-                                         @PathVariable Integer pageNum) {
+                                         @PathVariable Integer pageNum,
+                                         @PathVariable String type) {
         PageHelper.startPage(pageNum, pageSize);
-        List<EnReviewEntity> enReviewEntities = enReviewService.getByStage(stage);
+        List<EnReviewEntity> enReviewEntities = enReviewService.getByStage(stage, type);
         return MessageVoUtil.success(REDIRECT_URL, enReviewEntities);
     }
 
     /**
      * 搜索接口
+     *
      * @param searchParam 搜索的参数
      * @return
      */
-    @GetMapping("/enReviews")
+    @GetMapping("/enReviews/{type}")
     @ResponseBody
-    public MessageVo searchEnReviews(@RequestParam("searchParam") String searchParam) {
-        List<EnReviewEntity> enReviewEntities = enReviewService.getBySearchParam(searchParam);
+    public MessageVo searchEnReviews(@RequestParam("searchParam") String searchParam,
+                                     @PathVariable String type) {
+        List<EnReviewEntity> enReviewEntities = enReviewService.getBySearchParam(searchParam, type);
         return MessageVoUtil.success(REDIRECT_URL, enReviewEntities);
     }
 
-    @GetMapping("/enReviews/stages")
+    @GetMapping("/enReviews/stages/{type}")
     @ResponseBody
-    public MessageVo getStages() {
-        return MessageVoUtil.success(REDIRECT_URL, enReviewService.getStage());
+    public MessageVo getStages(@PathVariable String type) {
+        return MessageVoUtil.success(REDIRECT_URL, enReviewService.getStage(type));
     }
 
-    @GetMapping("/enReviews/pageNum")
+    @GetMapping("/enReviews/pageNum/{type}")
     @ResponseBody
-    public MessageVo getNum() {
+    public MessageVo getNum(@PathVariable String type) {
 
-        return MessageVoUtil.success(getTotalPageNum());
+        return MessageVoUtil.success(getTotalPageNum(type));
     }
 
-    private Long getTotalPageNum() {
-        Long got = enReviewService.getCount();
+    private Long getTotalPageNum(String type) {
+        Long got = enReviewService.getCount(type);
         Long ans = got / pageSize;
         if (got % pageSize != 0) {
             ans += 1;

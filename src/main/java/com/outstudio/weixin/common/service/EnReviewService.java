@@ -36,25 +36,27 @@ public class EnReviewService {
         return enReviewEntityMapper.selectByPrimaryKey(id);
     }
 
-    public List<EnReviewEntity> getAll() {
-        return enReviewEntityMapper.selectAll();
+    public List<EnReviewEntity> getAll(String type) {
+        return enReviewEntityMapper.selectAll(type);
     }
 
-    public List<EnReviewEntity> getByStage(Integer stage) {
-        return enReviewEntityMapper.selectByStage(stage);
+    public List<EnReviewEntity> getByStage(Integer stage,String type) {
+        return enReviewEntityMapper.selectByStage(stage,type);
     }
 
     public int modifyReviewExceptContent(EnReviewEntity enReviewEntity) {
         return enReviewEntityMapper.updateByPrimaryKey(enReviewEntity);
     }
 
-    public List<EnReviewEntity> getBySearchParam(String searchParam) {
-        return enReviewEntityMapper.selectBySearchParam(searchParam);
+    public List<EnReviewEntity> getBySearchParam(String searchParam, String type) {
+        return enReviewEntityMapper.selectBySearchParam(searchParam, type);
     }
 
-    public Set<Integer> getStage() {
-        return enReviewEntityMapper.selectStage();
+    public Set<Integer> getStage(String type) {
+        return enReviewEntityMapper.selectStage(type);
     }
 
-    public Long getCount() {return enReviewEntityMapper.selectCount();}
+    public Long getCount(String type) {
+        return enReviewEntityMapper.selectCount(type);
+    }
 }
