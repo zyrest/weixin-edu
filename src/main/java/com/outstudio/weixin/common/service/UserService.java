@@ -32,11 +32,6 @@ public class UserService {
         userEntityMapper.insertSelective(user);
     }
 
-    public boolean checkExpired(String openid) {
-        UserEntity userEntity = userEntityMapper.selectByPrimaryKey(openid);
-        return DateUtil.isNotExpire(userEntity.getVip_end_date());
-    }
-
     public void updateUser(UserEntity userEntity) {
         userEntityMapper.updateByPrimaryKeySelective(userEntity);
     }
@@ -159,9 +154,9 @@ public class UserService {
 
     public void updateMathDate(UserEntity userEntity, int days) {
 
-        Date vip_end_date = userEntity.getVip_end_date();
-        if (DateUtil.isNotExpire(vip_end_date)) {
-            userEntity.setMath_end_date(DateUtil.dateAdd(vip_end_date, days));
+        Date math_end_date = userEntity.getMath_end_date();
+        if (DateUtil.isNotExpire(math_end_date)) {
+            userEntity.setMath_end_date(DateUtil.dateAdd(math_end_date, days));
         } else {
             userEntity.setMath_end_date(DateUtil.dateAdd(new Date(), days));
         }
@@ -171,9 +166,9 @@ public class UserService {
 
     public void updatePhysicsDate(UserEntity userEntity, int days) {
 
-        Date vip_end_date = userEntity.getVip_end_date();
-        if (DateUtil.isNotExpire(vip_end_date)) {
-            userEntity.setPhysics_end_date(DateUtil.dateAdd(vip_end_date, days));
+        Date physics_end_date = userEntity.getPhysics_end_date();
+        if (DateUtil.isNotExpire(physics_end_date)) {
+            userEntity.setPhysics_end_date(DateUtil.dateAdd(physics_end_date, days));
         } else {
             userEntity.setPhysics_end_date(DateUtil.dateAdd(new Date(), days));
         }
@@ -183,9 +178,9 @@ public class UserService {
 
     public void updateChemistryDate(UserEntity userEntity, int days) {
 
-        Date vip_end_date = userEntity.getVip_end_date();
-        if (DateUtil.isNotExpire(vip_end_date)) {
-            userEntity.setChemistry_end_date(DateUtil.dateAdd(vip_end_date, days));
+        Date chemistry_end_date = userEntity.getChemistry_end_date();
+        if (DateUtil.isNotExpire(chemistry_end_date)) {
+            userEntity.setChemistry_end_date(DateUtil.dateAdd(chemistry_end_date, days));
         } else {
             userEntity.setChemistry_end_date(DateUtil.dateAdd(new Date(), days));
         }

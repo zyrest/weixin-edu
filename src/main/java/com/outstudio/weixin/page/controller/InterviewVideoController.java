@@ -37,7 +37,7 @@ public class InterviewVideoController {
         ModelAndView view = new ModelAndView();
         InterviewVideoEntity interviewEntity = interviewVideoService.getInterviewVideoById(id);
         view.addObject("data", interviewEntity);
-        view.addObject("isVip", TokenManager.isVip());
+        view.addObject("isVip", TokenManager.isVip("english"));
         view.setViewName("hide/page/videoOne");
         return view;
     }

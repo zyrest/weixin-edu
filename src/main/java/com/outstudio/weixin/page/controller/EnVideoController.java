@@ -27,11 +27,11 @@ public class EnVideoController {
     private EnVideoService enVideoService;
 
     @GetMapping("/enVideos/{id}")
-    public ModelAndView getenVideoById(@PathVariable Integer id) {
+    public ModelAndView getEnVideoById(@PathVariable Integer id) {
         ModelAndView view = new ModelAndView();
         EnVideoEntity enVideoEntity = enVideoService.getEnVideoById(id);
         view.addObject("data", enVideoEntity);
-        view.addObject("isVip", TokenManager.isVip());
+        view.addObject("isVip", TokenManager.isVip("english"));
         view.setViewName("hide/page/enVideoOne");
         return view;
     }

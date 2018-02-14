@@ -39,7 +39,7 @@ public class MessageController {
         MessageEntity messageEntity = messageService.getMessageById(id);
         view.setViewName("hide/page/messageOne");
         view.addObject("data", messageEntity);
-        view.addObject("isVip", TokenManager.isVip());
+        view.addObject("isVip", TokenManager.isVip("english"));
         return view;
     }
 

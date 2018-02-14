@@ -30,7 +30,7 @@ public class EnReviewController {
         ModelAndView view = new ModelAndView();
         EnReviewEntity enReviewEntity = enReviewService.getEnReviewById(id);
         view.addObject("data", enReviewEntity);
-        view.addObject("isVip", TokenManager.isVip());
+        view.addObject("isVip", TokenManager.isVip("english"));
         view.setViewName("hide/page/reviewOne");
         return view;
     }

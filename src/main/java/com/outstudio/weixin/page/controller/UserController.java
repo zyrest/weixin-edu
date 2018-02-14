@@ -47,8 +47,8 @@ public class UserController {
         LoggerUtil.fmtDebug(getClass(), "目前缓存中的用户, %s", JSON.toJSONString(TokenManager.getWeixinToken()));
 
         view.addObject("user", gotUser);
-        view.addObject("isVip", TokenManager.isVip());
-        view.addObject("tillDate",TokenManager.tillDate());
+        view.addObject("isVip", TokenManager.isVip("english"));
+        view.addObject("tillDate",TokenManager.tillDate("english"));
 
         view.addObject("balance", gotUser.getBalance());
         view.addObject("people", userService.getCountsByPid(gotUser.getId()));

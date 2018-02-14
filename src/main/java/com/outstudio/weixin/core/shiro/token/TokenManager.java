@@ -46,6 +46,7 @@ public class TokenManager {
 
         getSubject().login(token);
     }
+
     public static void loginWeixin(UserEntity user) {
         WeixinToken token = new WeixinToken();
         token.setWeixinOpenid(user.getOpenid());
@@ -61,6 +62,7 @@ public class TokenManager {
         loginWeixin(getWeixinToken());
         LoggerUtil.fmtDebug(TokenManager.class, "重新登陆成功，当前缓存中的用户。-> {%s}", JSON.toJSONString(getWeixinToken()));
     }
+
     public static void logout() {
         getSubject().logout();
     }
@@ -79,25 +81,39 @@ public class TokenManager {
         return ans;
     }
 
-    public static boolean isVip() {
+    public static boolean isVip(String type) {
         if (getSubject().getPrincipal() == null) return false;
         if (getSubject().getPrincipal() instanceof ManagerEntity) {
             return true;
         } else {
             UserEntity user = getWeixinToken();
 
-            LoggerUtil.fmtDebug(TokenManager.class, "isVip方法中的用户 %s",JSON.toJSONString(user));
+            LoggerUtil.fmtDebug(TokenManager.class, "isVip方法中的用户 %s", JSON.toJSONString(user));
 
-            return DateUtil.isNotExpire(user.getVip_end_date());
+            return isNotExpireByType(user, type);
         }
     }
 
-    public static boolean isVip(UserEntity user) {
-        return DateUtil.isNotExpire(user.getVip_end_date());
+    public static boolean isNotExpireByType(UserEntity user, String type) {
+
+        if ("english".equalsIgnoreCase(type))
+            return DateUtil.isNotExpire(user.getVip_end_date());
+
+        if ("math".equalsIgnoreCase(type))
+            return DateUtil.isNotExpire(user.getMath_end_date());
+
+        if ("physics".equalsIgnoreCase(type))
+            return DateUtil.isNotExpire(user.getPhysics_end_date());
+
+        if ("chemistry".equalsIgnoreCase(type))
+            return DateUtil.isNotExpire(user.getChemistry_end_date());
+
+        else
+            return false;
     }
 
-    public static long tillDate() {
-        if (!isVip()) return 0;
+    public static long tillDate(String type) {
+        if (!isVip(type)) return 0;
         else {
             UserEntity user;
             try {
@@ -105,13 +121,30 @@ public class TokenManager {
             } catch (Exception e) {
                 return 0;
             }
-            Date until = user.getVip_end_date();
+            Date until = getEndDate(user, type);
 
             return DateUtil.daysBetween(new Date(), until);
         }
     }
 
-    public static long tillDate(UserEntity user) {
-        return DateUtil.daysBetween(new Date(), user.getVip_end_date());
+    private static Date getEndDate(UserEntity user, String type) {
+
+        if ("english".equalsIgnoreCase(type))
+            return user.getVip_end_date();
+
+        if ("math".equalsIgnoreCase(type))
+            return user.getMath_end_date();
+
+        if ("physics".equalsIgnoreCase(type))
+            return user.getPhysics_end_date();
+
+        if ("chemistry".equalsIgnoreCase(type))
+            return user.getChemistry_end_date();
+
+        return null;
+    }
+
+    public static long tillDate(UserEntity user, String type) {
+        return DateUtil.daysBetween(new Date(), getEndDate(user, type));
     }
 }

@@ -38,7 +38,7 @@ public class GandongController {
         ModelAndView view = new ModelAndView();
         GandongEntity gandongEntity = gandongService.getById(id);
         view.addObject("data", gandongEntity);
-        view.addObject("isVip", TokenManager.isVip());
+        view.addObject("isVip", TokenManager.isVip("english"));
         view.setViewName("hide/page/gandongOne");
         return view;
     }

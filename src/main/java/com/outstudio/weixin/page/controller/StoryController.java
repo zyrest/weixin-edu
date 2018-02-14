@@ -51,7 +51,7 @@ public class StoryController {
         ModelAndView view = new ModelAndView();
         StoryEntity storyEntity = storyService.getStoryById(id);
         view.addObject("data", storyEntity);
-        view.addObject("isVip", TokenManager.isVip());
+        view.addObject("isVip", TokenManager.isVip("english"));
         view.setViewName("hide/page/audioOne");
         return view;
     }

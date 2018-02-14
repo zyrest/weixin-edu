@@ -68,8 +68,19 @@ public class MyRealm extends AuthorizingRealm {
         if (principal instanceof UserEntity) {
             UserEntity user = (UserEntity) principal;
 
-            if (DateUtil.isNotExpire(user.getVip_end_date())) {
-                authorizationInfo.addRole("vip");
+            if (DateUtil.isNotExpire(user.getVip_end_date()) || DateUtil.isNotExpire(user.getChemistry_end_date()) ||
+                    DateUtil.isNotExpire(user.getMath_end_date()) || DateUtil.isNotExpire(user.getPhysics_end_date())) {
+
+                if (DateUtil.isNotExpire(user.getVip_end_date()))
+                    authorizationInfo.addRole("vip");
+                if (DateUtil.isNotExpire(user.getChemistry_end_date()))
+                    authorizationInfo.addRole("chemistry");
+                if (DateUtil.isNotExpire(user.getMath_end_date()))
+                    authorizationInfo.addRole("math");
+                if (DateUtil.isNotExpire(user.getPhysics_end_date()))
+                    authorizationInfo.addRole("physics");
+
+
             } else {
                 authorizationInfo.addRole("user");
             }
