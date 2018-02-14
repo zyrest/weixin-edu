@@ -64,7 +64,7 @@ public class PayService {
     }
 
     public Map<String, String> pay(Map<String, String> payData) {
-        Map<String, String> result = null;
+        Map<String, String> result;
         try {
             result = wxPay.unifiedOrder(payData);
             processPayResult(result);

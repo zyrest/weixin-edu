@@ -26,6 +26,9 @@ public class UserService {
 
     public void saveUser(UserEntity user) {
         user.setVip_end_date(new Date());
+        user.setMath_end_date(new Date());
+        user.setChemistry_end_date(new Date());
+        user.setPhysics_end_date(new Date());
         userEntityMapper.insertSelective(user);
     }
 
@@ -57,7 +60,7 @@ public class UserService {
     public int addBalance(Integer id, double fee) {
         UserEntity userEntity = getUserById(id);
         if (userEntity == null) {
-            LoggerUtil.error(getClass(),"用户的pid不存在");
+            LoggerUtil.error(getClass(), "用户的pid不存在");
             return -1;
         }
 
@@ -75,7 +78,7 @@ public class UserService {
 
         userEntity.setBalance(balance);
 
-        __addBalance(userEntity.getPid(),fee,userEntity.getLevel());
+        __addBalance(userEntity.getPid(), fee, userEntity.getLevel());
 
         return userEntityMapper.updateByIdSelective(userEntity);
     }
@@ -83,8 +86,9 @@ public class UserService {
 
     /**
      * 通过递归一层层的给上级提成
-     * @param pid 上级用户id
-     * @param fee 当前用户交易价格
+     *
+     * @param pid   上级用户id
+     * @param fee   当前用户交易价格
      * @param level 当前用户代理等级
      */
     private void __addBalance(Integer pid, double fee, Integer level) {
@@ -107,22 +111,26 @@ public class UserService {
         userEntity.setBalance(balance);
         userEntityMapper.updateByIdSelective(userEntity);
 
-        __addBalance(userEntity.getPid(),fee,userEntity.getLevel());
+        __addBalance(userEntity.getPid(), fee, userEntity.getLevel());
     }
 
-    public long getCountsByPid(Integer pid) {return userEntityMapper.getCountsByPid(pid);}
+    public long getCountsByPid(Integer pid) {
+        return userEntityMapper.getCountsByPid(pid);
+    }
 
-    public long getCounts() {return userEntityMapper.getCounts();}
+    public long getCounts() {
+        return userEntityMapper.getCounts();
+    }
 
     public int editUser(UserEntity userEntity) {
         return userEntityMapper.updateByIdSelective(userEntity);
     }
 
-    public void setPid(Integer pid,String openid) {
+    public void setPid(Integer pid, String openid) {
         userEntityMapper.setPid(pid, openid);
     }
 
-    public void updateUserDate(String openid,int days) {
+    public void updateUserDate(String openid, int days) {
         UserEntity userEntity = getUserByOpenId(openid);
 
         Date vip_end_date = userEntity.getVip_end_date();
@@ -136,7 +144,7 @@ public class UserService {
 
     }
 
-    public void updateParentBalance(String openid,String total_fee) {
+    public void updateParentBalance(String openid, String total_fee) {
         Integer pid = getUserByOpenId(openid).getPid();
         if (pid != 0) {
             addBalance(pid, Integer.parseInt(total_fee) / 100);

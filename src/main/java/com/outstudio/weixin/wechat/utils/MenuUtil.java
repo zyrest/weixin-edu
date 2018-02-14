@@ -30,39 +30,47 @@ public class MenuUtil {
 
     private static Button firstButton() {
         Button button = new Button();
-        button.setName("语音熏陶");
+        button.setName("带动熏陶");
 
         List<Button> sub_buttons = new ArrayList<>();
+
         sub_buttons.add(createViewButton("经典儿歌", "http://mp.weixin.qq.com/s/xv4tQenLcgafwbLfNlZvAQ"));
         sub_buttons.add(createViewButton("故事培养", domain + "/page/view/audio"));
         sub_buttons.add(createViewButton("感动心灵", domain + "/page/view/gandong"));
-        button.setSub_button(sub_buttons);
+        sub_buttons.add(createViewButton("童星展示", domain + "todo"));//todo  童星展示
 
+        button.setSub_button(sub_buttons);
         return button;
     }
 
     private static Button secondButton() {
         Button button = new Button();
-        button.setName("启蒙英语");
-
+        button.setName("文化教育");
 
         List<Button> sub_buttons = new ArrayList<>();
-        sub_buttons.add(createViewButton("英语课堂", domain+"/page/view/english"));
-        sub_buttons.add(createViewButton("教育讨论", domain+"/page/view/video"));
-        sub_buttons.add(createViewButton("复习内容", domain + "/page/view/english#review"));
-        button.setSub_button(sub_buttons);
 
+        sub_buttons.add(createViewButton("英语课堂", domain+"/page/view/english"));
+        sub_buttons.add(createViewButton("数学课堂", domain+"/page/view/math"));
+        sub_buttons.add(createViewButton("物理课堂", domain+"/page/view/physics"));
+        sub_buttons.add(createViewButton("化学课堂", domain+"/page/view/chemistry"));
+        sub_buttons.add(createViewButton("教育讨论", domain+"/page/view/video"));
+//        sub_buttons.add(createViewButton("复习内容", domain + "/page/view/english#review"));
+
+        button.setSub_button(sub_buttons);
         return button;
     }
 
     private static Button thirdButton() {
         Button button = new Button();
+        button.setName("家长关注");
+
         List<Button> sub_button = new ArrayList<>();
+
         sub_button.add(createViewButton("个人中心", domain+"/page/view/userInfo"));
         sub_button.add(createViewButton("VIP注册", domain+"/page/view/vip"));
-        sub_button.add(createViewButton("家有童声",domain+"/page/view/voiceInHome"));
-        sub_button.add(createViewButton("平台介绍", domain+"/page/view/introduction"));
-        button.setName("家长关注");
+        sub_button.add(createViewButton("投稿",domain+"/page/view/voiceInHome")); //todo 投稿
+        sub_button.add(createViewButton("平台介绍", domain + "/page/view/introduction"));
+
         button.setSub_button(sub_button);
         return button;
     }
