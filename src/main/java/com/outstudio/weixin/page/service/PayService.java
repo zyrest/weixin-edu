@@ -48,7 +48,7 @@ public class PayService {
         }
     }
 
-    public Map<String, String> doPay(String fee, String ip) {
+    public Map<String, String> doPay(String fee, String ip, String type) {
         HashMap<String, String> data = new HashMap<>();
         data.put("body", "vip充值");
         data.put("out_trade_no", DateUtil.getFormatDate());
@@ -60,14 +60,14 @@ public class PayService {
 
         LoggerUtil.fmtDebug(getClass(), "支付信息", data.toString());
 
-        return pay(data);
+        return pay(data,type);
     }
 
-    public Map<String, String> pay(Map<String, String> payData) {
+    public Map<String, String> pay(Map<String, String> payData, String type) {
         Map<String, String> result;
         try {
             result = wxPay.unifiedOrder(payData);
-            processPayResult(result);
+            processPayResult(result, type);
         } catch (Exception e) {
             result = new HashMap<>();
             result.put("status", "400");
@@ -77,11 +77,11 @@ public class PayService {
         return result;
     }
 
-    private void processPayResult(Map<String, String> result) throws Exception {
+    private void processPayResult(Map<String, String> result, String type) throws Exception {
         if ("SUCCESS".equalsIgnoreCase(result.get("return_code"))) {
 
             if ("SUCCESS".equalsIgnoreCase(result.get("result_code"))) {
-                chargeService.preCharge(TokenManager.getWeixinToken().getOpenid());
+                chargeService.preCharge(TokenManager.getWeixinToken().getOpenid(), type);
             } else {
                 throw new Exception("err_code：" + result.get("err_code") + "，err_code_des：" + result.get("err_code_des"));
             }

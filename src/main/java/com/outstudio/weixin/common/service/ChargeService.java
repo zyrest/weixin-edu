@@ -3,8 +3,6 @@ package com.outstudio.weixin.common.service;
 import com.outstudio.weixin.back.exception.InvalidRequestException;
 import com.outstudio.weixin.common.dao.ChargeEntityMapper;
 import com.outstudio.weixin.common.po.ChargeEntity;
-import com.outstudio.weixin.common.po.UserEntity;
-import com.outstudio.weixin.common.utils.DateUtil;
 import com.outstudio.weixin.common.utils.LoggerUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +19,8 @@ import java.util.Map;
 @Service
 @Transactional
 public class ChargeService {
+    private final String MONTH_FEE = "3000";
+    private final String YEAR_FEE = "30000";
     @Resource
     private ChargeEntityMapper chargeEntityMapper;
     @Resource
@@ -35,14 +35,16 @@ public class ChargeService {
         checkPreCharge(openid);
 
         int days = 0;
-        if ("3000".equalsIgnoreCase(total_fee)) {
+        if (MONTH_FEE.equalsIgnoreCase(total_fee)) {
             days = 30;
-        } else if ("30000".equalsIgnoreCase(total_fee)) {
+        } else if (YEAR_FEE.equalsIgnoreCase(total_fee)) {
             days = 365;
         }
 
-        userService.updateUserDate(openid, days);
-        userService.updateParentBalance(openid,total_fee);
+        ChargeEntity chargeEntity = chargeEntityMapper.getByOpenid(openid);
+
+        userService.updateUserDate(openid, days, chargeEntity.getType());
+        userService.updateParentBalance(openid, total_fee);
         updateChargeHistory(openid, days, out_trade_no, transaction_id, now_date);
     }
 
@@ -81,17 +83,19 @@ public class ChargeService {
 
     }
 
-    public void preCharge(String openid) {
+    public void preCharge(String openid, String type) {
         ChargeEntity chargeEntity = chargeEntityMapper.getByOpenid(openid);
 
         if (chargeEntity == null) {
             chargeEntity = new ChargeEntity();
             chargeEntity.setOpenid(openid);
             chargeEntity.setPrepared(1);
+            chargeEntity.setType(type);
             chargeEntity.setNow_date(new Date());
             chargeEntityMapper.insertSelective(chargeEntity);
         } else {
             chargeEntity.setPrepared(1);
+            chargeEntity.setType(type);
             chargeEntity.setNow_date(new Date());
             chargeEntityMapper.updateByOpenidSelective(chargeEntity);
         }
@@ -99,6 +103,7 @@ public class ChargeService {
 
     /**
      * 处理返回的xml信息,存进数据库之前数据的处理
+     *
      * @param map
      */
     public void charge(Map<String, String> map) {
@@ -112,11 +117,11 @@ public class ChargeService {
         Date date = null;
         try {
             date = sdf.parse(now_date);
-            LoggerUtil.fmtDebug(getClass(),"格式化后的交易日期为%s",date.toString());
+            LoggerUtil.fmtDebug(getClass(), "格式化后的交易日期为%s", date.toString());
         } catch (ParseException e) {
             LoggerUtil.error(getClass(), "日期格式转化错误", e);
         }
 
-        charge(openid, out_trade_no,transaction_id, date, total_fee);
+        charge(openid, out_trade_no, transaction_id, date, total_fee);
     }
 }

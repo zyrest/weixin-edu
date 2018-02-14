@@ -14,6 +14,8 @@ public class ChargeEntity implements Serializable {
 
     private Integer dates;
 
+    private String type;
+
     private String transaction_id;
 
     private String out_trade_no;
@@ -21,6 +23,14 @@ public class ChargeEntity implements Serializable {
     private Integer toPid;
 
     private Integer prepared;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public Integer getToPid() {
         return toPid;

@@ -6,11 +6,12 @@
         <result column="openid" property="openid" jdbcType="VARCHAR"/>
         <result column="now_date" property="now_date" jdbcType="TIMESTAMP"/>
         <result column="dates" property="dates" jdbcType="INTEGER"/>
+        <result column="type" property="type" jdbcType="VARCHAR"/>
         <result column="prepared" property="prepared" jdbcType="INTEGER"/>
         <result column="toPid" property="toPid" jdbcType="INTEGER"/>
     </resultMap>
     <sql id="Base_Column_List">
-        id, openid, now_date, dates, transaction_id, out_trade_no, prepared, toPid
+        id, openid, now_date, dates, type, transaction_id, out_trade_no, prepared, toPid
     </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
@@ -24,9 +25,10 @@
     </delete>
     <insert id="insert" parameterType="com.outstudio.weixin.common.po.ChargeEntity">
         INSERT INTO t_charge (id, openid, now_date,
-                              dates, transaction_id, out_trade_no, prepared, toPid)
+                              dates, type, transaction_id, out_trade_no, prepared, toPid)
         VALUES (#{id,jdbcType=INTEGER}, #{openid,jdbcType=VARCHAR}, #{now_date,jdbcType=TIMESTAMP},
-                #{dates,jdbcType=INTEGER}, #{transaction_id,jdbcType=VARCHAR}, #{out_trade_no,jdbcType=VARCHAR},
+                #{dates,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{transaction_id,jdbcType=VARCHAR},
+                #{out_trade_no,jdbcType=VARCHAR},
                 #{prepared,jdbcType=INTEGER}, #{toPid,jdbcType=INTEGER})
     </insert>
     <insert id="insertSelective" parameterType="com.outstudio.weixin.common.po.ChargeEntity">
@@ -43,6 +45,9 @@
             </if>
             <if test="dates != null">
                 dates,
+            </if>
+            <if test="type != null">
+                type,
             </if>
             <if test="transaction_id != null">
                 transaction_id,
@@ -70,6 +75,9 @@
             <if test="dates != null">
                 #{dates,jdbcType=INTEGER},
             </if>
+            <if test="type != null">
+                #{type,jdbcType=VARCHAR},
+            </if>
             <if test="transaction_id != null">
                 #{transaction_id,jdbcType=VARCHAR},
             </if>
@@ -96,6 +104,9 @@
             <if test="dates != null">
                 dates = #{dates,jdbcType=INTEGER},
             </if>
+            <if test="type != null">
+                type = #{type,jdbcType=VARCHAR},
+            </if>
             <if test="transaction_id != null">
                 dates = #{transaction_id,jdbcType=VARCHAR},
             </if>
@@ -121,6 +132,9 @@
             <if test="dates != null">
                 dates = #{dates,jdbcType=INTEGER},
             </if>
+            <if test="type != null">
+                type = #{type,jdbcType=VARCHAR},
+            </if>
             <if test="transaction_id != null">
                 transaction_id = #{transaction_id,jdbcType=VARCHAR},
             </if>
@@ -142,6 +156,7 @@
         SET openid         = #{openid,jdbcType=VARCHAR},
             now_date       = #{now_date,jdbcType=TIMESTAMP},
             dates          = #{dates,jdbcType=INTEGER},
+            type           = #{type,jdbcType=VARCHAR},
             transaction_id = #{transaction_id,jdbcType=VARCHAR},
             out_trade_no   = #{out_trade_no,jdbcType=VARCHAR},
             prepared       = #{prepared,jdbcType=INTEGER},

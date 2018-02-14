@@ -130,8 +130,22 @@ public class UserService {
         userEntityMapper.setPid(pid, openid);
     }
 
-    public void updateUserDate(String openid, int days) {
+    public void updateUserDate(String openid, int days, String type) {
         UserEntity userEntity = getUserByOpenId(openid);
+
+        if ("english".equalsIgnoreCase(type)) {
+            updateEnglishDate(userEntity, days);
+        } else if ("math".equalsIgnoreCase(type)) {
+            updateMathDate(userEntity, days);
+        } else if ("physics".equalsIgnoreCase(type)) {
+            updatePhysicsDate(userEntity, days);
+        } else if ("chemistry".equalsIgnoreCase(type)) {
+            updateChemistryDate(userEntity, days);
+        }
+
+    }
+
+    public void updateEnglishDate(UserEntity userEntity, int days) {
 
         Date vip_end_date = userEntity.getVip_end_date();
         if (DateUtil.isNotExpire(vip_end_date)) {
@@ -141,7 +155,42 @@ public class UserService {
         }
 
         updateUser(userEntity);
+    }
 
+    public void updateMathDate(UserEntity userEntity, int days) {
+
+        Date vip_end_date = userEntity.getVip_end_date();
+        if (DateUtil.isNotExpire(vip_end_date)) {
+            userEntity.setMath_end_date(DateUtil.dateAdd(vip_end_date, days));
+        } else {
+            userEntity.setMath_end_date(DateUtil.dateAdd(new Date(), days));
+        }
+
+        updateUser(userEntity);
+    }
+
+    public void updatePhysicsDate(UserEntity userEntity, int days) {
+
+        Date vip_end_date = userEntity.getVip_end_date();
+        if (DateUtil.isNotExpire(vip_end_date)) {
+            userEntity.setPhysics_end_date(DateUtil.dateAdd(vip_end_date, days));
+        } else {
+            userEntity.setPhysics_end_date(DateUtil.dateAdd(new Date(), days));
+        }
+
+        updateUser(userEntity);
+    }
+
+    public void updateChemistryDate(UserEntity userEntity, int days) {
+
+        Date vip_end_date = userEntity.getVip_end_date();
+        if (DateUtil.isNotExpire(vip_end_date)) {
+            userEntity.setChemistry_end_date(DateUtil.dateAdd(vip_end_date, days));
+        } else {
+            userEntity.setChemistry_end_date(DateUtil.dateAdd(new Date(), days));
+        }
+
+        updateUser(userEntity);
     }
 
     public void updateParentBalance(String openid, String total_fee) {

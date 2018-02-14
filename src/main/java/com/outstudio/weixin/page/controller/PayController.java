@@ -23,11 +23,12 @@ public class PayController {
 
     @RequestMapping("/wxpay")
     public Map<String, String> pay(HttpServletRequest request,
-                                   @RequestParam("fee") String fee) {
+                                   @RequestParam("fee") String fee,
+                                   @RequestParam("type") String type) {
 
         String ip = request.getRemoteAddr();
 
-        Map<String, String> result = payService.doPay(fee, ip);
+        Map<String, String> result = payService.doPay(fee, ip, type);
 
         return payService.getH5PayParams(result);
     }
