@@ -1,6 +1,7 @@
 package com.outstudio.weixin.page.controller;
 
 import com.outstudio.weixin.common.po.GandongEntity;
+import com.outstudio.weixin.common.po.VipType;
 import com.outstudio.weixin.common.service.GandongService;
 import com.outstudio.weixin.common.utils.MessageVoUtil;
 import com.outstudio.weixin.common.vo.MessageVo;
@@ -38,7 +39,7 @@ public class GandongController {
         ModelAndView view = new ModelAndView();
         GandongEntity gandongEntity = gandongService.getById(id);
         view.addObject("data", gandongEntity);
-        view.addObject("isVip", TokenManager.isVip("english"));
+        view.addObject("isVip", TokenManager.isVip(VipType.ENGLISH.getName()));
         view.setViewName("hide/page/gandongOne");
         return view;
     }

@@ -2,6 +2,7 @@ package com.outstudio.weixin.core.shiro.token;
 
 import com.outstudio.weixin.common.po.ManagerEntity;
 import com.outstudio.weixin.common.po.UserEntity;
+import com.outstudio.weixin.common.po.VipType;
 import com.outstudio.weixin.common.service.ManagerService;
 import com.outstudio.weixin.common.service.UserService;
 import com.outstudio.weixin.common.utils.DateUtil;
@@ -72,13 +73,13 @@ public class MyRealm extends AuthorizingRealm {
                     DateUtil.isNotExpire(user.getMath_end_date()) || DateUtil.isNotExpire(user.getPhysics_end_date())) {
 
                 if (DateUtil.isNotExpire(user.getVip_end_date()))
-                    authorizationInfo.addRole("vip");
+                    authorizationInfo.addRole(VipType.ENGLISH.getName());
                 if (DateUtil.isNotExpire(user.getChemistry_end_date()))
-                    authorizationInfo.addRole("chemistry");
+                    authorizationInfo.addRole(VipType.CHEMISTRY.getName());
                 if (DateUtil.isNotExpire(user.getMath_end_date()))
-                    authorizationInfo.addRole("math");
+                    authorizationInfo.addRole(VipType.MATH.getName());
                 if (DateUtil.isNotExpire(user.getPhysics_end_date()))
-                    authorizationInfo.addRole("physics");
+                    authorizationInfo.addRole(VipType.PHYSICS.getName());
 
 
             } else {

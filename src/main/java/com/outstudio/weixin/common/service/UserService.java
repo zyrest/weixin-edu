@@ -2,6 +2,7 @@ package com.outstudio.weixin.common.service;
 
 import com.outstudio.weixin.common.dao.UserEntityMapper;
 import com.outstudio.weixin.common.po.UserEntity;
+import com.outstudio.weixin.common.po.VipType;
 import com.outstudio.weixin.common.utils.DateUtil;
 import com.outstudio.weixin.common.utils.LoggerUtil;
 import org.springframework.stereotype.Service;
@@ -128,13 +129,13 @@ public class UserService {
     public void updateUserDate(String openid, int days, String type) {
         UserEntity userEntity = getUserByOpenId(openid);
 
-        if ("english".equalsIgnoreCase(type)) {
+        if (VipType.ENGLISH.getName().equalsIgnoreCase(type)) {
             updateEnglishDate(userEntity, days);
-        } else if ("math".equalsIgnoreCase(type)) {
+        } else if (VipType.MATH.getName().equalsIgnoreCase(type)) {
             updateMathDate(userEntity, days);
-        } else if ("physics".equalsIgnoreCase(type)) {
+        } else if (VipType.PHYSICS.getName().equalsIgnoreCase(type)) {
             updatePhysicsDate(userEntity, days);
-        } else if ("chemistry".equalsIgnoreCase(type)) {
+        } else if (VipType.CHEMISTRY.getName().equalsIgnoreCase(type)) {
             updateChemistryDate(userEntity, days);
         }
 

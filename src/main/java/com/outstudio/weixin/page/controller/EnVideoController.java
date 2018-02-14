@@ -2,6 +2,7 @@ package com.outstudio.weixin.page.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.outstudio.weixin.common.po.EnVideoEntity;
+import com.outstudio.weixin.common.po.VipType;
 import com.outstudio.weixin.common.service.EnVideoService;
 import com.outstudio.weixin.common.utils.MessageVoUtil;
 import com.outstudio.weixin.common.vo.MessageVo;
@@ -31,7 +32,7 @@ public class EnVideoController {
         ModelAndView view = new ModelAndView();
         EnVideoEntity enVideoEntity = enVideoService.getEnVideoById(id);
         view.addObject("data", enVideoEntity);
-        view.addObject("isVip", TokenManager.isVip("english"));
+        view.addObject("isVip", TokenManager.isVip(VipType.ENGLISH.getName()));
         view.setViewName("hide/page/enVideoOne");
         return view;
     }

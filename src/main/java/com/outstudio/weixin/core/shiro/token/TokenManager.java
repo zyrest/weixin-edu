@@ -3,6 +3,7 @@ package com.outstudio.weixin.core.shiro.token;
 import com.alibaba.fastjson.JSON;
 import com.outstudio.weixin.common.po.ManagerEntity;
 import com.outstudio.weixin.common.po.UserEntity;
+import com.outstudio.weixin.common.po.VipType;
 import com.outstudio.weixin.common.utils.DateUtil;
 import com.outstudio.weixin.common.utils.LoggerUtil;
 import org.apache.shiro.SecurityUtils;
@@ -96,16 +97,16 @@ public class TokenManager {
 
     public static boolean isNotExpireByType(UserEntity user, String type) {
 
-        if ("english".equalsIgnoreCase(type))
+        if (VipType.ENGLISH.getName().equalsIgnoreCase(type))
             return DateUtil.isNotExpire(user.getVip_end_date());
 
-        if ("math".equalsIgnoreCase(type))
+        if (VipType.MATH.getName().equalsIgnoreCase(type))
             return DateUtil.isNotExpire(user.getMath_end_date());
 
-        if ("physics".equalsIgnoreCase(type))
+        if (VipType.PHYSICS.getName().equalsIgnoreCase(type))
             return DateUtil.isNotExpire(user.getPhysics_end_date());
 
-        if ("chemistry".equalsIgnoreCase(type))
+        if (VipType.CHEMISTRY.getName().equalsIgnoreCase(type))
             return DateUtil.isNotExpire(user.getChemistry_end_date());
 
         else
@@ -129,16 +130,16 @@ public class TokenManager {
 
     private static Date getEndDate(UserEntity user, String type) {
 
-        if ("english".equalsIgnoreCase(type))
+        if (VipType.ENGLISH.getName().equalsIgnoreCase(type))
             return user.getVip_end_date();
 
-        if ("math".equalsIgnoreCase(type))
+        if (VipType.MATH.getName().equalsIgnoreCase(type))
             return user.getMath_end_date();
 
-        if ("physics".equalsIgnoreCase(type))
+        if (VipType.PHYSICS.getName().equalsIgnoreCase(type))
             return user.getPhysics_end_date();
 
-        if ("chemistry".equalsIgnoreCase(type))
+        if (VipType.CHEMISTRY.getName().equalsIgnoreCase(type))
             return user.getChemistry_end_date();
 
         return null;

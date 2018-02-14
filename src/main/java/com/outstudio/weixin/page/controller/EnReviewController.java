@@ -2,6 +2,7 @@ package com.outstudio.weixin.page.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.outstudio.weixin.common.po.EnReviewEntity;
+import com.outstudio.weixin.common.po.VipType;
 import com.outstudio.weixin.common.service.EnReviewService;
 import com.outstudio.weixin.common.utils.MessageVoUtil;
 import com.outstudio.weixin.common.vo.MessageVo;
@@ -30,7 +31,7 @@ public class EnReviewController {
         ModelAndView view = new ModelAndView();
         EnReviewEntity enReviewEntity = enReviewService.getEnReviewById(id);
         view.addObject("data", enReviewEntity);
-        view.addObject("isVip", TokenManager.isVip("english"));
+        view.addObject("isVip", TokenManager.isVip(VipType.ENGLISH.getName()));
         view.setViewName("hide/page/reviewOne");
         return view;
     }
