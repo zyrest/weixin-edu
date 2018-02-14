@@ -22,21 +22,23 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
     private static String fileSavedPath;
 
+    public static String getFilePath() {
+        return fileSavedPath;
+    }
+
     @Value("${fileSavedPath}")
     public void setFileSavePath(String fileSavedPath) {
         WebConfig.fileSavedPath = fileSavedPath;
     }
 
-    public static String  getFilePath() {
-        return fileSavedPath;
-    }
-
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         // 可以直接使用addResourceLocations 指定磁盘绝对路径，同样可以配置多个位置，注意路径写法需要加上file:
-        registry.addResourceHandler("/mp3/**").addResourceLocations(getFilePath()+"mp3/");
-        registry.addResourceHandler("/mp4/**").addResourceLocations(getFilePath()+"mp4/");
+        registry.addResourceHandler("/mp3/**").addResourceLocations(getFilePath() + "mp3/");
+        registry.addResourceHandler("/mp4/**").addResourceLocations(getFilePath() + "mp4/");
+        registry.addResourceHandler("/ueditor-file/**").addResourceLocations(getFilePath() + "ueditor-file/");
     }
+
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/open/back/login").setViewName("hide/back/login");
