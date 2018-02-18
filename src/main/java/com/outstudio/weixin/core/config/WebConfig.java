@@ -36,6 +36,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         // 可以直接使用addResourceLocations 指定磁盘绝对路径，同样可以配置多个位置，注意路径写法需要加上file:
         registry.addResourceHandler("/mp3/**").addResourceLocations(getFilePath() + "mp3/");
         registry.addResourceHandler("/mp4/**").addResourceLocations(getFilePath() + "mp4/");
+        registry.addResourceHandler("/exhibition/**").addResourceLocations(getFilePath() + "exhibition/");
         registry.addResourceHandler("/ueditor-file/**").addResourceLocations(getFilePath() + "ueditor-file/");
     }
 

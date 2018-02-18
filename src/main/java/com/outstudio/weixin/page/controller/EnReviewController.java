@@ -2,7 +2,7 @@ package com.outstudio.weixin.page.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.outstudio.weixin.common.po.EnReviewEntity;
-import com.outstudio.weixin.common.po.VipType;
+import com.outstudio.weixin.common.vo.VipType;
 import com.outstudio.weixin.common.service.EnReviewService;
 import com.outstudio.weixin.common.utils.MessageVoUtil;
 import com.outstudio.weixin.common.vo.MessageVo;

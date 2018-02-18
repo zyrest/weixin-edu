@@ -2,7 +2,7 @@ package com.outstudio.weixin.core.shiro.token;
 
 import com.outstudio.weixin.common.po.ManagerEntity;
 import com.outstudio.weixin.common.po.UserEntity;
-import com.outstudio.weixin.common.po.VipType;
+import com.outstudio.weixin.common.vo.VipType;
 import com.outstudio.weixin.common.service.ManagerService;
 import com.outstudio.weixin.common.service.UserService;
 import com.outstudio.weixin.common.utils.DateUtil;

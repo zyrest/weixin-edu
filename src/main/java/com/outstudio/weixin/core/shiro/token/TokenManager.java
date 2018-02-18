@@ -3,7 +3,7 @@ package com.outstudio.weixin.core.shiro.token;
 import com.alibaba.fastjson.JSON;
 import com.outstudio.weixin.common.po.ManagerEntity;
 import com.outstudio.weixin.common.po.UserEntity;
-import com.outstudio.weixin.common.po.VipType;
+import com.outstudio.weixin.common.vo.VipType;
 import com.outstudio.weixin.common.utils.DateUtil;
 import com.outstudio.weixin.common.utils.LoggerUtil;
 import org.apache.shiro.SecurityUtils;

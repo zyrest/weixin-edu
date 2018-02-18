@@ -1,7 +1,7 @@
 package com.outstudio.weixin.page.controller;
 
 import com.outstudio.weixin.common.po.GandongEntity;
-import com.outstudio.weixin.common.po.VipType;
+import com.outstudio.weixin.common.vo.VipType;
 import com.outstudio.weixin.common.service.GandongService;
 import com.outstudio.weixin.common.utils.MessageVoUtil;
 import com.outstudio.weixin.common.vo.MessageVo;

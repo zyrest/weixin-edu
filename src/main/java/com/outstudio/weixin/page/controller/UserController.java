@@ -2,7 +2,7 @@ package com.outstudio.weixin.page.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.outstudio.weixin.common.po.UserEntity;
-import com.outstudio.weixin.common.po.VipType;
+import com.outstudio.weixin.common.vo.VipType;
 import com.outstudio.weixin.common.service.UserService;
 import com.outstudio.weixin.common.utils.LoggerUtil;
 import com.outstudio.weixin.core.shiro.token.MyRealm;

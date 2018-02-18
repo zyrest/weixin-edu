@@ -1,4 +1,4 @@
-package com.outstudio.weixin.common.po;
+package com.outstudio.weixin.common.vo;
 
 /**
  * Created by lmy on 2018/2/14.

@@ -2,7 +2,7 @@ package com.outstudio.weixin.common.service;
 
 import com.outstudio.weixin.common.dao.UserEntityMapper;
 import com.outstudio.weixin.common.po.UserEntity;
-import com.outstudio.weixin.common.po.VipType;
+import com.outstudio.weixin.common.vo.VipType;
 import com.outstudio.weixin.common.utils.DateUtil;
 import com.outstudio.weixin.common.utils.LoggerUtil;
 import org.springframework.stereotype.Service;

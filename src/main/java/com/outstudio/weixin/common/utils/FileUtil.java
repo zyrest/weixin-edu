@@ -64,6 +64,10 @@ public class FileUtil {
      * @throws IOException
      */
     public static String saveUploadFileAsUrlPath(HttpServletRequest request, MultipartFile file, String subDir) throws IOException {
+        return saveUploadFileAsUrlPath(request, file, "", subDir);
+    }
+
+    public static String saveUploadFileAsUrlPath(HttpServletRequest request, MultipartFile file, String preSubDir, String subDir) throws IOException {
         String baseURL = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/";
         String fileName = file.getOriginalFilename();
         String type = "";
@@ -73,7 +77,12 @@ public class FileUtil {
 
         String filePath = getFilePath();
         filePath = filePath.substring(filePath.indexOf(":") + 1);
-        filePath += type + "/" + subDir;
+        if (StringUtil.isBlank(preSubDir))
+            filePath += type + "/" + subDir;
+        if (StringUtil.isBlank(subDir))
+            filePath += preSubDir + "/" + type;
+        else
+            filePath += preSubDir + "/" + type + "/" + subDir;
         String newName = UUID.randomUUID() + fileName;
 
         /*
