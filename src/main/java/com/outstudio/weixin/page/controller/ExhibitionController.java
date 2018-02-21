@@ -51,7 +51,7 @@ public class ExhibitionController {
 
     @GetMapping("/pageNum/{type}")
     public MessageVo getTotalPage(@PathVariable String type) {
-        return MessageVoUtil.success(exhibitionService.getCountByType(type));
+        return MessageVoUtil.success(exhibitionService.getCountByType(type,1));
     }
 
     @PutMapping("/upvote/{id}")

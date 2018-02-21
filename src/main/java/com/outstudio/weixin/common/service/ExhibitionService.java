@@ -90,8 +90,12 @@ public class ExhibitionService {
         return exhibitionEntityMapper.selectBySearchParam(searchParam, verified);
     }
 
-    public int getCountByType(String type) {
-        return exhibitionEntityMapper.count(type);
+    public int getCountByType(String type, Integer verified) {
+        return exhibitionEntityMapper.count(type, verified);
+    }
+
+    public int count(Integer verified) {
+        return exhibitionEntityMapper.count(verified);
     }
 
     public boolean upvote(Integer id, String ip, Integer verified) {

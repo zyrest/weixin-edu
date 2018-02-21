@@ -1,6 +1,7 @@
 package com.outstudio.weixin.common.dao;
 
 import com.outstudio.weixin.common.po.ExhibitionEntity;
+import com.sun.tracing.dtrace.ProviderAttributes;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
@@ -32,6 +33,10 @@ public interface ExhibitionEntityMapper {
     @Select("select * from t_exhibition where title like #{searchParam} or description like #{searchParam} and verified = #{verified}")
     List<ExhibitionEntity> selectBySearchParam(@Param("searchParam") String searchParam, @Param("verified") Integer verified);
 
-    @Select("select count(*) from t_exhibition where type = #{type}")
-    int count(@Param("type") String type);
+    @Select("select count(*) from t_exhibition where type = #{type} and verified = #{verified}")
+    int count(@Param("type") String type, @Param("verified") Integer verified);
+
+    @Select("select count(*) from t_exhibition where verified = #{verified}")
+    int count(@Param("verified") Integer verified);
+
 }

@@ -103,6 +103,17 @@ public class ExhibitionController {
         return MessageVoUtil.success(exhibitionEntities);
     }
 
+    @GetMapping("/pageNum")
+    public MessageVo getNotVerifiedTotalPage() {
+        return MessageVoUtil.success(exhibitionService.count(0));
+    }
+
+    @GetMapping("/pageNum/{type}")
+    public MessageVo getNotVerifiedTotalPageByType(@PathVariable("type") String type) {
+        int pageNum = exhibitionService.getCountByType(type, 0);
+        return MessageVoUtil.success(pageNum);
+    }
+
     @GetMapping("/verify/{id}")
     public MessageVo verify(@PathVariable Integer id) {
         int result = exhibitionService.verify(id);
