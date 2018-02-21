@@ -1,5 +1,6 @@
 package com.outstudio.weixin.back.controller;
 
+import com.github.pagehelper.PageHelper;
 import com.outstudio.weixin.back.exception.InvalidFileTypeException;
 import com.outstudio.weixin.back.exception.SystemErrorException;
 import com.outstudio.weixin.common.po.ExhibitionEntity;
@@ -14,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by lmy on 2018/2/15.
@@ -23,6 +25,7 @@ import java.io.IOException;
 public class ExhibitionController {
 
     private final String REDIRECT_URL = "";
+    private final int pageSize = 15;
 
     @Resource
     private ExhibitionService exhibitionService;
@@ -46,14 +49,14 @@ public class ExhibitionController {
 
         exhibitionEntity.setSrc(audioSrc);
 
-        exhibitionService.backAdd(exhibitionEntity, ExhibitionType.AUDIO.getType());
+        exhibitionService.add(exhibitionEntity, ExhibitionType.AUDIO.getType(), 1);
         return MessageVoUtil.created(REDIRECT_URL);
     }
 
     @PostMapping("/videos")
     public MessageVo postVideo(@ModelAttribute ExhibitionEntity exhibitionEntity) {
 
-        exhibitionService.backAdd(exhibitionEntity, ExhibitionType.VIDEO.getType());
+        exhibitionService.add(exhibitionEntity, ExhibitionType.VIDEO.getType(), 1);
         return MessageVoUtil.created(REDIRECT_URL);
     }
 
@@ -77,13 +80,41 @@ public class ExhibitionController {
 
         exhibitionEntity.setSrc(pictureSrc);
 
-        exhibitionService.backAdd(exhibitionEntity, ExhibitionType.PICTURE.getType());
+        exhibitionService.add(exhibitionEntity, ExhibitionType.PICTURE.getType(), 1);
         return MessageVoUtil.created(REDIRECT_URL);
     }
 
+    @GetMapping("/notVerified/page/{pageNum}")
+    public MessageVo getAllNotVerified(@PathVariable Integer pageNum) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<ExhibitionEntity> exhibitionEntities = exhibitionService.getByVerified(0);
+        return MessageVoUtil.success(exhibitionEntities);
+    }
+
+    @GetMapping("/notVerified/{id}")
+    public MessageVo getNotVerifiedById(@PathVariable Integer id) {
+        return MessageVoUtil.success(exhibitionService.getById(id, 0));
+    }
+
+    @GetMapping("/notVerified/type/{type}/page/{pageNum}")
+    public MessageVo getAllNotVerifiedByType(@PathVariable String type, @PathVariable Integer pageNum) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<ExhibitionEntity> exhibitionEntities = exhibitionService.getAllByType(type, 0);
+        return MessageVoUtil.success(exhibitionEntities);
+    }
+
+    @GetMapping("/verify/{id}")
+    public MessageVo verify(@PathVariable Integer id) {
+        int result = exhibitionService.verify(id);
+        if (result != 0) {
+            return MessageVoUtil.success();
+        } else {
+            return MessageVoUtil.databaseError("");
+        }
+    }
 
     @DeleteMapping("/{id}")
-    public MessageVo deleteAudio(@PathVariable Integer id) {
+    public MessageVo delete(@PathVariable Integer id) {
         int changedNum = exhibitionService.deleteById(id);
         if (changedNum == 1) {
             return MessageVoUtil.noContent(REDIRECT_URL);
