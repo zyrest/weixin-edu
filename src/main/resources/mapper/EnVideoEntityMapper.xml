@@ -10,9 +10,10 @@
         <result column="post_date" property="post_date" jdbcType="TIMESTAMP"/>
         <result column="description" property="description" jdbcType="VARCHAR"/>
         <result column="fileid" property="fileid" jdbcType="VARCHAR"/>
+        <result column="type" property="type" jdbcType="VARCHAR"/>
     </resultMap>
     <sql id="Base_Column_List">
-        id, title, stage, src, is_free, post_date, description, fileid
+        id, title, stage, src, is_free, post_date, description, fileid, type
     </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
@@ -47,10 +48,10 @@
     <insert id="insert" parameterType="com.outstudio.weixin.common.po.EnVideoEntity">
         INSERT INTO t_en_video (id, title, stage,
                                 src, is_free, post_date,
-                                description, fileid)
+                                description, fileid, type)
         VALUES (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{stage,jdbcType=INTEGER},
                 #{src,jdbcType=VARCHAR}, #{is_free,jdbcType=INTEGER}, #{post_date,jdbcType=TIMESTAMP},
-                #{description,jdbcType=VARCHAR}, #{fileid,jdbcType=VARCHAR})
+                #{description,jdbcType=VARCHAR}, #{fileid,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR})
     </insert>
     <insert id="insertSelective" parameterType="com.outstudio.weixin.common.po.EnVideoEntity">
         insert into t_en_video
@@ -79,6 +80,9 @@
             <if test="fileid != null">
                 fileid,
             </if>
+            <if test="type != null">
+                type,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -104,6 +108,9 @@
             </if>
             <if test="fileid != null">
                 #{fileid,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=VARCHAR},
             </if>
         </trim>
     </insert>
@@ -131,6 +138,9 @@
             <if test="fileid != null">
                 fileid = #{fileid,jdbcType=VARCHAR},
             </if>
+            <if test="type != null">
+                type = #{type,jdbcType=VARCHAR},
+            </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
@@ -142,7 +152,8 @@
             is_free     = #{is_free,jdbcType=INTEGER},
             post_date   = #{post_date,jdbcType=TIMESTAMP},
             description = #{description,jdbcType=VARCHAR},
-            fileid      = #{fileid,jdbcType=VARCHAR}
+            fileid      = #{fileid,jdbcType=VARCHAR},
+            type      = #{type,jdbcType=VARCHAR}
         WHERE id = #{id,jdbcType=INTEGER}
     </update>
 </mapper>

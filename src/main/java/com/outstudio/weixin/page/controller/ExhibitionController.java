@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * Created by lmy on 2018/2/19.
  */
-@RestController
+@RestController("exhibitionPageController")
 @RequestMapping("/page/exhibition")
 public class ExhibitionController {
 

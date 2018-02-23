@@ -2,9 +2,9 @@ package com.outstudio.weixin.page.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.outstudio.weixin.common.po.UserEntity;
-import com.outstudio.weixin.common.vo.VipType;
 import com.outstudio.weixin.common.service.UserService;
 import com.outstudio.weixin.common.utils.LoggerUtil;
+import com.outstudio.weixin.common.vo.VipType;
 import com.outstudio.weixin.core.shiro.token.MyRealm;
 import com.outstudio.weixin.core.shiro.token.TokenManager;
 import org.springframework.stereotype.Controller;
@@ -48,8 +48,14 @@ public class UserController {
         LoggerUtil.fmtDebug(getClass(), "目前缓存中的用户, %s", JSON.toJSONString(TokenManager.getWeixinToken()));
 
         view.addObject("user", gotUser);
-        view.addObject("isVip", TokenManager.isVip(VipType.ENGLISH.getName()));
-        view.addObject("tillDate",TokenManager.tillDate(VipType.ENGLISH.getName()));
+        view.addObject("isEnglishVip", TokenManager.isVip(VipType.ENGLISH.getName()));
+        view.addObject("EnglishVipTillDate", TokenManager.tillDate(VipType.ENGLISH.getName()));
+        view.addObject("isMathVip", TokenManager.isVip(VipType.MATH.getName()));
+        view.addObject("MathVipTillDate", TokenManager.tillDate(VipType.MATH.getName()));
+        view.addObject("isPhysicsVip", TokenManager.isVip(VipType.PHYSICS.getName()));
+        view.addObject("PhysicsVipTillDate", TokenManager.tillDate(VipType.PHYSICS.getName()));
+        view.addObject("isChemistryVip", TokenManager.isVip(VipType.CHEMISTRY.getName()));
+        view.addObject("ChemistryVipTillDate", TokenManager.tillDate(VipType.CHEMISTRY.getName()));
 
         view.addObject("balance", gotUser.getBalance());
         view.addObject("people", userService.getCountsByPid(gotUser.getId()));

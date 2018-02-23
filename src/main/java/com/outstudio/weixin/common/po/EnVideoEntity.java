@@ -22,6 +22,16 @@ public class EnVideoEntity implements Serializable {
 
     private String fileid;
 
+    private String type;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public String getFileid() {
         return fileid;
     }

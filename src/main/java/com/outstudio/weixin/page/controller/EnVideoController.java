@@ -32,7 +32,7 @@ public class EnVideoController {
         ModelAndView view = new ModelAndView();
         EnVideoEntity enVideoEntity = enVideoService.getEnVideoById(id);
         view.addObject("data", enVideoEntity);
-        view.addObject("isVip", TokenManager.isVip(VipType.ENGLISH.getName()));
+        view.addObject("isVip", TokenManager.isVip(enVideoEntity.getType()));
         view.setViewName("hide/page/enVideoOne");
         return view;
     }
