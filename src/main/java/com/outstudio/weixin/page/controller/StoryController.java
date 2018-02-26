@@ -52,7 +52,7 @@ public class StoryController {
         StoryEntity storyEntity = storyService.getStoryById(id);
         view.addObject("data", storyEntity);
 //        view.addObject("isVip", TokenManager.isVip("english"));
-        view.setViewName("hide/page/audioOne");
+        view.setViewName("hide/page/oneAudio");
         return view;
     }
 

@@ -37,7 +37,7 @@ public class MessageController {
     public ModelAndView getMessageById(@PathVariable Integer id) {
         ModelAndView view = new ModelAndView();
         MessageEntity messageEntity = messageService.getMessageById(id);
-        view.setViewName("hide/page/messageOne");
+        view.setViewName("hide/page/oneMessage");
         view.addObject("data", messageEntity);
 //        view.addObject("isVip", TokenManager.isVip("english"));
         return view;
