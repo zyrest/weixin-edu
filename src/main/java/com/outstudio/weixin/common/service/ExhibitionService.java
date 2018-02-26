@@ -76,7 +76,7 @@ public class ExhibitionService {
     }
 
     public ExhibitionEntity getById(Integer id) {
-        return exhibitionEntityMapper.selectByPrimaryKey(id);
+        return exhibitionEntityMapper.selectById(id);
     }
 
     public ExhibitionEntity getById(Integer id, Integer verified) {
@@ -96,7 +96,7 @@ public class ExhibitionService {
     }
 
     public int getCountByType(String type, Integer verified) {
-        return exhibitionEntityMapper.count(type, verified);
+        return exhibitionEntityMapper.countByType(type, verified);
     }
 
     public int count(Integer verified) {

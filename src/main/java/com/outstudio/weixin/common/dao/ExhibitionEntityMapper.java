@@ -16,7 +16,7 @@ public interface ExhibitionEntityMapper {
     int insertSelective(ExhibitionEntity record);
 
     @Select("select * from t_exhibition where id = #{id}")
-    ExhibitionEntity selectByPrimaryKey(@Param("id") Integer id);
+    ExhibitionEntity selectById(@Param("id") Integer id);
 
     ExhibitionEntity selectByPrimaryKey(Integer id, Integer verified);
 
@@ -37,7 +37,7 @@ public interface ExhibitionEntityMapper {
     List<ExhibitionEntity> selectByUserId(@Param("user_id") Integer user_id);
 
     @Select("select count(*) from t_exhibition where type = #{type} and verified = #{verified}")
-    int count(@Param("type") String type, @Param("verified") Integer verified);
+    int countByType(@Param("type") String type, @Param("verified") Integer verified);
 
     @Select("select count(*) from t_exhibition where verified = #{verified}")
     int count(@Param("verified") Integer verified);

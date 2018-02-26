@@ -28,12 +28,6 @@
     delete from t_exhibition
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.outstudio.weixin.common.po.ExhibitionEntityExample" >
-    delete from t_exhibition
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
   <insert id="insert" parameterType="com.outstudio.weixin.common.po.ExhibitionEntity" >
     insert into t_exhibition (id, title, description, 
       post_date, type, src, 

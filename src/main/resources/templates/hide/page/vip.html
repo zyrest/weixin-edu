@@ -147,6 +147,11 @@
         <div class="content-goods">
             <h2 class="goods-title">购买会员享受全部课程</h2>
 
+            <a class="buy-btn" href="javascript:showPicker()">
+                <h3 class="goods-type">请选择需要购买的会员：（当前选择<span id="gd-tp">英语</span>） </h3>
+                <span class="date-enter">点击选择</span>
+            </a>
+
             <div class="goods-price">
                 <div class="monthVip">
                     <p style="text-align: left">月费会员促销价：</p>
@@ -164,16 +169,6 @@
                 </div>
             </div>
         </div>
-
-        <!--<div class="content-date">-->
-        <!--<div class="goods-date">-->
-        <!--<a class="buy-btn" href="javascript:showPicker()">-->
-        <!--<div class="date-img"></div>-->
-        <!--<div class="date-name">选择购买时长</div>-->
-        <!--<span class="date-enter">点击选择</span>-->
-        <!--</a>-->
-        <!--</div>-->
-        <!--</div>-->
 
         <br><br>
         <hr>
@@ -224,11 +219,9 @@
 <script th:src="@{/js/jquery-3.2.1.min.js}" type="text/javascript"></script>
 
 <script type="text/javascript">
-    //<![CDATA[
     //全局变量
-    //    var money = 3000;
-//    var pid = 0;
-    //]]>
+    // var money = 3000;
+    var type = "english";
 </script>
 
 <script>
@@ -241,26 +234,29 @@
 //        else pid = p;
 //    });
 
-    //    function showPicker() {
-    //        var param = [
-    //            {"label" : "一个月", "value" : 3000},
-    //            {"label" : "一年", "value" : 30000}
-    //            ];
-    //        weui.picker(param, {
-    //            onChange: function (result) {
-    //                console.log(result);
-    //            },
-    //            onConfirm: function (result) {
-    //                money = result[0].value;
-    //                console.log(money);
-    //                $('#timePrice').text( (result/100) + '.00');
-    //            }
-    //        });
-    //    }
+       function showPicker() {
+           var param = [
+               {"label" : "英语", "value" : "english"},
+               {"label" : "物理", "value" : "physics"},
+               {"label" : "化学", "value" : "chemistry"},
+               {"label" : "数学", "value" : "math"}
+               ];
+           weui.picker(param, {
+               onChange: function (result) {
+                   // console.log(result);
+               },
+               onConfirm: function (result) {
+                   type = result[0].value;
+                   console.log(type);
+                   $('#gd-tp').text(result[0].label);
+               }
+           });
+       }
 
     function ha(money) {
         var formData = new FormData();
         formData.append("fee", money * 100);
+        formData.append("type", type);
         $.ajax({
             url: '/open/page/wxpay',
             type: "POST",

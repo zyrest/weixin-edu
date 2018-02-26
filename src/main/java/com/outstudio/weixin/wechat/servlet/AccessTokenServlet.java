@@ -12,11 +12,11 @@ import javax.servlet.http.HttpServlet;
 /**
  * Created by 96428 on 2017/7/16.
  */
-@WebServlet(
-        name = "AccessTokenServlet",
-        urlPatterns = "/self/AccessTokenServlet",
-        loadOnStartup = 1
-)
+//@WebServlet(
+//        name = "AccessTokenServlet",
+//        urlPatterns = "/self/AccessTokenServlet",
+//        loadOnStartup = 1
+//)
 public class AccessTokenServlet extends HttpServlet {
     private Logger logger = Logger.getLogger(AccessTokenServlet.class);
 
