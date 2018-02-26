@@ -38,7 +38,7 @@ public class InterviewVideoController {
         InterviewVideoEntity interviewEntity = interviewVideoService.getInterviewVideoById(id);
         view.addObject("data", interviewEntity);
 //        view.addObject("isVip", TokenManager.isVip("english"));
-        view.setViewName("hide/page/videoOne");
+        view.setViewName("hide/page/oneVideo");
         return view;
     }
 

@@ -270,10 +270,10 @@
 
     $(function() {
         load_articles(false, true);
-        document.getElementById("container").addEventListener("touchstart", function (e) {
-            start_y = e.changedTouches[0].pageY;
-        });
-        document.getElementById("container").addEventListener("touchend", touchmove_listener);
+        // document.getElementById("container").addEventListener("touchstart", function (e) {
+        //     start_y = e.changedTouches[0].pageY;
+        // });
+        // document.getElementById("container").addEventListener("touchend", touchmove_listener);
 
         $('#load_more').click(function () {
             if(loading) {
