@@ -30,6 +30,11 @@ public class ExhibitionService {
     private UpvoteEntityMapper upvoteEntityMapper;
 
     public void add(ExhibitionEntity entity, String type, Integer verified) {
+        if (TokenManager.isManager())
+            entity.setUser_id(0);
+        else
+            entity.setUser_id(TokenManager.getWeixinToken().getId());
+
         entity.setPost_date(new Date());
         entity.setType(type);
         entity.setVerified(verified);
@@ -71,7 +76,7 @@ public class ExhibitionService {
     }
 
     public ExhibitionEntity getById(Integer id) {
-        return exhibitionEntityMapper.selectByPrimaryKet(id);
+        return exhibitionEntityMapper.selectByPrimaryKey(id);
     }
 
     public ExhibitionEntity getById(Integer id, Integer verified) {
@@ -122,5 +127,10 @@ public class ExhibitionService {
         ExhibitionEntity entity = getById(id, 0);
         entity.setVerified(1);
         return exhibitionEntityMapper.updateByPrimaryKeySelective(entity);
+    }
+
+    public List<ExhibitionEntity> getByUserId() {
+        UserEntity userEntity = TokenManager.getWeixinToken();
+        return exhibitionEntityMapper.selectByUserId(userEntity.getId());
     }
 }

@@ -1,8 +1,11 @@
 package com.outstudio.weixin.common.po;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class ExhibitionEntity {
+public class ExhibitionEntity implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private Integer id;
 
     private String title;
@@ -20,6 +23,16 @@ public class ExhibitionEntity {
     private Integer upvote;
 
     private Integer verified;
+
+    private Integer user_id;
+
+    public Integer getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
+    }
 
     public Integer getId() {
         return id;

@@ -16,7 +16,7 @@ public interface ExhibitionEntityMapper {
     int insertSelective(ExhibitionEntity record);
 
     @Select("select * from t_exhibition where id = #{id}")
-    ExhibitionEntity selectByPrimaryKet(@Param("id") Integer id);
+    ExhibitionEntity selectByPrimaryKey(@Param("id") Integer id);
 
     ExhibitionEntity selectByPrimaryKey(Integer id, Integer verified);
 
@@ -32,6 +32,9 @@ public interface ExhibitionEntityMapper {
 
     @Select("select * from t_exhibition where title like #{searchParam} or description like #{searchParam} and verified = #{verified}")
     List<ExhibitionEntity> selectBySearchParam(@Param("searchParam") String searchParam, @Param("verified") Integer verified);
+
+    @Select("select * from t_exhibition where user_id = #{user_id}")
+    List<ExhibitionEntity> selectByUserId(@Param("user_id") Integer user_id);
 
     @Select("select count(*) from t_exhibition where type = #{type} and verified = #{verified}")
     int count(@Param("type") String type, @Param("verified") Integer verified);

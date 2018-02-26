@@ -10,6 +10,7 @@ import com.outstudio.weixin.common.utils.FileUtil;
 import com.outstudio.weixin.common.utils.MessageVoUtil;
 import com.outstudio.weixin.common.vo.ExhibitionType;
 import com.outstudio.weixin.common.vo.MessageVo;
+import com.outstudio.weixin.wechat.utils.MessageUtil;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -35,6 +36,13 @@ public class ExhibitionController {
                             @PathVariable Integer page) {
         PageHelper.startPage(page, pageSize);
         List<ExhibitionEntity> entities = exhibitionService.getAllByType(type, 1);
+        return MessageVoUtil.success(entities);
+    }
+
+    @GetMapping("/own/page/{page}")
+    public MessageVo getOwn(@PathVariable Integer page) {
+        PageHelper.startPage(page, pageSize);
+        List<ExhibitionEntity> entities = exhibitionService.getByUserId();
         return MessageVoUtil.success(entities);
     }
 
@@ -66,7 +74,7 @@ public class ExhibitionController {
     }
 
     @PostMapping("/audios")
-    public MessageVo backUploadAudio(@RequestParam("audio") MultipartFile audio,
+    public MessageVo UploadAudio(@RequestParam("audio") MultipartFile audio,
                                      HttpServletRequest request,
                                      @ModelAttribute ExhibitionEntity exhibitionEntity) {
 
