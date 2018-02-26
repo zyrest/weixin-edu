@@ -61,5 +61,10 @@ public class BackUserController {
         return view;
     }
 
+    @GetMapping("/userInfo/{id}")
+    @ResponseBody
+    public MessageVo getUserInfo(@PathVariable Integer id) {
+        return MessageVoUtil.success(userService.getUserById(id));
+    }
 
 }
