@@ -1,3 +1,6 @@
+var v_ue = UE.getEditor("v_description");
+var r_ue = UE.getEditor("r_description");
+
 var getSignature = function(callback){
     $.ajax({
         url: '/cloud/signature',
@@ -59,7 +62,8 @@ function fileSelected() {
 $('#submitVideo').click(function() {
     var title = $('#v_title').val();
     var stage = $('#v_stage').val();
-    var description = $('#v_description').val();
+    var description = v_ue.getContent();
+        // $('#v_description').val();
     var is_free = $('input[name="v_is_free"]:checked').val();
     var video = $('#video')[0].files[0];
 
@@ -127,7 +131,8 @@ $('#submitVideo').click(function() {
 $('#submitReview').click(function () {
     var title = $('#r_title').val();
     var stage = $('#r_stage').val();
-    var description = $('#r_description').val();
+    var description = r_ue.getContent();
+        // $('#r_description').val();
     var is_free = $('input[name="r_is_free"]:checked').val();
     var content = $('#r_content').val();
 

@@ -1,3 +1,4 @@
+var ue = UE.getEditor("description");
 
 var basePath ;
 jQuery(document).ready(function () {
@@ -22,10 +23,13 @@ function fileSelected() {
 
 $('#submitAudio').click(function() {
     var title = $('#title').val();
-    var description = $('#description').val();
+    var description = ue.getContent();
+    // $('#description').val();
     var is_free = $('input[name="is_free"]:checked').val();
     var type = $('#type').find('option:selected').val();
     var audio = $('#audio')[0].files[0];
+
+    // alert(description);
 
     var formData = new FormData();
     formData.append("title", title);

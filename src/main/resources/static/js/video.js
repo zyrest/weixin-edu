@@ -1,3 +1,5 @@
+var ue = UE.getEditor("description");
+
 /**
  * 计算签名
  **/
@@ -43,7 +45,8 @@ $('#submitVideo').click(function() {
     // alert("start");
     var title = $('#title').val();
     var stage = $('#stage').val();
-    var description = $('#description').val();
+    var description = ue.getContent();
+        // $('#description').val();
     var is_free = $('input[name="is_free"]:checked').val();
     var video = $('#video')[0].files[0];
 
